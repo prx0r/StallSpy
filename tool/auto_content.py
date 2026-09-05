@@ -28,8 +28,8 @@ R2_IMPORTS = os.path.join(REPO, "tool/r2_imports")
 # ── R2 Config ───────────────────────────────────────────────────────────
 
 R2_ENDPOINT = "https://954612afb5a97bb15dddcdc70176813d.r2.cloudflarestorage.com"
-R2_ACCESS_KEY = "2a8d61c9ed22f5899b8507435a794f5d"
-R2_SECRET_KEY = "e673672255567cc054e43479fcee0030862fe998e3bc8d1c447b91503c5c729d"
+R2_ACCESS_KEY = os.environ.get("R2_ACCESS_KEY", "")
+R2_SECRET_KEY = os.environ.get("R2_SECRET_KEY", "")
 R2_BUCKET = "blog-video-assets"
 
 def get_r2():

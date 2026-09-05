@@ -15,7 +15,7 @@ from urllib.parse import urlencode
 from urllib.error import HTTPError
 
 API_KEY = os.environ.get("ETSY_API_KEY", "")
-SHARED_SECRET = os.environ.get("ETSY_SHARED_SECRET", "mbb9u861jg")
+SHARED_SECRET = os.environ.get("ETSY_SHARED_SECRET", "os.environ.get("ETSY_SHARED_SECRET", "")")
 BASE = "https://openapi.etsy.com/v3/application"
 
 HEADERS = {

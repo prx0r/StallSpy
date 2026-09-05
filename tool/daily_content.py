@@ -29,7 +29,7 @@ LOG_DIR = os.path.join(REPO, "logs")
 EXPENSE_FILE = os.path.join(REPO, "expenses.jsonl")
 
 ETSY_API_KEY = os.environ.get("ETSY_API_KEY", "")
-ETSY_SHARED_SECRET = os.environ.get("ETSY_SHARED_SECRET", "mbb9u861jg")
+ETSY_SHARED_SECRET = os.environ.get("ETSY_SHARED_SECRET", "os.environ.get("ETSY_SHARED_SECRET", "")")
 ETSY_BASE = "https://openapi.etsy.com/v3/application"
 
 

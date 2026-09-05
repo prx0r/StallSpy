@@ -90,11 +90,13 @@ def run_snapshot(keywords=None):
             "listing_id": l["listing_id"],
             "title": l["title"],
             "keyword": l["keyword"],
-            "impressions": l["views"],
+            "impressions": None,  # Not available from public API
             "views": l["views"],
             "favorites": l["favorites"],
-            "orders": 0,
-            "revenue": 0,
+            "orders": None,  # Not available from public API
+            "revenue": None,  # Not available from public API
+            "source": "etsy_public_listing",
+            "rights": "PLATFORM_PUBLIC_RESTRICTED",
         })
     
     snap = make_metric_snapshot(

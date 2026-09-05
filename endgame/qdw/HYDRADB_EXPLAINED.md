@@ -131,8 +131,8 @@ docker rm hydradb
 docker run -d --name hydradb \
   -p 7687:7687 -p 8443:8443 -p 9090:9090 \
   -e HYDRADB_OBJECT_STORE=s3 \
-  -e AWS_ACCESS_KEY_ID=2a8d61c9ed22f5899b8507435a794f5d \
-  -e AWS_SECRET_ACCESS_KEY=e673672255567cc054e43479fcee0030862fe998e3bc8d1c447b91503c5c729d \
+  -e AWS_ACCESS_KEY_ID=YOUR_ACCESS_KEY \
+  -e AWS_SECRET_ACCESS_KEY=YOUR_SECRET_KEY \
   -e AWS_ENDPOINT_URL=https://954612afb5a97bb15dddcdc70176813d.r2.cloudflarestorage.com \
   ghcr.io/hydra-db/hydradb:latest
 ```

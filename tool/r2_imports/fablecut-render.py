@@ -4,8 +4,8 @@ import json, subprocess, sys, os, tarfile, tempfile
 import boto3
 
 R2_ENDPOINT = "https://954612afb5a97bb15dddcdc70176813d.r2.cloudflarestorage.com"
-R2_KEY = "2a8d61c9ed22f5899b8507435a794f5d"
-R2_SECRET = "e673672255567cc054e43479fcee0030862fe998e3bc8d1c447b91503c5c729d"
+R2_KEY = os.environ.get("R2_ACCESS_KEY", "")
+R2_SECRET = os.environ.get("R2_SECRET_KEY", "")
 R2_BUCKET = "fablecut-projects"
 
 

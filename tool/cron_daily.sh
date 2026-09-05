@@ -5,16 +5,13 @@
 set -e
 
 DATE=$(date +%Y-%m-%d)
-DAY_FILE="/root/StallShark/.experiment_day"
 LOG_DIR="/root/StallShark/logs"
 
-# Increment day counter
-if [ ! -f "$DAY_FILE" ]; then
-    echo "1" > "$DAY_FILE"
+# Get day number from CompanyDay records (not a separate counter)
+DAY_NUM=$(ls /root/StallShark/dogcasso-ops/days/ 2>/dev/null | wc -l)
+if [ "$DAY_NUM" -eq 0 ]; then
+    DAY_NUM=1
 fi
-DAY_NUM=$(cat "$DAY_FILE")
-DAY_NUM=$((DAY_NUM + 1))
-echo "$DAY_NUM" > "$DAY_FILE"
 
 # Generate content
 cd /root/StallShark

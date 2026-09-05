@@ -180,7 +180,7 @@ try:
     import os
     
     key = os.environ.get("ETSY_API_KEY", "")
-    secret = os.environ.get("ETSY_SHARED_SECRET", "mbb9u861jg")
+    secret = os.environ.get("ETSY_SHARED_SECRET", "os.environ.get("ETSY_SHARED_SECRET", "")")
     
     req = Request(
         "https://openapi.etsy.com/v3/application/listings/active?keywords=personalized+football+gift&limit=3",
@@ -247,8 +247,8 @@ try:
     client = boto3.client(
         "s3",
         endpoint_url="https://954612afb5a97bb15dddcdc70176813d.r2.cloudflarestorage.com",
-        aws_access_key_id="2a8d61c9ed22f5899b8507435a794f5d",
-        aws_secret_access_key="e673672255567cc054e43479fcee0030862fe998e3bc8d1c447b91503c5c729d",
+        aws_access_key_id=os.environ.get("R2_ACCESS_KEY", ""),
+        aws_secret_access_key=os.environ.get("R2_SECRET_KEY", ""),
         region_name="auto",
     )
     # List existing experiment files
