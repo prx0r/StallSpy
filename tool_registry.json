@@ -1,0 +1,536 @@
+{
+  "resource": "EasyEtsy Canonical Etsy Agentic & Development Tool Registry",
+  "as_of": "2026-09-05",
+  "scope_note": "Comprehensive practical inventory of credible/current Etsy agentic, developer, automation, research, listing, personalization, POD, inventory and multichannel tools found during this research pass. Not literally every one-off app or abandoned repository on the internet.",
+  "tiers": {
+    "S": "Canonical / unusually strong fit",
+    "A": "Strong",
+    "B": "Useful secondary",
+    "C": "Experimental, situational or needs caution",
+    "D": "Avoid as canonical foundation / policy or reliability risk"
+  },
+  "tools": [
+    {
+      "name": "Etsy Open API v3",
+      "category": "Official API / execution",
+      "tier": "S",
+      "status": "Recommended canonical execution layer",
+      "agentic_role": "Read/write shop data, listings, inventory, orders, shipping, payments and other supported resources via OAuth-scoped endpoints.",
+      "notes": "Use Seller App access for the seller's own shop. Private/write calls require OAuth 2.0 Authorization Code + PKCE. Every v3 request uses x-api-key as keystring:shared_secret.",
+      "url": "https://developers.etsy.com/documentation/"
+    },
+    {
+      "name": "Etsy Dev MCP Server",
+      "category": "Official MCP / developer knowledge",
+      "tier": "S",
+      "status": "Recommended",
+      "agentic_role": "Makes Etsy's current OpenAPI/schema/auth knowledge available to MCP-capable coding agents.",
+      "notes": "Official endpoint: https://mcp.api.etsycloud.com/mcp . It is a developer-knowledge MCP, not a seller-action proxy; it does not itself execute Etsy shop API calls.",
+      "url": "https://developers.etsy.com/documentation/mcp/"
+    },
+    {
+      "name": "Etsy OpenAPI specification (etsy/open-api)",
+      "category": "Official developer resource",
+      "tier": "S",
+      "status": "Recommended source of truth",
+      "agentic_role": "Generate typed clients, validate payloads, diff API changes, and power internal tool schemas.",
+      "notes": "Pin a known version in production and monitor upstream announcements/changes.",
+      "url": "https://github.com/etsy/open-api"
+    },
+    {
+      "name": "Etsy Webhooks",
+      "category": "Official events",
+      "tier": "S",
+      "status": "Recommended",
+      "agentic_role": "Event-driven workflows around order.paid, order.canceled, order.shipped, order.delivered and supported event types.",
+      "notes": "Verify signatures, persist event IDs, make consumers idempotent, and enqueue work rather than doing expensive work inline.",
+      "url": "https://developers.etsy.com/documentation/essentials/webhooks/"
+    },
+    {
+      "name": "Etsy Shop Manager native AI tools",
+      "category": "Native seller AI",
+      "tier": "A",
+      "status": "Use as baseline / ground truth",
+      "agentic_role": "Seller insights, title assistance/bulk edits, and buyer-message writing assistance where available.",
+      "notes": "Useful to compare any external AI workflow against Etsy's own first-party experience and data.",
+      "url": "https://www.etsy.com/seller-handbook/"
+    },
+    {
+      "name": "aserper/etsy-mcp",
+      "category": "Open-source MCP",
+      "tier": "A",
+      "status": "Reference/fork; audit before production",
+      "agentic_role": "Broad Etsy Open API v3 MCP wrapper; repository describes 37 tools covering listings, orders, shipping, reviews, inventory, payments and more.",
+      "notes": "TypeScript/MIT. Broad surface but its repository was pushed in April 2026, so reconcile with later 2026 Etsy API changes before using writes.",
+      "url": "https://github.com/aserper/etsy-mcp"
+    },
+    {
+      "name": "avlihachev/etsy-mcp-server",
+      "category": "Open-source MCP",
+      "tier": "A",
+      "status": "Promising reference/fork",
+      "agentic_role": "Manage listings, images, inventory, shipping profiles and seller taxonomy through MCP.",
+      "notes": "TypeScript/MIT; created/pushed July 2026 and explicitly reflects newer shared-secret/header and listing changes. Still third-party: pin, audit and test.",
+      "url": "https://github.com/avlihachev/etsy-mcp-server"
+    },
+    {
+      "name": "alveyautomation/etsy-mcp",
+      "category": "Open-source MCP",
+      "tier": "B",
+      "status": "Read-oriented / reference",
+      "agentic_role": "Read-focused Etsy MCP with OAuth refresh/PKCE and variation inventory support.",
+      "notes": "Useful as a conservative read-only pattern; verify maintenance/current endpoint coverage.",
+      "url": "https://github.com/alveyautomation/etsy-mcp"
+    },
+    {
+      "name": "profplum700/etsy-mcp-server",
+      "category": "Open-source MCP",
+      "tier": "B",
+      "status": "Experimental/reference",
+      "agentic_role": "Community Etsy MCP implementation.",
+      "notes": "Inspect code, auth handling and API-version freshness before adoption.",
+      "url": "https://github.com/profplum700/etsy-mcp-server"
+    },
+    {
+      "name": "georgejeffers/etsy-mcp-server",
+      "category": "Open-source MCP",
+      "tier": "C",
+      "status": "Experimental",
+      "agentic_role": "Community Etsy MCP implementation.",
+      "notes": "Long-tail GitHub option; do not assume production readiness from repo name alone.",
+      "url": "https://github.com/georgejeffers/etsy-mcp-server"
+    },
+    {
+      "name": "cbernatz/etsy-seller-mcp",
+      "category": "Open-source MCP",
+      "tier": "C",
+      "status": "Experimental",
+      "agentic_role": "Seller-oriented community MCP.",
+      "notes": "Audit scopes, write safety, retry behavior and API freshness.",
+      "url": "https://github.com/cbernatz/etsy-seller-mcp"
+    },
+    {
+      "name": "markswendsen-code/mcp-etsy",
+      "category": "Open-source MCP",
+      "tier": "C",
+      "status": "Experimental",
+      "agentic_role": "Community Etsy MCP.",
+      "notes": "Evaluate only if it fills a concrete gap not met by the canonical wrapper.",
+      "url": "https://github.com/markswendsen-code/mcp-etsy"
+    },
+    {
+      "name": "Etsy SEO MCP community repos",
+      "category": "Open-source MCP / SEO",
+      "tier": "C",
+      "status": "Experimental / verify provenance",
+      "agentic_role": "Community projects attempting keyword/listing analysis via MCP.",
+      "notes": "Examples include mallbin/etsy-seo-mcp, guardyanz/etsy-seo-mcp and gluebag/etsy-seo-mcp. Ensure data collection complies with Etsy terms; prefer licensed data providers.",
+      "url": "https://github.com/search?q=etsy-seo-mcp&type=repositories"
+    },
+    {
+      "name": "profplum700/etsy-v3-api-client",
+      "category": "SDK / TypeScript",
+      "tier": "A",
+      "status": "Useful reference",
+      "agentic_role": "Typed-ish programmatic Etsy v3 access with OAuth PKCE, refresh, rate limiting and caching patterns.",
+      "notes": "Good building block/reference if writing a first-party EasyEtsy tool gateway; reconcile methods with current OpenAPI.",
+      "url": "https://github.com/profplum700/etsy-v3-api-client"
+    },
+    {
+      "name": "anitabyte/etsyv3",
+      "category": "SDK / Python",
+      "tier": "A",
+      "status": "Useful reference",
+      "agentic_role": "Python Etsy Open API v3 client using OAuth2 PKCE.",
+      "notes": "Useful for Python workers, but generated/current OpenAPI clients may be safer for full endpoint parity.",
+      "url": "https://github.com/anitabyte/etsyv3"
+    },
+    {
+      "name": "Make Etsy integration",
+      "category": "Automation / iPaaS",
+      "tier": "S",
+      "status": "Best fast no-code execution option",
+      "agentic_role": "Native Etsy modules for listing, personalization, receipt/transaction, inventory and related workflows.",
+      "notes": "Strong bridge for rapid prototypes and human-in-the-loop automations before replacing critical paths with direct API services.",
+      "url": "https://www.make.com/en/integrations/etsy"
+    },
+    {
+      "name": "Pipedream Etsy integration",
+      "category": "Automation / code workflows",
+      "tier": "A",
+      "status": "Useful",
+      "agentic_role": "Etsy triggers/actions plus Node/Python steps and AI-agent workflow composition.",
+      "notes": "Useful when you want code escape hatches without maintaining the entire orchestration stack.",
+      "url": "https://pipedream.com/apps/etsy"
+    },
+    {
+      "name": "n8n + Etsy API via HTTP Request",
+      "category": "Automation / self-hosted",
+      "tier": "A",
+      "status": "Recommended if self-hosting",
+      "agentic_role": "Self-hosted workflow orchestration around direct Etsy API calls, queues, databases and AI nodes.",
+      "notes": "There is no need to depend on an unofficial Etsy node: use OAuth/HTTP Request against the official API. Community nodes such as mesutkisi11/n8n-nodes-etsy exist but should be audited.",
+      "url": "https://n8n.io/"
+    },
+    {
+      "name": "mesutkisi11/n8n-nodes-etsy",
+      "category": "Community automation node",
+      "tier": "C",
+      "status": "Experimental",
+      "agentic_role": "Community Etsy node package for n8n.",
+      "notes": "Audit credentials, endpoint coverage and maintenance. Prefer official API via n8n HTTP nodes for a canonical system.",
+      "url": "https://github.com/mesutkisi11/n8n-nodes-etsy"
+    },
+    {
+      "name": "Zapier",
+      "category": "Automation / iPaaS",
+      "tier": "C",
+      "status": "Not a primary Etsy connector",
+      "agentic_role": "Generic webhooks/custom actions/code can be used around Etsy.",
+      "notes": "Zapier's Etsy app page currently indicates native Etsy support is not yet available; do not architect around a nonexistent native connector.",
+      "url": "https://zapier.com/apps/etsy/integrations"
+    },
+    {
+      "name": "EverBee Research MCP",
+      "category": "Market intelligence / MCP",
+      "tier": "S",
+      "status": "Best agent-native research connector found",
+      "agentic_role": "Live Etsy product/shop/keyword research inside an MCP client such as Claude.",
+      "notes": "Launched August 2026. Connector: https://research-mcp.everbee.com/mcp . Treat sales/revenue/search numbers as provider estimates, not Etsy ground truth.",
+      "url": "https://everbee.io/"
+    },
+    {
+      "name": "EverBee",
+      "category": "Market intelligence",
+      "tier": "A",
+      "status": "Recommended for directional demand research",
+      "agentic_role": "Product research, shop analytics, keyword/tag research and estimated sales/revenue/conversion signals.",
+      "notes": "Large listing dataset and useful discovery. Paid Growth/Business plans include MCP access per current pricing. Triangulate estimates.",
+      "url": "https://everbee.io/"
+    },
+    {
+      "name": "eRank",
+      "category": "SEO / market research",
+      "tier": "A",
+      "status": "Recommended low-cost benchmark",
+      "agentic_role": "Keyword/trend research, competitor tracking, listing audits and AI listing assistance.",
+      "notes": "Useful inexpensive baseline. Third-party search volume/competition metrics are estimates; compare against Etsy Seller Stats/insights.",
+      "url": "https://erank.com/"
+    },
+    {
+      "name": "Alura",
+      "category": "SEO / seller suite",
+      "tier": "A",
+      "status": "Recommended alternative suite",
+      "agentic_role": "Keyword/product/shop research, Listing Helper, analytics, AI responses, A/B tests, Pinterest and Ads tooling.",
+      "notes": "Broad suite. Evaluate duplicate functionality before paying for EverBee + eRank + Alura simultaneously.",
+      "url": "https://www.alura.io/"
+    },
+    {
+      "name": "Marmalead",
+      "category": "SEO",
+      "tier": "B",
+      "status": "Useful specialist",
+      "agentic_role": "Keyword research, SEO/sales factor analysis and Boost optimization.",
+      "notes": "Strong specialist history in Etsy SEO; compare value with eRank/Alura before stacking subscriptions.",
+      "url": "https://marmalead.com/"
+    },
+    {
+      "name": "EHunt / EtsyHunt",
+      "category": "Market research / SEO",
+      "tier": "B",
+      "status": "Useful secondary dataset",
+      "agentic_role": "Product database, keyword analysis, shop database and listing optimization.",
+      "notes": "Use as another directional signal, not as a source of exact Etsy search/sales truth.",
+      "url": "https://ehunt.ai/"
+    },
+    {
+      "name": "InsightFactory",
+      "category": "Trend research",
+      "tier": "B",
+      "status": "Useful trend signal",
+      "agentic_role": "Trending Etsy searches, sales/competition signals and shop-connected recommendations.",
+      "notes": "Current site advertises daily trend recommendations and recent sales signals. Validate claimed signals with Etsy-native stats and another provider.",
+      "url": "https://insightfactory.app/etsy-trends/"
+    },
+    {
+      "name": "Sale Samurai",
+      "category": "SEO / keyword research",
+      "tier": "B",
+      "status": "Use with skepticism / cross-check",
+      "agentic_role": "Keyword research, browser-assisted research, listing creator and A/B tests.",
+      "notes": "Current marketing claims 'real search volume', but a July 2026 independent test reported suspiciously narrow/high search-volume outputs. Cross-check everything.",
+      "url": "https://salesamurai.io/"
+    },
+    {
+      "name": "Roketfy",
+      "category": "SEO / AI seller suite",
+      "tier": "B",
+      "status": "Secondary",
+      "agentic_role": "Listing checker/writer, keywords, POD AI, product research, competitor analysis and review assistance.",
+      "notes": "Potentially useful one-stop UI; avoid duplicating with stronger data sources unless its workflow materially saves time.",
+      "url": "https://roketfy.com/"
+    },
+    {
+      "name": "Toolsy",
+      "category": "SEO / research",
+      "tier": "B",
+      "status": "Secondary",
+      "agentic_role": "Keyword difficulty/volume, long-tail discovery, competitor tracking and reports.",
+      "notes": "Useful as a niche research option; compare estimates across providers.",
+      "url": "https://toolsy.io/"
+    },
+    {
+      "name": "Listadum",
+      "category": "Listing operations",
+      "tier": "A",
+      "status": "Recommended for bulk seller workflow",
+      "agentic_role": "Bulk create/edit, templates/snippets/profiles, scheduled publishing and listing/keyword/photo/video assistance.",
+      "notes": "Good UI-driven operator layer if you do not want to build every bulk-listing screen in EasyEtsy.",
+      "url": "https://www.listadum.com/"
+    },
+    {
+      "name": "Vela",
+      "category": "Listing operations",
+      "tier": "A",
+      "status": "Recommended alternative",
+      "agentic_role": "Bulk listing management/editing plus AI optimization.",
+      "notes": "Useful for catalog operations; compare its bulk model with Listadum and native Etsy Shop Manager.",
+      "url": "https://welcome.getvela.com/"
+    },
+    {
+      "name": "MyDesigns",
+      "category": "POD / bulk listing operations",
+      "tier": "A",
+      "status": "Strong for design/POD scale",
+      "agentic_role": "Bulk AI listing data, mockups, publishing and multi-channel operations.",
+      "notes": "Especially relevant if EasyEtsy becomes a high-volume personalized/POD asset pipeline.",
+      "url": "https://mydesigns.io/"
+    },
+    {
+      "name": "EtsyFlow",
+      "category": "AI listing pipeline",
+      "tier": "B",
+      "status": "Promising vendor-claimed workflow",
+      "agentic_role": "Folder/asset-to-listing pipeline with mockups, video, title, description and tags.",
+      "notes": "Verify actual Etsy API usage, account safety and compliance before making it a critical dependency.",
+      "url": "https://etsyflow.ai/"
+    },
+    {
+      "name": "Etsy Shop Manager bulk tools",
+      "category": "Native listing operations",
+      "tier": "A",
+      "status": "Baseline",
+      "agentic_role": "Bulk edit existing listings and copy listings.",
+      "notes": "The native UI does not provide general bulk upload of brand-new listings; API/partner tools are where EasyEtsy can add leverage.",
+      "url": "https://help.etsy.com/"
+    },
+    {
+      "name": "Printify",
+      "category": "POD / fulfillment",
+      "tier": "S",
+      "status": "Recommended default POD integration candidate",
+      "agentic_role": "Publish products to Etsy, import orders, automate fulfillment and support automated personalization.",
+      "notes": "Authorized Etsy partner. Automated personalization can map buyer text/dropdown/image inputs to products, reducing manual touches.",
+      "url": "https://printify.com/etsy/"
+    },
+    {
+      "name": "Customily",
+      "category": "Personalization engine",
+      "tier": "S",
+      "status": "Best complex-personalization candidate",
+      "agentic_role": "Maps Etsy native personalization questions (text/dropdown/file upload) into product templates and production-ready files.",
+      "notes": "Very relevant to the EasyEtsy personalized-gift thesis. As of July 2026 it supports Etsy's newer native personalization fields.",
+      "url": "https://www.customily.com/"
+    },
+    {
+      "name": "Printful",
+      "category": "POD / fulfillment",
+      "tier": "A",
+      "status": "Strong alternative POD",
+      "agentic_role": "Etsy product push, stock/order fulfillment and personalization workflows.",
+      "notes": "Robust network. Its personalization workflow is more manual/draft-oriented than Printify's newer automated personalization flow, so test exact UX.",
+      "url": "https://www.printful.com/integrations/etsy"
+    },
+    {
+      "name": "Prodigi",
+      "category": "POD / fulfillment",
+      "tier": "B",
+      "status": "Useful alternative",
+      "agentic_role": "Direct Etsy store connection for print-on-demand fulfillment.",
+      "notes": "Potentially attractive where product catalog, geography or unit economics beat Printify/Printful.",
+      "url": "https://www.prodigi.com/"
+    },
+    {
+      "name": "Gooten",
+      "category": "POD / fulfillment",
+      "tier": "B",
+      "status": "Useful alternative",
+      "agentic_role": "Etsy integration for products, orders and shipping-profile-related workflows.",
+      "notes": "Evaluate product-specific margins, QC and delivery SLAs rather than treating POD networks as interchangeable.",
+      "url": "https://www.gooten.com/"
+    },
+    {
+      "name": "Order Desk",
+      "category": "Order routing / fulfillment",
+      "tier": "A",
+      "status": "Recommended when fulfillment graph becomes complex",
+      "agentic_role": "Rule-driven order router across Etsy and many POD/fulfillment services; can pass tracking/status back.",
+      "notes": "High leverage if EasyEtsy uses multiple specialist printers/fulfillers and needs routing by product, geography, margin or SLA.",
+      "url": "https://www.orderdesk.com/"
+    },
+    {
+      "name": "LitCommerce",
+      "category": "Multichannel commerce",
+      "tier": "B",
+      "status": "Useful if expanding beyond Etsy",
+      "agentic_role": "Listing/inventory/order synchronization across Etsy and other channels, with AI description assistance.",
+      "notes": "Best considered after Etsy product-market fit; avoid introducing multichannel state-sync complexity too early.",
+      "url": "https://litcommerce.com/etsy-integration/"
+    },
+    {
+      "name": "Shuttle",
+      "category": "Etsy \u2194 Shopify sync",
+      "tier": "B",
+      "status": "Useful for owned-store expansion",
+      "agentic_role": "Sync Etsy/Shopify products, inventory, orders/reviews; includes batch editing and optimization features.",
+      "notes": "Relevant when EasyEtsy wants Etsy as acquisition while preserving an owned storefront.",
+      "url": "https://shuttleapp.io/"
+    },
+    {
+      "name": "CedCommerce Etsy Integration",
+      "category": "Shopify \u2194 Etsy sync",
+      "tier": "C",
+      "status": "Evaluate cautiously",
+      "agentic_role": "Sync Shopify product fields, inventory/price and Etsy listings/orders.",
+      "notes": "Current documentation is capable, but a recent Aug 2026 Shopify App Store review reports serious sync/international-pricing issues. Test on a small SKU subset first.",
+      "url": "https://apps.shopify.com/etsy-marketplace-integration"
+    },
+    {
+      "name": "Trunk",
+      "category": "Inventory synchronization",
+      "tier": "A",
+      "status": "Strong for real-time multichannel stock",
+      "agentic_role": "Real-time Etsy inventory sync across channels and bundles.",
+      "notes": "Useful for physical inventory shared across Etsy/Shopify/etc.; Trunk acts as the inventory master using timestamped changes.",
+      "url": "https://www.trunkinventory.com/integrations/etsy"
+    },
+    {
+      "name": "Sumtracker",
+      "category": "Inventory / purchasing",
+      "tier": "A",
+      "status": "Strong inventory alternative",
+      "agentic_role": "Etsy inventory sync plus forecasting/purchase-order and multi-store inventory management.",
+      "notes": "Current docs note Etsy listings need SKUs; only active/inactive listings sync, and sold-out renewal behavior remains Etsy-controlled.",
+      "url": "https://www.sumtracker.com/integrations"
+    },
+    {
+      "name": "Craftybase",
+      "category": "Inventory / manufacturing / COGS",
+      "tier": "A",
+      "status": "Recommended for handmade/manufactured physical goods",
+      "agentic_role": "Raw-material inventory, production, COGS and Etsy-linked inventory/accounting operations.",
+      "notes": "Particularly useful if EasyEtsy expands from pure POD into handmade/assembled products where material-level costing matters.",
+      "url": "https://craftybase.com/"
+    },
+    {
+      "name": "Xero Etsy integration",
+      "category": "Accounting",
+      "tier": "B",
+      "status": "Useful finance layer",
+      "agentic_role": "Sync Etsy sales/refunds/fees and map tax/accounting data.",
+      "notes": "Use after transaction volume warrants automated bookkeeping. Keep finance truth separate from LLM reasoning.",
+      "url": "https://www.etsy.com/apps/"
+    },
+    {
+      "name": "Apify Etsy scrapers / generic Etsy scrapers",
+      "category": "Scraping / high risk",
+      "tier": "D",
+      "status": "Do not use as canonical foundation without Etsy written authorization",
+      "agentic_role": "Can technically extract marketplace pages/data.",
+      "notes": "Etsy API Terms prohibit unauthorized automated systems/browser extensions/screen scraping of Etsy services/data. Use licensed research providers or permitted APIs instead.",
+      "url": "https://apify.com/store"
+    },
+    {
+      "name": "Playwright/Puppeteer browser agents against Etsy",
+      "category": "Browser automation / high risk",
+      "tier": "D",
+      "status": "Avoid for Etsy data/actions unless explicitly authorized",
+      "agentic_role": "Browser automation can imitate seller/site interactions.",
+      "notes": "Brittle, security-sensitive and policy-risky. The canonical EasyEtsy design should use official API actions and browser automation only for clearly permitted non-Etsy destinations.",
+      "url": "https://developers.etsy.com/documentation/essentials/terms-of-use/"
+    },
+    {
+      "name": "MiniMax H3",
+      "category": "Video generation / primary model",
+      "tier": "S",
+      "status": "Recommended primary render engine",
+      "agentic_role": "Open-weight text-to-video, I2V, reference-to-video with native stereo audio. 4-15 seconds at 768p. Reference mode enables character consistency across products.",
+      "notes": "#1 open-weight model on Artificial Analysis for T2V+audio and I2V+audio. NVFP4 quantization fits RTX 5090 (32GB) with ~12.5GB VRAM. INT8 tested on 5090 at ~16-18GB peak VRAM + 75GB system RAM. Reference-to-video is key for recurring characters (Santa, etc).",
+      "url": "https://github.com/MiniMax-AI/MiniMax-H3"
+    },
+    {
+      "name": "LTX-2.5",
+      "category": "Video generation / secondary model",
+      "tier": "A",
+      "status": "Recommended for fast drafts and iteration",
+      "agentic_role": "Fast text-to-video and I2V for rapid prototyping, recipe engineering, and budget batch runs. Good multishot/control and ComfyUI ecosystem.",
+      "notes": "Lower quality than H3 (~1061 vs ~1227 Elo T2V) but faster iteration. Excellent ComfyUI workflows. Keep alongside H3 for rapid prototyping before committing to full H3 renders.",
+      "url": "https://github.com/Lightricks/LTX-Video"
+    },
+    {
+      "name": "ComfyUI",
+      "category": "Workflow orchestration",
+      "tier": "S",
+      "status": "Recommended primary workflow engine",
+      "agentic_role": "Visual node-based workflow editor for video generation pipelines. Community templates for H3 and LTX. Custom nodes for face insertion, character consistency. API mode for programmatic execution.",
+      "notes": "Industry standard for generative media workflows. H3 RunPod template exists. Use for all video generation orchestration.",
+      "url": "https://github.com/comfyanonymous/ComfyUI"
+    },
+    {
+      "name": "FFmpeg",
+      "category": "Post-production / composition",
+      "tier": "S",
+      "status": "Recommended final composition layer",
+      "agentic_role": "Titles, subtitles, music mixing, sound design, aspect ratio conversion (16:9 ↔ 9:16), color grading, transitions, final render and encoding.",
+      "notes": "Universal. Use as final step after GPU render to compose customer-facing output with branding, music, text overlays, and format variants.",
+      "url": "https://ffmpeg.org/"
+    },
+    {
+      "name": "Vast.ai",
+      "category": "GPU rental / infrastructure",
+      "tier": "S",
+      "status": "Recommended cheapest GPU path",
+      "agentic_role": "RTX 5090 rentals at $0.36-0.51/hr. Filter for 5090 + ≥96GB RAM + decent NVMe. $5 buys ~12.5 GPU-hours.",
+      "notes": "Best price/performance for batch generation. Primary infrastructure for H3 quantized workloads. Verify GPU availability and reliability scores before committing.",
+      "url": "https://cloud.vast.ai/"
+    },
+    {
+      "name": "RunPod",
+      "category": "GPU rental / infrastructure",
+      "tier": "A",
+      "status": "Recommended for ease of setup",
+      "agentic_role": "RTX 5090 at ~$0.99/hr, RTX Pro 6000 96GB at ~$1.99-2.09/hr. Pre-built ComfyUI templates available.",
+      "notes": "More expensive than Vast but zero hassle. H3 ComfyUI template boots with workflows for H3 video+audio. Good for initial testing and production fallback.",
+      "url": "https://www.runpod.io/"
+    },
+    {
+      "name": "Prodigi",
+      "category": "Print-on-demand / physical fulfillment",
+      "tier": "A",
+      "status": "Recommended for physical cards",
+      "agentic_role": "Print individual greeting cards from ~£0.75-1.10 wholesale. API-driven. Supports personalized inside/outside printing. 24-72 hour turnaround.",
+      "notes": "Handles printing + shipping. We don't touch the physical card. Use for Movie Card product (£7.99 card + QR to movie).",
+      "url": "https://www.prodigi.com/"
+    },
+    {
+      "name": "Lulu Print API",
+      "category": "Print-on-demand / book fulfillment",
+      "tier": "B",
+      "status": "Recommended for storybooks",
+      "agentic_role": "Print-on-demand personalized books from PDFs. Global dropshipping. Supports AI/customer-input personalized books.",
+      "notes": "Use for future storybook product line. PDF → printed hardcover/softcover. Good integration path for expanding from cards to books.",
+      "url": "https://www.lulu.com/sell/sell-on-your-site/print-api"
+    }
+  ]
+}
