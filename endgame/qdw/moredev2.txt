@@ -1,0 +1,1531 @@
+The repo is at a good point to start implementation precisely because there is almost no legacy code to fight. On GitHub, `StallSpy` still has a single initial commit on `master`; the repository is the research/product specification rather than a functioning application.  The existing blueprint already identifies the Etsy gateway, listing compiler, policy engine, market signals, audit trail and experiment concepts, while the template and Trend Radar docs give concrete domain formats rather than vague product prose.
+
+The pasted MD adds the missing second layer: **StallSpy stops being merely an Etsy app and becomes the commerce-world implementation feeding private-lab/mwgym-style economic experiments.** In particular, `available_at`, historical replay, MarketWorlds, structured decisions and future reveals are the right abstractions. 
+
+One correction to the MD before implementation: UCI Online Retail II contains 1,067,371 real transaction rows and is CC BY 4.0, but it does **not** contain procurement cost or historical inventory-on-hand. So the first benchmark can truthfully evaluate demand selection, forecasting and revenue capture; it cannot claim historical realized P&L unless we explicitly add a synthetic cost model. ([UCI Machine Learning Repository][1])
+
+Give the coding agent this:
+
+# StallSpy — continuation implementation plan
+
+## Mission
+
+Continue the current StallSpy repository. Do not rewrite, rename, relocate or “clean up” the existing Markdown corpus.
+
+The current documents are the specification.
+
+Add working software underneath them.
+
+The immediate target is:
+
+```text
+historical commerce data
+        ↓
+temporal SourceArtifacts
+        ↓
+MarketWorld
+        ↓
+world snapshot at time T
+        ↓
+operator receives ONLY information available at T
+        ↓
+structured CommerceDecision
+        ↓
+advance world
+        ↓
+EconomicOutcome / reveal
+        ↓
+score
+        ↓
+private-lab RunReceipt + ledger
+```
+
+The first implementation should prove this using UCI Online Retail II.
+
+Then attach eBay.
+
+Then attach Etsy/live StallSpy.
+
+Do not attempt the entire autonomous commerce company simultaneously.
+
+---
+
+# 1. Preserve the existing repository
+
+Do not modify the existing strategy Markdown merely to fit the implementation.
+
+Add:
+
+```text
+StallSpy/
+├── existing *.md files untouched
+│
+├── pyproject.toml
+├── .gitignore
+│
+├── src/
+│   └── stallspy/
+│       ├── __init__.py
+│       ├── contracts/
+│       ├── sources/
+│       ├── worlds/
+│       ├── replay/
+│       ├── scoring/
+│       ├── operators/
+│       ├── integrations/
+│       ├── etsy/
+│       └── ebay/
+│
+├── tests/
+│   ├── unit/
+│   ├── property/
+│   ├── integration/
+│   ├── replay/
+│   └── fixtures/
+│
+├── scripts/
+│
+└── .github/
+    └── workflows/
+        └── ci.yml
+```
+
+Do not introduce Postgres, Redis, Kafka, Temporal, Celery or a frontend for this checkpoint.
+
+Python 3.11+.
+
+Suggested runtime dependencies only:
+
+```text
+pydantic>=2
+typer
+httpx
+pandas
+pyarrow
+openpyxl
+```
+
+Dev:
+
+```text
+pytest
+pytest-cov
+hypothesis
+respx
+ruff
+mypy
+```
+
+Use dependencies conservatively.
+
+---
+
+# 2. Use private-lab instead of rebuilding infrastructure
+
+`private-lab` locally is `qdw-workbench`.
+
+It already has:
+
+```text
+FrozenModel
+RunMode
+RunSpec
+RunReceipt
+ArtifactRef
+TrajectoryRef
+BudgetEnvelope
+EvaluationResult
+ExperimentSpec
+Finding
+ExternalOutcomeReceipt
+ledger
+artifact store
+Hydra projector
+```
+
+Do not duplicate those concepts in StallSpy.
+
+Its contracts explicitly say they are cross-module boundaries and published models should not simply be mutated.
+
+Therefore create adapters/extensions, not copies.
+
+Architecture:
+
+```text
+PRIVATE-LAB
+    canonical evidence
+    runs
+    receipts
+    artifacts
+    evaluations
+    worker/version lineage
+          ↑
+          │
+STALLSPY
+    commerce semantics
+    MarketWorld
+    marketplace state
+    commerce decisions
+    economic outcomes
+    eBay/Etsy adapters
+```
+
+Private-lab's current own review says its persistence/evaluation machinery is genuine but real worker execution is still partial.
+
+Therefore do not block StallSpy on Hermes/Letta/WorkerKit/PydanticAI.
+
+For the first benchmark use a simple operator interface.
+
+---
+
+# 3. Define the temporal provenance model first
+
+This is the most important code in the project.
+
+Create:
+
+```text
+src/stallspy/contracts/temporal.py
+```
+
+Models:
+
+```python
+TemporalProvenance
+SourceArtifact
+ObservationRef
+```
+
+Every source datum capable of entering a historical world must ultimately expose:
+
+```text
+event_time
+observed_at
+published_at
+available_at
+ingested_at
+source_id
+source_type
+license
+content_digest
+artifact_ref
+```
+
+Semantics:
+
+```text
+event_time
+when the underlying real-world event happened
+
+observed_at
+when the original observer/provider observed it
+
+published_at
+when it was published externally
+
+available_at
+earliest moment our historical operator is allowed to know it
+
+ingested_at
+when StallSpy actually acquired it
+```
+
+The fundamental benchmark rule is:
+
+```python
+assert observation.available_at <= world.world_time
+```
+
+for every observation provided to the operator.
+
+Never infer availability merely from `event_time`.
+
+Example:
+
+```text
+Consumer purchase:
+event_time     = 2024-11-25
+
+Report describing purchase:
+published_at   = 2025-01-10
+
+World:
+2024-12-01
+
+result:
+REPORT MUST NOT BE VISIBLE
+```
+
+Implement `LeakageGuard`.
+
+Any world materialization containing unavailable evidence must fail hard.
+
+---
+
+# 4. Source artifacts
+
+Create:
+
+```text
+src/stallspy/sources/base.py
+src/stallspy/sources/store.py
+```
+
+Do not save arbitrary untracked source files and pass filenames around.
+
+Each ingestion creates:
+
+```text
+SourceArtifact
+├── source_id
+├── provider
+├── source_type
+├── retrieved_at
+├── temporal provenance
+├── media_type
+├── license
+├── sha256
+├── private_lab_artifact_ref
+└── metadata
+```
+
+Raw source → private-lab ArtifactStore.
+
+Derived parquet/table → separate artifact with:
+
+```text
+derived_from=[raw_artifact_id]
+```
+
+Never overwrite raw evidence.
+
+---
+
+# 5. Implement the StallSpy MarketWorld contract
+
+Create:
+
+```text
+src/stallspy/contracts/world.py
+```
+
+Start smaller than the giant schema in the MD.
+
+Version 1:
+
+```python
+class MarketWorld(FrozenModel):
+    world_id: str
+    version: str
+    marketplace: str
+    region: str
+    world_time: datetime
+
+    horizon_days: int
+
+    observation_ids: tuple[str, ...]
+    document_ids: tuple[str, ...]
+
+    starting_cash: Decimal | None
+    constraints: WorldConstraints
+
+    source_manifest_digest: str
+```
+
+Then:
+
+```python
+class WorldConstraints:
+    max_positions: int | None
+    max_actions: int | None
+    allowed_action_types: tuple[str, ...]
+```
+
+Do not put future outcomes in `MarketWorld`.
+
+Separate:
+
+```text
+WorldReveal
+EconomicOutcome
+```
+
+That separation protects against leakage.
+
+---
+
+# 6. Define the operator boundary
+
+Create:
+
+```text
+src/stallspy/operators/base.py
+```
+
+Protocol:
+
+```python
+class CommerceOperator(Protocol):
+    async def decide(
+        self,
+        observation: WorldObservation,
+        budget: OperatorBudget,
+    ) -> CommerceDecision:
+        ...
+```
+
+Do not expose pandas DataFrames directly.
+
+Build a stable typed observation package.
+
+---
+
+# 7. CommerceDecision
+
+Create:
+
+```text
+src/stallspy/contracts/decision.py
+```
+
+The decision must preserve useful economic reasoning without storing private chain-of-thought.
+
+Something approximately:
+
+```text
+CommerceDecision
+├── decision_id
+├── world_id
+├── operator_id
+├── operator_version
+├── created_at
+├── information_set_digest
+│
+├── theses[]
+│   ├── claim
+│   ├── evidence_refs[]
+│   ├── confidence
+│   └── horizon
+│
+├── forecasts[]
+│   ├── target
+│   ├── metric
+│   ├── predicted_value
+│   └── confidence_interval
+│
+├── allocations[]
+│   ├── target
+│   ├── quantity
+│   ├── capital
+│   └── rationale_summary
+│
+├── risks[]
+├── abstentions[]
+└── overall_confidence
+```
+
+Critical:
+
+```text
+information_set_digest
+```
+
+must identify the exact data the operator received.
+
+Same operator version + same world + same seed + same information set should be replayable.
+
+---
+
+# 8. EconomicOutcome and WorldReveal
+
+Create:
+
+```text
+src/stallspy/contracts/outcome.py
+```
+
+Separate objective outcomes from scoring.
+
+```text
+WorldReveal
+├── world_id
+├── reveal_time
+├── horizon
+├── observation_ids[]
+└── digest
+```
+
+```text
+EconomicOutcome
+├── decision_id
+├── target
+├── period
+├── units
+├── revenue
+├── cost
+├── profit
+├── return_rate
+├── inventory_age
+└── provenance
+```
+
+Fields unavailable for a dataset remain `None`.
+
+Never fabricate profit from revenue.
+
+---
+
+# 9. Implement UCI Online Retail II as world v0
+
+Create:
+
+```text
+src/stallspy/worlds/uci_retail/
+    ingest.py
+    normalize.py
+    world.py
+    reveal.py
+    metrics.py
+```
+
+The source contains transactions from December 2009 through December 2011.
+
+Normalize each row into:
+
+```text
+RetailTransaction
+├── invoice_no
+├── stock_code
+├── description
+├── quantity
+├── invoice_time
+├── unit_price
+├── customer_id
+├── country
+└── cancelled
+```
+
+For this private retailer dataset:
+
+```text
+event_time = invoice_time
+available_at = invoice_time
+```
+
+unless later evidence shows a delay.
+
+Handle cancellation invoices explicitly.
+
+Do not silently discard:
+
+```text
+negative quantity
+cancelled invoices
+missing CustomerID
+zero/negative prices
+```
+
+Instead implement documented normalization rules and retain raw provenance.
+
+---
+
+# 10. First benchmark task
+
+Do NOT start with:
+
+> You have £5,000; what inventory do you buy?
+
+because UCI does not give historical procurement prices.
+
+Use:
+
+## `uci_demand_selection_v0`
+
+At world time T:
+
+Operator receives all transactions with:
+
+```text
+available_at <= T
+```
+
+and a candidate universe of products.
+
+Operator must select K products and forecast:
+
+```text
+next 30d units
+next 30d revenue
+next 90d units
+next 90d revenue
+```
+
+Optional:
+
+```text
+rank products by expected opportunity
+```
+
+Reveal later transactions.
+
+Score:
+
+```text
+MAE / WAPE forecast error
+rank correlation
+top-K future revenue recall
+top-K future unit-sales recall
+calibration
+abstention quality
+```
+
+Add a simulated-capital benchmark later.
+
+If using simulated costs, name it explicitly:
+
+```text
+SIMULATED_PNL
+```
+
+never `REALIZED_PNL`.
+
+---
+
+# 11. World materializer
+
+Create:
+
+```text
+src/stallspy/replay/materialize.py
+```
+
+Interface:
+
+```python
+materialize_world(
+    dataset_id,
+    cutoff,
+    region=None,
+    seed=None,
+) -> MaterializedWorld
+```
+
+It must:
+
+1. resolve source artifacts;
+2. filter by `available_at`;
+3. construct observation set;
+4. produce sorted deterministic representations;
+5. hash the information set;
+6. run LeakageGuard;
+7. return immutable world.
+
+Repeated materialization must give the exact same digest.
+
+---
+
+# 12. Replay runner
+
+Create:
+
+```text
+src/stallspy/replay/runner.py
+```
+
+Flow:
+
+```text
+MarketWorld
+    ↓
+materialize
+    ↓
+WorldObservation
+    ↓
+CommerceOperator.decide()
+    ↓
+CommerceDecision
+    ↓
+private-lab trajectory/artifacts
+    ↓
+advance horizon
+    ↓
+WorldReveal
+    ↓
+score
+    ↓
+EvaluationResult
+    ↓
+RunReceipt
+    ↓
+private-lab ledger
+```
+
+CLI:
+
+```bash
+stallspy world build \
+  --dataset uci-retail-ii \
+  --cutoff 2010-09-01 \
+  --horizon 90
+
+stallspy replay run \
+  --world uci_2010_09_01 \
+  --operator baseline-seasonal
+
+stallspy replay evaluate \
+  --run <run-id>
+```
+
+Checkpoint command eventually:
+
+```bash
+stallspy replay suite \
+  --suite commerce-v0
+```
+
+---
+
+# 13. Build dumb baselines before LLM agents
+
+Mandatory.
+
+Implement:
+
+```text
+LastPeriodBaseline
+SeasonalBaseline
+RevenueMomentumBaseline
+UnitsMomentumBaseline
+RandomBaseline
+```
+
+Potential simple baseline:
+
+```text
+forecast next-30d units =
+weighted combination of:
+last 30d
+same period prior year
+last 90d trend
+```
+
+An LLM/agent result means nothing unless compared against mechanical baselines.
+
+Every benchmark table should show them.
+
+---
+
+# 14. Arena evaluation
+
+Do not implement Arenav2 itself in StallSpy.
+
+Produce an adapter-friendly result:
+
+```text
+OperatorRunResult
+├── operator_id
+├── operator_version
+├── world_id
+├── decision_ref
+├── receipt_ref
+├── score
+└── metric_breakdown
+```
+
+Then multiple operators can run against exactly the same world.
+
+Example:
+
+```text
+baseline-seasonal
+baseline-momentum
+model-A
+model-B
+model-A + reports
+model-A + independent reviewer
+```
+
+This gives us scientifically meaningful comparisons.
+
+---
+
+# 15. Historical documents
+
+After UCI works, create:
+
+```text
+src/stallspy/sources/documents/
+```
+
+Document SourceArtifacts should support:
+
+```text
+publication
+report
+forecast
+trend_report
+market_research
+```
+
+Each document receives:
+
+```text
+published_at
+available_at
+source
+license/terms
+artifact
+```
+
+The world compiler must select:
+
+```python
+documents = [
+    d for d in documents
+    if d.available_at <= world_time
+]
+```
+
+This implements the MD's:
+
+```text
+"What documents could the entrepreneur actually read on this date?"
+```
+
+Do not begin bulk collection before this provenance machinery exists.
+
+---
+
+# 16. Begin a 2026 snapshot journal immediately
+
+Add a command:
+
+```bash
+stallspy snapshot create --as-of now
+```
+
+It should create a manifest of legally accessible evidence gathered at that instant.
+
+Initially this can be manually populated.
+
+Structure:
+
+```text
+snapshots/
+  manifest only
+```
+
+Large/raw source contents belong in artifact storage, not Git.
+
+Capture:
+
+```text
+source
+retrieval time
+published time
+available time
+query
+region
+artifact digest
+license/use note
+```
+
+Never modify old snapshots.
+
+New observation = new artifact.
+
+---
+
+# 17. eBay becomes marketplace adapter #1
+
+Only after replay-v0 passes.
+
+Create:
+
+```text
+src/stallspy/ebay/
+├── auth.py
+├── client.py
+├── contracts.py
+├── inventory.py
+├── fulfillment.py
+├── research.py
+├── sandbox.py
+├── normalizers.py
+└── capabilities.py
+```
+
+Separate:
+
+```text
+MARKET RESEARCH
+```
+
+from:
+
+```text
+SELLER EXECUTION
+```
+
+eBay's official Product Research currently exposes three years of sales history, actual accepted Best Offer prices, sold ranges, seller counts and related metrics. ([eBay][2])
+
+But do not automate the Seller Hub UI as though it were a public data API.
+
+Provide:
+
+```text
+ManualProductResearchImporter
+```
+
+for explicitly authorized exports/input.
+
+If Marketplace Insights API access is granted, implement:
+
+```text
+MarketplaceInsightsSource
+```
+
+It is currently Limited Release. ([eBay Developers][3])
+
+---
+
+# 18. eBay Feed adapter
+
+Create this behind a feature flag because production Feed API access is restricted/Limited Release.
+
+The official feed architecture supports:
+
+```text
+weekly bootstrap
++
+daily newly listed
++
+hourly changed inventory
+```
+
+for building a category mirror. ([eBay Developers][4])
+
+Model:
+
+```text
+EbayListingObservation
+├── item_id
+├── marketplace
+├── category
+├── title
+├── price
+├── quantity/status
+├── condition
+├── seller metadata permitted by API
+├── item_created_at
+├── feed_as_of
+├── available_at
+└── raw_artifact_ref
+```
+
+Never let live current feed state contaminate an older replay world.
+
+---
+
+# 19. eBay Sandbox operator
+
+This is the second major checkpoint.
+
+Sandbox is for **operational competence**, not historical market intelligence.
+
+eBay explicitly notes bootstrap feeds aren't available in Sandbox, and recommends production for testing search capabilities. ([eBay Developers][4])
+
+Create at least:
+
+```text
+seller
+buyer-A
+buyer-B
+```
+
+eBay itself recommends both seller/buyer personas and multiple buyers for more complex flows. ([eBay Developers][5])
+
+Test lifecycle:
+
+```text
+create inventory location
+        ↓
+create inventory item
+        ↓
+create offer
+        ↓
+publish offer
+        ↓
+buyer purchases
+        ↓
+seller sees order
+        ↓
+create fulfillment
+        ↓
+observe final state
+```
+
+The official Inventory API uses inventory item → offer → publishOffer, and Fulfillment handles completed checkout orders. ([eBay Developers][6])
+
+Important API property:
+
+Listings created through Inventory API should continue to be managed through the Inventory API rather than casually mixing management surfaces. ([eBay Developers][7])
+
+---
+
+# 20. Semantic eBay capabilities
+
+Agents never receive arbitrary HTTP.
+
+Expose:
+
+```text
+ebay.inventory.get
+ebay.inventory.prepare
+ebay.offer.prepare
+ebay.offer.publish
+ebay.offer.revise
+ebay.offer.withdraw
+
+ebay.orders.list
+ebay.order.get
+ebay.fulfillment.prepare
+ebay.fulfillment.submit
+```
+
+Classify:
+
+```text
+read                    R0
+prepare/draft           R1
+publish/revise          R2
+withdraw/cancel         R2
+refund                  R3
+credential/account      R3
+```
+
+Policy execution belongs in private-lab's policy boundary once available.
+
+---
+
+# 21. Modes
+
+All marketplace actions implement:
+
+```text
+REPLAY
+SHADOW
+SANDBOX
+LIVE
+```
+
+Semantics:
+
+```text
+REPLAY
+historical world only
+
+SHADOW
+real reads, zero marketplace writes
+
+SANDBOX
+external writes only to marketplace sandbox
+
+LIVE
+production side effects
+```
+
+`LIVE` must be impossible for an agent to self-enable.
+
+Configuration controls it outside model context.
+
+---
+
+# 22. Etsy comes after the common loop
+
+The existing StallSpy tooling research already identifies Etsy Open API v3 as the intended canonical execution layer and the developer MCP as developer knowledge rather than seller action execution.
+
+Preserve that direction.
+
+Do not build a separate Etsy orchestration stack.
+
+Implement:
+
+```text
+MarketWorld
+CommerceDecision
+EconomicOutcome
+SourceArtifact
+```
+
+once.
+
+Then:
+
+```text
+EtsyWorldAdapter
+EbayWorldAdapter
+```
+
+both feed the same operator/evaluation contracts.
+
+---
+
+# 23. Dogcasso also plugs into the same loop
+
+Do not work on the frontend yet.
+
+Current template documents already specify:
+
+```text
+input
+render config
+storyboard
+prompt
+references
+QA
+variants
+```
+
+Implement those as immutable `TemplateVersion` objects later.
+
+Critically, do not retain live metrics inside immutable template definition.
+
+Instead:
+
+```text
+TemplateVersion
+    ↓
+RenderRun
+    ↓
+OutcomeObservation
+```
+
+Revenue/conversion/reroll data are observations.
+
+That allows:
+
+```text
+Template v3
+vs
+Template v4
+```
+
+to be evaluated honestly.
+
+---
+
+# 24. Tests — mandatory gates
+
+## Unit
+
+```text
+test_temporal_provenance_roundtrip
+test_world_contract_frozen
+test_world_digest_deterministic
+test_decision_digest_deterministic
+test_reveal_separate_from_world
+test_source_artifact_hash
+test_cancelled_transaction_normalization
+```
+
+## Leakage tests
+
+These are the highest-priority tests.
+
+```text
+test_future_transaction_not_visible
+test_future_report_not_visible
+test_published_after_cutoff_not_visible
+test_available_at_overrides_event_time
+test_reveal_cannot_enter_observation_context
+test_operator_information_set_exactly_matches_manifest
+```
+
+Create malicious fixtures intentionally containing future information.
+
+Tests must fail if LeakageGuard is removed.
+
+## Replay tests
+
+```text
+test_same_world_same_digest
+test_same_baseline_same_decision
+test_30d_reveal_exact_date_boundary
+test_90d_reveal_exact_date_boundary
+test_cancelled_orders_not_counted_as_sales
+test_score_known_fixture
+```
+
+## Scoring tests
+
+Use tiny hand-computable fixtures.
+
+For example:
+
+```text
+SKU A future revenue = 100
+SKU B future revenue = 50
+SKU C future revenue = 0
+
+operator chooses A,B
+```
+
+Assert exact top-K/revenue-recall score.
+
+Never test scoring only against random large datasets.
+
+## private-lab integration
+
+```text
+test_run_creates_artifact
+test_run_creates_receipt
+test_receipt_references_world_digest
+test_decision_artifact_content_addressed
+test_evaluation_recorded
+test_ledger_chain_valid_after_run
+test_hydra_rebuild_preserves_run_lineage
+```
+
+## eBay Sandbox
+
+Mark:
+
+```python
+@pytest.mark.ebay_sandbox
+```
+
+Test:
+
+```text
+auth
+inventory location
+inventory item
+offer creation
+publish
+readback
+buyer transaction
+order retrieval
+fulfillment
+duplicate mutation protection
+```
+
+Do not run these in normal PR CI unless credentials are present.
+
+## Live
+
+No automatic CI production writes.
+
+Ever.
+
+---
+
+# 25. Property tests
+
+Use Hypothesis for the time boundary.
+
+Generate random:
+
+```text
+world_time
+event_time
+available_at
+published_at
+```
+
+Invariant:
+
+```python
+visible == (available_at <= world_time)
+```
+
+Also property-test:
+
+```text
+serialization → deserialization keeps digest
+ordering input rows differently does not alter canonical world
+adding future rows does not alter past world
+```
+
+That last property is extremely important:
+
+```python
+world(dataset[:T]) ==
+world(dataset[:T] + future_data)
+```
+
+The world at T must be identical.
+
+---
+
+# 26. CI
+
+Normal CI:
+
+```bash
+ruff check src tests
+mypy src
+pytest -m "not ebay_sandbox and not live" --cov=stallspy
+```
+
+Set minimum coverage initially around 85% for the new core modules.
+
+More important than percentage:
+
+```text
+all leakage guard branches exercised
+all side-effect gates exercised
+```
+
+Never allow a test suite where deliberately leaking future information still passes.
+
+private-lab's own CI principle says broken variants should be included so a checker incapable of failing is itself considered broken.
+
+Follow that philosophy.
+
+---
+
+# 27. Checkpoint sequence
+
+Do these sequentially.
+
+## CP0 — package exists
+
+```bash
+python -c "import stallspy"
+pytest
+```
+
+Passes.
+
+## CP1 — temporal substrate
+
+Given records on both sides of T:
+
+```text
+world(T)
+```
+
+contains exactly legal observations.
+
+Digest deterministic.
+
+## CP2 — UCI replay
+
+```bash
+stallspy replay run \
+  --world uci-retail-ii:2010-09-01 \
+  --operator seasonal-baseline
+```
+
+produces:
+
+```text
+World
+Decision
+Reveal
+Scores
+private-lab RunReceipt
+```
+
+## CP3 — operator tournament
+
+At least:
+
+```text
+random
+momentum
+seasonal
+one LLM/operator
+```
+
+run against identical worlds.
+
+Output comparable metrics.
+
+## CP4 — eBay Sandbox
+
+One complete seller/buyer lifecycle.
+
+Every external action receipted.
+
+## CP5 — eBay SHADOW
+
+Real production reads.
+
+Zero writes.
+
+Produce:
+
+```text
+market snapshot
+opportunity hypotheses
+proposed actions
+```
+
+## CP6 — one LIVE intervention
+
+Exactly one reversible low-risk marketplace mutation.
+
+Record:
+
+```text
+before state
+decision
+authorization
+request
+response
+after state
+cost
+later outcome
+```
+
+## CP7 — Etsy/Dogcasso
+
+Same machinery applied to one real Etsy listing/product experiment.
+
+---
+
+# 28. What not to do in this pass
+
+Do not:
+
+```text
+rename StallSpy
+move all Markdown into docs/
+build StallShark UI
+build Dogcasso storefront
+install another graph DB
+introduce another canonical database
+build a generic agent framework
+fine-tune models
+bulk scrape Etsy
+scrape eBay Product Research UI
+create dozens of marketplace accounts
+build Amazon
+build full Oracle
+build autonomous ad spending
+```
+
+The immediate invention is not the dashboard.
+
+It is:
+
+> a temporally correct, replayable economic world that can prove whether an operator actually made a good decision using only information available at the time.
+
+---
+
+# 29. First coding session order
+
+Do exactly this:
+
+```text
+1. add pyproject.toml + package
+2. add temporal contracts
+3. add SourceArtifact adapter to private-lab ArtifactStore
+4. add MarketWorld
+5. add WorldReveal
+6. add CommerceDecision
+7. add LeakageGuard
+8. ingest tiny synthetic fixture
+9. make all temporal tests pass
+10. ingest UCI
+11. implement cutoff materializer
+12. implement 30d/90d reveals
+13. implement scoring
+14. implement random baseline
+15. implement momentum baseline
+16. implement seasonal baseline
+17. connect one replay run to private-lab receipt
+18. verify ledger
+19. rebuild Hydra and verify lineage
+20. add CLI
+```
+
+Only after all 20 work:
+
+```text
+21. begin eBay adapter
+```
+
+---
+
+# 30. Definition of success
+
+At the end of the first development pass I want this:
+
+```bash
+stallspy replay run \
+  --dataset uci-retail-ii \
+  --cutoff 2010-09-01 \
+  --horizon 90 \
+  --operator seasonal-baseline
+```
+
+to produce something equivalent to:
+
+```text
+world_id:
+uci_2010_09_01_v1
+
+world_digest:
+sha256:...
+
+observations:
+472,381 legal historical transactions
+
+future_rows_exposed:
+0
+
+operator:
+seasonal-baseline/v1
+
+decision_digest:
+sha256:...
+
+30d score:
+...
+
+90d score:
+...
+
+run_receipt:
+...
+
+artifact_refs:
+...
+
+ledger_chain:
+VALID
+```
+
+Then run:
+
+```bash
+stallspy replay run ... --operator momentum-baseline
+stallspy replay run ... --operator random
+```
+
+and obtain a comparable leaderboard.
+
+Then add one agent.
+
+That is the first real StallSpy/mwgym economic experiment.
+
+Everything after that—eBay historical research, eBay Sandbox, Etsy live experiments, Oracle calibration, Arenav2 tournaments, Operator Twin and Moltwork policy learning—has a proper substrate instead of being another pile of agent code.
+
+The most important engineering distinction is **historical prediction vs real economic P&L**. eBay Product Research genuinely gives three years of sold-market data, making it excellent for replay and market forecasting. ([eBay][2]) But historical sold data still doesn't tell us what *our* sourcing cost would have been. True P&L starts once StallSpy records actual inventory acquisition cost, marketplace fees, shipping, refunds and sales from its own live operation.
+
+That actually makes the progression cleaner:
+
+**UCI = prove temporal replay → eBay historical = prove marketplace intelligence → eBay Sandbox = prove operational competence → eBay shadow = prove current decisions → tiny live portfolio = prove economic competence → Etsy/Dogcasso = test transfer into creative commerce.**
+
+That is the implementation path I would use now, without rewriting any of the existing repo.
+
+[1]: https://archive.ics.uci.edu/dataset/502/online%2Bretail?utm_source=chatgpt.com "UCI Machine Learning Repository"
+[2]: https://www.ebay.com/help/selling/selling-tools/terapeak?id=4853&utm_source=chatgpt.com "Product research | eBay"
+[3]: https://www.developer.ebay.com/develop/get-started/get-started-on-a-buying-application?utm_source=chatgpt.com "Get Started on a Buying Application | eBay Developers Program"
+[4]: https://developer.ebay.com/api-docs/buy/api-feed_beta.html?utm_source=chatgpt.com "Feed API beta | eBay Developers Program"
+[5]: https://developer.ebay.com/develop/guides/sell/get-started-with-ebay-apis?utm_source=chatgpt.com "Get started with eBay APIs | eBay Developers Program"
+[6]: https://developer.ebay.com/api-docs/sell/static/inventory/inventory-item-to-offer.html?utm_source=chatgpt.com "From inventory item to eBay marketplace offer | eBay Developers Program"
+[7]: https://developer.ebay.com/api-docs/sell/inventory/static/overview.html?utm_source=chatgpt.com "Inventory API Overview | eBay Developers Program"
