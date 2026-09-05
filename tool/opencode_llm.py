@@ -20,7 +20,7 @@ def call_opencode(prompt: str, system: str = "", timeout: int = 60) -> dict:
         result = subprocess.run(
             [OPENCODE, "run", full_prompt],
             capture_output=True, text=True, timeout=timeout,
-            cwd="/root/StallSpy"
+            cwd="/root/StallShark"
         )
         output = result.stdout.strip()
         
@@ -62,7 +62,7 @@ def call_opencode_text(prompt: str, system: str = "", timeout: int = 60) -> str:
         result = subprocess.run(
             [OPENCODE, "run", full_prompt],
             capture_output=True, text=True, timeout=timeout,
-            cwd="/root/StallSpy"
+            cwd="/root/StallShark"
         )
         # Clean terminal formatting
         output = result.stdout.strip()

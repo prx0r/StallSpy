@@ -6,7 +6,7 @@ import os
 import sys
 from datetime import datetime
 
-MORNING_DIR = "/root/StallSpy/morning"
+MORNING_DIR = "/root/StallShark/morning"
 
 def record(day_number, goal, belief, bet, success, kill):
     """Record the morning belief state."""

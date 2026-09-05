@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-StallSpy Hardened Kernel — CompanyDay vertical slice.
+StallShark Hardened Kernel — CompanyDay vertical slice.
 
 Implements:
 - Transactional event ledger (BEGIN IMMEDIATE equivalent)
@@ -24,7 +24,7 @@ from typing import Any, Optional
 
 # ── Paths ───────────────────────────────────────────────────────────────
 
-STALLSPY = Path("/root/StallSpy")
+STALLSPY = Path("/root/StallShark")
 KERNEL_DB = STALLSPY / "data" / "kernel.db"
 os.makedirs(KERNEL_DB.parent, exist_ok=True)
 

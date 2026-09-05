@@ -66,7 +66,7 @@ def make_agent_session(objective: str = "", scope: str = "", priority: str = "no
             "provider": "opencode",
         },
         "repo": {
-            "name": "StallSpy",
+            "name": "StallShark",
             "start_commit": _git_head(),
             "end_commit": None,
         },
@@ -106,7 +106,7 @@ def _git_head() -> str:
     try:
         import subprocess
         r = subprocess.run(["git", "rev-parse", "--short", "HEAD"],
-                           capture_output=True, text=True, cwd="/root/StallSpy")
+                           capture_output=True, text=True, cwd="/root/StallShark")
         return r.stdout.strip()
     except:
         return "unknown"
@@ -200,7 +200,7 @@ def make_action_receipt(action_type: str, target_id: str,
 
 # ── Persistence ──────────────────────────────────────────────────────────
 
-DATA_ROOT = Path("/root/StallSpy/dogcasso-ops")
+DATA_ROOT = Path("/root/StallShark/dogcasso-ops")
 
 def _ensure_dir(path: Path):
     path.mkdir(parents=True, exist_ok=True)
@@ -242,8 +242,8 @@ def git_commit_record(category: str, record_id: str, message: str = None):
     
     import subprocess
     msg = message or f"book: {category}/{record_id}"
-    subprocess.run(["git", "add", str(path)], cwd="/root/StallSpy", capture_output=True)
-    r = subprocess.run(["git", "commit", "-m", msg], cwd="/root/StallSpy", capture_output=True, text=True)
+    subprocess.run(["git", "add", str(path)], cwd="/root/StallShark", capture_output=True)
+    r = subprocess.run(["git", "commit", "-m", msg], cwd="/root/StallShark", capture_output=True, text=True)
     return r.stdout.strip()
 
 

@@ -149,7 +149,7 @@ def make_session(
         "started_at": now_iso(),
         "ended_at": None,
         "objective": objective,
-        "repo": "StallSpy",
+        "repo": "StallShark",
         "commit_before": commit_before,
         "commit_after": None,
         "raw_trace_sha256": None,
@@ -288,7 +288,7 @@ def make_economic_event(
 
 # ── Persistence ──────────────────────────────────────────────────────────
 
-DATA_ROOT = Path("/root/StallSpy/dogcasso-ops")
+DATA_ROOT = Path("/root/StallShark/dogcasso-ops")
 
 def save(schema: dict, category: str):
     os.makedirs(DATA_ROOT / category, exist_ok=True)

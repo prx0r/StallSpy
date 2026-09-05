@@ -20,7 +20,7 @@ from pathlib import Path
 
 # ── Paths ───────────────────────────────────────────────────────────────
 
-REPO = "/root/StallSpy"
+REPO = "/root/StallShark"
 LOG_DIR = os.path.join(REPO, "logs")
 PLATINUM_DIR = os.path.join(REPO, "tool/r2_imports/platinum")
 R2_IMPORTS = os.path.join(REPO, "tool/r2_imports")

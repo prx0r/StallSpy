@@ -1,12 +1,12 @@
 #!/bin/bash
 # Daily Content Engine — runs at 11:55 PM to generate that day's content.
-# Add to crontab: 55 23 * * * /root/StallSpy/tool/cron_daily.sh
+# Add to crontab: 55 23 * * * /root/StallShark/tool/cron_daily.sh
 
 set -e
 
 DATE=$(date +%Y-%m-%d)
-DAY_FILE="/root/StallSpy/.experiment_day"
-LOG_DIR="/root/StallSpy/logs"
+DAY_FILE="/root/StallShark/.experiment_day"
+LOG_DIR="/root/StallShark/logs"
 
 # Increment day counter
 if [ ! -f "$DAY_FILE" ]; then
@@ -17,7 +17,7 @@ DAY_NUM=$((DAY_NUM + 1))
 echo "$DAY_NUM" > "$DAY_FILE"
 
 # Generate content
-cd /root/StallSpy
+cd /root/StallShark
 python3 tool/daily_content.py \
     --date "$DATE" \
     --day "$DAY_NUM" \

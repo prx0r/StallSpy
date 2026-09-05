@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-End-to-End Test — StallSpy System
+End-to-End Test — StallShark System
 Honest assessment. No theatre. Log everything.
 """
 import json
@@ -11,7 +11,7 @@ import traceback
 from datetime import datetime
 from pathlib import Path
 
-STALLSPY = Path("/root/StallSpy")
+STALLSPY = Path("/root/StallShark")
 RESULTS = []
 
 def log_result(component: str, status: str, details: str, duration_ms: float = 0):
@@ -33,7 +33,7 @@ t0 = time.time()
 try:
     sys.path.insert(0, str(STALLSPY / "tool"))
     from stallspy_system import (
-        StallSpySystem, SubjectiveState, WorkBudget, TokenEvent, MemoryEntry,
+        StallSharkSystem, SubjectiveState, WorkBudget, TokenEvent, MemoryEntry,
         EventLedger, OPERATOR_TWIN, ECONOMIC_CRITIC, COLD_REVIEWER, INTERVIEW_AGENT
     )
     log_result("imports", "PASS", "All classes imported", (time.time()-t0)*1000)
@@ -106,8 +106,8 @@ except Exception as e:
 print("\n=== 5. FULL PIPELINE (test model) ===")
 t0 = time.time()
 try:
-    from stallspy_system import StallSpySystem, SubjectiveState
-    system = StallSpySystem()
+    from stallspy_system import StallSharkSystem, SubjectiveState
+    system = StallSharkSystem()
     
     business_state = {
         "day": 5,

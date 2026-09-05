@@ -24,7 +24,7 @@ from urllib.error import HTTPError
 
 # ── Config ──────────────────────────────────────────────────────────────
 
-REPO = "/root/StallSpy"
+REPO = "/root/StallShark"
 LOG_DIR = os.path.join(REPO, "logs")
 EXPENSE_FILE = os.path.join(REPO, "expenses.jsonl")
 

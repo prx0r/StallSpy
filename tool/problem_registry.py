@@ -19,7 +19,7 @@ import uuid
 from datetime import datetime
 from pathlib import Path
 
-PROBLEMS_FILE = Path("/root/StallSpy/dogcasso-ops/problems.jsonl")
+PROBLEMS_FILE = Path("/root/StallShark/dogcasso-ops/problems.jsonl")
 
 def uid(prefix="prob"):
     return f"{prefix}_{uuid.uuid4().hex[:8]}"

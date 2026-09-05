@@ -6,7 +6,7 @@ import os
 import json
 from datetime import datetime
 
-EXPENSE_FILE = "/root/StallSpy/expenses.jsonl"
+EXPENSE_FILE = "/root/StallShark/expenses.jsonl"
 
 CATEGORIES = {
     "gpu": "GPU rental (Vast.ai / RunPod)",

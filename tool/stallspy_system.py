@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-StallSpy Integrated System — Full Pipeline
+StallShark Integrated System — Full Pipeline
 Wires: PydanticAI + Event Ledger + Operator Twin + Cold Review + Token Tracking + Memory
 """
 from __future__ import annotations
@@ -20,7 +20,7 @@ from pydantic_ai import Agent
 
 # ── Paths ───────────────────────────────────────────────────────────────
 
-STALLSPY = Path("/root/StallSpy")
+STALLSPY = Path("/root/StallShark")
 LEDGER_DB = STALLSPY / "data" / "ledger.db"
 load_dotenv(STALLSPY / ".env")
 
@@ -235,7 +235,7 @@ def _call_opencode(prompt, system="", timeout=60):
     try:
         r = _sp.run(["/root/.opencode/bin/opencode", "run", full],
                      capture_output=True, text=True, timeout=timeout,
-                     cwd="/root/StallSpy")
+                     cwd="/root/StallShark")
         import re
         matches = re.findall(r'\{[^{}]*(?:\{[^{}]*\}[^{}]*)*\}', r.stdout)
         for m in reversed(matches):
@@ -260,7 +260,7 @@ You receive ONLY facts. Return ONLY a JSON object:
 
 # ── The Integrated System ────────────────────────────────────────────────
 
-class StallSpySystem:
+class StallSharkSystem:
     def __init__(self):
         self.ledger = EventLedger()
 
@@ -336,8 +336,8 @@ class StallSpySystem:
         }
 
 if __name__ == "__main__":
-    print("\n=== StallSpy System v1.0 ===\n")
-    system = StallSpySystem()
+    print("\n=== StallShark System v1.0 ===\n")
+    system = StallSharkSystem()
 
     bs = {"day": 5, "cash": 88.37, "revenue": 0, "listings": 0,
           "active_brands": ["dogcasso"], "top_problem": "nothing launched"}

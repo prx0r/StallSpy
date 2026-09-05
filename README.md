@@ -15,7 +15,7 @@ Dogcasso is Experiment 001. Game Winner is Experiment 002. The corpus is the pri
 ## Directory Structure
 
 ```
-StallSpy/
+StallShark/
 │
 ├── AGENTS.md                    ← START HERE
 ├── README.md                    ← this file

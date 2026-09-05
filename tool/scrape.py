@@ -142,7 +142,7 @@ def scrape_keyword(keyword, max_listings=200, get_shop_data=True, get_review_dat
         time.sleep(1.2)  # Respect rate limit
     
     # Save
-    outdir = f"/root/StallSpy/tool/data/{safe_kw}"
+    outdir = f"/root/StallShark/tool/data/{safe_kw}"
     os.makedirs(outdir, exist_ok=True)
     
     # JSON (full data)

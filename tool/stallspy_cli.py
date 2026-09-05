@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-StallSpy CLI — day management, decisions, experiments, snapshots, handovers.
+StallShark CLI — day management, decisions, experiments, snapshots, handovers.
 
 Usage:
     stallspy day start              Start a new day
@@ -49,7 +49,7 @@ def day_start():
 
 ## Notes
 """
-    today_path = Path("/root/StallSpy/TODAY.md")
+    today_path = Path("/root/StallShark/TODAY.md")
     with open(today_path, "w") as f:
         f.write(today_md)
     
@@ -245,7 +245,7 @@ def day_report():
     experiments = list_records("experiments")
     
     # Count today's expenses
-    expenses_path = Path("/root/StallSpy/expenses.jsonl")
+    expenses_path = Path("/root/StallShark/expenses.jsonl")
     today_expenses = []
     if expenses_path.exists():
         with open(expenses_path) as f:
