@@ -1,0 +1,71 @@
+{
+  "timestamp": "2026-09-05T20:55:53.301374",
+  "summary": {
+    "total": 10,
+    "pass": 8,
+    "fail": 2
+  },
+  "results": [
+    {
+      "component": "ledger_basics",
+      "status": "PASS",
+      "details": "Append, count, chain verify",
+      "ms": 13
+    },
+    {
+      "component": "concurrent_append",
+      "status": "FAIL",
+      "details": "Concurrent errors: ['SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138352319563456.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138352237999808.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138352229607104.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138352221214400.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138352212821696.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138352204428992.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138352196036288.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138352187643584.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138352179250880.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138352170858176.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138352162465472.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138352154072768.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138352145680064.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138352137287360.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138352128894656.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138352120501952.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138352112109248.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138352103716544.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138352095323840.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138352086931136.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138352078538432.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138352070145728.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138352061753024.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138352053360320.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138352044967616.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138352036574912.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138352028182208.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138352019789504.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138352011396800.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138352003004096.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138351994611392.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138351986218688.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138351977825984.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138351969433280.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138351961040576.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138351952647872.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138351944255168.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138351935862464.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138351927469760.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138351919077056.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138351910684352.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138351902291648.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138351893898944.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138351885506240.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138351877113536.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138351868720832.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138351860328128.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138351851935424.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138351843542720.', 'SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 138352339288576 and this is thread id 138351835150016.']",
+      "ms": 0
+    },
+    {
+      "component": "contracts",
+      "status": "PASS",
+      "details": "6 contracts created: CompanyDay, ActorAssessment, InformationSet, WorldExperiment, Problem, WorkOrder",
+      "ms": 0
+    },
+    {
+      "component": "company_day",
+      "status": "FAIL",
+      "details": "No module named 'tool'",
+      "ms": 0
+    },
+    {
+      "component": "info_boundary",
+      "status": "PASS",
+      "details": "Excluded classes enforced",
+      "ms": 0
+    },
+    {
+      "component": "chain_integrity",
+      "status": "PASS",
+      "details": "Chain valid after 5 events",
+      "ms": 1
+    },
+    {
+      "component": "event_query",
+      "status": "PASS",
+      "details": "1 assessments, 0 problems",
+      "ms": 0
+    },
+    {
+      "component": "ledger_rebuild",
+      "status": "PASS",
+      "details": "Rebuilt from 5 events, chain valid",
+      "ms": 0
+    },
+    {
+      "component": "no_creds_in_ledger",
+      "status": "PASS",
+      "details": "No credentials leaked to ledger",
+      "ms": 0
+    },
+    {
+      "component": "cleanup",
+      "status": "PASS",
+      "details": "Test database removed",
+      "ms": 0
+    }
+  ],
+  "company_day_result": null
+}
