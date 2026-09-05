@@ -33,8 +33,8 @@ t0 = time.time()
 try:
     sys.path.insert(0, str(STALLSPY / "tool"))
     from stallspy_system import (
-        StallSpySystem, SubjectiveState, RunReceipt, ForecastEntry, Problem,
-        EventLedger, operator_twin, economic_critic, cold_reviewer, interview_agent
+        StallSpySystem, SubjectiveState, WorkBudget, TokenEvent, MemoryEntry,
+        EventLedger, OPERATOR_TWIN, ECONOMIC_CRITIC, COLD_REVIEWER, INTERVIEW_AGENT
     )
     log_result("imports", "PASS", "All classes imported", (time.time()-t0)*1000)
 except Exception as e:

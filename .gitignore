@@ -3,3 +3,6 @@ __pycache__/
 output/
 *.egg-info/
 .env
+data/
+morning/
+operations/logs/

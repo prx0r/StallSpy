@@ -1,110 +1,110 @@
 {
-  "timestamp": "2026-09-05T19:38:36.499608",
+  "timestamp": "2026-09-05T19:44:21.339935",
   "summary": {
     "total": 14,
-    "pass": 14,
-    "fail": 0,
+    "pass": 13,
+    "fail": 1,
     "partial": 0,
     "skip": 0,
-    "total_ms": 3295
+    "total_ms": 1729
   },
   "results": [
     {
-      "timestamp": "2026-09-05T19:38:34.828255",
+      "timestamp": "2026-09-05T19:44:19.610413",
       "component": "imports",
-      "status": "PASS",
-      "details": "All classes imported",
-      "duration_ms": 1624
+      "status": "FAIL",
+      "details": "cannot import name 'RunReceipt' from 'stallspy_system' (/root/StallSpy/tool/stallspy_system.py)",
+      "duration_ms": 0
     },
     {
-      "timestamp": "2026-09-05T19:38:34.851427",
+      "timestamp": "2026-09-05T19:44:19.642460",
       "component": "event_ledger",
       "status": "PASS",
       "details": "Created 2 events, hash chain working",
-      "duration_ms": 23
+      "duration_ms": 32
     },
     {
-      "timestamp": "2026-09-05T19:38:34.851637",
+      "timestamp": "2026-09-05T19:44:19.642713",
       "component": "subjective_state",
       "status": "PASS",
       "details": "Model has 25 fields, serialization works",
       "duration_ms": 0
     },
     {
-      "timestamp": "2026-09-05T19:38:34.894783",
+      "timestamp": "2026-09-05T19:44:19.671339",
       "component": "pydantic_ai_agents",
       "status": "PASS",
       "details": "Agent created, output type validated: SubjectiveState",
-      "duration_ms": 43
+      "duration_ms": 29
     },
     {
-      "timestamp": "2026-09-05T19:38:34.953571",
+      "timestamp": "2026-09-05T19:44:19.724813",
       "component": "full_pipeline",
       "status": "PASS",
-      "details": "Interview\u2192Predict\u2192Critic\u2192ColdReview\u2192Divergence. 8 events, 2 states",
-      "duration_ms": 59
+      "details": "Interview\u2192Predict\u2192Critic\u2192ColdReview\u2192Divergence. 23 events, 5 states",
+      "duration_ms": 53
     },
     {
-      "timestamp": "2026-09-05T19:38:35.788006",
+      "timestamp": "2026-09-05T19:44:20.560753",
       "component": "content_engine",
       "status": "PASS",
-      "details": "Git: 18 commits, Etsy: 3 keyword queries",
-      "duration_ms": 834
+      "details": "Git: 19 commits, Etsy: 3 keyword queries",
+      "duration_ms": 836
     },
     {
-      "timestamp": "2026-09-05T19:38:36.069327",
+      "timestamp": "2026-09-05T19:44:20.849740",
       "component": "etsy_api",
       "status": "PASS",
-      "details": "API returned 137480 results, fetched 3 listings",
-      "duration_ms": 281
+      "details": "API returned 137474 results, fetched 3 listings",
+      "duration_ms": 289
     },
     {
-      "timestamp": "2026-09-05T19:38:36.069407",
+      "timestamp": "2026-09-05T19:44:20.849850",
       "component": "token_tracker",
       "status": "PASS",
       "details": "Expense logging functional",
       "duration_ms": 0
     },
     {
-      "timestamp": "2026-09-05T19:38:36.070120",
+      "timestamp": "2026-09-05T19:44:20.850799",
       "component": "morning_record",
       "status": "PASS",
       "details": "Record created and cleaned up",
       "duration_ms": 1
     },
     {
-      "timestamp": "2026-09-05T19:38:36.459055",
+      "timestamp": "2026-09-05T19:44:21.299974",
       "component": "r2_backup",
       "status": "PASS",
       "details": "R2 connected, 4 experiment files exist",
-      "duration_ms": 389
+      "duration_ms": 449
     },
     {
-      "timestamp": "2026-09-05T19:38:36.465628",
+      "timestamp": "2026-09-05T19:44:21.305868",
       "component": "scraped_data",
       "status": "PASS",
       "details": "2 CSV files, 204 total rows",
-      "duration_ms": 7
+      "duration_ms": 6
     },
     {
-      "timestamp": "2026-09-05T19:38:36.466238",
+      "timestamp": "2026-09-05T19:44:21.306527",
       "component": "ledger_integrity",
       "status": "PASS",
-      "details": "events=8, states=2, tokens=0",
+      "details": "events=23, states=5, tokens=1",
       "duration_ms": 1
     },
     {
-      "timestamp": "2026-09-05T19:38:36.466648",
+      "timestamp": "2026-09-05T19:44:21.306968",
       "component": "file_structure",
       "status": "PASS",
       "details": "All 8 dirs and 15 key files present",
       "duration_ms": 0
     },
     {
-      "timestamp": "2026-09-05T19:38:36.499510",
+      "timestamp": "2026-09-05T19:44:21.339853",
       "component": "git_status",
       "status": "PASS",
-      "details": "5 recent commits, 4 uncommitted changes",
+      "details": "5 recent commits, 2 uncommitted changes",
       "duration_ms": 33
     }
   ]
