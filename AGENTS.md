@@ -1,268 +1,126 @@
-# AGENTS.md — Agent Operating Axioms
+# AGENTS.md — Operating Rules for StallShark
 
-**Purpose:** Hardcoded rules for every agent working on StallSpy or its codebase. The system becomes an agent framework that feeds itself useful data and eventually becomes autonomous.
+## Phase: LIVE VALIDATION
 
----
+**Primary objective:** Get Dogcasso Etsy products selling and preserve high-quality evidence about decisions/actions/outcomes.
 
-## Axiom 1: The Session Is the Training Data
-
-Every prompt you receive from the human is a training signal. Not just the structured outputs — the **language, hesitation, revision, frustration, excitement, avoidance, tangents**. These reveal:
-
-- Management style (delegator vs micromanager)
-- Risk tolerance (conserve vs spend)
-- Decision patterns (gut vs data-driven)
-- Creative instincts (what excites, what bores)
-- Blind spots (what gets avoided)
-- Vision (what they want even when they can't articulate it)
-
-Store prompts raw. Extract features later. The human's prompting IS the operator model.
+**Priority:** DOGCASSO > OPS/BOOK > RADAR > LAB/GYM.
 
 ---
 
-## Axiom 2: Two Models, Not One
+## Core Rules
 
-Never blindly become a twin of the human.
+1. **The business comes first.** Content records the business. Content must never become the business's main source of busywork.
+2. **Reality outranks narrative.** Economic outcomes outrank agent confidence.
+3. **Never rewrite history.** Incorrect beliefs remain recorded as beliefs held at that time.
+4. **Independent review means independent.** Blind reviewer commits before seeing interpretations.
+5. **Every expenditure has a budget.** Track cash, tokens, human time.
+6. **Autonomy is earned per decision class.** Don't automate what you haven't proven you can do.
+7. **Prefer experiments that reduce important uncertainty.**
+8. **Don't promote a lesson because an agent wrote it.** Promotion requires evidence.
+9. **One intervention at a time.** Don't confound experiments.
+10. **The simplest thing that could work.** No Hydra, no fine-tuning, no RL until Dogcasso is selling.
+
+---
+
+## What to Do Each Day
 
 ```
-OPERATOR_MODEL    — predicts what the human would do
-CRITIC_MODEL      — predicts what the business needs
+MORNING (5 min)
+  stallspy day start
+  → agent generates 5 questions from state
+  → human answers
+  → agent + predicted-human answer same questions
+  → choose 1-3 priorities
+  → WORK ON DOGCASSO
+
+DURING DAY
+  Just use OpenCode. Recorder captures everything.
+
+END OF SESSION
+  Worker debrief. Export raw session.
+
+EVENING (2 min)
+  Raw voice note. Not polished.
+
+NIGHT
+  Blind review → divergence → public content.
 ```
 
-The divergence between them is where learning lives.
+---
+
+## What to Build Next (Sprint A)
+
+1. **Book schemas** — 8 core schemas (Pydantic)
+2. **Local store** — filesystem append/write
+3. **Etsy snapshot** — capture metrics
+4. **Listing version registry** — track changes
+5. **Render receipts** — record generation costs
+6. **Daily report** — print summary
+7. **OpenCode session recorder** — capture traces
+8. **Blind review** — independent assessment
 
 ---
 
-## Axiom 3: Every Action Has an Economic Footprint
+## What NOT to Build
 
-Nothing is free. Every tool call, every generation, every research query costs tokens. Every decision costs human attention. Every experiment costs time and money.
+Until 20 paid Etsy orders or 30 days real data:
 
-Record everything:
+- New generalized databases
+- New graph abstractions
+- New agent runtimes
+- Amazon/eBay
+- Complex Arenav2 work
+- Fine-tuning
+- Multi-company hierarchies
+- Elaborate dashboards
+- 20-store launches
 
-```text
-model_call → tokens → cost_usd
-human_action → minutes → opportunity_cost
-decision → budget_allocated → budget_consumed → outcome
-```
-
-Tokens are a P&L input, not an implementation detail.
-
----
-
-## Axiom 4: Context Has Half-Life
-
-Information degrades. Yesterday's urgent problem may be resolved. Last week's strategy may be obsolete. The agent that carries stale context makes stale decisions.
-
-Every 250k tokens:
-
-1. Refresh axioms (re-read AGENTS.md)
-2. Review current business state
-3. Check active problems and experiments
-4. Verify assumptions still hold
-5. Distill session into high-signal takeaways
-6. Discard resolved uncertainties
+**If it doesn't improve revenue, fulfillment quality, experimental observability, or operating speed — question why it's being built.**
 
 ---
 
-## Axiom 5: Independence Is the Feature
-
-The fresh reviewer must not see previous interpretations before forming its own.
+## File Map
 
 ```
-PASS A: evidence only → independent assessment
-PASS B: reveal human + worker reflections → reconciliation
+dogcasso-ops/     ← LIVE DATA (8 schemas)
+corpus/           ← ARCHITECTURE SPECS
+endgame/          ← PLANNING
+tool/             ← AUTOMATION + SCHEMAS
+brands/           ← BRAND STRATEGY
+content/          ← CONTENT STRATEGY
+product/          ← PRODUCT ARCHITECTURE
+research/         ← MARKET RESEARCH
+tools/            ← CLONED MCP SERVERS
+data/             ← LOCAL DATABASES
 ```
 
-Independent convergence = validated knowledge.
-Independent divergence = valuable signal.
-
 ---
 
-## Axiom 6: Problems Are First-Class Objects
+## Session Protocol
 
-Agents don't wake up thinking "what random thing should we work on?"
-
-They maintain a persistent Problem Registry:
-
-```text
-OBSERVATION → PROBLEM → HYPOTHESES → RESEARCH →
-EXPERIMENT → BATS ALLOCATION → INTERVENTION →
-MEASUREMENT → RESULT → LESSON → POLICY UPDATE
-```
-
-The problem persists until resolved. Six months later: "show me every recurring problem we've failed to solve permanently."
-
----
-
-## Axiom 7: BATS Is the Economic Law
-
-Budget-Aware Task Selection isn't a feature. It's physics.
-
-```text
-FREE MODEL:    unlimited — research, drafts, summaries
-CHEAP MODEL:   $1.50/day — SEO, competitor analysis
-STRONG MODEL:  $2.00/day — strategy, creative
-GPU:           $1.50/day — generation
-```
-
-At 100% budget: explore broadly.
-At 50%: concentrate on strongest two.
-At 20%: verify best option and execute.
-At 5%: commit or escalate.
-
----
-
-## Axiom 8: The Human Queue Is Sacred
-
-Agents should populate a human queue with decisions that genuinely require human judgment:
-
-- Creative direction ("which of these 3 concepts feels right?")
-- Domain naming ("which brand name resonates?")
-- Feedback on outputs ("does this look like a good gift?")
-- Strategic pivots ("should we kill this brand?")
-- Risk thresholds ("is $50 too much to spend on this test?")
-
-Never interrupt the human with decisions the agent can make.
-Never make decisions the human should make.
-
----
-
-## Axiom 9: Forecasts Before Actions
-
-Before anything consequential, commit a forecast:
-
-```json
-{
-  "question": "...",
-  "human_probability": 0.64,
-  "agent_probability": 0.48,
-  "resolution_condition": "...",
-  "resolution_deadline": "..."
-}
-```
-
-Then reality scores everyone. Calibration improves over time.
-
----
-
-## Axiom 10: The Constitution Is Hard
-
-```text
-never sell below configured floor
-never spend above BATS envelope
-never expose customer/private information
-never violate marketplace policy
-never materially change legal/financial structure autonomously
-never manipulate reviews
-never deploy unapproved high-risk IP
-escalate irreversible actions
-```
-
-Versioned. Measurable. The cost of guardrails is an experimental variable.
-
----
-
-## Axiom 11: One Intervention at a Time
-
-Etsy search guidance: make changes gradually to understand what works.
-
-The experiment designer should penalize confounded interventions.
-
-One causal intervention beats five simultaneous "optimizations."
-
----
-
-## Axiom 12: Learning Velocity Over Revenue
-
-Revenue is delayed. Learning can be measured sooner.
-
-```text
-problem_detected → hypothesis → experiment → resolution → policy_update
-```
-
-**Validated information gained per $/token/hour** is the early-stage metric.
-
-Losing $30 while learning five transferable things ≠ losing $30 doing nothing informative.
-
----
-
-## Axiom 13: Experience Is Contextual
-
-A Game Winner cold-start lesson applies to:
-
-✅ personalized fishing gifts on Etsy (high context similarity)
-❌ enterprise S_TRANSFER to SaaS Google Ads (low context similarity)
-
-Every episode stores: domain, stage, channel, recipient, occasion, product type, price band, market, season, business state.
-
-Experience transfer has a **context similarity score**.
-
----
-
-## Axiom 14: Organizational Structure Is Experimental
-
-Don't decide now whether to be hierarchical.
-
-Test:
+Every coding session receives:
 
 ```
-generalist agent
-vs
-fixed specialist team
-vs
-manager → specialists
-vs
-agents dynamically spawn roles
+AGENTS.md
+TODAY.md
+current-state.json
+last handover
+relevant files only
 ```
 
-Score on: economic return, token cost, human intervention, error rate, decision latency, strategy coherence.
-
-The org chart emerges from measured problem structure, not from planning.
+At completion:
+- Run relevant tests
+- Summarize behavior changed
+- Record commits
+- Emit SessionRecord
+- Emit handover
+- List next 3 actions
 
 ---
 
-## Axiom 15: The Endgame Is Human Calibration
+## The Endgame
 
-The ultimate question:
+The corpus is the primary asset. Dogcasso and Game Winner generate the data. StallShark watches and learns. The research substrate does not need to produce the real business — the real business produces the research substrate.
 
-> What is the minimum effective human involvement at each stage of the business?
-
-Stage 1 (Day 1-30): Human does everything, agent observes.
-Stage 2 (Day 30-90): Agent does research/drafts, human decides.
-Stage 3 (Day 90-180): Agent handles routine, human handles creative/strategy.
-Stage 4 (Day 180-365): Agent manages brands, human sets vision.
-Stage 5 (Year 2+): Agent runs operations, human is CEO.
-
-The human queue evolves:
-
-```
-Day 1:    "What should I build?"
-Day 30:   "Which of these 3 concepts?"
-Day 90:   "Should we kill this brand?"
-Day 180:  "Where does next month's £500 go?"
-Day 365:  "Are we still solving the right problem?"
-```
-
-The endgame: **the most effective operating model for AI-native businesses, calibrated from real economic outcomes.**
-
----
-
-## Token Budget Protocol
-
-Every 250k tokens:
-
-```text
-1. RELOAD axioms (re-read this file)
-2. STATE CHECK: what's the current business state?
-3. PROBLEM CHECK: what's the highest-priority unresolved problem?
-4. ASSUMPTION CHECK: what am I assuming that might be wrong?
-5. DISTILL: what are the 3 most important things from this session?
-6. DISCARD: what uncertainties have been resolved?
-7. QUEUE: what decisions need human input?
-8. FORECAST: what do I predict will happen next?
-```
-
-This prevents context drift and ensures agents stay aligned with actual business state.
-
----
-
-*These axioms are the operating system. Every agent that touches this codebase inherits them. They are versioned, auditable, and improve from the corpus they generate.*
+**Build businesses. Preserve cognition. Publish one slice each day.**
