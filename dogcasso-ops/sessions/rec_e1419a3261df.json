@@ -1,0 +1,46 @@
+{
+  "schema": "AgentSession",
+  "session_id": "ses_671061605fa6",
+  "started_at": "2026-09-05T21:17:06.293728",
+  "ended_at": null,
+  "agent": {
+    "runtime": "opencode",
+    "model": "mimo-v2.5",
+    "provider": "opencode"
+  },
+  "repo": {
+    "name": "StallSpy",
+    "start_commit": "c9ce3fb",
+    "end_commit": null
+  },
+  "task": {
+    "objective": "record",
+    "scope": "Launched first listing",
+    "priority": "normal"
+  },
+  "inputs": {
+    "files_read": [],
+    "source_refs": [],
+    "previous_handover": null
+  },
+  "outputs": {
+    "commits": [],
+    "files_created": [],
+    "files_changed": [],
+    "artifacts": []
+  },
+  "decisions": [],
+  "experiments_touched": [],
+  "actions_taken": [],
+  "cost": {
+    "model_usd": 0.0,
+    "external_usd": 0.0,
+    "gpu_usd": 0.0
+  },
+  "result": {
+    "status": "in_progress",
+    "summary": "",
+    "blockers": [],
+    "next_actions": []
+  }
+}

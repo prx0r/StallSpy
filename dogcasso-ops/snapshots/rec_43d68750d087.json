@@ -1,0 +1,223 @@
+{
+  "schema": "MetricSnapshot",
+  "snapshot_id": "snap_533d929a38d7",
+  "observed_at": "2026-09-05T21:16:41.624151",
+  "shop": {
+    "total_listings_scanned": 80,
+    "total_favorites": 6462,
+    "total_views": 257193,
+    "unique_competitor_shops": 66,
+    "keywords_scanned": 4
+  },
+  "listings": [
+    {
+      "listing_id": 4346594956,
+      "title": "Custom Bling Football Jersey \u2013 Personalized Sequin Name, Number & Logo, Glitter ",
+      "keyword": "personalized football gift",
+      "impressions": 1789,
+      "views": 1789,
+      "favorites": 43,
+      "orders": 0,
+      "revenue": 0
+    },
+    {
+      "listing_id": 1488812428,
+      "title": "Personalized Sports Birthday Banner One Year First Birthday Party Decor Sports P",
+      "keyword": "personalized football gift",
+      "impressions": 5184,
+      "views": 5184,
+      "favorites": 301,
+      "orders": 0,
+      "revenue": 0
+    },
+    {
+      "listing_id": 4560680088,
+      "title": "Fall Football Porch Goose Outfit 23 Inch Personalized Name Badge Game Day Helmet",
+      "keyword": "personalized football gift",
+      "impressions": 2119,
+      "views": 2119,
+      "favorites": 125,
+      "orders": 0,
+      "revenue": 0
+    },
+    {
+      "listing_id": 4553299427,
+      "title": "Personalized Bulldogs Game Day Sweatshirt, Custom Cheerleader Name Sleeve, Gingh",
+      "keyword": "personalized football gift",
+      "impressions": 6292,
+      "views": 6292,
+      "favorites": 294,
+      "orders": 0,
+      "revenue": 0
+    },
+    {
+      "listing_id": 4560383795,
+      "title": "Personalized 2027 Senior Grandma Bootleg Photo Shirt Png, Custom Senior Mom Dad ",
+      "keyword": "personalized football gift",
+      "impressions": 15,
+      "views": 15,
+      "favorites": 1,
+      "orders": 0,
+      "revenue": 0
+    },
+    {
+      "listing_id": 4346710648,
+      "title": "Personalised Whistle Stainless Steel Whistle Coach Gift Sports Referees Necklace",
+      "keyword": "personalized football gift",
+      "impressions": 27553,
+      "views": 27553,
+      "favorites": 160,
+      "orders": 0,
+      "revenue": 0
+    },
+    {
+      "listing_id": 4565704281,
+      "title": "Patchwork Pumpkin Football Game Day Personalized Door Hanger SVG | Fall Laser Cu",
+      "keyword": "personalized football gift",
+      "impressions": 314,
+      "views": 314,
+      "favorites": 26,
+      "orders": 0,
+      "revenue": 0
+    },
+    {
+      "listing_id": 4558577552,
+      "title": "Split Team Rivalry Doormat, Custom House Divided Sports Mat, Personalized Footba",
+      "keyword": "personalized football gift",
+      "impressions": 5,
+      "views": 5,
+      "favorites": 0,
+      "orders": 0,
+      "revenue": 0
+    },
+    {
+      "listing_id": 4526618329,
+      "title": "Custom Blue &Orange Drip AF1, Air Force 1 Football Team Shoes,Personalized Gift ",
+      "keyword": "personalized football gift",
+      "impressions": 609,
+      "views": 609,
+      "favorites": 6,
+      "orders": 0,
+      "revenue": 0
+    },
+    {
+      "listing_id": 1199417407,
+      "title": "Schl\u00fcsselanh\u00e4nger mit Fu\u00dfball,  personalisiert mit Namen, Geschenk zum Geburtsta",
+      "keyword": "personalized football gift",
+      "impressions": 3540,
+      "views": 3540,
+      "favorites": 112,
+      "orders": 0,
+      "revenue": 0
+    },
+    {
+      "listing_id": 1770996944,
+      "title": "Custom Photo Football Girlfriend Shirt , In My Football Girlfriend Era TShirt, F",
+      "keyword": "personalized football gift",
+      "impressions": 7210,
+      "views": 7210,
+      "favorites": 125,
+      "orders": 0,
+      "revenue": 0
+    },
+    {
+      "listing_id": 4569739409,
+      "title": "Custom Football Locker Decoration, Personalized Football Locker Wrap, Varsity Lo",
+      "keyword": "personalized football gift",
+      "impressions": 0,
+      "views": 0,
+      "favorites": 0,
+      "orders": 0,
+      "revenue": 0
+    },
+    {
+      "listing_id": 4318003424,
+      "title": "Custom Player Football Shirt, Soft Style Football Shirt, Custom Football Shirt, ",
+      "keyword": "personalized football gift",
+      "impressions": 64490,
+      "views": 64490,
+      "favorites": 1866,
+      "orders": 0,
+      "revenue": 0
+    },
+    {
+      "listing_id": 4561775147,
+      "title": "Personalized Football Shirt, Custom Mascot T-Shirt, Custom Name and Number Tee, ",
+      "keyword": "personalized football gift",
+      "impressions": 1695,
+      "views": 1695,
+      "favorites": 78,
+      "orders": 0,
+      "revenue": 0
+    },
+    {
+      "listing_id": 4522814916,
+      "title": "Personalised Football Decor \u2013 Boys Bedroom Poster Prints, Kids Soccer Wall Art S",
+      "keyword": "personalized football gift",
+      "impressions": 379,
+      "views": 379,
+      "favorites": 11,
+      "orders": 0,
+      "revenue": 0
+    },
+    {
+      "listing_id": 4526484371,
+      "title": "Personalized Mexico Soccer Jersey for Men Women Youth Kid Uniform Shirt for Fans",
+      "keyword": "personalized football gift",
+      "impressions": 727,
+      "views": 727,
+      "favorites": 22,
+      "orders": 0,
+      "revenue": 0
+    },
+    {
+      "listing_id": 4563996554,
+      "title": "Personalized Tennessee Kids Shirt, Custom Name Vols Game Day Tee, Tennessee Foot",
+      "keyword": "personalized football gift",
+      "impressions": 22,
+      "views": 22,
+      "favorites": 3,
+      "orders": 0,
+      "revenue": 0
+    },
+    {
+      "listing_id": 4502753067,
+      "title": "Personalized Soccer Name Sign | Layered Wood Wall Decor, Kids Sports Room",
+      "keyword": "personalized football gift",
+      "impressions": 283,
+      "views": 283,
+      "favorites": 19,
+      "orders": 0,
+      "revenue": 0
+    },
+    {
+      "listing_id": 4361637364,
+      "title": "Custom Number Shirt,Personalized Sports Number Shirt,Football Number,Your Number",
+      "keyword": "personalized football gift",
+      "impressions": 2723,
+      "views": 2723,
+      "favorites": 41,
+      "orders": 0,
+      "revenue": 0
+    },
+    {
+      "listing_id": 1231839627,
+      "title": "2005 Football Year Print \u2013 Personalised Men\u2019s English Club (Top 3 Tiers) | 21st ",
+      "keyword": "personalized football gift",
+      "impressions": 19942,
+      "views": 19942,
+      "favorites": 267,
+      "orders": 0,
+      "revenue": 0
+    }
+  ],
+  "reviews": {
+    "count": 0,
+    "average": 0
+  },
+  "operations": {
+    "open_orders": 0,
+    "failed_renders": 0,
+    "rerolls": 0
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "schema": "Decision",
+  "decision_id": "dec_a1e49ed80ade",
+  "created_at": "2026-09-05T21:16:04.752877",
+  "subject": {
+    "type": "listing",
+    "id": "dog_roast_30th"
+  },
+  "question": "Change thumbnail v2 to v3?",
+  "decision": "use v3",
+  "alternatives": [
+    "v2",
+    "v3"
+  ],
+  "reason_summary": "Face legibility stronger at thumbnail size",
+  "evidence": [],
+  "confidence": 0.72,
+  "expected_effect": {
+    "metric": "ctr",
+    "direction": "increase"
+  },
+  "review_at": null
+}

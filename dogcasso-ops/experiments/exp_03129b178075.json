@@ -1,0 +1,23 @@
+{
+  "schema": "Experiment",
+  "experiment_id": "exp_03129b178075",
+  "hypothesis": "add",
+  "unit": {
+    "listing_id": "Large face + short headline improves CTR"
+  },
+  "control": {
+    "version": "control"
+  },
+  "treatment": {
+    "version": "treatment"
+  },
+  "primary_metric": "ctr",
+  "guardrails": [
+    "conversion_rate"
+  ],
+  "started_at": "2026-09-05T21:17:06.186707",
+  "evaluate_after": null,
+  "minimum_impressions": 100,
+  "status": "running",
+  "result": null
+}
