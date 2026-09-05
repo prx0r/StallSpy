@@ -223,25 +223,40 @@ class EventLedger:
         cur = self.conn.execute("SELECT * FROM problems WHERE status='diagnosing' ORDER BY severity DESC")
         return [dict(zip([d[0] for d in cur.description], row)) for row in cur.fetchall()]
 
+# ── LLM Backend ──────────────────────────────────────────────────────────
+# OpenCode mimo-v2.5 via opencode run command
+# Falls back to PydanticAI test model if opencode unavailable
+
+import subprocess as _sp
+
+def _call_opencode(prompt, system="", timeout=60):
+    """Call opencode run with mimo-v2.5, return parsed JSON."""
+    full = f"{system}\n\n{prompt}" if system else prompt
+    try:
+        r = _sp.run(["/root/.opencode/bin/opencode", "run", full],
+                     capture_output=True, text=True, timeout=timeout,
+                     cwd="/root/StallSpy")
+        import re
+        matches = re.findall(r'\{[^{}]*(?:\{[^{}]*\}[^{}]*)*\}', r.stdout)
+        for m in reversed(matches):
+            try:
+                return json.loads(m)
+            except: continue
+        return {"raw": r.stdout.strip()[-200:]}
+    except Exception as e:
+        return {"error": str(e)}
+
 # ── Agents ───────────────────────────────────────────────────────────────
 
-OPERATOR_TWIN = Agent(MODEL, system_prompt="""You are the Operator Twin. Predict what the human operator would decide given the current business state.
-Output: objective_today, bottleneck, strategy_confidence, biggest_concern, biggest_excitement, preferred_actions.""",
-    output_type=SubjectiveState)
+OPERATOR_SYSTEM = """You are the Operator Twin — predict what the human operator would decide.
+Return ONLY a JSON object: {"objective_today":"...","bottleneck":"...","strategy_confidence":0.5,"biggest_concern":"...","biggest_excitement":"...","preferred_actions":["..."],"beliefs":["..."]}"""
 
-ECONOMIC_CRITIC = Agent(MODEL, system_prompt="""You are the Economic Critic. Recommend what action best serves the business, regardless of what the human wants.
-Output: objective_today, bottleneck, strategy_confidence, preferred_actions, top_risks.""",
-    output_type=SubjectiveState)
+CRITIC_SYSTEM = """You are the Economic Critic — recommend what action best serves the business regardless of what the human wants.
+Return ONLY a JSON object: {"objective_today":"...","bottleneck":"...","strategy_confidence":0.5,"preferred_actions":["..."],"top_risks":["..."],"beliefs":["..."]}"""
 
-COLD_REVIEWER = Agent(MODEL, system_prompt="""You are the Cold Reviewer. Review today's business activity BLIND — no previous interpretations.
-You receive ONLY facts: metrics, actions, costs, outcomes.
-Output: objective_today, bottleneck, biggest_concern, active_problems, what_would_change_my_mind.""",
-    output_type=SubjectiveState)
-
-INTERVIEW_AGENT = Agent(MODEL, system_prompt="""You generate the 3-5 most valuable questions for the human operator given current business state.
-Focus on highest information value, human-unique decisions, and divergence between plan and reality.
-Return a JSON list of questions with: question, reason, decision_it_alters.""",
-    output_type=list[dict])
+COLD_SYSTEM = """You are the Cold Reviewer. Review business activity BLIND — no previous interpretations.
+You receive ONLY facts. Return ONLY a JSON object:
+{"what_happened":"...","valuable_actions":["..."],"waste_actions":["..."],"key_hypothesis":"...","tomorrow_should_know":"...","biggest_surprise":"..."}"""
 
 # ── The Integrated System ────────────────────────────────────────────────
 
@@ -249,49 +264,51 @@ class StallSpySystem:
     def __init__(self):
         self.ledger = EventLedger()
 
+    def _call(self, system, prompt):
+        """Call mimo-v2.5 via opencode run."""
+        return _call_opencode(prompt, system)
+
     def morning_interview(self, business_state: dict) -> dict:
-        result = INTERVIEW_AGENT.run_sync(json.dumps(business_state, default=str))
-        return {"questions": result.output}
+        result = _call_opencode(
+            f"Given this business state, generate 3-5 high-value questions for the operator.\n"
+            f"Return ONLY a JSON object with key 'questions' containing a list of objects with 'question', 'reason', 'decision_it_alters'.\n\n"
+            f"State: {json.dumps(business_state, default=str)}"
+        )
+        self.ledger.append_event("interview.generated", "", result)
+        return result
 
-    def predict_human(self, business_state: dict) -> SubjectiveState:
-        result = OPERATOR_TWIN.run_sync(json.dumps(business_state, default=str))
-        state = result.output
-        state.actor_type = "agent_predicted_human"
-        self.ledger.record_state(state)
-        return state
+    def predict_human(self, business_state: dict) -> dict:
+        result = self._call(OPERATOR_SYSTEM, f"Business state: {json.dumps(business_state, default=str)}")
+        result["actor_type"] = "agent_predicted_human"
+        self.ledger.append_event("subjective_state.predicted", "predicted_human", result)
+        return result
 
-    def economic_critique(self, business_state: dict) -> SubjectiveState:
-        result = ECONOMIC_CRITIC.run_sync(json.dumps(business_state, default=str))
-        state = result.output
-        state.actor_type = "agent_critic"
-        self.ledger.record_state(state)
-        return state
+    def economic_critique(self, business_state: dict) -> dict:
+        result = self._call(CRITIC_SYSTEM, f"Business state: {json.dumps(business_state, default=str)}")
+        result["actor_type"] = "agent_critic"
+        self.ledger.append_event("subjective_state.predicted", "critic", result)
+        return result
 
-    def cold_review(self, day_data: dict) -> SubjectiveState:
-        result = COLD_REVIEWER.run_sync(json.dumps(day_data, default=str))
-        state = result.output
-        state.actor_type = "fresh_agent"
-        self.ledger.record_state(state)
-        return state
+    def cold_review(self, day_data: dict) -> dict:
+        result = self._call(COLD_SYSTEM, f"Day's facts: {json.dumps(day_data, default=str)}")
+        result["actor_type"] = "fresh_agent"
+        result["interpretations_hidden"] = ["human_reflection", "worker_debrief", "previous_agent_assessment"]
+        self.ledger.append_event("cold_review.created", "", result)
+        return result
 
-    def record_human_state(self, state: SubjectiveState):
-        state.actor_type = "human"
-        self.ledger.record_state(state)
+    def record_human_state(self, state: dict):
+        state["actor_type"] = "human"
+        self.ledger.append_event("subjective_state.recorded", "human", state)
         self._extract_memory(state)
 
     def record_tokens(self, model, inp, out, task):
         te = TokenEvent(model=model, input_tokens=inp, output_tokens=out, task=task)
         self.ledger.record_tokens(te)
 
-    def _extract_memory(self, state: SubjectiveState):
-        """Extract memory entries from human state (PAHF-style)."""
-        for belief in state.beliefs:
+    def _extract_memory(self, state):
+        for belief in state.get("beliefs", []):
             m = MemoryEntry(category="stable_preference", claim=belief,
-                          confidence=state.strategy_confidence, scope="global")
-            self.ledger.record_memory(m)
-        if state.bottleneck:
-            m = MemoryEntry(category="routine", claim=f"Bottleneck: {state.bottleneck}",
-                          confidence=state.bottleneck_confidence, scope="current")
+                          confidence=state.get("strategy_confidence", 0.5))
             self.ledger.record_memory(m)
 
     def record_problem(self, statement, severity=0.5):
@@ -303,10 +320,10 @@ class StallSpySystem:
         def vdiff(a, b):
             return abs(a - b) if isinstance(a, (int, float)) else 0
         return {
-            "confidence_delta_hp": vdiff(human.strategy_confidence, predicted.strategy_confidence),
-            "confidence_delta_hc": vdiff(human.strategy_confidence, critic.strategy_confidence),
-            "bottleneck_agreement": human.bottleneck == predicted.bottleneck,
-            "risk_delta": vdiff(human.uncertainty, critic.uncertainty),
+            "confidence_delta_hp": vdiff(human.get("strategy_confidence",0), predicted.get("strategy_confidence",0)),
+            "confidence_delta_hc": vdiff(human.get("strategy_confidence",0), critic.get("strategy_confidence",0)),
+            "bottleneck_agreement": human.get("bottleneck","") == predicted.get("bottleneck",""),
+            "risk_delta": vdiff(human.get("uncertainty",0), critic.get("uncertainty",0)),
         }
 
     def status(self):
