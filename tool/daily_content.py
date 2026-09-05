@@ -380,7 +380,7 @@ def generate_tldr(commits, metrics, expenses, day_number):
 
 # ── Main ────────────────────────────────────────────────────────────────
 
-def run(date_str=None, day_number=None, notes=""):
+def run(date_str=None, day_number=None, notes="", morning_record=None):
     """Generate all content for a given day."""
     if not date_str:
         date_str = datetime.now().strftime("%Y-%m-%d")
@@ -446,6 +446,7 @@ if __name__ == "__main__":
     parser.add_argument("--date", help="Date to generate for (YYYY-MM-DD)")
     parser.add_argument("--day", type=int, default=1, help="Day number in experiment")
     parser.add_argument("--notes", default="", help="Manual notes for the day")
+    parser.add_argument("--morning", default="", help="Morning record: goal, belief, bet, success, kill conditions")
     parser.add_argument("--expense", nargs=3, metavar=("AMOUNT", "CATEGORY", "DESC"),
                         help="Log an expense before generating")
     
@@ -458,4 +459,4 @@ if __name__ == "__main__":
         log_expense(amount, category, desc)
         print(f"Logged expense: ${amount:.2f} ({category}: {desc})")
     
-    run(date_str=args.date, day_number=args.day, notes=args.notes)
+    run(date_str=args.date, day_number=args.day, notes=args.notes, morning_record=args.morning)
