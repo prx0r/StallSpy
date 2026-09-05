@@ -1,0 +1,46 @@
+{
+  "timestamp": "2026-09-05T17:14:55.620784",
+  "n_samples": 9993,
+  "metrics": {
+    "r2": 0.012044088851111412,
+    "mae": 32775.064456114545,
+    "rmse": 61809.49333606298
+  },
+  "features": [
+    "reviews",
+    "favorites",
+    "rating",
+    "active_listings",
+    "digital_listings",
+    "review_favorite_ratio",
+    "reviews_per_listing",
+    "has_customization"
+  ],
+  "sample_predictions": [
+    {
+      "shop": "PlannerKate1",
+      "actual": 1839198,
+      "predicted": 99166
+    },
+    {
+      "shop": "WordsWorkPrints",
+      "actual": 56341,
+      "predicted": 96635
+    },
+    {
+      "shop": "PurpleCarrotDesigns",
+      "actual": 36756,
+      "predicted": 38292
+    },
+    {
+      "shop": "LilyandVal",
+      "actual": 28073,
+      "predicted": 38574
+    },
+    {
+      "shop": "TemplateStock",
+      "actual": 22729,
+      "predicted": 38292
+    }
+  ]
+}
