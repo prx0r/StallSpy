@@ -73,7 +73,7 @@ def day_status():
     sessions = len(list_records("sessions"))
     
     print(f"Day: {day['day_id']}")
-    print(f"  Opened: {day['opened_at']}")
+    print(f"  Opened: {day.get('opened_at', day.get('date', 'unknown'))}")
     print(f"  Closed: {day.get('closed_at', 'NO')}")
     print(f"  Orders: {day.get('orders', 0)}")
     print(f"  Revenue: ${day.get('revenue', 0):.2f}")
