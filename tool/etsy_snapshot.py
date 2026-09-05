@@ -13,8 +13,8 @@ from urllib.request import Request, urlopen
 sys.path.insert(0, str(Path(__file__).parent))
 from book_schemas import make_metric_snapshot, save_record, now_iso, DATA_ROOT
 
-API_KEY = os.environ.get("ETSY_API_KEY", "5c7ipvkesppg7z54plt6ev3k")
-SHARED_SECRET = os.environ.get("ETSY_SHARED_SECRET", "mbb9u861jg")
+API_KEY = os.environ.get("ETSY_API_KEY", "")
+SHARED_SECRET = os.environ.get("ETSY_SHARED_SECRET", "")
 
 def etsy_get(path, params=None):
     from urllib.parse import urlencode

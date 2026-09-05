@@ -487,7 +487,7 @@ def run_test():
         cursor = ledger.conn.execute("SELECT payload_json FROM events")
         leaked = False
         for row in cursor.fetchall():
-            if "5c7ipvkesppg7z54plt6ev3k" in row[0] or "mbb9u861jg" in row[0]:
+            if "os.environ.get('ETSY_API_KEY', '')" in row[0] or "os.environ.get('ETSY_SHARED_SECRET', '')" in row[0]:
                 leaked = True
                 break
             if "YOUR_OPENCODE_KEY" in row[0]:

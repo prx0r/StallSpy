@@ -1,0 +1,39 @@
+{
+  "schema": "perspective",
+  "perspective_id": "persp_b8dbb7f57907",
+  "state_id": "state_9b53b1794b23",
+  "actor": {
+    "type": "blind_reviewer",
+    "id": "blind_reviewer_default"
+  },
+  "information_cutoff": "2026-09-05T21:39:01.696045",
+  "context_manifest": [],
+  "objectives": {
+    "today": "identify progress"
+  },
+  "health_assessment": 0.5,
+  "momentum": 0.5,
+  "uncertainty": 0.5,
+  "primary_bottleneck": {
+    "claim": "zero revenue",
+    "confidence": 0.85
+  },
+  "top_beliefs": [],
+  "top_opportunities": [],
+  "top_risks": [],
+  "best_action_now": {
+    "action": "",
+    "reason": "",
+    "confidence": 0.5
+  },
+  "best_alternative": "",
+  "highest_value_unknown": "",
+  "resource_stance": {
+    "cash_aggressiveness": 0.3,
+    "exploration": 0.5,
+    "quality_vs_speed": 0.5
+  },
+  "forecasts": [],
+  "what_metrics_miss": "",
+  "freeform": ""
+}

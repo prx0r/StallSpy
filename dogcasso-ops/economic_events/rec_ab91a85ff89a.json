@@ -1,0 +1,12 @@
+{
+  "schema": "economic_event",
+  "event_id": "econ_3c056c6bb4d4",
+  "occurred_at": "2026-09-05T21:39:01.696088",
+  "type": "model",
+  "brand_id": "",
+  "cash_usd": -3.21,
+  "tokens": 721992,
+  "human_minutes": 0,
+  "session_id": "ses_ef4d4754de38",
+  "experiment_id": ""
+}

@@ -1,0 +1,22 @@
+{
+  "schema": "decision",
+  "decision_id": "dec_44b83755e1f4",
+  "state_id": "state_9b53b1794b23",
+  "problem": "Endgame architecture eating the experiment",
+  "options": [
+    "continue building schemas",
+    "ship a product"
+  ],
+  "human_preference": "ship a product",
+  "agent_preference": "continue building schemas",
+  "final_choice": "ship a product",
+  "reason": "Revenue matters more than frameworks",
+  "confidence": 0.8,
+  "budget": {
+    "cash_usd": 5.0,
+    "human_minutes": 120,
+    "agent_tokens": 500000
+  },
+  "expected_result": "",
+  "outcome_ids": []
+}

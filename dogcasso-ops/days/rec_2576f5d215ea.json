@@ -1,0 +1,15 @@
+{
+  "schema": "company_day",
+  "day_id": "day_0001",
+  "date": "2026-09-06",
+  "day_number": 1,
+  "state_start_id": null,
+  "state_end_id": null,
+  "perspective_ids": [],
+  "session_ids": [],
+  "decision_ids": [],
+  "problem_ids": [],
+  "experiment_ids": [],
+  "financial_event_ids": [],
+  "public_content_ids": []
+}

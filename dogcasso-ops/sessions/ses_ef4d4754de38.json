@@ -1,0 +1,29 @@
+{
+  "schema": "session",
+  "session_id": "ses_ef4d4754de38",
+  "day_id": "day_0001",
+  "started_at": "2026-09-05T21:39:01.696056",
+  "ended_at": null,
+  "objective": "Build corpus + schemas",
+  "repo": "StallSpy",
+  "commit_before": "",
+  "commit_after": null,
+  "raw_trace_sha256": null,
+  "raw_trace_path": null,
+  "human_prompt_count": 0,
+  "tool_calls": 0,
+  "usage": {
+    "input_tokens": 0,
+    "cached_tokens": 0,
+    "output_tokens": 0,
+    "reasoning_tokens": 0,
+    "estimated_usd": 0.0
+  },
+  "worker_debrief": {
+    "most_important_discovery": "",
+    "biggest_concern": "",
+    "what_logs_do_not_reveal": "",
+    "what_i_learned_about_operator": "",
+    "next_action": ""
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "schema": "state_snapshot",
+  "state_id": "state_9b53b1794b23",
+  "as_of": "2026-09-05T21:39:01.695984",
+  "cash_usd": 88.37,
+  "revenue_lifetime": 0,
+  "profit_lifetime": 0,
+  "brands": {
+    "dogcasso": {
+      "listings": 0,
+      "orders": 0
+    }
+  },
+  "active_problems": [],
+  "active_experiments": [],
+  "git_heads": {},
+  "open_work": []
+}

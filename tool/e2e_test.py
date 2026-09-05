@@ -179,7 +179,7 @@ try:
     from urllib.request import Request, urlopen
     import os
     
-    key = os.environ.get("ETSY_API_KEY", "5c7ipvkesppg7z54plt6ev3k")
+    key = os.environ.get("ETSY_API_KEY", "")
     secret = os.environ.get("ETSY_SHARED_SECRET", "mbb9u861jg")
     
     req = Request(

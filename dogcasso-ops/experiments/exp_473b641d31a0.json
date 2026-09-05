@@ -1,0 +1,19 @@
+{
+  "schema": "experiment",
+  "experiment_id": "exp_473b641d31a0",
+  "problem_id": "prob_64540c35bda4",
+  "hypothesis": "Listing with before/after proof increases conversion",
+  "intervention": "Replace gallery image 2 with before/after",
+  "primary_metric": "conversion_rate",
+  "baseline": 0.0,
+  "prediction": {
+    "human": 0.032,
+    "agent": 0.028
+  },
+  "start_at": "2026-09-05T21:39:01.696080",
+  "resolution_at": null,
+  "cash_budget": 0,
+  "token_budget": 0,
+  "success_condition": ">=20% relative conversion increase",
+  "result": null
+}

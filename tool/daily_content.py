@@ -28,7 +28,7 @@ REPO = "/root/StallSpy"
 LOG_DIR = os.path.join(REPO, "logs")
 EXPENSE_FILE = os.path.join(REPO, "expenses.jsonl")
 
-ETSY_API_KEY = os.environ.get("ETSY_API_KEY", "5c7ipvkesppg7z54plt6ev3k")
+ETSY_API_KEY = os.environ.get("ETSY_API_KEY", "")
 ETSY_SHARED_SECRET = os.environ.get("ETSY_SHARED_SECRET", "mbb9u861jg")
 ETSY_BASE = "https://openapi.etsy.com/v3/application"
 
