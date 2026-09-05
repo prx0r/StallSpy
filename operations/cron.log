@@ -1,0 +1,4 @@
+  File "/root/StallShark/tool/daily_content.py", line 32
+    ETSY_SHARED_SECRET = os.environ.get("ETSY_SHARED_SECRET", "os.environ.get("ETSY_SHARED_SECRET", "")")
+                                                                               ^^^^^^^^^^^^^^^^^^
+SyntaxError: invalid syntax. Is this intended to be part of the string?
