@@ -1,10 +1,10 @@
-# Dogcasso: The Artifact Abstraction
+# MythicBee: The Artifact Abstraction
 
 ## The better abstraction
 
 > **What fictional object/world would someone desperately want themselves, their partner, their kid or their pet to exist inside?**
 
-Dogcasso makes that artifact real, and AI lets you add layers that previously would have required an illustrator + animator + musician + editor.
+MythicBee makes that artifact real, and AI lets you add layers that previously would have required an illustrator + animator + musician + editor.
 
 The portrait is almost the **identity-generation primitive** underneath everything.
 
@@ -16,7 +16,7 @@ It can currently turn photos/prompts into **rigged GLB avatars**, generate talki
 
 So eventually:
 
-**photo → Dogcasso portrait → 3D version → physical card → scan → character appears in room**
+**photo → MythicBee portrait → 3D version → physical card → scan → character appears in room**
 
 isn't science fiction. It's already technically buildable.
 
@@ -26,7 +26,7 @@ But don't disappear into 3D infrastructure yet.
 
 ## The "artifact" idea as an ideation engine
 
-| Existing desire               | Dogcasso-ownable version                   | Extra AI magic                                    |
+| Existing desire               | MythicBee-ownable version                   | Extra AI magic                                    |
 | ----------------------------- | ------------------------------------------ | ------------------------------------------------- |
 | Pokémon / Yu-Gi-Oh / MTG      | **Pet Legends collectible card**           | creature animates + attack sequence + theme music |
 | Tarot                         | **Personal oracle card**                   | card comes alive + personalized reading           |
@@ -62,7 +62,7 @@ Imagine sending three facts:
 > Labrador
 > steals unattended food
 
-Dogcasso returns:
+MythicBee returns:
 
 ### **THE DEVOURER**
 
@@ -82,7 +82,7 @@ Then you get:
 
 There are already fresh Etsy listings for bespoke tarot cards based on personal themes, pets and symbols, so customers already understand personalized tarot as a product. ([Etsy][2])
 
-Dogcasso adds the spectacle.
+MythicBee adds the spectacle.
 
 ---
 
@@ -126,7 +126,7 @@ Etsy custom-song sellers already bundle **cover artwork + lyrics + MP3**, useful
 
 ## Genre matching the artifact
 
-This is where Dogcasso develops actual personality.
+This is where MythicBee develops actual personality.
 
 - **The Devourer tarot card** → ominous mystical choir
 - **Jeff rookie card** → stadium anthem
@@ -211,7 +211,7 @@ Reviews contain exactly what you'd hope:
 
 people buying again for another dog, using it repeatedly for gifts, praising speed, likeness and value. ([Etsy][4])
 
-Dogcasso shouldn't initially look like an AI casino with 70 styles.
+MythicBee shouldn't initially look like an AI casino with 70 styles.
 
 Extremely strong core:
 
@@ -223,7 +223,7 @@ Then make the bonus stack unexpectedly large:
 
 ### £5.99-ish core
 
-**Dogcasso Portrait**
+**MythicBee Portrait**
 
 - high-res portrait
 - social version
@@ -231,7 +231,7 @@ Then make the bonus stack unexpectedly large:
 
 ### £8.99-ish
 
-**Dogcasso Experience**
+**MythicBee Experience**
 
 - portrait
 - animation
@@ -269,13 +269,13 @@ The shopper thinks they're comparing:
 
 $8 pet portrait vs $8 pet portrait vs $8 pet portrait
 
-Then Dogcasso says:
+Then MythicBee says:
 
 > **£6.99 — Portrait + your pet comes alive + their own personalized song.**
 
 No need to convince them to search for some new category called "AI multimedia pet experience."
 
-**They searched for the thing they already wanted, and Dogcasso is simply outrageously better value.**
+**They searched for the thing they already wanted, and MythicBee is simply outrageously better value.**
 
 That is probably the right initial wedge.
 

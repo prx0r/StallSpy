@@ -33,7 +33,7 @@ def snapshot_listings(keywords=None, limit=20):
     if not keywords:
         keywords = [
             "personalized football gift",
-            "dogcasso",
+            "mythicbee",
             "personalized birthday video",
             "football birthday gift dad",
             "personalized sports gift",

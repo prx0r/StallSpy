@@ -1,4 +1,4 @@
-# Dogcasso — Product Templates
+# MythicBee — Product Templates
 
 ## Template-Driven Architecture
 

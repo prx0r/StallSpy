@@ -12,8 +12,8 @@ private-lab (qdw-workbench)
     = ledger, artifacts, contracts, experiments, budgets, capabilities
     = the "operating system" for any economic agent
 
-StallSpy (this repo)
-    = Etsy/Dogcasso domain implementation
+StallShark (this repo)
+    = Etsy/MythicBee domain implementation
     = the first "world" running on private-lab
     = the corpus that trains operator models
 
@@ -25,13 +25,13 @@ finalbuilds2
 
 The non-negotiable rule:
 
-> **Domain-specific facts belong in StallSpy. Universal company machinery belongs in private-lab.**
+> **Domain-specific facts belong in StallShark. Universal company machinery belongs in private-lab.**
 
-Do not create a second ledger, second experiment framework, second worker registry, or second memory store inside StallSpy.
+Do not create a second ledger, second experiment framework, second worker registry, or second memory store inside StallShark.
 
 ---
 
-## What StallSpy Has Built (September 5, 2026)
+## What StallShark Has Built (September 5, 2026)
 
 ### The Corpus Architecture (13 specs, 6,408+ lines)
 
@@ -134,11 +134,11 @@ Do not create a second ledger, second experiment framework, second worker regist
          │               │                    │
          └───────────────┼────────────────────┘
                          │
-                    STALLSPY WORLD
+                    STALLSHARK WORLD
                          │
             ┌────────────┼─────────────────┐
             │            │                 │
-         Etsy API     Research         Dogcasso
+         Etsy API     Research         MythicBee
          Webhooks     EverBee          Templates
          Orders       Signals          Renders
          Reviews                       Fulfillment
@@ -162,7 +162,7 @@ Do not create a second ledger, second experiment framework, second worker regist
 
 ---
 
-## The Daily Operating Loop (StallSpy-specific)
+## The Daily Operating Loop (StallShark-specific)
 
 ```text
 00  FREEZE STATE        → BusinessSnapshot
@@ -196,7 +196,7 @@ Do not create a second ledger, second experiment framework, second worker regist
 6. **Information-boundary enforcement** via context compilation, not prompting
 7. **Etsy as live world, eBay as historical gym** (not interchangeable)
 8. **MarketWorld schema** as the universal abstraction
-9. **StallShark > StallSpy** (brand rename, StallSpy becomes feature name)
+9. **StallShark > StallShark** (brand rename, StallShark becomes feature name)
 10. **$5/day agent budget** with smart routing
 
 ---

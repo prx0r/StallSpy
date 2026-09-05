@@ -2,7 +2,7 @@
 
 ## 1. Exact Etsy buyer flow
 
-For Dogcasso, each product should be a **made-to-order digital listing**, not an instant download. Etsy explicitly supports custom digital files made after purchase. ([Etsy Help][1])
+For MythicBee, each product should be a **made-to-order digital listing**, not an instant download. Etsy explicitly supports custom digital files made after purchase. ([Etsy Help][1])
 
 The buyer journey is:
 
@@ -49,7 +49,7 @@ Don't make buyers jump through external forms/sites yet.
 
 Another quirk: Etsy says digital purchases currently **can't be downloaded directly through the Etsy app**; buyers need Etsy in a mobile browser or desktop. ([Etsy Help][4])
 
-This strengthens the case for Dogcasso.com later, but it isn't a reason to delay Etsy.
+This strengthens the case for MythicBee.com later, but it isn't a reason to delay Etsy.
 
 ---
 
@@ -208,7 +208,7 @@ No "prompt your movie."
 
 We're selling:
 
-> **You tell us about them. Dogcasso makes the film.**
+> **You tell us about them. MythicBee makes the film.**
 
 ---
 
@@ -224,7 +224,7 @@ Use when there is **no customer's subject**.
 
 Perfect for:
 
-* generic Dogcasso advertisements;
+* generic MythicBee advertisements;
 * testing meme formats;
 * creating background shots;
 * market-testing concepts before building personalization.
@@ -276,7 +276,7 @@ Perfect for:
 * Mum;
 * partner;
 * multiple friends;
-* Dogcasso mascot;
+* MythicBee mascot;
 * recurring Santa.
 
 fal lets prompts refer explicitly to:
@@ -316,7 +316,7 @@ MiniMax recommends explicitly describing:
 
 And for reference generation, they recommend defining what every reference actually contributes and whether its characteristics are fully preserved or merely used as loose guidance. ([Hugging Face][10])
 
-So Dogcasso's backend should compile simple buyer inputs into something like this.
+So MythicBee's backend should compile simple buyer inputs into something like this.
 
 ---
 
@@ -370,7 +370,7 @@ N/A
 
 Notice what we're **not** asking it to do:
 
-* render DOGCASSO.COM;
+* render MYTHICBEE.COM;
 * render subtitles;
 * generate title cards;
 * generate our logo;
@@ -443,7 +443,7 @@ Then our deterministic compositor handles:
 * titles;
 * captions;
 * logo;
-* Dogcasso.com sting;
+* MythicBee.com sting;
 * freeze frames;
 * meme labels;
 * music;
@@ -468,7 +468,7 @@ caption template
    ↓
 audience sting
    ↓
-DOGCASSO.COM 0.8 sec
+MYTHICBEE.COM 0.8 sec
    ↓
 MOV + MP4
 ```
@@ -520,7 +520,7 @@ reroll?
 cost
 ```
 
-That becomes the real Dogcasso recipe library.
+That becomes the real MythicBee recipe library.
 
 ---
 
@@ -574,7 +574,7 @@ So eventually:
 ```text
 Etsy order
     ↓
-Dogcasso worker sees order
+MythicBee worker sees order
     ↓
 parses personalization
     ↓
@@ -627,7 +627,7 @@ Output:
 
 Production target:
 
-> **customer does 30 seconds of work; Dogcasso does everything else.**
+> **customer does 30 seconds of work; MythicBee does everything else.**
 
 And before we even publish it, we generate perhaps **10–20 controlled test cases using different dog breeds/photos**.
 
@@ -641,7 +641,7 @@ If yes, that's a product.
 
 If only 40% of renders work, we keep refining the recipe before selling it.
 
-That should be the Dogcasso methodology for every subsequent template.
+That should be the MythicBee methodology for every subsequent template.
 
 ---
 

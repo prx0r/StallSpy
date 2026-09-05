@@ -64,7 +64,7 @@ Orthogonally: hypothesis, decision, experiment, outcome, lesson link into those 
 ```json
 {
   "session_id": "oc_...",
-  "project": "dogcasso",
+  "project": "mythicbee",
   "started_at": "...",
   "ended_at": "...",
   "objective_initial": "Get Birthday V1 working reliably",
@@ -338,7 +338,7 @@ In two years: "Build me a jewellery store."
 
 Agent doesn't dump the entire corpus into context. It:
 
-1. **Retrieves analogous episodes** — Dogcasso gift intent, Game Winner recipient segmentation, Christmas seasonal timing, portrait proof/trust tests
+1. **Retrieves analogous episodes** — MythicBee gift intent, Game Winner recipient segmentation, Christmas seasonal timing, portrait proof/trust tests
 2. **Retrieves generalized principles** — specialist > broad, occasion-led > technology-led, proof-of-output lowers risk
 3. **Retrieves operational playbooks** — store_launch_v4, product_validation_v7, q4_timing_v3
 4. **Drills into raw trajectories only where necessary** — "Why exactly did Game Winner V2 fail?"

@@ -5,7 +5,7 @@
 
 **Context:** Unemployment grows from AI. People need ways to make money. A person documenting their journey building Etsy stores with AI is exactly what thousands of people want to watch — because they're asking their own agents "what works?" and there's no real-world timestamped log of someone actually doing it.
 
-**Tool:** stallspy.com — the agent control plane for the stores.
+**Tool:** stallshark.com — the agent control plane for the stores.
 
 **Even if it fails:** A granular, timestamped log of someone trying to start an Etsy store — tracking actions daily on what works and what doesn't — is valuable data. When someone asks their agent "what works on Etsy?", this dataset is the answer.
 
@@ -19,7 +19,7 @@
                        ↑       ↓
                     audience
                        ↑       ↓
-   ┌─────────── STALLSPY / RESEARCH ENGINE ───────────┐
+   ┌─────────── STALLSHARK / RESEARCH ENGINE ───────────┐
    │                                                   │
    │ demand → hypotheses → products → measurement      │
    │    ↑                                  ↓           │
@@ -31,7 +31,7 @@
                         ↓
           ┌─────────────┼─────────────┐
           ↓             ↓             ↓
-      Dogcasso      Game Winner     Brand #3
+      MythicBee      Game Winner     Brand #3
           ↓             ↓             ↓
        revenue        revenue       revenue
           └─────────────┼─────────────┘
@@ -44,24 +44,24 @@ Four outputs reinforce each other:
 1. **Stores make money.**
 2. **Real store performance makes the content credible.**
 3. **Content creates audience/distribution.**
-4. **Operating the stores produces the data that makes StallSpy useful.**
-5. **StallSpy improves the next store.**
-6. **Successful stores validate StallSpy to future customers.**
+4. **Operating the stores produces the data that makes StallShark useful.**
+5. **StallShark improves the next store.**
+6. **Successful stores validate StallShark to future customers.**
 
-StallSpy becomes:
+StallShark becomes:
 
 > **The Etsy/ecommerce tool built by actually running the businesses it's advising you about.**
 
 ---
 
-## The Public Project Is Bigger Than Dogcasso
+## The Public Project Is Bigger Than MythicBee
 
 YouTube channel = personal builder channel.
 
 Eventually talking about:
-- Dogcasso
+- MythicBee
 - Game Winner
-- StallSpy
+- StallShark
 - Failed ideas
 - AI models
 - Etsy experiments
@@ -134,7 +134,7 @@ Git commits (timestamped actions)
      +
 Etsy API data (sales, views, favorites)
      +
-StallSpy actions (hypotheses, tests, results)
+StallShark actions (hypotheses, tests, results)
      +
 AI/GPU spend logs
      +
@@ -153,7 +153,7 @@ Short script  Blog draft     Dataset entry
    ↓             ↓              ↓
 TTS voice     Markdown        SQLite
    ↓             ↓              ↓
-Video edit    Publish         StallSpy
+Video edit    Publish         StallShark
    ↓             ↓              ↓
 YouTube       Substack/blog   Training data
 ```
@@ -262,7 +262,7 @@ NET TODAY:         $___
 CUMULATIVE NET:    $___
 
 STORE METRICS:
-  Dogcasso:
+  MythicBee:
     impressions:
     visits:
     sales:
@@ -285,7 +285,7 @@ This document simultaneously becomes:
 - The Short script
 - The blog source
 - Weekly video source
-- StallSpy training/eval data
+- StallShark training/eval data
 - The eventual research corpus
 
 ---
@@ -355,7 +355,7 @@ Hours:           127
 Charts: revenue by day, profit by day, store leaderboard, experiments launched/killed.
 
 Timeline:
-> Sep 6 — Dogcasso started
+> Sep 6 — MythicBee started
 > Sep 12 — first sale
 > Sep 19 — Natural Habitat killed
 > Sep 23 — Game Winner launched
@@ -365,15 +365,15 @@ People come back just to see whether you're succeeding.
 
 ---
 
-## StallSpy (stallspy.com): The Agent Control Plane
+## StallShark (stallshark.com): The Agent Control Plane
 
-StallSpy consumes the ledger and becomes the store management agent. It is simultaneously:
+StallShark consumes the ledger and becomes the store management agent. It is simultaneously:
 - The research engine that finds opportunities
 - The production system that generates products
 - The analytics dashboard that tracks performance
 - The learning system that improves with each experiment
 
-The key differentiator: StallSpy's recommendations can be compared against actual outcomes from our own stores. No other Etsy tool has this calibration loop.
+The key differentiator: StallShark's recommendations can be compared against actual outcomes from our own stores. No other Etsy tool has this calibration loop.
 
 ```text
 MARKET       → What are people searching for?
@@ -387,13 +387,13 @@ ACT          → What should change?
 LEARN        → Did the change work?
 ```
 
-Critical: StallSpy's recommendations can be compared against actual outcomes.
+Critical: StallShark's recommendations can be compared against actual outcomes.
 
-**StallSpy prediction:** Game Winner has 74/100 opportunity score.
+**StallShark prediction:** Game Winner has 74/100 opportunity score.
 
 **Actual result after 30 days:** 417 visits, 19 sales, 4.6% conversion, £173 revenue, £102 contribution.
 
-Now you can calibrate StallSpy. Far more valuable than another tool showing estimated Etsy revenue.
+Now you can calibrate StallShark. Far more valuable than another tool showing estimated Etsy revenue.
 
 ---
 
@@ -432,7 +432,7 @@ Most make-money creators have survivorship bias. We publish:
 A failed experiment becomes:
 - **Content value:** "I lost $37 trying this Etsy idea."
 - **Research value:** labeled negative example.
-- **Tool value:** StallSpy learns what not to recommend.
+- **Tool value:** StallShark learns what not to recommend.
 - **Audience value:** demonstrates you're not hiding losses.
 - **Business value:** prevents repeating the mistake.
 
@@ -475,7 +475,7 @@ The project continues even through periods of poor sales.
 
 ## First 30 Days
 
-### Days 1–7: Dogcasso only
+### Days 1–7: MythicBee only
 - Ledger, financial tracking
 - Daily Short system, daily blog
 - Public dashboard
@@ -483,10 +483,10 @@ The project continues even through periods of poor sales.
 - First Etsy listings
 - Content begins: **"Day 1: I Have $0 Revenue and an Idea About Dogs"**
 
-### Days 8–14: Dogcasso live
+### Days 8–14: MythicBee live
 - Capture impressions, CTR, favorites, conversion
 - Production costs, generation reliability
-- Build initial StallSpy ingestion
+- Build initial StallShark ingestion
 
 ### Days 15–21: Game Winner prototype
 - Do not launch five other ideas
@@ -503,7 +503,7 @@ The project continues even through periods of poor sales.
 
 | Brand | Revenue | Profit | Growth | Conversion | Reliability | Content Pull | Status |
 |-------|--------:|-------:|-------:|-----------:|------------:|-------------:|--------|
-| Dogcasso | $820 | $441 | ↑ | 4.2% | 92% | High | CORE |
+| MythicBee | $820 | $441 | ↑ | 4.2% | 92% | High | CORE |
 | Game Winner | $1,420 | $802 | ↑↑ | 6.1% | 87% | Very high | PROMOTE |
 | Tarot test | $63 | $41 | → | 1.4% | 96% | Medium | WATCH |
 | Cereal | $0 | -$18 | ↓ | 0% | 81% | High | KILL |
@@ -514,17 +514,17 @@ A public venture studio where starting bets cost tens of dollars rather than mil
 
 ---
 
-## StallSpy Launch Story
+## StallShark Launch Story
 
-> "For the last year I used StallSpy to launch 14 Etsy brands. Eight failed. Three made a little money. Three became real businesses. Every recommendation in the software is informed by the actual experiment data."
+> "For the last year I used StallShark to launch 14 Etsy brands. Eight failed. Three made a little money. Three became real businesses. Every recommendation in the software is informed by the actual experiment data."
 
-StallSpy monetizes via:
+StallShark monetizes via:
 - Research, opportunity discovery, competitor tracking
 - Listing diagnostics, portfolio monitoring
 - Experimentation, product briefs, production workflows
 - Eventually semi-autonomous store management
 
-YouTube audience is exactly the audience StallSpy needs. Much stronger than buying Google ads.
+YouTube audience is exactly the audience StallShark needs. Much stronger than buying Google ads.
 
 ---
 
@@ -544,11 +544,11 @@ At the end of the day, you talk for a minute.
 
 Everything else gets manufactured from the evidence.
 
-That keeps the channel authentic, gives StallSpy a uniquely valuable dataset, and forces the actual experiment to remain measurable rather than disappearing into another huge build.
+That keeps the channel authentic, gives StallShark a uniquely valuable dataset, and forces the actual experiment to remain measurable rather than disappearing into another huge build.
 
 ---
 
-*Dogcasso is Experiment 001. Game Winner is potentially Experiment 002. StallSpy (stallspy.com) becomes the instrumentation/control plane. YouTube + the blog are the public research log and distribution engine. That is a coherent project.*
+*MythicBee is Experiment 001. Game Winner is potentially Experiment 002. StallShark (stallshark.com) becomes the instrumentation/control plane. YouTube + the blog are the public research log and distribution engine. That is a coherent project.*
 
 *Even if every store fails, the timestamped dataset of someone trying — with all the failures documented — is itself valuable. There is no way to lose by publishing honestly.*
 
@@ -587,6 +587,6 @@ We don't need to fake it. We're literally doing it.
 A failed experiment becomes:
 - **Content value:** "I lost $37 trying this Etsy idea."
 - **Research value:** labeled negative example.
-- **Tool value:** StallSpy learns what not to recommend.
+- **Tool value:** StallShark learns what not to recommend.
 - **Audience value:** demonstrates you're not hiding losses.
 - **Business value:** prevents repeating the mistake.

@@ -76,7 +76,7 @@ Everything else can be reconstructed.
 3. Human answers by voice
 4. Agent + predicted-human answer same questions
 5. Choose 1-3 priorities, budgets
-6. Work on Dogcasso
+6. Work on MythicBee
 
 ### During Day (zero extra effort)
 OpenCode captures everything automatically.
@@ -139,11 +139,11 @@ Dynamic interview from state_start, not fixed questions.
 ### Sprint A — Recorder
 8 schemas (Pydantic) + capture + interview + review + publish + CLI.
 
-### Sprint B — DOGCASSO
+### Sprint B — MYTHICBEE
 Get actual product live. No Hydra, no fine-tuning, no RL.
 
 ### Sprint C — GAME WINNER
-Only after Dogcasso is moving. Same recorder.
+Only after MythicBee is moving. Same recorder.
 
 ---
 

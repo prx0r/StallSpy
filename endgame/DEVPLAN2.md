@@ -8,7 +8,7 @@ The current repo already has the right substrate—AGENTS axioms, Pydantic daily
 
 **Date:** 6 September 2026
 **Supersedes:** Dev Plan 1 only where explicitly stated
-**Immediate businesses:** Dogcasso + Game Winner
+**Immediate businesses:** MythicBee + Game Winner
 **Immediate objective:** accumulate real CompanyDays without letting metainfrastructure consume the business.
 
 ---
@@ -913,7 +913,7 @@ failure detector
 Suppose objective:
 
 ```text
-Launch Dogcasso today.
+Launch MythicBee today.
 ```
 
 Trajectory fails that.
@@ -1403,7 +1403,7 @@ compliance
 
 and reports that hierarchical organization can improve performance while reducing tokens in tasks benefiting from stable roles and controlled information flow. ([arXiv][25])
 
-Do not turn Dogcasso into a corporate bureaucracy.
+Do not turn MythicBee into a corporate bureaucracy.
 
 Build an experiment:
 
@@ -2052,13 +2052,13 @@ Operator memory cannot leak into ColdReview Pass A.
 Create:
 
 ```bash
-stallshark frontier e2e --fixture dogcasso-day1
+stallshark frontier e2e --fixture mythicbee-day1
 ```
 
 Scenario:
 
 ```text
-Dogcasso has no live listing.
+MythicBee has no live listing.
 
 Historical operator memory:
 "Prefer validation over polish."
@@ -2421,7 +2421,7 @@ TOTAL OPERATING COST     $...
 
 This is crucial.
 
-If the metamanagement layer costs $12/day while Dogcasso makes $3/day, the framework is failing economically.
+If the metamanagement layer costs $12/day while MythicBee makes $3/day, the framework is failing economically.
 
 ---
 
@@ -2450,13 +2450,13 @@ no unique audit/safety benefit
 
 ---
 
-# 48. Dogcasso Priority Rule
+# 48. MythicBee Priority Rule
 
 After the frontier **recorder and mini-tests** function:
 
 ```text
 NO MORE FRONTIER DEVELOPMENT
-UNTIL A REAL DOGCASSO LISTING IS LIVE.
+UNTIL A REAL MYTHICBEE LISTING IS LIVE.
 ```
 
 The frontier system exists to observe business formation.
@@ -2568,14 +2568,14 @@ DelegationDecision
 ## DP2-14 — Golden frontier E2E
 
 ```text
-dogcasso-day1
+mythicbee-day1
 ```
 
 ## DP2-15 — Live CompanyDay
 
 Stop architecture work.
 
-Launch/build Dogcasso.
+Launch/build MythicBee.
 
 ---
 
@@ -2596,14 +2596,14 @@ stallshark frontier verify
 stallshark frontier test all
 
 stallshark frontier e2e \
-  --fixture dogcasso-day1 \
+  --fixture mythicbee-day1 \
   --deterministic
 
 stallshark ledger verify
 
-stallshark replay day dogcasso-day1
+stallshark replay day mythicbee-day1
 
-stallshark verify --day dogcasso-day1
+stallshark verify --day mythicbee-day1
 ```
 
 Final output:
@@ -2854,7 +2854,7 @@ Dev Plan 2 is **not** complete when all these modules exist.
 
 It is complete when:
 
-> A real Dogcasso business day can run through the system with raw human prompting, human interventions, operator-memory retrieval, independent agent judgment, budget-aware execution, exact token/cash accounting, trajectory diagnostics, blind review, public content generation and delayed outcome attachment—and the entire day can be replayed from immutable evidence.
+> A real MythicBee business day can run through the system with raw human prompting, human interventions, operator-memory retrieval, independent agent judgment, budget-aware execution, exact token/cash accounting, trajectory diagnostics, blind review, public content generation and delayed outcome attachment—and the entire day can be replayed from immutable evidence.
 
 And every optional frontier mechanism can answer:
 
@@ -2874,10 +2874,10 @@ Then:
 STOP.
 
 Run:
-stallshark frontier e2e --fixture dogcasso-day1
+stallshark frontier e2e --fixture mythicbee-day1
 
 If green:
-launch/run real Dogcasso Day 1.
+launch/run real MythicBee Day 1.
 
 Do not build another subsystem first.
 ```

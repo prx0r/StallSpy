@@ -8,7 +8,7 @@
 
 StallShark is the operating record for an experiment: can one person use AI, public data and automation to repeatedly discover, build and scale profitable microbrands?
 
-Dogcasso is Experiment 001. Game Winner is Experiment 002. The corpus is the primary asset.
+MythicBee is Experiment 001. Game Winner is Experiment 002. The corpus is the primary asset.
 
 ---
 
@@ -20,7 +20,7 @@ StallShark/
 ├── AGENTS.md                    ← START HERE
 ├── README.md                    ← this file
 │
-├── dogcasso-ops/                ← LIVE BUSINESS DATA
+├── mythicbee-ops/                ← LIVE BUSINESS DATA
 │   ├── days/                    ← CompanyDay records
 │   ├── states/                  ← StateSnapshots
 │   ├── perspectives/            ← Human/Agent/Blind reviews
@@ -59,7 +59,7 @@ StallShark/
 │
 ├── tool/                        ← AUTOMATION + SCHEMAS
 │   ├── stallshark_schemas.py    ← 8 core schemas (Pydantic)
-│   ├── stallspy_cli.py          ← CLI (day/decision/experiment)
+│   ├── stallshark_cli.py          ← CLI (day/decision/experiment)
 │   ├── problem_registry.py      ← Problem tracking
 │   ├── etsy_snapshot.py         ← Live Etsy API scraper
 │   ├── daily_content.py         ← Git + Etsy → content
@@ -70,12 +70,12 @@ StallShark/
 │   ├── opencode_llm.py          ← mimo-v2.5 adapter
 │   ├── kernel.py                ← Hardened ledger + CompanyDay
 │   ├── book_schemas.py          ← Full schema library
-│   ├── stallspy_system.py       ← PydanticAI integration
+│   ├── stallshark_system.py       ← PydanticAI integration
 │   ├── ml/                      ← ML repos (12 cloned)
 │   └── r2_imports/              ← 49 platinum renderers
 │
 ├── brands/                      ← BRAND STRATEGY
-│   ├── dogcasso/                ← Pet studio (16 docs)
+│   ├── mythicbee/                ← Pet studio (16 docs)
 │   └── gamewinner/              ← Sports fantasy (2 docs)
 │
 ├── content/                     ← CONTENT STRATEGY
@@ -115,9 +115,9 @@ cat endgame/PROJECT_SEPARATION.md  # What NOT to build
 ### 2. Check current state
 
 ```bash
-python3 tool/stallspy_cli.py day status     # What's happening
+python3 tool/stallshark_cli.py day status     # What's happening
 python3 tool/problem_registry.py list       # What's broken
-ls dogcasso-ops/days/                        # Day records
+ls mythicbee-ops/days/                        # Day records
 ```
 
 ### 3. Understand the schemas
@@ -137,10 +137,10 @@ opencode export <sessionID> --sanitize      # Export as JSON
 ### 5. Run daily workflow
 
 ```bash
-python3 tool/stallspy_cli.py day start      # Start day
+python3 tool/stallshark_cli.py day start      # Start day
 # ... work ...
-python3 tool/stallspy_cli.py day report     # Daily summary
-python3 tool/stallspy_cli.py day close      # Close + handover
+python3 tool/stallshark_cli.py day report     # Daily summary
+python3 tool/stallshark_cli.py day close      # Close + handover
 ```
 
 ---
@@ -158,7 +158,7 @@ The freeze list until 20 paid orders or 30 days data:
 - Fine-tuning
 - Multi-company hierarchies
 
-**Priority: DOGCASSO > OPS/BOOK > RADAR > LAB/GYM.**
+**Priority: MYTHICBEE > OPS/BOOK > RADAR > LAB/GYM.**
 
 ---
 
@@ -166,7 +166,7 @@ The freeze list until 20 paid orders or 30 days data:
 
 | Area | Files | Purpose |
 |------|------:|---------|
-| dogcasso-ops/ | 18 | Live business data (8 schemas) |
+| mythicbee-ops/ | 18 | Live business data (8 schemas) |
 | corpus/ | 17 | Architecture specs |
 | endgame/ | 5 | Planning docs |
 | tool/ | 17 scripts + 12 ML repos + 49 renderers | Automation |

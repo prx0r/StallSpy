@@ -64,9 +64,9 @@ Every record gets this envelope:
   "occurred_at": "2026-09-06T10:31:12Z",
   "observed_at": "2026-09-06T10:31:14Z",
   "recorded_at": "2026-09-06T10:31:15Z",
-  "project_id": "proj_dogcasso",
-  "brand_id": "brand_dogcasso",
-  "store_id": "store_etsy_dogcasso",
+  "project_id": "proj_mythicbee",
+  "brand_id": "brand_mythicbee",
+  "store_id": "store_etsy_mythicbee",
   "actor": {
     "type": "human|agent|automation|customer|platform",
     "id": "actor_tom"
@@ -617,12 +617,12 @@ Record the content flywheel.
 
 ## Schema: `agent_run`
 
-When StallSpy operates autonomously, log its own behavior.
+When StallShark operates autonomously, log its own behavior.
 
 ```json
 {
   "agent_run_id": "...",
-  "agent": "stallspy_operator",
+  "agent": "stallshark_operator",
   "agent_version": "0.8.2",
   "model": "...",
   "started_at": "...",
@@ -759,7 +759,7 @@ Most business writing destroys them.
 
 Initially: YOU → make decision → STORE → outcome → CORPUS
 
-Then: YOU + STALLSPY → CORPUS retrieval → decision → outcome → CORPUS improves
+Then: YOU + STALLSHARK → CORPUS retrieval → decision → outcome → CORPUS improves
 
 Eventually: AUTONOMOUS COMMERCE AGENT → retrieve analogous episodes → plan → execute → measure → update → improve
 
@@ -767,7 +767,7 @@ The highest-value use may simply be:
 
 > **Seed every new commercial agent with all the experience accumulated by every previous store.**
 
-Dogcasso learns something about personalization. Game Winner inherits it.
+MythicBee learns something about personalization. Game Winner inherits it.
 
 The tenth business starts with the accumulated experience of the first nine.
 

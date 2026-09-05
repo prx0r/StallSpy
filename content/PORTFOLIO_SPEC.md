@@ -1,4 +1,4 @@
-# Dogcasso Portfolio — The 20-Store Strategy
+# MythicBee Portfolio — The 20-Store Strategy
 
 **Date:** 5 September 2026
 **Status:** Strategic thesis — scoping the studio portfolio
@@ -29,7 +29,7 @@ The deeper formula tying all twenty together:
 | # | Store | Fantasy | Flagship Product | Why It Works |
 |---|-------|---------|------------------|--------------|
 | **1** | **GameWinnerz** | Dad scores the winning goal | Portrait + 15-sec commentary film + hero card | One-sentence comprehension. Huge recipient problem. Existing purchasing category. AI actually changes the product. |
-| **2** | **Dogcasso** | My pet is extraordinary | Portrait + "living portrait" film + optional pet song | Pets are a giant buying identity. Natural Habitat, Wanted, tarot, albums, songs, cards, AR — all coherent under one roof. |
+| **2** | **MythicBee** | My pet is extraordinary | Portrait + "living portrait" film + optional pet song | Pets are a giant buying identity. Natural Habitat, Wanted, tarot, albums, songs, cards, AR — all coherent under one roof. |
 | **3** | **Greatest Hits** | My life is an album | Album cover + personalized song + tracklist + 15-sec music video | Music deserves a craft-focused studio. Private details → life as album, not just "a song." |
 | **4** | **StoryStar** | My child is the hero | Child + pet in personalized 20-page adventure + song + animation | One of the strongest validated niches. 20k-70k+ review products already exist. |
 | **5** | **Cover Story** | I'm on the cover | Personalized glossy Person of the Year / Icon + fake interview video | "Make them the cover star" is immediately understood. Works for Mum, friends, couples, milestones. |
@@ -110,7 +110,7 @@ Examples:
 | Studio | Core | Keepsake | Card |
 |--------|------|----------|------|
 | GameWinnerz | Video + portrait | Mug / beer glass / tumbler | Personalized occasion card |
-| Dogcasso | Portrait | Living portrait film | Pet song card |
+| MythicBee | Portrait | Living portrait film | Pet song card |
 | Greatest Hits | Album + song | Framed album art | Tracklist card |
 | StoryStar | Adventure book | Signed print | Dedication card |
 | Cover Story | Magazine cover | Framed poster | Interview transcript card |
@@ -181,14 +181,14 @@ At any point:
 Right now:
 
 ### Core
-**Dogcasso** — Build the personalization factory.
+**MythicBee** — Build the personalization factory.
 
 ### Challenger
 **GameWinner** — Validate whether the same factory works on humans + sport + male gifting.
 
 Don't start Album/Tarot/Memes beyond documentation.
 
-If Game Winner starts selling → Dogcasso + Game Winner operate → introduce challenger #3.
+If Game Winner starts selling → MythicBee + Game Winner operate → introduce challenger #3.
 
 If #3 beats one of them or opens a genuinely new market → promote it.
 
@@ -209,15 +209,15 @@ If #3 beats one of them or opens a genuinely new market → promote it.
 
 ---
 
-## The Dogcasso Difference
+## The MythicBee Difference
 
-Dogcasso is the **personalization factory**. It stays broad enough to support:
+MythicBee is the **personalization factory**. It stays broad enough to support:
 
 portraits → living portraits → Natural Habitat → Wanted → tarot → albums → songs → cards → physical gifts → AR → 3D pets
 
 Because:
 
-> **Dogcasso makes extraordinary things out of your pet.**
+> **MythicBee makes extraordinary things out of your pet.**
 
 That's one proposition. The factory perfects the pipeline:
 photo → identity → art → animation → music → merchandise.

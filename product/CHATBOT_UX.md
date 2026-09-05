@@ -1,8 +1,8 @@
-# Dogcasso — Chatbot-First Interface
+# MythicBee — Chatbot-First Interface
 
 ## The Vision
 
-The ultimate Dogcasso interface barely needs conventional ecommerce categories.
+The ultimate MythicBee interface barely needs conventional ecommerce categories.
 
 ---
 
@@ -50,7 +50,7 @@ Movie + song + physical QR card + selected coffee/chocolate gift.
 
 ## Why This Works
 
-| Traditional ecommerce | Dogcasso chatbot |
+| Traditional ecommerce | MythicBee chatbot |
 |----------------------|------------------|
 | Search "birthday gift for girlfriend" | "Who is it for?" |
 | Scroll 400 products | 3 curated options |
@@ -98,7 +98,7 @@ Third interaction:
 | Channel | How it works |
 |---------|-------------|
 | **Website** | Chat widget, guided conversation |
-| **WhatsApp** | Message Dogcasso, same flow |
+| **WhatsApp** | Message MythicBee, same flow |
 | **Instagram DM** | Same conversational flow |
 | **Email** | "Who is it for?" prompt → reply → curated options |
 | **SMS** | "Alice's birthday is in 14 days. Reply with a name and we'll make something." |
@@ -110,7 +110,7 @@ Third interaction:
 ```text
 DOG: Making your movie...
 
-[Dogcasso furiously paints/edits]
+[MythicBee furiously paints/edits]
 
 [Turns around impatiently]
 
@@ -121,7 +121,7 @@ DOG: Done. £4.99. You're welcome.
 
 The slightly judgmental painting dog becomes the studio mascot.
 
-> **Dogcasso Studios presents...**
+> **MythicBee Studios presents...**
 
 - BREAKING NEWS: JAMIE IS 30
 - THE RISE OF SOPHIE
@@ -134,7 +134,7 @@ The brand is not constrained to dogs any more than Moonpig is constrained to pig
 
 ## Comparison to Moonpig UX
 
-| Moonpig | Dogcasso |
+| Moonpig | MythicBee |
 |---------|----------|
 | Browse categories | "Who is it for?" |
 | Search/filter | "What's coming up?" |

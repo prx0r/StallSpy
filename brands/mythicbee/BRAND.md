@@ -1,20 +1,20 @@
-# Dogcasso — Brand Guide
+# MythicBee — Brand Guide
 
 ## Name
 
-**Dogcasso**
+**MythicBee**
 
 Less literal. Easy to remember. Sounds creative. Not trapped in "AI Video Generator 24."
 
-Moonpig doesn't make sense either. Dogcasso gives us an absurd visual mascot and doesn't trap us into a literal name.
+Moonpig doesn't make sense either. MythicBee gives us an absurd visual mascot and doesn't trap us into a literal name.
 
 ---
 
 ## Positioning
 
-> **Dogcasso Studios — tiny movies starring your people.**
+> **MythicBee Studios — tiny movies starring your people.**
 
-The name makes sense retroactively: Dogcasso is the weird little studio making them.
+The name makes sense retroactively: MythicBee is the weird little studio making them.
 
 ---
 
@@ -27,13 +27,13 @@ Secondary:
 > **You provide the people. We make the movie.**
 
 Studio variant:
-> **Dogcasso Studios presents...**
+> **MythicBee Studios presents...**
 
 ---
 
 ## The Category
 
-> **Moonpig has templates where you upload five photos. Dogcasso has scenes where you upload five people.**
+> **Moonpig has templates where you upload five photos. MythicBee has scenes where you upload five people.**
 
 That is the distinction.
 
@@ -46,7 +46,7 @@ The slightly judgmental painting dog.
 - Appears in marketing
 - Breaks the fourth wall
 - Part of checkout/loading experience
-- "Dogcasso is making your movie..." → dog furiously paints/edits → turns around impatiently → "Done. £4.99. You're welcome."
+- "MythicBee is making your movie..." → dog furiously paints/edits → turns around impatiently → "Done. £4.99. You're welcome."
 
 **Memorable. Differentiating. Brand-building.**
 

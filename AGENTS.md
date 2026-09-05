@@ -1,6 +1,6 @@
 # AGENTS.md — StallShark
 
-**This is the primary working spot for the StallShark / Dogcasso / Moltwork project.**
+**This is the primary working spot for the StallShark / MythicBee / Moltwork project.**
 
 All development, experimentation, and business operations happen here.
 
@@ -11,7 +11,7 @@ All development, experimentation, and business operations happen here.
 **StallShark** — Commerce trajectory corpus + autonomous microbrand operator.
 
 The repo contains:
-- Live business data (dogcasso-ops/)
+- Live business data (mythicbee-ops/)
 - Architecture specs (corpus/)
 - Planning docs (endgame/)
 - Automation + schemas (tool/)
@@ -48,7 +48,7 @@ All credentials stored in `.env` (never committed). Vault server not yet running
 
 R2 bucket `stallshark` is ready for HydraDB backend. Current instance uses `hydradb` bucket with R2.
 
-**Known issue:** Cypher parser incompatibility with neo4j Python driver. See `fixes/HYDRA_RECOVERY.md` for the full repair brief. **Do not block Dogcasso on this.**
+**Known issue:** Cypher parser incompatibility with neo4j Python driver. See `fixes/HYDRA_RECOVERY.md` for the full repair brief. **Do not block MythicBee on this.**
 
 ---
 

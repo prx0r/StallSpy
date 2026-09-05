@@ -21,13 +21,13 @@ Then GameWinner.
 
 ---
 
-## Why GameWinner Before Dogcasso
+## Why GameWinner Before MythicBee
 
 > "We put the person you love into the sporting moment they've dreamed about their whole life."
 
 Contains: recipient, emotion, occasion, transformation, obvious visual demo, obvious gifting intent, sport-specific expansion space, male-recipient/female-buyer hypothesis, digital + physical upsells, repeatable production engine.
 
-Dogcasso has proven demand but "personalized pet portrait/video" is easier to compare against existing sellers.
+MythicBee has proven demand but "personalized pet portrait/video" is easier to compare against existing sellers.
 
 GameWinner creates a more distinctive **specific fantasy**.
 

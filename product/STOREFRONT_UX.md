@@ -1,4 +1,4 @@
-# Dogcasso — Storefront UX
+# MythicBee — Storefront UX
 
 ## Core Principle
 
@@ -148,9 +148,9 @@ Make it better:
 ## SEO / Discovery
 
 **Page titles follow the joke:**
-- "Personalised Santa Video | Caught In Your Living Room | Dogcasso"
-- "Funny Birthday Video | Breaking News Format | Dogcasso"
-- "Custom Monster Video | In Your Bedroom | Dogcasso"
+- "Personalised Santa Video | Caught In Your Living Room | MythicBee"
+- "Funny Birthday Video | Breaking News Format | MythicBee"
+- "Custom Monster Video | In Your Bedroom | MythicBee"
 
 **Long-tail keywords (not competing with Moonpig head-on):**
 - personalised santa video

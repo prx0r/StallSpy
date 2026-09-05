@@ -54,7 +54,7 @@ Trajectory → End State → ColdReview → PublicDigest
 ### FIX-06: Content
 - Rewrite content generator to consume only `PublicDailyDigest`
 
-### FIX-07: DOGCASSO
+### FIX-07: MYTHICBEE
 - Stop infrastructure, create first real listing/render
 
 ---

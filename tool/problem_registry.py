@@ -19,7 +19,7 @@ import uuid
 from datetime import datetime
 from pathlib import Path
 
-PROBLEMS_FILE = Path("/root/StallShark/dogcasso-ops/problems.jsonl")
+PROBLEMS_FILE = Path("/root/StallShark/mythicbee-ops/problems.jsonl")
 
 def uid(prefix="prob"):
     return f"{prefix}_{uuid.uuid4().hex[:8]}"
@@ -161,7 +161,7 @@ def bootstrap():
     )
     
     add_problem(
-        "Dogcasso has no customer-facing products",
+        "MythicBee has no customer-facing products",
         severity=0.85, category="product",
         context="Engine specs exist but no templates rendered, no demos created."
     )
@@ -189,7 +189,7 @@ def bootstrap():
     add_problem(
         "Endgame architecture eating the experiment",
         severity=0.8, category="process",
-        context="Spent more time building frameworks than selling products. Need to focus on DOGCASSO OPS first."
+        context="Spent more time building frameworks than selling products. Need to focus on MYTHICBEE OPS first."
     )
     
     add_problem(
@@ -208,7 +208,7 @@ def bootstrap():
     add_problem(
         "No video renders completed for any product",
         severity=0.7, category="product",
-        context="Platinum renderers imported but none actually run on Dogcasso products."
+        context="Platinum renderers imported but none actually run on MythicBee products."
     )
     
     add_problem(
@@ -237,7 +237,7 @@ if __name__ == "__main__":
     elif len(sys.argv) > 1 and sys.argv[1] == "list":
         print_registry()
     elif len(sys.argv) > 1 and sys.argv[1] == "add":
-        # stallspy problem add "statement" severity category
+        # stallshark problem add "statement" severity category
         statement = sys.argv[2] if len(sys.argv) > 2 else "new problem"
         severity = float(sys.argv[3]) if len(sys.argv) > 3 else 0.5
         category = sys.argv[4] if len(sys.argv) > 4 else "general"
@@ -245,6 +245,6 @@ if __name__ == "__main__":
         print(f"Added: {p['problem_id']} — {p['statement'][:60]}")
     else:
         print("Usage:")
-        print("  stallspy problem bootstrap    # populate from session")
-        print("  stallspy problem list          # show all problems")
-        print("  stallspy problem add '...' severity category")
+        print("  stallshark problem bootstrap    # populate from session")
+        print("  stallshark problem list          # show all problems")
+        print("  stallshark problem add '...' severity category")

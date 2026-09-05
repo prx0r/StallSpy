@@ -1,4 +1,4 @@
-# Dogcasso — Purchase Flow
+# MythicBee — Purchase Flow
 
 ## Core Principle
 
@@ -27,7 +27,7 @@ Less choice, not more. Every extra decision creates friction.
 5. **Pick tone**
    - Funny / Sweet / Savage / Unhinged
 
-6. **Dogcasso shows ONE strong concept preview**
+6. **MythicBee shows ONE strong concept preview**
    - Not ten options
    - One concept, thumbnail, 3-second demo
 
@@ -76,7 +76,7 @@ The hard personalization work is already done. These are nearly pure margin:
 - **Digital now** — immediate MP4
 - **Physical card arrives tomorrow / selected date**
 
-Dogcasso becomes useful even for people who forgot the birthday until today.
+MythicBee becomes useful even for people who forgot the birthday until today.
 
 ---
 
@@ -86,7 +86,7 @@ For every new template:
 
 > **Can a buyer see the 3-second demo and immediately think of one specific person to send it to?**
 
-If yes, it belongs in Dogcasso.
+If yes, it belongs in MythicBee.
 
 If no — if they think "that's cool" but can't name a specific recipient — it doesn't pass.
 

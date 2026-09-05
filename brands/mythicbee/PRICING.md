@@ -1,4 +1,4 @@
-# Dogcasso — Pricing Architecture
+# MythicBee — Pricing Architecture
 
 ## Product Stack
 
@@ -48,7 +48,7 @@ Hard personalization work already done. Impulse add-ons:
 | Physical card tomorrow | Next day | Planned gift |
 | Physical card selected date | Custom date | Future occasions |
 
-**Dogcasso becomes useful even for last-minute buyers.**
+**MythicBee becomes useful even for last-minute buyers.**
 
 ---
 

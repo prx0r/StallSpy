@@ -1,4 +1,4 @@
-# Parent Structure — Moltwork × StallShark × Dogcasso
+# Parent Structure — Moltwork × StallShark × MythicBee
 
 **Date:** 5 September 2026
 
@@ -15,7 +15,7 @@
         autonomous marketplace commerce
                        │
                        ▼
-                   DOGCASSO
+                   MYTHICBEE
        actual consumer business / laboratory
 ```
 
@@ -82,17 +82,17 @@ SEE MARKET → FIND OPPORTUNITY → CHOOSE MARKETPLACE → CHOOSE PRODUCT
 
 **One-line scope: StallShark is intelligence and autonomous tooling for marketplace sellers.**
 
-StallSpy becomes a feature within StallShark (competitor intelligence).
+StallShark becomes a feature within StallShark (competitor intelligence).
 
 ---
 
-## 3. Dogcasso.com — Consumer Business
+## 3. MythicBee.com — Consumer Business
 
 > **Turn your dog into the star of a personalized movie, story or gift.**
 
 Think: JibJab × Moonpig × AI video × pets.
 
-### Dogcasso Owns
+### MythicBee Owns
 
 ```
 dog upload → pet identity → character consistency
@@ -112,15 +112,15 @@ MOLTWORK claim: "Our agents learn to perform economically useful work."
     Proof: StallShark
 
 STALLSHARK claim: "Our system can discover and operate profitable marketplace products."
-    Proof: Dogcasso
+    Proof: MythicBee
 
-DOGCASSO claim: "Give us pictures of your dog and we'll make something great."
+MYTHICBEE claim: "Give us pictures of your dog and we'll make something great."
     Proof: customer doesn't need to know anything else
 ```
 
 ---
 
-## Dogcasso Name Assessment
+## MythicBee Name Assessment
 
 | Dimension | Score |
 |-----------|------:|
@@ -153,27 +153,27 @@ Name undersells the best part (cinema/story/animation vs static art).
 ## The Relationship
 
 ```
-MOLTWORK → powers → STALLSHARK → operates/learns from → DOGCASSO
+MOLTWORK → powers → STALLSHARK → operates/learns from → MYTHICBEE
 ```
 
-StallShark doesn't have to operate only Dogcasso:
+StallShark doesn't have to operate only MythicBee:
 
 ```
                     STALLSHARK
         ┌──────────────┼──────────────┐
         ▼              ▼              ▼
-    Dogcasso       Brand #2        Brand #3
+    MythicBee       Brand #2        Brand #3
      Etsy          eBay arb      Amazon brand
       POD          resale         inventory
 ```
 
-**Dogcasso is one company. StallShark learns how to build companies. Moltwork learns how to build workers.**
+**MythicBee is one company. StallShark learns how to build companies. Moltwork learns how to build workers.**
 
 ---
 
 ## Scope Boundary (Frozen)
 
-- Dogcasso: actual consumer business / laboratory
+- MythicBee: actual consumer business / laboratory
 - StallShark: intelligence and autonomous tooling for marketplace sellers
 - Moltwork: infrastructure for autonomous agents to work
 

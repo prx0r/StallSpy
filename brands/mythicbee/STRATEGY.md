@@ -1,4 +1,4 @@
-# Dogcasso — Strategic Thesis
+# MythicBee — Strategic Thesis
 
 ## The Moonpig Validation
 
@@ -13,7 +13,7 @@ Moonpig has already proved almost every boring part of this business:
 
 **We don't need to prove people want an online gifting assistant.**
 
-We need to prove **personalized mini-movies/memes are a sufficiently compelling acquisition wedge to get younger customers to start their gifting relationship with Dogcasso rather than Moonpig.**
+We need to prove **personalized mini-movies/memes are a sufficiently compelling acquisition wedge to get younger customers to start their gifting relationship with MythicBee rather than Moonpig.**
 
 ---
 
@@ -29,7 +29,7 @@ Discovery:
 - Santa Was Caught In Your Living Room
 - Your Dog Has Something To Tell You
 
-Upload photo. £4.99. Studio-quality result. Dump in group chat. 10 people see Dogcasso.
+Upload photo. £4.99. Studio-quality result. Dump in group chat. 10 people see MythicBee.
 
 **That's a vastly more viral acquisition unit than a card.**
 
@@ -47,7 +47,7 @@ Then:
 
 The recipient graph + occasion reminders + proactive suggestions = accounts that get more valuable over time.
 
-**Moonpig makes you start from scratch every year. Dogcasso says "Alice turns 30 in 21 days, we've already got 6 ideas ready."**
+**Moonpig makes you start from scratch every year. MythicBee says "Alice turns 30 in 21 days, we've already got 6 ideas ready."**
 
 ---
 
@@ -72,7 +72,7 @@ TikTok/Reels becomes natural:
 
 Then show: BBC-style Breaking News → "Local man Ryan Thompson has somehow survived 31 consecutive years." £4.99.
 
-**People buy because the demo is funny. Then Dogcasso converts them into card and gift customers later.**
+**People buy because the demo is funny. Then MythicBee converts them into card and gift customers later.**
 
 ---
 
@@ -117,7 +117,7 @@ Funny personalized video: family WhatsApp + Instagram + TikTok + work Slack + gr
 
 ## Competitive Positioning
 
-| Moonpig | Dogcasso |
+| Moonpig | MythicBee |
 |---------|----------|
 | Browse categories | "Who is it for?" |
 | Static cards | Personalized movies |
@@ -148,7 +148,7 @@ Funny personalized video: family WhatsApp + Instagram + TikTok + work Slack + gr
 
 ## The Bigger Concept
 
-Dogcasso isn't ultimately:
+MythicBee isn't ultimately:
 > AI cards.
 
 It's:

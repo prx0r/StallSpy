@@ -1,4 +1,4 @@
-# Dogcasso — Customer Strategy
+# MythicBee — Customer Strategy
 
 ## The Buyer
 

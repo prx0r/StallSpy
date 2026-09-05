@@ -1,4 +1,4 @@
-# StallSpy Company Substrate — Implementation Brief
+# StallShark Company Substrate — Implementation Brief
 
 **Date:** 5 September 2026
 **Source:** Implementation brief from Tom
@@ -24,7 +24,7 @@ Git                    = canonical code/config/template lineage
 RunReceipt             = immutable account of what a run consumed/produced
 HydraDB                = rebuildable graph/index/projection
 PydanticAI             = replaceable execution/orchestration runtime
-StallSpy               = Etsy/Dogcasso domain implementation
+StallShark               = Etsy/MythicBee domain implementation
 finalbuilds            = donor + product-building intelligence module
 ```
 
@@ -33,7 +33,7 @@ finalbuilds            = donor + product-building intelligence module
 - If deleting Hydra or Hindsight destroys unique knowledge, architecture is wrong
 - If swapping PydanticAI destroys historical comparability, architecture is wrong
 - If an Etsy API response becomes canonical domain object, architecture is wrong
-- Domain-specific facts in StallSpy. Universal machinery in private-lab.
+- Domain-specific facts in StallShark. Universal machinery in private-lab.
 
 ## Kernel Hardening Required
 
@@ -57,7 +57,7 @@ COLLECT → ASSESS → DIAGNOSE → HYPOTHESIZE → ALLOCATE → EXECUTE → OBS
 ## Definition of Success
 
 ```text
-stallspy company-day run --mode replay --fixture demo-shop
+stallshark company-day run --mode replay --fixture demo-shop
 ```
 
 Produces verifiable chain:
@@ -98,8 +98,8 @@ Capture contracts/data for these. Don't build before the loop works.
 ### private-lab
 Kernel fixes, universal company contracts, RunReceiptV2, WorldExperiment, policy layer, reconciliation, attribution, information-boundary, CompanyDay primitives, tests
 
-### StallSpy
-Python package, private-lab integration, Etsy domain contracts, fixture adapter, gateway skeleton, MarketSignal adapter, state snapshot compiler, problem/hypothesis pipeline, CompanyDay adapter, ColdReview adapter, Dogcasso template contract, tests, AGENTS.md, ARCHITECTURE.md
+### StallShark
+Python package, private-lab integration, Etsy domain contracts, fixture adapter, gateway skeleton, MarketSignal adapter, state snapshot compiler, problem/hypothesis pipeline, CompanyDay adapter, ColdReview adapter, MythicBee template contract, tests, AGENTS.md, ARCHITECTURE.md
 
 ### finalbuilds
 No destructive changes. Document what was ported.

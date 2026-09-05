@@ -14,11 +14,11 @@ The reason is simple: eBay is unusually observable. Its own Product Research giv
 
 ---
 
-# StallShark vs StallSpy
+# StallShark vs StallShark
 
 The thesis has evolved beyond **spying**.
 
-`StallSpy` sounds like:
+`StallShark` sounds like:
 
 > research competitors → inspect listings → keyword analytics.
 
@@ -50,14 +50,14 @@ Marketplace operating intelligence
     actually launches/runs things
 ```
 
-So **StallSpy** becomes a beautiful feature name within StallShark.
+So **StallShark** becomes a beautiful feature name within StallShark.
 
 ### Domain/name ranking
 
 | Name               |   My score | Why                                                                                        |
 | ------------------ | ---------: | ------------------------------------------------------------------------------------------ |
 | **StallShark.com** | **9.4/10** | Active, memorable, money/opportunity connotation, mascotable                               |
-| StallSpy.com       |        8.5 | Excellent intelligence product; slightly too passive                                       |
+| StallShark.com       |        8.5 | Excellent intelligence product; slightly too passive                                       |
 | StallRadar.com     |        8.0 | Very legible, weaker brand personality                                                     |
 | StallSignal.com    |        7.8 | Serious analytics feel                                                                     |
 | StallIQ.com        |        7.7 | Clean SaaS, generic                                                                        |
@@ -66,7 +66,7 @@ So **StallSpy** becomes a beautiful feature name within StallShark.
 | StallPilot.com     |        7.3 | Good agent operator meaning                                                                |
 | Stalls.space        |        6.5 | Cool community/market feel, but doesn't sound like a profit tool                           |
 
-Buy **StallShark.com** if available at sane price. Keep **StallSpy** for the research/intelligence subsystem.
+Buy **StallShark.com** if available at sane price. Keep **StallShark** for the research/intelligence subsystem.
 
 Keep **Moltwork** completely intact. StallShark is the commerce company/product. Moltwork is the autonomous economic machine underneath.
 
@@ -705,7 +705,7 @@ confidence: 0.68
 
 # 26. What to do this week
 
-1. **Try to secure StallShark.com.** Keep Moltwork.com. StallSpy = research module.
+1. **Try to secure StallShark.com.** Keep Moltwork.com. StallShark = research module.
 2. Build canonical `MarketWorld`, `MarketSnapshot`, `DecisionTrajectory`, `EconomicOutcome`, `SourceArtifact` schemas.
 3. Build `mwgym-commerce-v0` against **UCI Online Retail II** first — real, temporal, CC BY 4.0. ([UCI][27])
 4. Add Olist + Retailrocket as additional test worlds.

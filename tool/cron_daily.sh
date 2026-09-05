@@ -8,7 +8,7 @@ DATE=$(date +%Y-%m-%d)
 LOG_DIR="/root/StallShark/logs"
 
 # Get day number from CompanyDay records (not a separate counter)
-DAY_NUM=$(ls /root/StallShark/dogcasso-ops/days/ 2>/dev/null | wc -l)
+DAY_NUM=$(ls /root/StallShark/mythicbee-ops/days/ 2>/dev/null | wc -l)
 if [ "$DAY_NUM" -eq 0 ]; then
     DAY_NUM=1
 fi

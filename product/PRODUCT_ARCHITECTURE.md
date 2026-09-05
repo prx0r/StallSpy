@@ -1,7 +1,7 @@
-# Dogcasso — Product Architecture
+# MythicBee — Product Architecture
 
 **As of:** 5 September 2026
-**Brand:** Dogcasso Studios — tiny movies starring your people.
+**Brand:** MythicBee Studios — tiny movies starring your people.
 **Tagline:** Make someone the main character.
 **Positioning:** Video-native Moonpig. Pick joke → Add people → Receive something hilarious.
 
@@ -13,7 +13,7 @@ We are not selling "AI videos." We are selling personalized versions of internet
 
 The customer uploads a photo. We turn them into the meme, the movie, the magic.
 
-**Dogcasso = the place where you turn someone into a gift.**
+**MythicBee = the place where you turn someone into a gift.**
 
 ---
 
@@ -81,7 +81,7 @@ See `TECH_STACK.md` for full architecture.
 
 ## Fulfillment
 
-- **Digital:** Gift page at dogcasso.com/[name]-[occasion]-[code]
+- **Digital:** Gift page at mythicbee.com/[name]-[occasion]-[code]
 - **Cards:** Prodigi prints + ships, QR inside links to movie
 - **Books (future):** Lulu Print API
 - **AR (future):** WebAR, card becomes tracking marker

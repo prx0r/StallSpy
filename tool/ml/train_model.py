@@ -10,7 +10,7 @@ import os
 from datetime import datetime
 
 # Load data
-DATA_DIR = "/root/StallSpy/tool/ml/etsy-sales-prediction"
+DATA_DIR = "/root/StallShark/tool/ml/etsy-sales-prediction"
 
 def load_data():
     with open(os.path.join(DATA_DIR, "Etsy_top10000shops.csv"), encoding="latin-1") as f:
@@ -155,7 +155,7 @@ if __name__ == "__main__":
         ]
     }
     
-    outpath = "/root/StallSpy/tool/ml/model_results.json"
+    outpath = "/root/StallShark/tool/ml/model_results.json"
     with open(outpath, "w") as f:
         json.dump(results, f, indent=2)
     print(f"\nResults saved to {outpath}")

@@ -160,7 +160,7 @@ Daily problems identified get tagged and indexed:
   "problem_id": "prob_047",
   "date": "2026-09-19",
   "description": "H3 generates good video but face doesn't match reference photo",
-  "context": "Dogcasso Birthday V1, customer photo of golden retriever",
+  "context": "MythicBee Birthday V1, customer photo of golden retriever",
   "tags": ["face_identity", "h3", "golden_retriever", "reference_quality"],
   "status": "unsolved"
 }

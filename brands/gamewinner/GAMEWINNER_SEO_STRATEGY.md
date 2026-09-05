@@ -273,7 +273,7 @@ Etsy's 2026 algorithm heavily weights engagement signals. Here's how to maximize
    - [X]-second personalized sports video
    - HD download (16:9 and 9:16 formats)
    - Hero portrait from the winning moment
-   - Gift page at dogcasso.com
+   - Gift page at mythicbee.com
 
 4. PERSONALIZATION OPTIONS
    - Sport: Football, Baseball, Basketball, Cricket
@@ -343,7 +343,7 @@ Etsy's 2026 algorithm **prioritizes listings that bring external traffic**. This
 ### TikTok / Instagram Reels
 - "POV: Your mate buys you the worst birthday gift imaginable"
 - Show: Breaking News format → "Local man Steve has somehow survived 60 years"
-- End card: "£7.99 → dogcasso.com"
+- End card: "£7.99 → mythicbee.com"
 - Use Etsy Share & Save links (reduces fees + boosts rank)
 
 ### Pinterest

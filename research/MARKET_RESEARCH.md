@@ -1,8 +1,8 @@
-# Dogcasso Market Research — September 2026
+# MythicBee Market Research — September 2026
 
 ## Executive Summary
 
-The personalized gifts market is $34B+ and growing at 8-10% CAGR. Etsy's pet niche alone generates 250K+ monthly searches with 40-70% margins. **The specific gap Dogcasso fills — personalized meme视频 + physical card bundles — has almost no competition.** Existing competitors sell either talking pet videos ($5-15) OR custom pet portraits ($10-150), but nobody combines video + meme format + physical card as one product.
+The personalized gifts market is $34B+ and growing at 8-10% CAGR. Etsy's pet niche alone generates 250K+ monthly searches with 40-70% margins. **The specific gap MythicBee fills — personalized meme视频 + physical card bundles — has almost no competition.** Existing competitors sell either talking pet videos ($5-15) OR custom pet portraits ($10-150), but nobody combines video + meme format + physical card as one product.
 
 ---
 
@@ -77,7 +77,7 @@ The personalized gifts market is $34B+ and growing at 8-10% CAGR. Etsy's pet nic
 | Price Range | Conversion Behavior | Best For |
 |-------------|-------------------|----------|
 | Under $10 | Quick conversion, thin margins | Digital-only, volume play |
-| **$15-35** | **Strongest conversion rates** | **Sweet spot for Dogcasso** |
+| **$15-35** | **Strongest conversion rates** | **Sweet spot for MythicBee** |
 | $35-50 | Needs 15-30 reviews to convert | Bundle with physical |
 | $50-100 | Needs 50+ reviews | Premium packages |
 | $100+ | Needs strong social proof | Experience/physical gift bundles |
@@ -89,7 +89,7 @@ The personalized gifts market is $34B+ and growing at 8-10% CAGR. Etsy's pet nic
 - Dropping from 5.0 to 4.7 stars has measurable impact
 - Below 4.5 stars = catastrophic
 
-### Dogcasso Pricing Implications
+### MythicBee Pricing Implications
 
 | Product | Recommended Price | Rationale |
 |---------|------------------|-----------|
@@ -132,7 +132,7 @@ The personalized gifts market is $34B+ and growing at 8-10% CAGR. Etsy's pet nic
 
 ### Seasonal Peaks
 
-| Period | Keywords Spike | Dogcasso Products |
+| Period | Keywords Spike | MythicBee Products |
 |--------|---------------|-------------------|
 | Nov-Dec | Christmas gift, personalized christmas | Santa Was In Your Room, pet christmas |
 | Jan-Feb | Valentine's day gift | Couple meme cards |
@@ -142,7 +142,7 @@ The personalized gifts market is $34B+ and growing at 8-10% CAGR. Etsy's pet nic
 
 ---
 
-## 5. The Dogcasso Gap — What Nobody Else Does
+## 5. The MythicBee Gap — What Nobody Else Does
 
 ### Current Market Structure
 
@@ -157,7 +157,7 @@ TALKING PET VIDEOS          CUSTOM PORTRARDS          GREETING CARDS
                     │                                         │
                     └─────────────────────────────────────────┘
                                     │
-                              DOGCASSO
+                              MYTHICBEE
                          (video + meme + card)
 ```
 
@@ -171,7 +171,7 @@ TALKING PET VIDEOS          CUSTOM PORTRARDS          GREETING CARDS
 
 ### The Competitive Moat
 
-Dogcasso's moat is NOT the technology (anyone can use H3). It's:
+MythicBee's moat is NOT the technology (anyone can use H3). It's:
 
 1. **Template system** — one engine × many occasions = many listings
 2. **Meme grammar expertise** — knowing which formats work and why
@@ -288,7 +288,7 @@ Add Sports Hero, Album, Natural Habitat as new engines with full age/occasion ma
 | H3 output quality inconsistent | High | Test 10-20 renders per template before selling; keep reroll budget |
 | Etsy MP4 delivery issue | Medium | Deliver .mov (H.264) + .zip fallback |
 | Competitor copies format | Medium | First-mover advantage + review moat + template IP |
-| Etsy fee increases | Low | Maintain 50%+ margins; diversify to Dogcasso.com |
+| Etsy fee increases | Low | Maintain 50%+ margins; diversify to MythicBee.com |
 | AI video quality doesn't meet expectations | High | Extensive QA before listing; 80% first-render success bar |
 
 ---

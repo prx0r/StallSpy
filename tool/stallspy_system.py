@@ -20,9 +20,9 @@ from pydantic_ai import Agent
 
 # ── Paths ───────────────────────────────────────────────────────────────
 
-STALLSPY = Path("/root/StallShark")
-LEDGER_DB = STALLSPY / "data" / "ledger.db"
-load_dotenv(STALLSPY / ".env")
+STALLSHARK = Path("/root/StallShark")
+LEDGER_DB = STALLSHARK / "data" / "ledger.db"
+load_dotenv(STALLSHARK / ".env")
 
 # ── Model Selection ──────────────────────────────────────────────────────
 
@@ -340,7 +340,7 @@ if __name__ == "__main__":
     system = StallSharkSystem()
 
     bs = {"day": 5, "cash": 88.37, "revenue": 0, "listings": 0,
-          "active_brands": ["dogcasso"], "top_problem": "nothing launched"}
+          "active_brands": ["mythicbee"], "top_problem": "nothing launched"}
 
     print("1. Interview...")
     iv = system.morning_interview(bs)

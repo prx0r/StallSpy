@@ -1,4 +1,4 @@
-# Dogcasso — Ad Testing Loop
+# MythicBee — Ad Testing Loop
 
 ## The Development Rule
 
@@ -10,14 +10,14 @@ Prevents building elaborate AI infrastructure before proving anybody cares.
 
 ## First Meme-Format Test Slate
 
-| Format | Dogcasso demo | Difficulty | Testing for |
+| Format | MythicBee demo | Difficulty | Testing for |
 |--------|--------------|-----------|-------------|
 | **This Is Fine** | bloke calmly drinks tea while birthday party behind him becomes catastrophic | Easy | absurd visual escalation |
 | **Sad Kid on Bus** | recipient staring mournfully through bus window: "when you realise you're 30 tomorrow" | Very easy | relatable milestone humour |
 | **Two Buttons** | sweating recipient choosing "act my age" vs "another pint" | Easy | personalized caption humour |
 | **Had To Do It** | ridiculous confident walk → pose → freeze | Very easy | meme recognition + identity insertion |
 | **Caught Looking** | couple walking → ridiculous distraction passes → head turn → freeze | Medium | high shareability / couples |
-| **Dog Roast** | real-looking dog on panel show roasting owner | Easy-medium | Dogcasso-native viral format |
+| **Dog Roast** | real-looking dog on panel show roasting owner | Easy-medium | MythicBee-native viral format |
 | **Breaking News** | recipient subject of absurd news report | Easy | birthday purchase intent |
 | **Calm During Disaster** | increasingly insane background while recipient remains completely unbothered | Easy | reusable meme grammar |
 
@@ -44,7 +44,7 @@ Customer recognises the emotional meme format. No copyright issues.
 ## The Ad-Testing Loop
 
 ```text
-1. Make generic Dogcasso demo (fictional character, not customer)
+1. Make generic MythicBee demo (fictional character, not customer)
     ↓
 2. Post organically everywhere (TikTok, IG Reels, FB)
     ↓
@@ -69,7 +69,7 @@ Customer recognises the emotional meme format. No copyright issues.
 
 **"@Harry this is you"** — tags + shares per 1,000 views.
 
-That directly demonstrates the fundamental Dogcasso behaviour.
+That directly demonstrates the fundamental MythicBee behaviour.
 
 ---
 

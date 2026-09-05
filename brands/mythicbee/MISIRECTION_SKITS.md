@@ -1,4 +1,4 @@
-# Dogcasso — Misdirection Skits
+# MythicBee — Misdirection Skits
 
 **Lane 3: Tension/Misdirection**
 
@@ -187,7 +187,7 @@ Camera: static wide.
 - **Trend-independent:** Will still work in a year
 - **Cheap:** Mostly relies on timing and reveal, not complex generation
 - **Shareable:** Tension/release is inherently shareable
-- **Dogcasso-friendly:** Dog can be the punchline in most variants
+- **MythicBee-friendly:** Dog can be the punchline in most variants
 
 ### Generation approach
 

@@ -21,7 +21,7 @@ It captures **why the trajectory took the shape it did**.
 
 What did you believe **before** seeing the outcome?
 
-> "I currently think Game Winner is stronger than Dogcasso because the buying intent is clearer."
+> "I currently think Game Winner is stronger than MythicBee because the buying intent is clearer."
 
 Lets a future agent distinguish prediction → result rather than retrospectively inventing reasons.
 
@@ -86,7 +86,7 @@ Sometimes this intuition will be wrong. Excellent. Now the dataset can measure *
 ```json
 {
   "date": "2026-09-06",
-  "objective": "Get Dogcasso's first product live",
+  "objective": "Get MythicBee's first product live",
   "current_beliefs": [
     {"claim": "Birthday is the best first buying intent", "confidence": 0.78},
     {"claim": "Customers care more about likeness than 4K", "confidence": 0.66}

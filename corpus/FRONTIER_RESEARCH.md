@@ -169,7 +169,7 @@ Distinguish: losing $30 while learning five transferable things vs losing $30 do
 Every ColdReview asks: Did today's actions advance the stated 7-day/30-day objective?
 
 ```
-stated_priority: launch Dogcasso
+stated_priority: launch MythicBee
 actions: 5h corpus architecture, 1h video tests, 0 listings published
 strategy_alignment: 0.28
 ```

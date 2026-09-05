@@ -1,4 +1,4 @@
-# Dogcasso — Fulfillment Pipeline
+# MythicBee — Fulfillment Pipeline
 
 ## Digital Delivery (Primary)
 
@@ -15,7 +15,7 @@ FFmpeg composes final output
         ↓
 QA checks pass
         ↓
-Gift page created: dogcasso.com/tom-30th-8F4D
+Gift page created: mythicbee.com/tom-30th-8F4D
         ↓
 Delivery email/SMS with link
         ↓
@@ -34,7 +34,7 @@ Customer shares link in group chat
 - Copy link
 - Date stamp: "Tom's birthday — 19 October 2026"
 
-**Permanent retention.** Unlike Moonpig's 6-month limit, Dogcasso gift pages stay live.
+**Permanent retention.** Unlike Moonpig's 6-month limit, MythicBee gift pages stay live.
 
 ---
 
@@ -122,9 +122,9 @@ Same content, different display target. The valuable asset is **the personalized
 ## Unique URL Structure
 
 ```
-dogcasso.com/tom-30th-8F4D
-dogcasso.com/sarah-santa-9K2M
-dogcasso.com/dave-retirement-7P1Q
+mythicbee.com/tom-30th-8F4D
+mythicbee.com/sarah-santa-9K2M
+mythicbee.com/dave-retirement-7P1Q
 ```
 
 - Human-readable prefix

@@ -2,7 +2,7 @@
 DP2-11: Organization experiments
 DP2-12: Human delegation (HumanQueue)
 DP2-13: Frontier mini-suite (tests)
-DP2-14: Golden E2E (dogcasso-day1 fixture)
+DP2-14: Golden E2E (mythicbee-day1 fixture)
 DP2-15: Live CompanyDay
 """
 from __future__ import annotations
@@ -223,16 +223,16 @@ def _test_lab():
 
 # ── DP2-14: Golden E2E Fixture ─────────────────────────────────────────
 
-def make_dogcasso_day1_fixture() -> dict:
-    """Complete fixture for dogcasso-day1 golden E2E test."""
+def make_mythicbee_day1_fixture() -> dict:
+    """Complete fixture for mythicbee-day1 golden E2E test."""
     return {
-        "fixture_id": "dogcasso-day1",
+        "fixture_id": "mythicbee-day1",
         "business_state": {
             "day": 1,
             "cash": 100.0,
             "revenue": 0,
             "listings": 0,
-            "active_brands": ["dogcasso"],
+            "active_brands": ["mythicbee"],
             "top_problem": "nothing launched",
         },
         "human_perspective": {
@@ -296,7 +296,7 @@ def run_live_company_day(fixture: dict) -> dict:
         "event_id": uid("econ"),
         "type": "model",
         "cash_usd": -1.50,
-        "brand_id": "dogcasso",
+        "brand_id": "mythicbee",
     }
     
     return {
@@ -339,7 +339,7 @@ if __name__ == "__main__":
         print(f"    {s} {r['id']}: {r['name']}")
     
     print("\n=== DP2-14: Golden E2E Fixture ===")
-    fixture = make_dogcasso_day1_fixture()
+    fixture = make_mythicbee_day1_fixture()
     print(f"  Fixture: {fixture['fixture_id']}")
     print(f"  State: cash=${fixture['business_state']['cash']}, brands={fixture['business_state']['active_brands']}")
     

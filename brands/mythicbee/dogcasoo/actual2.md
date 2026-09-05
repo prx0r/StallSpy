@@ -18,11 +18,11 @@ But the underlying idea:
 
 is much broader than Pokémon.
 
-So make **Dogcasso's own collectible universe**.
+So make **MythicBee's own collectible universe**.
 
 And this could be really good.
 
-## Dogcasso "Pet Legends"
+## MythicBee "Pet Legends"
 
 Imagine:
 
@@ -178,7 +178,7 @@ Looks like an old natural-history specimen card.
 
 Scan → Attenborough-style clip.
 
-I like this a lot because **Dogcasso owns the whole format.**
+I like this a lot because **MythicBee owns the whole format.**
 
 ---
 
@@ -252,7 +252,7 @@ Own poster.
 
 Then generate a 15-second trailer.
 
-You preserve nearly all the fantasy while building Dogcasso IP instead of somebody else's.
+You preserve nearly all the fantasy while building MythicBee IP instead of somebody else's.
 
 ---
 
@@ -334,7 +334,7 @@ Birthday + recognizable obsession + personalized recipient = strong buying motiv
 
 ---
 
-## But for Dogcasso right now
+## But for MythicBee right now
 
 I would resist expanding today.
 

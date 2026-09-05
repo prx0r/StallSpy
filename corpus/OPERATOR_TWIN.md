@@ -99,15 +99,15 @@ Every daily interview becomes a little prediction market.
 
 The interviewer asks:
 
-> You have four hours today. Dogcasso is unlaunched, StallSpy needs instrumentation, and Game Winner has a promising prototype. Allocate the four hours and explain why.
+> You have four hours today. MythicBee is unlaunched, StallShark needs instrumentation, and Game Winner has a promising prototype. Allocate the four hours and explain why.
 
 **Before you answer**, `OPERATOR_MODEL_V0` commits:
 
 ```json
 {
   "prediction": {
-    "dogcasso_hours": 3,
-    "stallspy_hours": 1,
+    "mythicbee_hours": 3,
+    "stallshark_hours": 1,
     "gamewinner_hours": 0
   },
   "predicted_reason":
@@ -121,8 +121,8 @@ Then you answer.
 Maybe:
 
 ```text
-Dogcasso 2h
-StallSpy 2h
+MythicBee 2h
+StallShark 2h
 
 Because if the recorder isn't running before launch,
 we permanently lose the most valuable beginning-of-business data.
@@ -184,16 +184,16 @@ Example:
 
 ```text
 PREDICTED TOM:
-Launch Dogcasso today.
+Launch MythicBee today.
 
 AGENT:
 Spend another day validating Game Winner because its EV looks higher.
 
 ACTUAL TOM:
-Launch Dogcasso today because finishing one thing is strategically important.
+Launch MythicBee today because finishing one thing is strategically important.
 
 OUTCOME:
-Dogcasso first sale 3 days later.
+MythicBee first sale 3 days later.
 ```
 
 Over time:
@@ -280,7 +280,7 @@ Fast-changing.
 
 ```text
 TODAY:
-publish Dogcasso
+publish MythicBee
 
 7 DAYS:
 first revenue
@@ -387,7 +387,7 @@ But:
 
 ```text
 QUESTION CLASS:
-kill Dogcasso or invest another month
+kill MythicBee or invest another month
 
 operator prediction confidence:
 61%

@@ -8,7 +8,7 @@ The product becomes:
 
 > **You become the meme → 5–10 second animation → iconic freeze-frame → same freeze-frame becomes the physical card → QR opens the full clip.**
 
-Design every Dogcasso meme recipe to output **both video and print artwork from day one**. We don't necessarily need to list every card immediately, but the creative work is already done.
+Design every MythicBee meme recipe to output **both video and print artwork from day one**. We don't necessarily need to list every card immediately, but the creative work is already done.
 
 ---
 
@@ -20,11 +20,11 @@ In 2026, many Meme-of-the-Month winners have been fandom-, song- or event-depend
 
 ---
 
-## The Dogcasso meme goldmine
+## The MythicBee meme goldmine
 
 Best formats: recognizable **physical action/snapshot** we can reconstruct with the customer's person/pet and then animate *into* the iconic frame.
 
-| Rank   | Dogcasso format          | Animated action → freeze-frame                                                    |             Inputs | Render difficulty | Gift potential |
+| Rank   | MythicBee format          | Animated action → freeze-frame                                                    |             Inputs | Render difficulty | Gift potential |
 | ------ | ------------------------ | --------------------------------------------------------------------------------- | -----------------: | ----------------: | -------------: |
 | **S**  | **67 Birthday**          | Parent: "Six or seven?" → kid enters → **"67!" + gesture** → duplicates/chaos     |              child |                 ★ |     🔥🔥🔥🔥🔥 |
 | **S**  | **Two Buttons**          | recipient presented two terrible choices → sweats → hand hovers → freeze          |  person + 2 labels |                 ★ |     🔥🔥🔥🔥🔥 |
@@ -55,7 +55,7 @@ Best formats: recognizable **physical action/snapshot** we can reconstruct with 
 | **B+** | **Always Was**           | two personalized astronauts discover absurd truth → dramatic reveal               |           2 people |                ★★ |           🔥🔥 |
 | **B**  | **Panik / Kalm / Panik** | three sequential reactions to escalating information                              |             person |                 ★ |           🔥🔥 |
 
-Key principle: recreate **the meme grammar rather than the source image**. Distracted Boyfriend came from Antonio Guillem's stock photo; Ralph is a *Simpsons* character; Woman Yelling at Cat combines *Real Housewives* footage with Smudge; Gru's Plan uses *Despicable Me*. Dogcasso puts **the customer's own people into an original live-action reconstruction**. ([Know Your Meme][3][4])
+Key principle: recreate **the meme grammar rather than the source image**. Distracted Boyfriend came from Antonio Guillem's stock photo; Ralph is a *Simpsons* character; Woman Yelling at Cat combines *Real Housewives* footage with Smudge; Gru's Plan uses *Despicable Me*. MythicBee puts **the customer's own people into an original live-action reconstruction**. ([Know Your Meme][3][4])
 
 ---
 
@@ -81,7 +81,7 @@ Dave starts sweating. Slow push-in. Hand drifts toward pint.
 
 Then: **HAPPY 30TH DAVE**
 
-That transition from **realistic moving world → iconic meme composition** is the Dogcasso magic.
+That transition from **realistic moving world → iconic meme composition** is the MythicBee magic.
 
 ---
 
@@ -209,7 +209,7 @@ Recipient walks up seriously. "I have a proposal." Freeze.
 
 Own weird little product family. Don't use Skrilla's copyrighted original recording.
 
-Use the **number + participatory gesture + original Dogcasso audio/sound design**.
+Use the **number + participatory gesture + original MythicBee audio/sound design**.
 
 For a 7-year-old:
 
@@ -229,7 +229,7 @@ The bizarre ambiguity of "6-7" and the palm-up alternating gesture are core to t
 
 Italian Brainrot is culturally recognizable, but much of it is tied to specific community-created AI characters and source audio; 2026's monthly winners often depend on copyrighted songs, films, manga or specific viral personalities. ([Know Your Meme][13])
 
-Dogcasso should have:
+MythicBee should have:
 
 **80% evergreen meme grammars**
 
@@ -239,7 +239,7 @@ Two Buttons, This Is Fine, Caught Looking, I'm In Danger, Disaster, Confused Mat
 
 67 today. Whatever suddenly becomes massive next month.
 
-Produce the Trend Drop as an **organic Dogcasso advert first**. Only if it gets tags/shares/comments like "I NEED THIS FOR JAKE" do we turn it into a proper Etsy SKU.
+Produce the Trend Drop as an **organic MythicBee advert first**. Only if it gets tags/shares/comments like "I NEED THIS FOR JAKE" do we turn it into a proper Etsy SKU.
 
 ---
 
@@ -250,7 +250,7 @@ Don't build "cards" separately.
 Every template manifest should produce:
 
 ```text
-DOGCASSO_TWO_BUTTONS_V1
+MYTHICBEE_TWO_BUTTONS_V1
 
 → 9:16 video
 → 16:9 video
@@ -283,7 +283,7 @@ Test **six**, in this order:
 
 **67 → Two Buttons → This Is Fine → Dog vs Owner → I'm In Danger → Caught Looking.**
 
-Not because Breaking News is bad—it is validated—but because these are much more **Dogcasso**.
+Not because Breaking News is bad—it is validated—but because these are much more **MythicBee**.
 
 Breaking News feels like an existing personalized-video product.
 
@@ -293,7 +293,7 @@ feels like something people haven't had before.
 
 The most important creative rule:
 
-> **Every Dogcasso meme should begin as a believable normal scene and end on a frame the internet instantly recognizes.**
+> **Every MythicBee meme should begin as a believable normal scene and end on a frame the internet instantly recognizes.**
 
 That is the exact gimmick for the first advertising campaign.
 

@@ -27,9 +27,9 @@ Etsy explicitly says a second shop can make sense when the product line is subst
 
 ## Incubate cheaply → winner gets its own studio
 
-Don't prune successful concepts out of Dogcasso. Do it the other way around.
+Don't prune successful concepts out of MythicBee. Do it the other way around.
 
-**Dogcasso** — Pet-specific experimental shop:
+**MythicBee** — Pet-specific experimental shop:
 - Natural Habitat
 - The Devourer
 - Wanted
@@ -199,29 +199,29 @@ A specialist store containing 50 examples of **people's lives turned into albums
 
 ---
 
-## Don't make human products sub-brands of Dogcasso
+## Don't make human products sub-brands of MythicBee
 
-Dogcasso is a fantastic pet brand precisely because the name screams pets/art.
+MythicBee is a fantastic pet brand precisely because the name screams pets/art.
 
-Putting "Game Winner — A Dogcasso Brand" on a 60th birthday football gift creates unnecessary cognitive friction.
+Putting "Game Winner — A MythicBee Brand" on a 60th birthday football gift creates unnecessary cognitive friction.
 
 Instead, have an **invisible parent production company** eventually. Customers don't need to care.
 
 Perhaps later:
 
 **[Parent Studio]**
-- Dogcasso
+- MythicBee
 - Game Winner
 - Album…
 - Oracle…
 
-Say quietly "from the studio behind Dogcasso" once Dogcasso itself has meaningful social proof.
+Say quietly "from the studio behind MythicBee" once MythicBee itself has meaningful social proof.
 
 ---
 
 ## One important Etsy limitation
 
-Do **not** make the flow: Etsy → "buy it cheaper at Dogcasso.com."
+Do **not** make the flow: Etsy → "buy it cheaper at MythicBee.com."
 
 Etsy explicitly prohibits moving a transaction that began on Etsy off-platform, including directing buyers elsewhere to purchase and using QR codes for that purpose. ([Etsy][6])
 

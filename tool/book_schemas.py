@@ -1,7 +1,7 @@
 """
 BOOK Schemas — The experimental record / operating memory.
 
-Six core record types for Dogcasso operations.
+Six core record types for MythicBee operations.
 All Pydantic, all versioned, all append-oriented.
 """
 from __future__ import annotations
@@ -33,7 +33,7 @@ def now_iso() -> str:
 def make_daily_run(day_id: str = None, opened_at: str = None) -> dict:
     return {
         "schema": "DailyRun",
-        "day_id": day_id or f"dogcasso_{datetime.now().strftime('%Y_%m_%d')}",
+        "day_id": day_id or f"mythicbee_{datetime.now().strftime('%Y_%m_%d')}",
         "opened_at": opened_at or now_iso(),
         "closed_at": None,
         "etsy_snapshot_start": None,
@@ -200,7 +200,7 @@ def make_action_receipt(action_type: str, target_id: str,
 
 # ── Persistence ──────────────────────────────────────────────────────────
 
-DATA_ROOT = Path("/root/StallShark/dogcasso-ops")
+DATA_ROOT = Path("/root/StallShark/mythicbee-ops")
 
 def _ensure_dir(path: Path):
     path.mkdir(parents=True, exist_ok=True)

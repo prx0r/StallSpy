@@ -1,4 +1,4 @@
-# Dogcasso — Meme Product Catalogue
+# MythicBee — Meme Product Catalogue
 
 Ranked by technical difficulty and commercial priority.
 
@@ -22,7 +22,7 @@ Ranked by technical difficulty and commercial priority.
 **1–9 are evergreen formats.**
 **#10 changes every week.**
 
-Dogcasso = catalogue business + trend business.
+MythicBee = catalogue business + trend business.
 
 ---
 
@@ -52,7 +52,7 @@ Dog photo. Dog "speaks" about owner.
 
 > "Yeah, I also think he's weird… but someone has to love him, am I right?"
 
-Demonstrates Dogcasso's personality immediately.
+Demonstrates MythicBee's personality immediately.
 
 ---
 

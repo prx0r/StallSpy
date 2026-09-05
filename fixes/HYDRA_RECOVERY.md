@@ -58,11 +58,11 @@ python scripts/hydradb-capabilities.py
 [ ] controller has one injected ledger
 [ ] controller does not write canonical facts directly to Hydra
 [ ] Hydra disabled mode works
-[ ] Dogcasso does not depend on Hydra
+[ ] MythicBee does not depend on Hydra
 ```
 
 ## Then Freeze
 
 No new graph ontology, vector retrieval, GraphRAG, temporal algorithms, agent memory, dashboards.
 
-Return to: DOGCASSO → OPS → BOOK → Etsy live experiment.
+Return to: MYTHICBEE → OPS → BOOK → Etsy live experiment.

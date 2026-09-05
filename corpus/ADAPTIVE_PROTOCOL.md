@@ -178,10 +178,10 @@ Same with CX, production, finance. Organization emerges from measured problem st
 
 | VSM Function | Our System |
 |-------------|-----------|
-| Operations | Dogcasso, Game Winner, individual brands |
+| Operations | MythicBee, Game Winner, individual brands |
 | Coordination | WorkerKit scheduler, shared production |
 | Control | BATS, finance, permissions, QA, risk |
-| Intelligence | StallSpy, research, problem detection, fresh reviewers |
+| Intelligence | StallShark, research, problem detection, fresh reviewers |
 | Policy | Human + operator model + governance |
 
 Recursive — every level uses the same protocols.

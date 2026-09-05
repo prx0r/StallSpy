@@ -24,8 +24,8 @@ from typing import Any, Optional
 
 # ── Paths ───────────────────────────────────────────────────────────────
 
-STALLSPY = Path("/root/StallShark")
-KERNEL_DB = STALLSPY / "data" / "kernel.db"
+STALLSHARK = Path("/root/StallShark")
+KERNEL_DB = STALLSHARK / "data" / "kernel.db"
 os.makedirs(KERNEL_DB.parent, exist_ok=True)
 
 # ── Contracts (Pydantic) ────────────────────────────────────────────────
@@ -257,7 +257,7 @@ class CompanyDayRunner:
             ("agent_critic", "Recommend what best serves the business. Return JSON with objective_today, bottleneck, confidence."),
         ]:
             import sys
-            sys.path.insert(0, str(STALLSPY / "tool"))
+            sys.path.insert(0, str(STALLSHARK / "tool"))
             from opencode_llm import call_opencode
             result = call_opencode(
                 f"Business state: {json.dumps(business_state, default=str)}",
@@ -347,7 +347,7 @@ class CompanyDayRunner:
 def run_test():
     """Full e2e test of CompanyDay vertical slice."""
     print("=" * 60)
-    print("STALLSPY KERNEL E2E TEST")
+    print("STALLSHARK KERNEL E2E TEST")
     print(f"Timestamp: {datetime.now().isoformat()}")
     print("=" * 60)
     
@@ -361,7 +361,7 @@ def run_test():
     # 1. Ledger basics
     t = time.time()
     try:
-        db_path = str(STALLSPY / "data" / "test_kernel.db")
+        db_path = str(STALLSHARK / "data" / "test_kernel.db")
         ledger = HardenedLedger(db_path)
         assert ledger.count() == 0, "Fresh ledger should be empty"
         e1 = ledger.append("test.event", "entity_1", {"x": 1})
@@ -417,7 +417,7 @@ def run_test():
         result = runner.run(
             business_state={
                 "day": 5, "cash": 88.37, "revenue": 0, "listings": 0,
-                "active_brands": ["dogcasso"], "top_problem": "nothing launched",
+                "active_brands": ["mythicbee"], "top_problem": "nothing launched",
             },
             human_assessment={
                 "objective": "launch first listing",
@@ -524,7 +524,7 @@ def run_test():
         "company_day_result": result if 'result' in dir() else None,
     }
     
-    report_path = STALLSPY / "operations" / "kernel_e2e_report.json"
+    report_path = STALLSHARK / "operations" / "kernel_e2e_report.json"
     os.makedirs(report_path.parent, exist_ok=True)
     with open(report_path, "w") as f:
         json.dump(report, f, indent=2, default=str)

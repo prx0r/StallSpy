@@ -46,10 +46,10 @@ Each interview question comes from a `question_objective`:
 Same theory, different question each day:
 
 **Day 1 (multiple projects):**
-> "You have Dogcasso, StallSpy and Game Winner competing for attention. What outcome matters most by end of today, by Sunday, and by end of September? If those conflict, which wins?"
+> "You have MythicBee, StallShark and Game Winner competing for attention. What outcome matters most by end of today, by Sunday, and by end of September? If those conflict, which wins?"
 
 **Day 15 (one project live):**
-> "Dogcasso is live but has no sales. Are you optimizing the next 24 hours for first revenue, learning, or getting Game Winner live? Rank those three."
+> "MythicBee is live but has no sales. Are you optimizing the next 24 hours for first revenue, learning, or getting Game Winner live? Rank those three."
 
 ---
 
@@ -66,10 +66,10 @@ MISSION   long-term objective
 Detect **local/global objective conflict**:
 
 ```
-NOW:      improve Dogcasso video quality
+NOW:      improve MythicBee video quality
 TODAY:    publish first listing
 WEEK:     achieve first sale
-30 DAYS:  determine whether Dogcasso is commercially viable
+30 DAYS:  determine whether MythicBee is commercially viable
 MISSION:  build reusable autonomous commerce infrastructure
 ```
 
@@ -179,7 +179,7 @@ Question value =
 Don't ask: "What do you think the current conversion bottleneck is?"
 if there is no traffic yet.
 
-Instead ask: "You've spent most of today implementing the corpus recorder, but the stated goal this week is getting Dogcasso's first sale. Is the recorder blocking launch, or are you intentionally prioritizing infrastructure over validation?"
+Instead ask: "You've spent most of today implementing the corpus recorder, but the stated goal this week is getting MythicBee's first sale. Is the recorder blocking launch, or are you intentionally prioritizing infrastructure over validation?"
 
 That question could immediately alter behavior.
 
@@ -193,7 +193,7 @@ The same dynamically generated questions go to both:
 {
   "question_id": "...",
   "measurement_objective": "portfolio_allocation",
-  "generated_question": "You have 4 hours left today. Allocate them between Dogcasso launch, Game Winner prototype and StallSpy infrastructure.",
+  "generated_question": "You have 4 hours left today. Allocate them between MythicBee launch, Game Winner prototype and StallShark infrastructure.",
   "state_snapshot": "snap_...",
   "information_cutoff": "...",
   "why_this_question_now": "Three projects are competing for limited operator time."
@@ -201,12 +201,12 @@ The same dynamically generated questions go to both:
 ```
 
 ### Human answer
-> 3h Dogcasso, 1h StallSpy, 0h Game Winner.
+> 3h MythicBee, 1h StallShark, 0h Game Winner.
 > Need something actually selling before starting another brand.
 
 ### Agent answer
-> 2h Dogcasso, 2h Game Winner.
-> Game Winner has higher expected commercial value and Dogcasso is suffering diminishing returns.
+> 2h MythicBee, 2h Game Winner.
+> Game Winner has higher expected commercial value and MythicBee is suffering diminishing returns.
 
 ### Divergence analysis
 ```
@@ -239,7 +239,7 @@ Captures **how operator models change**.
 Problem registry:
 ```
 P-018: Game Winner facial consistency failing on older male photos.
-P-019: Dogcasso getting clicks but no checkout.
+P-019: MythicBee getting clicks but no checkout.
 P-020: Too much operator time on infrastructure.
 ```
 
@@ -249,7 +249,7 @@ current problem → similar historical problems → past solutions/outcomes
 → missing distinguishing information → ask human + agent
 ```
 
-> "Problem P-019 resembles Dogcasso P-004 where trust was the issue, but unlike that case favorites are also low. Do you think this is still a trust problem or an offer problem?"
+> "Problem P-019 resembles MythicBee P-004 where trust was the issue, but unlike that case favorites are also low. Do you think this is still a trust problem or an offer problem?"
 
 The interview does active diagnosis.
 
@@ -314,7 +314,7 @@ If the answer is "nothing" — don't ask it.
 ```json
 {
   "question_objective": "QO_BOTTLENECK",
-  "generated_question": "What is currently preventing Dogcasso from getting its first order?",
+  "generated_question": "What is currently preventing MythicBee from getting its first order?",
   "action_hook": {
     "decision": "choose_next_4_hours",
     "possible_actions": ["improve_product", "publish_more_listings", "work_on_traffic", "lower_price"]

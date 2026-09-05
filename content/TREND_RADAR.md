@@ -1,4 +1,4 @@
-# Dogcasso — Trend Radar System
+# MythicBee — Trend Radar System
 
 ## Purpose
 

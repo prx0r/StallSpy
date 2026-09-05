@@ -1,10 +1,10 @@
-# Dogcasso — Partnerships & Affiliate Commerce
+# MythicBee — Partnerships & Affiliate Commerce
 
 ## Core Principle
 
 We don't have to manufacture everything.
 
-Dogcasso's high-margin proprietary products sit at the centre. Partnerships extend the offering without operational complexity.
+MythicBee's high-margin proprietary products sit at the centre. Partnerships extend the offering without operational complexity.
 
 ---
 
@@ -106,7 +106,7 @@ DOG: Done. Total: £37.98
 | Digital products (clips, movies, songs) | 50% | 90%+ |
 | Physical cards | 25% | 80% |
 | Gift bundles (card + third-party) | 15% | 40-60% (blended) |
-| Pure affiliate (no Dogcasso product) | 10% | 15-25% |
+| Pure affiliate (no MythicBee product) | 10% | 15-25% |
 
 **The high-margin digital products subsidize the physical/affiliate offering.**
 
@@ -126,7 +126,7 @@ DOG: Done. Total: £37.98
 
 **Own the personalization layer. Partner for everything else.**
 
-Dogcasso doesn't need warehouses, inventory, or logistics.
+MythicBee doesn't need warehouses, inventory, or logistics.
 
 We need:
 - GPU infrastructure (we control)

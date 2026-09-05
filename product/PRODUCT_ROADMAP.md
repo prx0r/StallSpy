@@ -47,7 +47,7 @@ Etsy's new personalization system allows optional **text fields with add-on pric
 
 through a paid optional field. ([Etsy Help][2])
 
-But digital listings currently **do not support Etsy variations**, which makes elaborate tier selection less elegant than it would be on Dogcasso.com. ([Etsy Help][3])
+But digital listings currently **do not support Etsy variations**, which makes elaborate tier selection less elegant than it would be on MythicBee.com. ([Etsy Help][3])
 
 So keep Etsy upsells minimal:
 
@@ -114,7 +114,7 @@ Once we already have the customer's photos and recipient details, these cost alm
 - Animated e-card
 - Personalized meme still pack
 
-### Dogcasso Birthday Pack — £9.99
+### MythicBee Birthday Pack — £9.99
 
 - custom movie
 - custom song
@@ -141,23 +141,23 @@ But:
 - **our custom-designed poster printed by a POD partner** → fine
 - **our custom-designed card** → fine
 - **our personalized storybook** → fine
-- **our personalized mug featuring the generated Dogcasso artwork** → fine (we're creating the design, using a disclosed production partner)
+- **our personalized mug featuring the generated MythicBee artwork** → fine (we're creating the design, using a disclosed production partner)
 
 ---
 
 ## Website should eventually be much more powerful than Etsy
 
-Don't make Dogcasso.com merely a copy of the Etsy shop.
+Don't make MythicBee.com merely a copy of the Etsy shop.
 
 Think of Etsy as:
 
 > **search marketplace + trust + reviews + validation**
 
-Dogcasso.com becomes:
+MythicBee.com becomes:
 
 > **the actual product.**
 
-### Dogcasso.com v1
+### MythicBee.com v1
 
 Homepage:
 
@@ -169,7 +169,7 @@ Show 6–10 great templates. Click one:
 
 Same templates. Same pricing approximately. Same production backend.
 
-### Dogcasso.com v2
+### MythicBee.com v2
 
 Once someone has an account:
 
@@ -182,7 +182,7 @@ Once someone has an account:
 
 Then:
 
-> Dave turns 30 in 12 days. **Dogcasso has ideas.**
+> Dave turns 30 in 12 days. **MythicBee has ideas.**
 
 Things Etsy is bad at:
 
@@ -218,7 +218,7 @@ That's the real company.
 - Funny 30th Birthday Video
 - Santa In Your House Video
 
-### Dogcasso.com
+### MythicBee.com
 
 **Browse by person/occasion**
 
@@ -235,11 +235,11 @@ That's where cards + movies + songs + gifts converge.
 
 ## Etsy → website boundary
 
-We can put Dogcasso branding on what we sell, but **do not use Etsy Messages/QR codes to divert an Etsy buyer into paying us off-platform**. Etsy's current seller policy specifically prohibits using external URLs, QR codes, discounts etc. to facilitate an off-platform transaction. ([Etsy][6])
+We can put MythicBee branding on what we sell, but **do not use Etsy Messages/QR codes to divert an Etsy buyer into paying us off-platform**. Etsy's current seller policy specifically prohibits using external URLs, QR codes, discounts etc. to facilitate an off-platform transaction. ([Etsy][6])
 
 So don't do:
 
-> "Bought on Etsy? Next time get 20% off at dogcasso.com."
+> "Bought on Etsy? Next time get 20% off at mythicbee.com."
 
 inside Etsy communications.
 
@@ -269,20 +269,20 @@ All basically zero-inventory.
 
 Add: **QR greeting card, poster, storybook** through production partners.
 
-### Phase 4 — Dogcasso.com becomes primary product
+### Phase 4 — MythicBee.com becomes primary product
 
 Accounts, recipient profiles, reminders, voice intake, gift pages.
 
 ### Phase 5 — broader gifting
 
-Affiliate/partner gifts, flowers, chocolates, experiences, etc. **on Dogcasso.com**, where Etsy's resale rules aren't dictating the business model.
+Affiliate/partner gifts, flowers, chocolates, experiences, etc. **on MythicBee.com**, where Etsy's resale rules aren't dictating the business model.
 
 That separation is clean:
 
 > **Etsy = personalized creative products.**
-> **Dogcasso.com = personalized gifting assistant.**
+> **MythicBee.com = personalized gifting assistant.**
 
-Absolutely resist doing cards *before* we have one genuinely killer Dog Roast or Breaking News demo. The video is what gets Dogcasso noticed; the card is how we monetize that attention better.
+Absolutely resist doing cards *before* we have one genuinely killer Dog Roast or Breaking News demo. The video is what gets MythicBee noticed; the card is how we monetize that attention better.
 
 ---
 

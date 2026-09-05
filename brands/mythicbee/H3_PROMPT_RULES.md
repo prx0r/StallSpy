@@ -1,4 +1,4 @@
-# Dogcasso — H3 Prompting Rules
+# MythicBee — H3 Prompting Rules
 
 Canonical references:
 - MiniMax official H3 video prompt guide

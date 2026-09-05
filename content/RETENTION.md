@@ -1,4 +1,4 @@
-# Dogcasso — Retention Engine
+# MythicBee — Retention Engine
 
 ## Core Insight
 
@@ -139,7 +139,7 @@ Buyer chooses one. Template library makes recommendation instant.
 ## Referral Loop
 
 Recipient opens gift page:
-`dogcasso.com/g/tom-30th`
+`mythicbee.com/g/tom-30th`
 
 Watches movie. Below it:
 
@@ -190,7 +190,7 @@ The graph grows with every gift sent.
 
 ## Defensibility
 
-The most defensible version of Dogcasso is:
+The most defensible version of MythicBee is:
 
 **Recipient graph** (who they buy for)
 + **Template library** (500+ proven scenarios)

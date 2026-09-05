@@ -1,4 +1,4 @@
-# StallSpy — Master Review & Research Synthesis
+# StallShark — Master Review & Research Synthesis
 
 **Date:** 5 September 2026
 **Session:** Day 0 — Architecture, Research, Integration
@@ -40,7 +40,7 @@ Build stores → Content → Audience → Sales → Validation → More content 
 
 | Tier | Studios | Strategy |
 |------|---------|----------|
-| Build now | GameWinnerz, Dogcasso, Greatest Hits, StoryStar, Cover Story | Dedicated shops |
+| Build now | GameWinnerz, MythicBee, Greatest Hits, StoryStar, Cover Story | Dedicated shops |
 | Graduate if validated | Arcana, Legend Cards, Wanted, TrailerMade, etc. | Shared engine |
 | Viral laboratories | MemeMint, Cerealized, Natural Habitat | Experiment |
 
@@ -159,7 +159,7 @@ L0  Raw Evidence       — complete OpenCode JSON, never deleted
 | `lesson` | Derived, with invalidation conditions |
 | `playbook` | Actionable distilled procedures |
 | `brand_candidate` | Promotion strategy becomes learnable |
-| `agent_run` | StallSpy logs its own behavior |
+| `agent_run` | StallShark logs its own behavior |
 | `eval_case` | Benchmark agents against historical operator |
 
 **Key file:** `corpus/machinecourse.md`
@@ -601,9 +601,9 @@ That turns the Etsy experiment into: **a longitudinal economic laboratory for le
 
 | File | Topic |
 |------|-------|
-| `dogcasso/STRATEGY.md` | Moonpig thesis, flywheel |
-| `dogcasso/BRAND.md` | Brand positioning |
-| `dogcasso/ENGINES.md` | 8 generation engines |
+| `mythicbee/STRATEGY.md` | Moonpig thesis, flywheel |
+| `mythicbee/BRAND.md` | Brand positioning |
+| `mythicbee/ENGINES.md` | 8 generation engines |
 | `gamewinner/GAMEWINNER_SEO_STRATEGY.md` | Live API SEO research |
 | `gamewinners.md` | Store strategy, economics |
 

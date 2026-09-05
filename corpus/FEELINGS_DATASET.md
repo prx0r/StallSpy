@@ -29,7 +29,7 @@ The key: **linking "feelings" to BATS economic activity and economic outcomes** 
 ```text
 FEELINGS (daily)
 ├── "I'm worried about conversion"
-├── "Game Winner feels stronger than Dogcasso"
+├── "Game Winner feels stronger than MythicBee"
 ├── "I'm spending too much time on infrastructure"
 └── "Customers aren't leaving reviews"
 
@@ -37,7 +37,7 @@ FEELINGS (daily)
 
 BATS ACTIVITY (same day)
 ├── $8.13 spent on H3 generation
-├── 4h on Dogcasso, 2h on StallSpy
+├── 4h on MythicBee, 2h on StallShark
 ├── 0h on marketing
 └── 0h on customer outreach
 
@@ -144,7 +144,7 @@ Agent searches for relevant knowledge:
   "findings": [
     {
       "source": "corpus_history",
-      "finding": "P-019 (Dogcasso trust issue) was resolved by before/after proof",
+      "finding": "P-019 (MythicBee trust issue) was resolved by before/after proof",
       "relevance": 0.72,
       "applicability": "moderate — different product but similar trust friction"
     },
@@ -286,7 +286,7 @@ The validated solution becomes a reusable protocol:
   "evidence_strength": 0.78,
   "estimated_conversion_lift": "50-150%",
   "estimated_cost": "$0",
-  "applicable_brands": ["gamewinner", "dogcasso", "greatest_hits", "cover_story"]
+  "applicable_brands": ["gamewinner", "mythicbee", "greatest_hits", "cover_story"]
 }
 ```
 

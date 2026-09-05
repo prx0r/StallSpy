@@ -1,4 +1,4 @@
-# Dogcasso — Gold Ideas Collection
+# MythicBee — Gold Ideas Collection
 
 All key strategic insights from the founding conversation.
 
@@ -10,11 +10,11 @@ All key strategic insights from the founding conversation.
 
 > **"Make someone the main character."**
 
-> **"Moonpig has templates where you upload five photos. Dogcasso has scenes where you upload five people."**
+> **"Moonpig has templates where you upload five photos. MythicBee has scenes where you upload five people."**
 
-> **"Dogcasso Studios — tiny movies starring your people."**
+> **"MythicBee Studios — tiny movies starring your people."**
 
-The name works because Moonpig doesn't make sense either. Dogcasso gives us an absurd visual mascot and doesn't trap us into a literal name.
+The name works because Moonpig doesn't make sense either. MythicBee gives us an absurd visual mascot and doesn't trap us into a literal name.
 
 ---
 
@@ -125,7 +125,7 @@ If no → don't.
 
 > **"Moonpig owns SEO for 'birthday cards.' We advertise on things they don't own: 'funny personalized birthday video,' 'custom birthday movie,' 'santa video for child.'"**
 
-> **"People buy because the demo is funny. Then Dogcasso converts those people into card and gift customers later."**
+> **"People buy because the demo is funny. Then MythicBee converts those people into card and gift customers later."**
 
 ---
 
@@ -173,7 +173,7 @@ If no → don't.
 
 > **"The slightly judgmental painting dog becomes the studio mascot."**
 
-> **"Dogcasso is making your movie..." → dog furiously paints/edits → turns around impatiently → "Done. £4.99. You're welcome."**
+> **"MythicBee is making your movie..." → dog furiously paints/edits → turns around impatiently → "Done. £4.99. You're welcome."**
 
 > **"Not constrained to dogs any more than Moonpig is constrained to pigs."**
 
@@ -183,7 +183,7 @@ If no → don't.
 
 > **"Moonpig has already proved almost every boring part of this business: reminders, repeat annual occasions, stored recipient intent, gift attachment, personalization and high returning-customer revenue."**
 
-> **"We don't need to prove people want an online gifting assistant. We need to prove personalized mini-movies/memes are a sufficiently compelling acquisition wedge to get younger customers to start their gifting relationship with Dogcasso rather than Moonpig."**
+> **"We don't need to prove people want an online gifting assistant. We need to prove personalized mini-movies/memes are a sufficiently compelling acquisition wedge to get younger customers to start their gifting relationship with MythicBee rather than Moonpig."**
 
 > **"That is a much cleaner thesis."**
 
@@ -191,7 +191,7 @@ If no → don't.
 
 ## The Three Content Lanes
 
-> **"Snapshot of a live scene" is the actual Dogcasso format. Memes are just one sub-genre.**
+> **"Snapshot of a live scene" is the actual MythicBee format. Memes are just one sub-genre.**
 
 > **Lane 1: Recognisable meme formats** (This Is Fine, Two Buttons)
 > **Lane 2: Social-native tropes** (be me, POV, fake trailer, corporate training)
@@ -271,7 +271,7 @@ Prevents building elaborate AI infrastructure before proving anybody cares.
 
 > **"Make the first versions about imaginary characters rather than customers."**
 
-> **"The highest-value signal is probably: tags + shares per 1,000 views — because that directly demonstrates the fundamental Dogcasso behaviour."**
+> **"The highest-value signal is probably: tags + shares per 1,000 views — because that directly demonstrates the fundamental MythicBee behaviour."**
 
 > **"50 formats will seem hilarious to us. The market tells us which 5 actually make people reach for their wallet."**
 

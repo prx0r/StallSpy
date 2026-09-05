@@ -33,7 +33,7 @@ LATER
 
 - OpenCode sessions
 - Etsy changes
-- StallSpy research
+- StallShark research
 - Image/video generation
 - Supplier work
 - Git commits

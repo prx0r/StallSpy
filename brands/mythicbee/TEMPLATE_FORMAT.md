@@ -1,4 +1,4 @@
-# Dogcasso — Internal Template Format
+# MythicBee — Internal Template Format
 
 Production YAML schema for every scene.
 

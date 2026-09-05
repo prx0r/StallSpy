@@ -1,4 +1,4 @@
-# Dogcasso — 8 Canonical Engines
+# MythicBee — 8 Canonical Engines
 
 Everything seasonal and trendy becomes **content**, not engineering.
 
@@ -41,7 +41,7 @@ Everything seasonal and trendy becomes **content**, not engineering.
 1. **Santa Was In Your Room** — most commercially obvious
 2. **Monster Was In Your Bedroom** — immediate Halloween listing
 3. **Breaking News Birthday** — evergreen, hilariously reusable
-4. **Dog Roasts Its Owner** — demonstrates Dogcasso's personality
+4. **Dog Roasts Its Owner** — demonstrates MythicBee's personality
 5. **Meet Tom — 30 Second Movie** — proves the premium vision
 
 These five demonstrate essentially the entire company.

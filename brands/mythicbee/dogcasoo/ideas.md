@@ -1,4 +1,4 @@
-# Dogcasso Gift Engines — Core Idea
+# MythicBee Gift Engines — Core Idea
 
 ## The crucial move: separate the fantasy engine from the occasion
 
@@ -16,7 +16,7 @@ Etsy says shopping by **recipient** is a major pattern, personalization is espec
 
 ---
 
-## Core Dogcasso "gift engines"
+## Core MythicBee "gift engines"
 
 | Engine              | The fantasy                                                    | Best occasions                                    | Physical anchor                        |
 | ------------------- | -------------------------------------------------------------- | ------------------------------------------------- | -------------------------------------- |
@@ -99,7 +99,7 @@ Upload Mum. Tell us:
 - three memories/in-jokes
 - age/occasion
 
-Dogcasso makes:
+MythicBee makes:
 
 ### Album cover
 
@@ -136,7 +136,7 @@ Or ridiculous:
 Upright: care, preparedness, packed sandwiches
 Reversed: "Text me when you get there."
 
-That's a Mother's Day card people would actually show other people. Then Dogcasso brings it alive.
+That's a Mother's Day card people would actually show other people. Then MythicBee brings it alive.
 
 ---
 
@@ -155,7 +155,7 @@ Holidays come once annually. **Birthdays happen every day.** Every successful en
 
 ---
 
-## Natural Habitat: the universal Dogcasso template
+## Natural Habitat: the universal MythicBee template
 
 - **Dad** → *Homo paternalus* — Commonly observed standing over a barbecue giving unsolicited instructions.
 - **Mum** → *Mater omniscientia* — Remarkably capable of locating objects other family members insist are missing.
@@ -199,7 +199,7 @@ For a dog:
 4. LET ME OUT
 5. LET ME BACK IN
 
-Generate actual cover + song + 15-sec music video. One of the signature Dogcasso products.
+Generate actual cover + song + 15-sec music video. One of the signature MythicBee products.
 
 ---
 
@@ -302,7 +302,7 @@ The Etsy shop can have dozens of tightly targeted listings:
 
 while under the hood they're all: `SPORTS_HERO_V1`
 
-Boring operational leverage that makes Dogcasso viable rather than another sprawling AI project.
+Boring operational leverage that makes MythicBee viable rather than another sprawling AI project.
 
 If we validate just Sports Hero + Album + Natural Habitat, we already have Dad birthday, Father's Day, Mum birthday, Mother's Day, partner birthday, retirement and Christmas covered without building seven separate businesses.
 

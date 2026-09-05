@@ -6,7 +6,7 @@
 
 ## The Convergence
 
-StallSpy becomes the commerce laboratory for Moltwork. Etsy/eBay/Amazon become different economic environments in which we train and evaluate operator agents.
+StallShark becomes the commerce laboratory for Moltwork. Etsy/eBay/Amazon become different economic environments in which we train and evaluate operator agents.
 
 The key realization:
 
@@ -220,13 +220,13 @@ Measure whether Oracle adds value.
 
 ---
 
-## 8. StallSpy Architecture
+## 8. StallShark Architecture
 
 ```text
-stallspy-core
-stallspy/etsy
-stallspy/ebay
-stallspy/amazon
+stallshark-core
+stallshark/etsy
+stallshark/ebay
+stallshark/amazon
 ```
 
 Same conceptual interface per marketplace:
@@ -350,7 +350,7 @@ Some skills universal. Some marketplace-specific. **Moltwork discovers the diffe
 
 ---
 
-## 12. StallSpy Chooses the Marketplace
+## 12. StallShark Chooses the Marketplace
 
 User provides:
 
@@ -362,7 +362,7 @@ I can spend 10 hours/week.
 I want something live before Christmas.
 ```
 
-StallSpy/Oracle answers:
+StallShark/Oracle answers:
 
 ```
 Opportunity A: Personalised pet memorial print
@@ -405,7 +405,7 @@ Opportunity C: Reusable gift-storage organizer
           ▼            ▼            ▼
         ETSY          EBAY        AMAZON
           │            │            │
-          └────── STALLSPY ─────────┘
+          └────── STALLSHARK ─────────┘
                        │
                     actions
                        │

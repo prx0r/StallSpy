@@ -41,7 +41,7 @@ TOTAL DAILY BUDGET: $5.00
 ```python
 # stallsypy/tool/smart_router.py
 
-class StallSpyRouter:
+class StallSharkRouter:
     """Routes tasks to cheapest capable model within daily budget."""
     
     TIERS = {

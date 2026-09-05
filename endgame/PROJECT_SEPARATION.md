@@ -6,7 +6,7 @@
 
 ## The Central Rule
 
-> **Dogcasso is the experiment. Everything else is instrumentation or research.**
+> **MythicBee is the experiment. Everything else is instrumentation or research.**
 
 We are not primarily building an autonomous-commerce framework. We are launching actual products, creating actual listings, producing actual videos, handling actual orders, observing actual outcomes, making explicit changes, learning what worked.
 
@@ -17,12 +17,12 @@ Every abstraction must justify itself against that loop.
 ## Internal Project Map
 
 ```text
-DOGCASSO
+MYTHICBEE
 ├── STUDIO       creative production
 ├── OPS          daily business operation
 └── BOOK         experimental record / operating memory
 
-STALLSPY
+STALLSHARK
 └── RADAR        marketplace intelligence
 
 FINALBUILDS
@@ -57,7 +57,7 @@ MOLTWORK
         │                              │
         └───────────────┬──────────────┘
                         ▼
-                  DOGCASSO OPS
+                  MYTHICBEE OPS
                         │
                         ▼
                      STUDIO
@@ -74,7 +74,7 @@ MOLTWORK
 
 ### P0 — MAKE MONEY / GET REAL DATA (60%)
 
-Dogcasso creative quality, Etsy listings, SEO, demos, product selection, orders, fulfillment, customer experience, reviews.
+MythicBee creative quality, Etsy listings, SEO, demos, product selection, orders, fulfillment, customer experience, reviews.
 
 ### P1 — INSTRUMENT THE EXPERIMENT (25%)
 
@@ -151,7 +151,7 @@ a new agent can open the repo and know exactly what to do next
                  │     │          │
                  ▼     │          │
           ┌────────────────────┐
-          │   DOGCASSO OPS     │
+          │   MYTHICBEE OPS     │
           │  BOOK = evidence   │──────┘
           └─────────┬──────────┘
                     │

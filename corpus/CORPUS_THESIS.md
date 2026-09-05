@@ -1,4 +1,4 @@
-# StallSpy — The Commerce Corpus Thesis
+# StallShark — The Commerce Corpus Thesis
 
 **Date:** 5 September 2026
 **Status:** Strategic thesis — the end product is the dataset, not the stores
@@ -87,7 +87,7 @@ It's:
 
 Example:
 
-**Day 21:** We think Dogcasso Natural Habitat will outperform birthday.
+**Day 21:** We think MythicBee Natural Habitat will outperform birthday.
 
 **Day 34:** Birthday converted 4.8%; Natural Habitat 0.9%.
 
@@ -306,7 +306,7 @@ Landing page:
 Agent searches historical corpus and returns:
 
 **Day 1–3: Validate intent**
-Comparable evidence: GameWinner Experiments 14/21, Dogcasso Birthday 7/9.
+Comparable evidence: GameWinner Experiments 14/21, MythicBee Birthday 7/9.
 
 **Day 4–6: Create one product primitive**
 Historical evidence suggests focused occasion products beat broad novelty products during cold start.

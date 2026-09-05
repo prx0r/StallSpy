@@ -1,4 +1,4 @@
-# Moltwork × StallSpy — The Integration
+# Moltwork × StallShark — The Integration
 
 **Date:** 5 September 2026
 
@@ -589,7 +589,7 @@ TOTAL CASH RISK       $10
 TOTAL HUMAN TIME      6h
 TOTAL MODEL BUDGET    2M tokens
 
-Dogcasso launch       3h / 600k / $3
+MythicBee launch       3h / 600k / $3
 Corpus recorder       1h / 300k / $0
 Game Winner research  2h / 1.1M / $7
 ```

@@ -1,4 +1,4 @@
-# Dogcasso — H3 Prompting Reference Links
+# MythicBee — H3 Prompting Reference Links
 
 Canonical sources for MiniMax H3 prompt engineering.
 

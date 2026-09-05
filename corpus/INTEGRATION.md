@@ -1,4 +1,4 @@
-# The Integration — Moltwork × StallSpy Corpus
+# The Integration — Moltwork × StallShark Corpus
 
 **Date:** 5 September 2026
 **Core insight:** WorkerKit already solved execution, budgeting, and receipts. The corpus architecture already solved experience capture. The operator twin already solved preference learning. This document connects them into one coherent system.
@@ -36,7 +36,7 @@
 | Cypher queries | `MATCH (n:Run) RETURN n.id` |
 | Content-addressed | Rebuilt from canonical receipts |
 
-### StallSpy Corpus (experience capture)
+### StallShark Corpus (experience capture)
 
 | Component | What it does |
 |-----------|-------------|
@@ -70,7 +70,7 @@ They're the same loop viewed from different angles:
                     └──────────────┬──────────────┘
                                    │
                     ┌──────────────┴──────────────┐
-                    │      STALLSPY CORPUS         │
+                    │      STALLSHARK CORPUS         │
                     │  Episodes + Operator Twin    │
                     │  + Economic Critic            │
                     └──────────────┬──────────────┘
@@ -245,9 +245,9 @@ MORNING
 ├── Agent predicts operator answers (OPERATOR_TWIN.md)
 ├── Divergence calculated
 ├── BATS budget allocated for today
-│   ├── Dogcasso: $X
+│   ├── MythicBee: $X
 │   ├── Game Winner: $Y
-│   └── StallSpy: $Z
+│   └── StallShark: $Z
 ├── Token budget allocated
 │   ├── Free model (mimo-v2.5): unlimited
 │   ├── Cheap model (groq): $X
@@ -314,7 +314,7 @@ And produces:
   "high_signal_takeaways": [
     "Operator spent 3h on infrastructure but stated goal was first sale",
     "Generation quality improved but operator didn't test with real customer photos",
-    "Budget allocated 60% to Dogcasso but Game Winner has higher EV per the economic model"
+    "Budget allocated 60% to MythicBee but Game Winner has higher EV per the economic model"
   ],
 
   "things_logs_dont_reveal": [
@@ -324,9 +324,9 @@ And produces:
   ],
 
   "agent_worries": [
-    "Dogcasso may be over-optimized for perfection before validation",
+    "MythicBee may be over-optimized for perfection before validation",
     "Budget is being consumed by learning, not by selling",
-    "StallSpy infrastructure is becoming a躲避 from the uncomfortable work"
+    "StallShark infrastructure is becoming a躲避 from the uncomfortable work"
   ],
 
   "operator_observations": [

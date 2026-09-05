@@ -11,7 +11,7 @@ import traceback
 from datetime import datetime
 from pathlib import Path
 
-STALLSPY = Path("/root/StallShark")
+STALLSHARK = Path("/root/StallShark")
 RESULTS = []
 
 def log_result(component: str, status: str, details: str, duration_ms: float = 0):
@@ -31,8 +31,8 @@ def log_result(component: str, status: str, details: str, duration_ms: float = 0
 print("\n=== 1. IMPORTS ===")
 t0 = time.time()
 try:
-    sys.path.insert(0, str(STALLSPY / "tool"))
-    from stallspy_system import (
+    sys.path.insert(0, str(STALLSHARK / "tool"))
+    from stallshark_system import (
         StallSharkSystem, SubjectiveState, WorkBudget, TokenEvent, MemoryEntry,
         EventLedger, OPERATOR_TWIN, ECONOMIC_CRITIC, COLD_REVIEWER, INTERVIEW_AGENT
     )
@@ -45,9 +45,9 @@ except Exception as e:
 print("\n=== 2. EVENT LEDGER ===")
 t0 = time.time()
 try:
-    sys.path.insert(0, str(STALLSPY / "tool"))
-    from stallspy_system import EventLedger
-    ledger = EventLedger(str(STALLSPY / "data" / "test_ledger.db"))
+    sys.path.insert(0, str(STALLSHARK / "tool"))
+    from stallshark_system import EventLedger
+    ledger = EventLedger(str(STALLSHARK / "data" / "test_ledger.db"))
     
     # Append events
     e1 = ledger.append_event("test.event", "entity_1", {"action": "test_1"})
@@ -57,7 +57,7 @@ try:
     count = ledger.get_event_count()
     
     # Clean up test DB
-    os.remove(str(STALLSPY / "data" / "test_ledger.db"))
+    os.remove(str(STALLSHARK / "data" / "test_ledger.db"))
     
     log_result("event_ledger", "PASS", f"Created {count} events, hash chain working", (time.time()-t0)*1000)
 except Exception as e:
@@ -68,7 +68,7 @@ except Exception as e:
 print("\n=== 3. SUBJECTIVE STATE MODEL ===")
 t0 = time.time()
 try:
-    from stallspy_system import SubjectiveState
+    from stallshark_system import SubjectiveState
     state = SubjectiveState(
         actor_type="human",
         objective_today="launch first listing",
@@ -92,7 +92,7 @@ print("\n=== 4. PYDANTIC AI AGENTS ===")
 t0 = time.time()
 try:
     from pydantic_ai import Agent
-    from stallspy_system import SubjectiveState
+    from stallshark_system import SubjectiveState
     # Use test model - no API key needed
     test_agent = Agent("test", output_type=SubjectiveState)
     result = test_agent.run_sync("test prompt")
@@ -106,7 +106,7 @@ except Exception as e:
 print("\n=== 5. FULL PIPELINE (test model) ===")
 t0 = time.time()
 try:
-    from stallspy_system import StallSharkSystem, SubjectiveState
+    from stallshark_system import StallSharkSystem, SubjectiveState
     system = StallSharkSystem()
     
     business_state = {
@@ -114,7 +114,7 @@ try:
         "cash": 88.37,
         "revenue": 0,
         "listings": 0,
-        "active_brands": ["dogcasso"],
+        "active_brands": ["mythicbee"],
         "top_problem": "nothing launched yet",
     }
     
@@ -159,7 +159,7 @@ except Exception as e:
 print("\n=== 6. CONTENT ENGINE ===")
 t0 = time.time()
 try:
-    sys.path.insert(0, str(STALLSPY / "tool"))
+    sys.path.insert(0, str(STALLSHARK / "tool"))
     from daily_content import get_git_log, get_etsy_store_metrics
     
     commits = get_git_log()
@@ -201,11 +201,11 @@ except Exception as e:
 print("\n=== 8. TOKEN TRACKER ===")
 t0 = time.time()
 try:
-    sys.path.insert(0, str(STALLSPY / "tool"))
+    sys.path.insert(0, str(STALLSHARK / "tool"))
     from daily_content import log_expense
     
     # Test expense logging
-    expense_path = STALLSPY / "operations" / "test_expenses.jsonl"
+    expense_path = STALLSHARK / "operations" / "test_expenses.jsonl"
     import tempfile
     # Just test the function exists and runs
     log_result("token_tracker", "PASS", "Expense logging functional", (time.time()-t0)*1000)
@@ -217,7 +217,7 @@ except Exception as e:
 print("\n=== 9. MORNING RECORD ===")
 t0 = time.time()
 try:
-    sys.path.insert(0, str(STALLSPY / "tool"))
+    sys.path.insert(0, str(STALLSHARK / "tool"))
     from morning_record import record as morning_record
     
     result = morning_record(
@@ -232,7 +232,7 @@ try:
     assert result["goal"] == "Test goal"
     
     # Clean up
-    os.remove(str(STALLSPY / "morning" / f"{datetime.now().strftime('%Y-%m-%d')}.json"))
+    os.remove(str(STALLSHARK / "morning" / f"{datetime.now().strftime('%Y-%m-%d')}.json"))
     
     log_result("morning_record", "PASS", "Record created and cleaned up", (time.time()-t0)*1000)
 except Exception as e:
@@ -268,7 +268,7 @@ t0 = time.time()
 try:
     import csv
     
-    data_dir = STALLSPY / "tool" / "data"
+    data_dir = STALLSHARK / "tool" / "data"
     csv_files = list(data_dir.rglob("*.csv"))
     
     total_rows = 0
@@ -287,7 +287,7 @@ t0 = time.time()
 try:
     import sqlite3
     
-    db_path = STALLSPY / "data" / "ledger.db"
+    db_path = STALLSHARK / "data" / "ledger.db"
     if db_path.exists():
         conn = sqlite3.connect(str(db_path))
         events = conn.execute("SELECT COUNT(*) FROM events").fetchone()[0]
@@ -309,7 +309,7 @@ print("\n=== 13. FILE STRUCTURE ===")
 t0 = time.time()
 try:
     expected_dirs = ["corpus", "brands", "product", "content", "research", "operations", "tool", "tools"]
-    missing = [d for d in expected_dirs if not (STALLSPY / d).exists()]
+    missing = [d for d in expected_dirs if not (STALLSHARK / d).exists()]
     
     expected_files = [
         "README.md", "AGENTS.md", "MASTER_REVIEW.md",
@@ -319,9 +319,9 @@ try:
         "corpus/FEELINGS_DATASET.md", "corpus/ENDGAME.md",
         "corpus/ADAPTIVE_PROTOCOL.md", "corpus/PROMPT_ARCHIVE.md",
         "corpus/FRONTIER_RESEARCH.md",
-        "tool/stallspy_system.py",
+        "tool/stallshark_system.py",
     ]
-    missing_files = [f for f in expected_files if not (STALLSPY / f).exists()]
+    missing_files = [f for f in expected_files if not (STALLSHARK / f).exists()]
     
     if missing or missing_files:
         log_result("file_structure", "PARTIAL",
@@ -342,13 +342,13 @@ try:
     import subprocess
     result = subprocess.run(
         ["git", "log", "--oneline", "-5"],
-        capture_output=True, text=True, cwd=str(STALLSPY)
+        capture_output=True, text=True, cwd=str(STALLSHARK)
     )
     commits = result.stdout.strip().split("\n")
     
     status = subprocess.run(
         ["git", "status", "--short"],
-        capture_output=True, text=True, cwd=str(STALLSPY)
+        capture_output=True, text=True, cwd=str(STALLSHARK)
     )
     dirty = len(status.stdout.strip().split("\n")) if status.stdout.strip() else 0
     
@@ -387,7 +387,7 @@ report = {
     "results": RESULTS,
 }
 
-report_path = STALLSPY / "operations" / "e2e_report.json"
+report_path = STALLSHARK / "operations" / "e2e_report.json"
 os.makedirs(report_path.parent, exist_ok=True)
 with open(report_path, "w") as f:
     json.dump(report, f, indent=2)

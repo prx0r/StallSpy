@@ -1,4 +1,4 @@
-# Dogcasso — Content Lanes
+# MythicBee — Content Lanes
 
 Three separate content lanes, not one list.
 
@@ -97,7 +97,7 @@ Testing this tells you how to build the product.
 ### This week (cheapest to test)
 
 1. **CoD door misdirection skit** — universal, no meme knowledge needed
-2. **Guilty dog misdirection** — same lane, Dogcasso identity
+2. **Guilty dog misdirection** — same lane, MythicBee identity
 3. **"be me" greentext** — zero-cost, just TTS + one image
 4. **Group chat screenshot** — cheapest possible test, no video needed
 

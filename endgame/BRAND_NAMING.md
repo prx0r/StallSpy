@@ -9,7 +9,7 @@
 The portfolio contains two product families:
 
 **A. Elevation products** — Make them iconic
-Dogcasso, GameWinners, movie posters, album covers, superheroes, magazine covers, fantasy portraits
+MythicBee, GameWinners, movie posters, album covers, superheroes, magazine covers, fantasy portraits
 
 **B. Memory products** — Make it last
 Family annual, couple yearbook, grandparent biography, recipe book, private crossword, memory game, Christmas story, star maps
@@ -77,7 +77,7 @@ Without semantic strain. It sits above both families naturally.
 ```
 MUSE
 ├── Elevation (make them iconic)
-│   ├── Dogcasso
+│   ├── MythicBee
 │   ├── GameWinners
 │   ├── movie posters
 │   ├── album covers

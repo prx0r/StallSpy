@@ -1,4 +1,4 @@
-# Dogcasso — Advertising Strategy
+# MythicBee — Advertising Strategy
 
 ## Channel Priority
 
@@ -48,19 +48,19 @@ Beat.
 
 Studio audience laughs.
 
-**DOGCASSO.COM**
+**MYTHICBEE.COM**
 
 Tiny line: **Make your dog roast you — £4.99**
 
 **Why it works:** Someone scrolls thinking "funny talking dog clip", not "here comes an ecommerce advertisement."
 
-**Better:** Use an actual Dogcasso order as the ad. Then the product advertises itself.
+**Better:** Use an actual MythicBee order as the ad. Then the product advertises itself.
 
 ---
 
 ## The Advertising Loop
 
-A Dogcasso product should simultaneously be:
+A MythicBee product should simultaneously be:
 
 **the product** and **the ad for the product.**
 
@@ -69,7 +69,7 @@ Person sees dog making owner joke
     ↓
 Laughs
     ↓
-Only at the end: Make yours — dogcasso.com — £4.99
+Only at the end: Make yours — mythicbee.com — £4.99
     ↓
 Person tags friend
     ↓
@@ -77,9 +77,9 @@ Friend sends it
     ↓
 Recipient posts finished version
     ↓
-Their followers see Dogcasso
+Their followers see MythicBee
     ↓
-More people discover Dogcasso
+More people discover MythicBee
 ```
 
 **Prioritize organic TikTok + Instagram Reels before spending money.**
@@ -107,7 +107,7 @@ TikTok Creative Center (free)
     ↓
 Identify trending format
     ↓
-Make Dogcasso version within 24-48 hrs
+Make MythicBee version within 24-48 hrs
     ↓
 Post organically (TikTok + IG Reels + FB)
     ↓

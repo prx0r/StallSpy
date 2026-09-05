@@ -1,4 +1,4 @@
-# Dogcasso — Product Catalogue
+# MythicBee — Product Catalogue
 
 ## Three Catalogue Layers
 

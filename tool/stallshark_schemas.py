@@ -288,7 +288,7 @@ def make_economic_event(
 
 # ── Persistence ──────────────────────────────────────────────────────────
 
-DATA_ROOT = Path("/root/StallShark/dogcasso-ops")
+DATA_ROOT = Path("/root/StallShark/mythicbee-ops")
 
 def save(schema: dict, category: str):
     os.makedirs(DATA_ROOT / category, exist_ok=True)
@@ -322,7 +322,7 @@ if __name__ == "__main__":
     
     # 2. StateSnapshot
     state = make_state_snapshot(
-        cash_usd=88.37, brands={"dogcasso": {"listings": 0, "orders": 0}}
+        cash_usd=88.37, brands={"mythicbee": {"listings": 0, "orders": 0}}
     )
     print(f"2. StateSnapshot: {state['state_id']}")
     
@@ -402,7 +402,7 @@ if __name__ == "__main__":
                     (exp, "experiments"), (econ, "economic_events")]:
         path = save(s, cat)
     
-    print(f"\nAll saved to dogcasso-ops/")
+    print(f"\nAll saved to mythicbee-ops/")
     print(f"Days: {len(list_all('days'))}")
     print(f"States: {len(list_all('states'))}")
     print(f"Perspectives: {len(list_all('perspectives'))}")

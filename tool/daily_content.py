@@ -97,7 +97,7 @@ def get_etsy_store_metrics():
     
     keywords = [
         "personalized football gift",
-        "dogcasso",
+        "mythicbee",
         "personalized birthday video",
     ]
     

@@ -77,7 +77,7 @@ def make_retrieval_receipt(
 
 # ── Memory Bank Manager ─────────────────────────────────────────────────
 
-MEMORY_DIR = Path("/root/StallShark/dogcasso-ops/memory")
+MEMORY_DIR = Path("/root/StallShark/mythicbee-ops/memory")
 
 class MemoryBank:
     def __init__(self, bank_name: str):

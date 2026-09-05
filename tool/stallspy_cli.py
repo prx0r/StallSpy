@@ -3,18 +3,18 @@
 StallShark CLI — day management, decisions, experiments, snapshots, handovers.
 
 Usage:
-    stallspy day start              Start a new day
-    stallspy day status             Show current day status
-    stallspy day close              Close day, print summary
-    stallspy decision add           Add a decision
-    stallspy experiment add         Add an experiment
-    stallspy experiment list        List active experiments
-    stallspy experiment status ID   Check experiment status
-    stallspy snapshot add           Add metric snapshot
-    stallspy session record         Record agent session
-    stallspy handover create        Create handover document
-    stallspy etsy snapshot          Capture Etsy metrics
-    stallspy render receipt         Record a render
+    stallshark day start              Start a new day
+    stallshark day status             Show current day status
+    stallshark day close              Close day, print summary
+    stallshark decision add           Add a decision
+    stallshark experiment add         Add an experiment
+    stallshark experiment list        List active experiments
+    stallshark experiment status ID   Check experiment status
+    stallshark snapshot add           Add metric snapshot
+    stallshark session record         Record agent session
+    stallshark handover create        Create handover document
+    stallshark etsy snapshot          Capture Etsy metrics
+    stallshark render receipt         Record a render
 """
 import json
 import os
@@ -62,7 +62,7 @@ def day_status():
     """Show current day status."""
     days = list_records("days")
     if not days:
-        print("No active day. Run: stallspy day start")
+        print("No active day. Run: stallshark day start")
         return
     
     latest = sorted(days)[-1]
@@ -189,7 +189,7 @@ def handover_create():
     """Create handover from current state."""
     days = list_records("days")
     if not days:
-        print("No active day. Run: stallspy day start")
+        print("No active day. Run: stallshark day start")
         return
     
     latest = sorted(days)[-1]
