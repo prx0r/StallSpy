@@ -1,0 +1,14 @@
+{
+  "id": "pahf",
+  "paper": "arxiv:2602.16173",
+  "repo": "https://github.com/facebookresearch/PAHF",
+  "commit": "HEAD",
+  "license": "",
+  "integration_status": "candidate",
+  "mechanisms": [
+    "pre_action_feedback",
+    "post_action_feedback",
+    "explicit_user_memory"
+  ],
+  "mini_test": "ft-001"
+}

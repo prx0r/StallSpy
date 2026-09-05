@@ -1,0 +1,9 @@
+{
+  "schema": "feature_flag",
+  "flag_id": "flag_21e77619",
+  "name": "pahf_pre_action_feedback",
+  "enabled": false,
+  "upstream_id": "pahf",
+  "description": "PAHF pre-action clarification before task execution",
+  "created_at": "2026-09-05T22:01:16.012452"
+}

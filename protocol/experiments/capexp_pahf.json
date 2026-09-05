@@ -1,0 +1,28 @@
+{
+  "schema": "capability_experiment",
+  "experiment_id": "capexp_097274bf",
+  "upstream_id": "pahf",
+  "hypothesis": "Pre-action clarification reduces unnecessary human interventions",
+  "mechanism": "pre_action_feedback",
+  "description": "Ask clarifying questions before executing ambiguous tasks",
+  "baseline": {
+    "description": "current system without this mechanism",
+    "implementation": "none"
+  },
+  "treatment": {
+    "description": "current system + this mechanism",
+    "implementation": "adapter"
+  },
+  "metrics": {
+    "primary": "outcome_quality",
+    "secondary": [
+      "token_cost",
+      "cash_cost",
+      "latency",
+      "human_intervention_rate"
+    ]
+  },
+  "status": "designed",
+  "result": null,
+  "created_at": "2026-09-05T22:01:16.012427"
+}

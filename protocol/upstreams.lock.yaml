@@ -1,0 +1,117 @@
+# StallShark Upstream Registry
+# Each frontier system must have a locked entry before integration.
+
+- id: pahf
+  paper: "arxiv:2602.16173"
+  repo: "https://github.com/facebookresearch/PAHF"
+  commit: "HEAD"
+  license: MIT
+  integration_status: candidate
+  mechanisms:
+    - pre_action_feedback
+    - post_action_feedback
+    - explicit_user_memory
+  mini_test: "ft-001"
+
+- id: personalalign
+  paper: "arxiv:2601.09636"
+  repo: "https://github.com/JiuTian-VL/PersonalAlign"
+  commit: "HEAD"
+  license: Apache-2.0
+  integration_status: candidate
+  mechanisms:
+    - preference_intent_memory
+    - routine_intent_memory
+    - streaming_update
+  mini_test: "ft-003"
+
+- id: ppl
+  paper: "arxiv:2510.01545"
+  repo: "https://github.com/metadriverse/PPL"
+  commit: "HEAD"
+  license: MIT
+  integration_status: candidate
+  mechanisms:
+    - predictive_preference_learning
+    - intervention_horizon
+  mini_test: "ft-004"
+
+- id: agent_budget
+  paper: ""
+  repo: "https://github.com/wahabali/agent-budget"
+  commit: "HEAD"
+  license: MIT
+  integration_status: candidate
+  mechanisms:
+    - complexity_routing
+    - budget_enforcement
+    - spend_guard
+  mini_test: "ft-006"
+
+- id: tokenwise
+  paper: ""
+  repo: "https://github.com/itsarbit/tokenwise"
+  commit: "HEAD"
+  license: MIT
+  integration_status: candidate
+  mechanisms:
+    - task_decomposition
+    - tiered_escalation
+    - budget_ceiling
+  mini_test: "ft-007"
+
+- id: reflexion
+  paper: "arxiv:2303.11366"
+  repo: ""
+  commit: ""
+  license: ""
+  integration_status: candidate
+  mechanisms:
+    - verbal_self_reflection
+    - episodic_memory
+  mini_test: "ft-012"
+
+- id: agent_rx
+  paper: ""
+  repo: ""
+  commit: ""
+  license: ""
+  integration_status: candidate
+  mechanisms:
+    - failure_diagnosis
+    - execution_trajectory_analysis
+  mini_test: "ft-009"
+
+- id: srft
+  paper: ""
+  repo: ""
+  commit: ""
+  license: ""
+  integration_status: candidate
+  mechanisms:
+    - step_rejection_labeling
+    - trajectory_quality_scoring
+  mini_test: "ft-010"
+
+- id: agent_her
+  paper: ""
+  repo: ""
+  commit: ""
+  license: ""
+  integration_status: candidate
+  mechanisms:
+    - hindsight_experience_replay
+    - failed_trajectory_relabeling
+  mini_test: "ft-011"
+
+- id: agent_bake
+  paper: ""
+  repo: "https://github.com/zzh237/AgentBake"
+  commit: "HEAD"
+  license: Apache-2.0
+  integration_status: candidate
+  mechanisms:
+    - per_user_adaptation
+    - four_hook_adapter
+    - online_learning
+  mini_test: "ft-001"
