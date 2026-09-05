@@ -1,0 +1,111 @@
+{
+  "timestamp": "2026-09-05T19:38:36.499608",
+  "summary": {
+    "total": 14,
+    "pass": 14,
+    "fail": 0,
+    "partial": 0,
+    "skip": 0,
+    "total_ms": 3295
+  },
+  "results": [
+    {
+      "timestamp": "2026-09-05T19:38:34.828255",
+      "component": "imports",
+      "status": "PASS",
+      "details": "All classes imported",
+      "duration_ms": 1624
+    },
+    {
+      "timestamp": "2026-09-05T19:38:34.851427",
+      "component": "event_ledger",
+      "status": "PASS",
+      "details": "Created 2 events, hash chain working",
+      "duration_ms": 23
+    },
+    {
+      "timestamp": "2026-09-05T19:38:34.851637",
+      "component": "subjective_state",
+      "status": "PASS",
+      "details": "Model has 25 fields, serialization works",
+      "duration_ms": 0
+    },
+    {
+      "timestamp": "2026-09-05T19:38:34.894783",
+      "component": "pydantic_ai_agents",
+      "status": "PASS",
+      "details": "Agent created, output type validated: SubjectiveState",
+      "duration_ms": 43
+    },
+    {
+      "timestamp": "2026-09-05T19:38:34.953571",
+      "component": "full_pipeline",
+      "status": "PASS",
+      "details": "Interview\u2192Predict\u2192Critic\u2192ColdReview\u2192Divergence. 8 events, 2 states",
+      "duration_ms": 59
+    },
+    {
+      "timestamp": "2026-09-05T19:38:35.788006",
+      "component": "content_engine",
+      "status": "PASS",
+      "details": "Git: 18 commits, Etsy: 3 keyword queries",
+      "duration_ms": 834
+    },
+    {
+      "timestamp": "2026-09-05T19:38:36.069327",
+      "component": "etsy_api",
+      "status": "PASS",
+      "details": "API returned 137480 results, fetched 3 listings",
+      "duration_ms": 281
+    },
+    {
+      "timestamp": "2026-09-05T19:38:36.069407",
+      "component": "token_tracker",
+      "status": "PASS",
+      "details": "Expense logging functional",
+      "duration_ms": 0
+    },
+    {
+      "timestamp": "2026-09-05T19:38:36.070120",
+      "component": "morning_record",
+      "status": "PASS",
+      "details": "Record created and cleaned up",
+      "duration_ms": 1
+    },
+    {
+      "timestamp": "2026-09-05T19:38:36.459055",
+      "component": "r2_backup",
+      "status": "PASS",
+      "details": "R2 connected, 4 experiment files exist",
+      "duration_ms": 389
+    },
+    {
+      "timestamp": "2026-09-05T19:38:36.465628",
+      "component": "scraped_data",
+      "status": "PASS",
+      "details": "2 CSV files, 204 total rows",
+      "duration_ms": 7
+    },
+    {
+      "timestamp": "2026-09-05T19:38:36.466238",
+      "component": "ledger_integrity",
+      "status": "PASS",
+      "details": "events=8, states=2, tokens=0",
+      "duration_ms": 1
+    },
+    {
+      "timestamp": "2026-09-05T19:38:36.466648",
+      "component": "file_structure",
+      "status": "PASS",
+      "details": "All 8 dirs and 15 key files present",
+      "duration_ms": 0
+    },
+    {
+      "timestamp": "2026-09-05T19:38:36.499510",
+      "component": "git_status",
+      "status": "PASS",
+      "details": "5 recent commits, 4 uncommitted changes",
+      "duration_ms": 33
+    }
+  ]
+}
