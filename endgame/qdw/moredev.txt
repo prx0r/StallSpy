@@ -1,0 +1,1961 @@
+# StallSpy Company Substrate — Implementation Brief
+
+You have local access to three repositories:
+
+* `StallSpy` — the domain/product repository you are implementing.
+* `private-lab` — local name for `prx0r/qdw-workbench`; this is the canonical company kernel.
+* `finalbuilds` — `prx0r/finalbuilds2`; treat primarily as a donor/reference implementation.
+
+## 0. Objective
+
+We are not building a standalone Etsy automation app.
+
+We are building the first real economic environment operated by a general agent-company substrate.
+
+The architecture must support this loop:
+
+```text
+OBSERVE WORLD
+    ↓
+ASSESS STATE
+    ↓
+DETECT PROBLEMS / OPPORTUNITIES
+    ↓
+FORM HYPOTHESES
+    ↓
+DESIGN CONTROLLED INTERVENTIONS
+    ↓
+ALLOCATE MONEY / TOKENS / HUMAN ATTENTION
+    ↓
+EXECUTE THROUGH TYPED CAPABILITIES
+    ↓
+CAPTURE TRAJECTORY + RECEIPT
+    ↓
+OBSERVE DELAYED ECONOMIC OUTCOMES
+    ↓
+INDEPENDENT / COLD REVIEW
+    ↓
+ATTRIBUTE RESULTS
+    ↓
+LEARN / PROMOTE / REJECT
+    ↓
+NEXT COMPANY STATE
+```
+
+Etsy/Dogcasso is the first world.
+
+The same substrate must later be able to run security work, Bittensor, software gigs, Metaculus, other storefronts, marketing teams, etc.
+
+Therefore:
+
+> Domain-specific facts belong in StallSpy. Universal company machinery belongs in private-lab.
+
+Do not create a second ledger, second generic experiment framework, second worker registry, second memory truth store, or second orchestration ontology inside StallSpy.
+
+---
+
+# 1. Non-negotiable ownership boundaries
+
+Use these definitions consistently.
+
+```text
+private-lab ledger
+    = canonical record of what happened
+
+private-lab artifact store
+    = canonical immutable bytes and large raw payloads
+
+Git
+    = canonical code/config/template lineage
+
+RunReceipt / ActionReceipt
+    = immutable account of what a run consumed and produced
+
+HydraDB
+    = rebuildable graph/index/projection
+
+Hindsight or another memory service
+    = optional derived retrieval layer
+
+PydanticAI
+    = replaceable execution/orchestration runtime
+
+StallSpy
+    = Etsy/Dogcasso domain implementation
+
+finalbuilds
+    = donor + product-building intelligence module
+
+z2m/mw-style intelligence
+    = external market observations/prior evidence
+```
+
+If deleting Hydra or Hindsight destroys unique knowledge, the architecture is wrong.
+
+If swapping PydanticAI for another runtime destroys historical comparability, the architecture is wrong.
+
+If an Etsy API response becomes the application's canonical domain object, the architecture is wrong.
+
+---
+
+# 2. Work across repositories
+
+Use `finalbuilds` as read-only initially.
+
+Changes should primarily occur in:
+
+1. `private-lab`
+2. `StallSpy`
+
+Keep commits separated by repository and concern.
+
+Suggested sequence:
+
+```text
+private-lab:
+  1. kernel correctness fixes
+  2. new universal company contracts
+  3. world experiments
+  4. policy/reconciliation/attribution
+  5. generic capability execution interfaces
+
+StallSpy:
+  1. Python package scaffold
+  2. Etsy domain contracts
+  3. Etsy gateway
+  4. state snapshot compiler
+  5. Problem→Hypothesis pipeline
+  6. CompanyDay adapter
+  7. Dogcasso production adapter
+```
+
+Do not make StallSpy depend at runtime on FinalBuilds' JavaScript control plane.
+
+Port useful concepts into the appropriate Python/private-lab abstraction instead.
+
+---
+
+# 3. First action: establish baseline
+
+Before changing code:
+
+```text
+git status
+git rev-parse HEAD
+```
+
+for all three repositories.
+
+Discover and run all existing tests in `private-lab` and `finalbuilds`.
+
+Record:
+
+* commit SHA
+* tests run
+* passing/failing counts
+* any existing broken behavior
+
+Do not silently repair unrelated failures.
+
+Create an implementation notes file containing the baseline.
+
+---
+
+# 4. Harden private-lab before extending it
+
+The kernel is close but has several correctness issues that must be fixed first.
+
+## 4.1 Make ledger append transactional
+
+Current ledger flow reads `previous_event_hash` separately from the INSERT.
+
+That can fork the hash chain under concurrent writers.
+
+Refactor append into one transaction:
+
+```text
+BEGIN IMMEDIATE
+
+SELECT final event hash
+
+construct next event
+
+INSERT next event
+
+COMMIT
+```
+
+The read of the previous hash and insertion must use the same connection and transaction.
+
+Add a concurrent-write test with multiple writers.
+
+Acceptance criterion:
+
+```text
+100+ concurrent appends
+→ all succeed or fail explicitly
+→ verify_chain().valid == true
+→ no two canonical events claim the same previous hash
+```
+
+unless one is explicitly the genesis event.
+
+## 4.2 Fix event ID semantics
+
+The code/documentation currently describes IDs as UUIDv7/time ordered while generation does not actually provide a proper UUIDv7.
+
+Either:
+
+* implement real UUIDv7; or
+* use another explicitly time-sortable ID contract;
+
+but do not claim UUIDv7 unless it is UUIDv7.
+
+Preserve backward compatibility with existing IDs.
+
+## 4.3 Make Hydra projection pure
+
+Projection MUST NOT create new canonical events.
+
+A projector:
+
+```text
+Ledger → Hydra
+```
+
+must never become:
+
+```text
+Ledger → Hydra → new Ledger events
+```
+
+Move any `run.outcome_recorded` event creation out of projector code and into the evaluator/controller that actually knows the event occurred.
+
+Add this invariant:
+
+```text
+count_before = ledger.count_events()
+projector.rebuild()
+count_after = ledger.count_events()
+
+assert count_before == count_after
+```
+
+Run rebuild twice.
+
+Graph output must be equivalent on both runs.
+
+## 4.4 Make all state changes ledger-first
+
+Audit `LabController`.
+
+Do not allow business-significant facts to be written directly into Hydra.
+
+Required pattern:
+
+```text
+domain action
+    ↓
+ledger.append_event(...)
+    ↓
+projector
+    ↓
+Hydra
+```
+
+Never:
+
+```text
+domain action → Hydra only
+```
+
+Inject one shared service container into controller/executors:
+
+```text
+LabServices
+├── ledger
+├── artifacts
+├── projector
+├── worker_registry
+├── evaluator
+├── budget
+├── policy
+├── executor
+└── git
+```
+
+Remove creation of random local `Ledger()` or `ArtifactStore()` objects inside execution paths where a canonical shared service should be used.
+
+## 4.5 Preserve published contract compatibility
+
+The current contracts explicitly state that published contracts should not simply be mutated.
+
+Respect this.
+
+There are Letta-specific remnants such as:
+
+```text
+Worker.letta_agent_id
+TrajectoryRef.format = "letta-trajectory"
+```
+
+Do NOT destructively rename these fields.
+
+Introduce neutral v2 contracts or backward-compatible adapters, for example:
+
+```text
+WorkerIdentityV2
+    runtime_agent_id
+    runtime_type
+
+TrajectoryRefV2
+    format = "agent-trajectory/v1"
+```
+
+Old receipts must remain loadable.
+
+---
+
+# 5. What to port from finalbuilds
+
+Inspect these actual FinalBuilds files carefully:
+
+```text
+src/receipt/receipt-v2.js
+src/experiments/engine.js
+src/analytics/process-attribution.js
+src/reconcile/reconciler.js
+src/resolver/capability-resolver.js
+src/dispatch/workorder-dispatcher.js
+policies/autonomy.json
+```
+
+Do NOT port:
+
+```text
+its JSONL ledger
+its generic graph store
+its generic controller
+its canonical-state assumptions
+```
+
+Private-lab already has stronger implementations for those concepts.
+
+---
+
+# 6. Upgrade RunReceipt using FinalBuilds receipt semantics
+
+Private-lab's current receipt is the canonical object.
+
+Extend it through a new version rather than replacing it.
+
+Desired conceptual structure:
+
+```text
+RunReceiptV2
+├── run_id
+├── spec
+├── worker_version
+├── context_pack_digest
+├── budget_envelope
+│
+├── execution
+│   ├── runtime
+│   ├── provider
+│   ├── model
+│   ├── provider_request_ids[]
+│   ├── input_tokens
+│   ├── cached_tokens
+│   ├── reasoning_tokens
+│   ├── output_tokens
+│   ├── tool_calls
+│   ├── attempts
+│   ├── repair_loops
+│   ├── runtime_restarts
+│   └── duration_ms
+│
+├── costs
+│   ├── inference_usd
+│   ├── tool_usd
+│   ├── external_action_usd
+│   ├── gpu_usd
+│   └── human_seconds
+│
+├── git
+│   ├── repo
+│   ├── base_commit
+│   ├── resulting_commit
+│   ├── branch
+│   ├── worktree
+│   └── diff_artifact
+│
+├── verification
+├── artifacts[]
+├── trajectory_ref
+├── trajectory_merkle_root
+├── external_outcome_refs[]
+└── evaluation_result_ref
+```
+
+Do not inline giant tool responses or images into receipts.
+
+Store those in the ArtifactStore and reference their digest.
+
+---
+
+# 7. Add universal Company contracts to private-lab
+
+Create versioned Pydantic contracts for the business-learning layer.
+
+Prefer separate files/re-exports rather than exploding the existing large `contracts/__init__.py`.
+
+Suggested conceptual entities:
+
+```text
+CompanyDay
+StateSnapshot
+ActorAssessment
+Problem
+ResearchBundle
+Hypothesis
+WorldExperimentSpec
+ExperimentalArm
+ExperimentalAssignment
+Intervention
+OutcomeObservation
+ReviewSpec
+ColdReview
+ReconciliationResult
+ActionPolicyDecision
+ApprovalReceipt
+CapabilityInvocation
+ActionReceipt
+```
+
+## CompanyDay
+
+Must identify:
+
+```text
+company_day_id
+company_id
+opened_at
+closed_at
+state_snapshot_id
+budget_envelope_id
+work_order_ids[]
+experiment_ids[]
+outcome_ids[]
+review_ids[]
+status
+```
+
+Do not require a literal calendar day eventually; this is an operating-cycle artifact.
+
+---
+
+# 8. Capture human and agent state assessments explicitly
+
+We want the emerging dataset of:
+
+```text
+current state
+belief about progress
+expected future state
+risk perception
+spending posture
+recommended actions
+actual later economic outcome
+```
+
+Do not call subjective assessments facts.
+
+Create something approximately like:
+
+```text
+ActorAssessment
+├── assessment_id
+├── company_day_id
+├── actor_type
+│   ├── human
+│   └── agent
+├── actor_id
+├── state_snapshot_id
+├── information_set_digest
+├── blind_group_id
+├── confidence
+├── progress_score
+├── urgency
+├── spend_posture
+│   ├── conserve
+│   ├── neutral
+│   └── aggressive
+├── expected_7d_outcome
+├── expected_30d_outcome
+├── bottlenecks[]
+├── opportunities[]
+├── risks[]
+├── recommended_actions[]
+├── narrative
+└── provenance
+```
+
+The exact field names may differ; preserve the concept.
+
+Critical:
+
+> An ActorAssessment is an observation made by an actor, not canonical objective truth.
+
+Later we will train/evaluate operator models against economic outcomes.
+
+Build the capture now.
+
+Do not build the fine-tuning pipeline now.
+
+---
+
+# 9. Implement information-boundary / blindness contracts
+
+Blind independent judgment is a feature.
+
+Every substantial assessment/review should record exactly what information was available.
+
+Create:
+
+```text
+InformationSet
+├── snapshot_id
+├── artifact_ids[]
+├── context_pack_digest
+├── allowed_classes[]
+├── excluded_classes[]
+└── generated_at
+```
+
+A "fresh reviewer" must be capable of seeing:
+
+* current measurable state;
+* raw historical outcomes where allowed;
+* current listings/orders/market evidence;
+
+without seeing:
+
+* yesterday's review conclusion;
+* previous agent recommendations;
+* previous human opinion;
+* treatment assignment where blinded;
+* outcome labels where evaluating predictions.
+
+Never rely merely on prompting:
+
+> "Pretend you didn't see the previous review."
+
+Enforce blindness through context compilation.
+
+Add tests.
+
+---
+
+# 10. Keep two experiment classes
+
+This is essential.
+
+Private-lab's existing experiments test agent/worker capability.
+
+Do not overload them to test Etsy economic interventions.
+
+Create:
+
+```text
+CapabilityExperiment
+```
+
+for:
+
+```text
+WorkerVersion A vs B
+prompt A vs B
+model A vs B
+context strategy A vs B
+toolchain A vs B
+```
+
+and:
+
+```text
+WorldExperiment
+```
+
+for:
+
+```text
+listing title A vs B
+thumbnail A vs B
+price A vs B
+personalization copy A vs B
+product format A vs B
+marketing intervention A vs B
+```
+
+Both can share lower-level experiment primitives where useful.
+
+---
+
+# 11. WorldExperiment design
+
+Port the useful ideas from FinalBuilds' experiment engine:
+
+* explicit hypothesis
+* control/treatment
+* metric
+* deterministic stable assignment
+* allocation
+* immutable experiment creation
+
+Generalize experimental units:
+
+```text
+SHOP
+LISTING
+PRODUCT_FAMILY
+TEMPLATE
+TRAFFIC_WINDOW
+CUSTOMER_COHORT
+COUNTRY
+COMPANY_DAY
+```
+
+A WorldExperimentSpec needs at least:
+
+```text
+experiment_id
+problem_id
+hypothesis_id
+unit_type
+population
+control
+treatment
+assignment_seed
+primary_metric
+secondary_metrics[]
+guardrail_metrics[]
+start_at
+minimum_runtime
+evaluation_windows[]
+stop_conditions[]
+contamination_rules[]
+budget_envelope_id
+status
+```
+
+Evaluation windows should support delayed outcomes such as:
+
+```text
+1 day
+7 days
+30 days
+```
+
+Do not declare causal success from observational correlation.
+
+Mark analyses explicitly:
+
+```text
+observational
+controlled
+quasi_experimental
+```
+
+---
+
+# 12. Port FinalBuilds process attribution concept
+
+Create a generic attribution module in private-lab.
+
+It must eventually answer:
+
+```text
+Which WorkerVersion generated profitable interventions?
+
+Which hypothesis generator creates hypotheses that survive experiments?
+
+Which model produces greatest profit per dollar?
+
+Which context fragments improve downstream outcomes?
+
+Which memories improve decisions enough to justify their token cost?
+
+Does ColdReview disagreement predict bad outcomes?
+
+Does human escalation improve expected economic return?
+
+Which spending policy performs best under weak demand?
+
+Which ProductFamily generator creates durable sellers?
+```
+
+Track potential contributors:
+
+```text
+WorkerVersion
+Model
+Provider
+ContextPolicy
+ContextPack
+MemoryRevision
+SkillVersion
+ProblemDetectorVersion
+HypothesisGeneratorVersion
+ExperimentDesignerVersion
+BudgetPolicyVersion
+ToolVersion
+HumanIntervention
+TemplateVersion
+```
+
+FinalBuilds' warning about observational attribution is correct.
+
+Preserve it.
+
+Attribution is not automatically causality.
+
+---
+
+# 13. Port reconciliation into private-lab
+
+Generalize FinalBuilds' standard drift logic.
+
+Required general abstraction:
+
+```text
+DesiredState
+      ↓ compare
+ObservedState
+      ↓
+Drift
+      ↓
+Problem
+      ↓
+Repair WorkOrder OR Experiment
+```
+
+Examples:
+
+```text
+listing no longer conforms to brand standard
+price violates margin floor
+template QA regression
+worker memory stale
+capability implementation outdated
+Etsy API schema changed
+context pack exceeds token policy
+shop review rate below expected band
+render reroll rate above threshold
+budget concentration too high
+```
+
+Reconciliation must not make arbitrary fixes directly.
+
+It emits typed Problems/WorkOrders.
+
+---
+
+# 14. Port autonomy policy semantics
+
+Translate `finalbuilds/policies/autonomy.json` into a typed private-lab policy model.
+
+Starting conceptual risk classes:
+
+```text
+R0
+read-only observation/research
+automatic
+
+R1
+draft generation / reversible internal state
+automatic within budget
+
+R2
+external reversible mutation
+independent review and/or canary
+
+R3
+auth / secrets / destructive actions / refunds /
+large financial changes / customer-sensitive actions
+human authorization
+```
+
+Exact action mappings belong to domains.
+
+StallSpy should register Etsy-specific policy rules.
+
+Examples:
+
+```text
+etsy.shop.read                    R0
+etsy.listing.read                 R0
+etsy.listing.draft.compile        R1
+etsy.listing.image.generate       R1
+etsy.listing.live.update          R2
+etsy.listing.deactivate           R2/R3
+etsy.refund                       R3
+etsy.oauth.rotate                 R3
+ad-spend increase above threshold R3
+```
+
+BATS/BudgetEnvelope remains separate from risk authorization.
+
+An action can be financially affordable but unauthorized.
+
+---
+
+# 15. Capability system
+
+Distinguish three questions:
+
+```text
+PoolMatcher
+"What kind of worker should solve this?"
+
+CapabilityResolver
+"What semantic capability is needed?"
+
+ExecutionResolver
+"Through what implementation/interface should it happen?"
+```
+
+Example:
+
+```text
+Problem:
+    listing conversion weak
+
+Pool:
+    commerce / merchandising
+
+Worker:
+    etsy-operator/v3
+
+Capabilities:
+    etsy.listing.read
+    market.keyword.research
+    creative.thumbnail.generate
+    etsy.listing.update_metadata
+
+ExecutionResolver:
+    official Etsy API
+        ↓ otherwise
+    approved integration
+        ↓ otherwise
+    browser automation
+        ↓ otherwise
+    human queue
+```
+
+Agents should request semantic capabilities.
+
+They should not invent raw HTTP calls.
+
+---
+
+# 16. Scaffold StallSpy as a Python domain package
+
+Do not delete or reorganize the existing research documents yet.
+
+Add implementation beside them.
+
+Suggested structure:
+
+```text
+StallSpy/
+├── pyproject.toml
+├── AGENTS.md
+├── ARCHITECTURE.md
+│
+├── src/
+│   └── stallspy/
+│       ├── __init__.py
+│       │
+│       ├── domain/
+│       │   ├── products.py
+│       │   ├── listings.py
+│       │   ├── shop.py
+│       │   ├── market.py
+│       │   ├── templates.py
+│       │   └── metrics.py
+│       │
+│       ├── integrations/
+│       │   ├── etsy/
+│       │   │   ├── auth.py
+│       │   │   ├── client.py
+│       │   │   ├── rate_limit.py
+│       │   │   ├── capabilities.py
+│       │   │   ├── webhooks.py
+│       │   │   ├── normalizers.py
+│       │   │   └── fixtures/
+│       │   │
+│       │   └── everbee/
+│       │       ├── adapter.py
+│       │       └── normalizers.py
+│       │
+│       ├── operator/
+│       │   ├── state.py
+│       │   ├── problems.py
+│       │   ├── hypotheses.py
+│       │   ├── experiments.py
+│       │   ├── review.py
+│       │   └── company_day.py
+│       │
+│       ├── listings/
+│       │   ├── compiler.py
+│       │   ├── projection.py
+│       │   └── policy.py
+│       │
+│       ├── dogcasso/
+│       │   ├── manifests.py
+│       │   ├── prompt_compiler.py
+│       │   ├── render.py
+│       │   ├── qa.py
+│       │   ├── postprocess.py
+│       │   └── fulfillment.py
+│       │
+│       └── cli.py
+│
+└── tests/
+```
+
+Adapt this if existing repository realities require it.
+
+Do not create abstractions merely to match this tree.
+
+---
+
+# 17. StallSpy domain objects
+
+The existing blueprint correctly says:
+
+> Do not make Etsy listing JSON the domain model.
+
+Implement immutable/versioned objects approximately like:
+
+```text
+ProductFamily
+ProductVariant
+ChannelProjection
+ListingVersion
+TemplateManifest
+TemplateVersion
+MarketSignal
+ShopSnapshot
+ListingSnapshot
+OrderSnapshot
+ReviewSnapshot
+RenderJob
+RenderReceipt
+FulfillmentJob
+```
+
+`ProductFamily` describes our product.
+
+`ChannelProjection` describes how that product is represented on Etsy.
+
+Etsy payloads are external representations.
+
+---
+
+# 18. Raw data ingestion pattern
+
+For every external provider:
+
+```text
+RAW RESPONSE
+    ↓
+immutable ArtifactStore blob
+    ↓
+ledger observation event
+    ↓
+typed normalized snapshot
+    ↓
+Hydra projection
+    ↓
+derived metrics/problems
+```
+
+Do not silently mutate raw observations.
+
+Suggested event families:
+
+```text
+etsy.shop.snapshot_observed
+etsy.listing.snapshot_observed
+etsy.order.observed
+etsy.review.observed
+etsy.webhook.received
+
+market.signal.observed
+
+stallspy.problem.detected
+stallspy.hypothesis.created
+stallspy.world_experiment.created
+stallspy.intervention.proposed
+stallspy.intervention.authorized
+stallspy.intervention.executed
+stallspy.outcome.observed
+
+company.assessment.created
+company.cold_review.created
+company.reconciliation.completed
+```
+
+The exact namespace may be improved, but keep it consistent.
+
+---
+
+# 19. Etsy gateway
+
+Use Etsy Open API as the canonical supported execution interface.
+
+The coding agent may use the existing Etsy developer MCP to inspect current schemas/docs, but the MCP is developer knowledge—not the seller execution layer.
+
+Implement:
+
+```text
+EtsyAuth
+EtsyClient
+EtsyRateLimitBroker
+EtsyCapabilityBroker
+EtsyWebhookReceiver
+EtsyNormalizer
+```
+
+Credentials must not be exposed to the LLM.
+
+The agent receives typed tools such as:
+
+```text
+shop_get_state()
+listing_get(id)
+listing_get_inventory(id)
+listing_prepare_draft(...)
+listing_update_metadata(...)
+listing_create_draft(...)
+reviews_get(...)
+orders_get(...)
+```
+
+not:
+
+```text
+etsy_http(method, path, body)
+```
+
+Every external mutation requires:
+
+```text
+validated input
+policy decision
+budget check
+idempotency key
+request trace
+response trace
+ActionReceipt
+```
+
+---
+
+# 20. Modes: REPLAY, SHADOW, LIVE
+
+Reuse private-lab's mode concept.
+
+Default all development to:
+
+```text
+REPLAY
+```
+
+against fixtures.
+
+Then:
+
+```text
+SHADOW
+```
+
+against real Etsy reads but no external writes.
+
+Only enable:
+
+```text
+LIVE
+```
+
+when explicitly configured.
+
+An agent must not be able to convert itself from SHADOW to LIVE.
+
+LIVE is configuration/policy controlled outside the model.
+
+---
+
+# 21. Webhooks and reconciliation
+
+Implement webhooks as:
+
+```text
+receive
+→ verify
+→ persist event identity
+→ enqueue
+→ ACK quickly
+→ idempotent consumer
+→ fetch canonical resource
+→ store raw response
+→ normalize
+→ ledger observation
+```
+
+Duplicate webhook deliveries must produce no duplicate economic event.
+
+Scheduled reconciliation should periodically compare Etsy current state against our latest known projection in case webhooks are missed.
+
+---
+
+# 22. MarketSignal
+
+EverBee and other research providers are not truth.
+
+Implement:
+
+```text
+MarketSignal
+├── provider
+├── query
+├── observed_at
+├── metric
+├── value
+├── confidence
+├── methodology
+├── raw_artifact_ref
+└── source_ref
+```
+
+Separate:
+
+```text
+FIRST_PARTY_ETSY
+PROVIDER_ESTIMATE
+PUBLIC_WEB
+INTERNAL_DERIVATION
+HUMAN_OBSERVATION
+AGENT_INFERENCE
+```
+
+Do not merge these without provenance.
+
+---
+
+# 23. Fix Dogcasso TemplateManifest semantics
+
+Current template YAML mixes immutable recipe definition with mutable performance statistics.
+
+Split it.
+
+Immutable/versioned:
+
+```text
+TemplateVersion
+├── template_id
+├── version
+├── engine
+├── required_inputs
+├── render_config
+├── storyboard
+├── references
+├── prompts
+├── qa_spec
+├── output_spec
+├── source_commit
+└── digest
+```
+
+Do NOT store live:
+
+```text
+orders
+conversion_rate
+avg_rating
+total_revenue
+rerolls
+```
+
+inside the manifest.
+
+Those become observations joined by:
+
+```text
+template_id
+template_version
+```
+
+This allows historical reproducibility.
+
+---
+
+# 24. Dogcasso render = private-lab run
+
+Every actual generation should produce a private-lab RunSpec and RunReceipt.
+
+Pipeline:
+
+```text
+customer inputs
+    ↓
+TemplateVersion
+    ↓
+PromptCompiler
+    ↓
+RenderJob
+    ↓
+model/provider invocation
+    ↓
+raw output artifact
+    ↓
+automated QA
+    ↓
+optional reroll
+    ↓
+FFmpeg deterministic postprocess
+    ↓
+9:16 video
+16:9 video
+still image
+thumbnail
+future card artwork
+    ↓
+RenderReceipt / RunReceipt
+```
+
+Record:
+
+```text
+model
+provider
+provider request ID
+template version
+expanded prompt
+seed
+input asset hashes
+output asset hashes
+generation time
+GPU/API cost
+rerolls
+QA result
+human review where used
+```
+
+Do not leave this as ad-hoc YAML logging.
+
+---
+
+# 25. PydanticAI integration
+
+PydanticAI may be used for agent execution.
+
+Keep it behind a runtime interface.
+
+Conceptually:
+
+```text
+AgentRuntime
+    execute(RunSpec, ContextPack, ToolSet)
+        -> Trajectory
+        -> RunReceipt
+```
+
+The canonical system must not depend on PydanticAI-specific internal objects.
+
+If using step-wise execution/iteration, normalize each meaningful step into our trajectory representation:
+
+```text
+observation
+thought summary / decision representation where available
+tool selected
+tool arguments digest
+tool result artifact
+cost
+latency
+validation
+pivot
+```
+
+Do not store private chain-of-thought.
+
+Store externally useful decision summaries, tool interactions and results.
+
+---
+
+# 26. Hindsight
+
+Do NOT make Hindsight a prerequisite for the first vertical slice.
+
+First make this work perfectly:
+
+```text
+ledger
+→ artifacts
+→ Hydra projection
+→ trust-tiered context compiler
+→ run
+→ receipt
+```
+
+If Hindsight is then added:
+
+```text
+Hindsight = derived retrieval/memory service
+```
+
+Only promoted or appropriately classified memory should be retained.
+
+Raw canonical history remains private-lab.
+
+---
+
+# 27. Problem → Hypothesis pipeline
+
+Implement this explicitly.
+
+```text
+StateSnapshot
+    ↓
+ProblemDetector
+    ↓
+Problem
+    ↓
+Research step
+    ↓
+ResearchBundle
+    ↓
+HypothesisGenerator
+    ↓
+Hypothesis
+    ↓
+ExperimentDesigner
+    ↓
+WorldExperimentSpec
+    ↓
+WorkOrders
+```
+
+Problem examples:
+
+```text
+listing impressions falling
+click-through weak
+conversion weak
+review rate low
+render reroll rate high
+fulfillment latency high
+margin below threshold
+particular product family plateauing
+ad CAC too high
+```
+
+A Problem should contain evidence references.
+
+A Hypothesis should contain:
+
+```text
+claim
+mechanism
+proposed intervention
+predicted direction
+primary metric
+estimated effect
+confidence
+falsification condition
+evidence refs
+```
+
+---
+
+# 28. No uncontrolled "agent optimization"
+
+An agent may not simply decide:
+
+> sales are low, rewrite every title.
+
+It must produce one of:
+
+```text
+safe reversible WorkOrder
+controlled experiment
+human escalation
+```
+
+depending on policy.
+
+The scientific loop is itself the product.
+
+---
+
+# 29. ColdReview
+
+Implement independent review as a first-class run.
+
+ColdReview must store:
+
+```text
+review_id
+subject
+reviewer WorkerVersion
+ReviewSpec
+InformationSet
+context digest
+conclusions
+confidence
+detected problems
+recommended actions
+predictions
+created_at
+```
+
+The reviewer must be technically prevented from receiving forbidden previous opinions.
+
+Later a reconciliation process may compare:
+
+```text
+human assessment
+agent assessment A
+agent assessment B
+previous intervention
+actual outcome
+```
+
+but the original assessments remain immutable.
+
+---
+
+# 30. CompanyDay orchestration
+
+Do not make this a giant god-function.
+
+Model it as a state machine.
+
+Proposed phases:
+
+```text
+COLLECT
+    gather first-party world state
+
+ASSESS
+    create independent state assessments
+
+DIAGNOSE
+    generate Problems
+
+HYPOTHESIZE
+    generate/research Hypotheses
+
+ALLOCATE
+    assign budget, workers, models, human attention
+
+EXECUTE
+    issue WorkOrders and interventions
+
+OBSERVE
+    capture immediate/delayed outcomes
+
+REVIEW
+    blind/cold review
+
+LEARN
+    create Findings, proposals, policy/worker candidates
+
+CLOSE
+    seal CompanyDay
+```
+
+Each transition emits ledger evidence.
+
+If using `pydantic-graph`, this is an appropriate place for it.
+
+The graph is runtime orchestration.
+
+The ledger remains truth.
+
+---
+
+# 31. Budget integration
+
+Every nontrivial run must have BudgetEnvelope.
+
+Track at minimum:
+
+```text
+cash
+tokens
+wall time
+model calls
+search calls
+GPU
+external API/tool costs
+human seconds
+```
+
+Budgeting and authorization are separate.
+
+Eventually actual outcome evidence must feed the Thompson/BATS allocator.
+
+Do not claim the allocator is learning until its posterior is backed by real outcome data.
+
+---
+
+# 32. Human escalation as an economic action
+
+Represent human involvement as measurable.
+
+Example:
+
+```text
+HumanEscalation
+├── reason
+├── predicted_value
+├── requested_information
+├── human_seconds
+├── response
+└── downstream_outcome_refs
+```
+
+Later we want to estimate:
+
+```text
+E[value gained from asking human]
+-
+E[cost of interruption]
+```
+
+Do not implement a sophisticated HumanValue model yet.
+
+Capture the data required to train/evaluate one.
+
+---
+
+# 33. First end-to-end vertical slice
+
+Do this before building UI or large catalogs.
+
+## Goal
+
+Prove one complete company-learning cycle with Etsy.
+
+### In REPLAY mode:
+
+1. Load fixture Etsy shop/listing/order/review data.
+2. Persist raw fixture response as artifact.
+3. Emit normalized `StateSnapshot`.
+4. Run a fresh ActorAssessment.
+5. Detect one Problem.
+6. Produce one ResearchBundle.
+7. Produce one Hypothesis.
+8. Design one WorldExperiment.
+9. Create one WorkOrder.
+10. Compile one proposed listing change.
+11. Run policy evaluation.
+12. In SHADOW/REPLAY, produce an `InterventionProposed` without external mutation.
+13. Generate complete RunReceipt.
+14. Feed a fixture delayed outcome.
+15. Run ColdReview using an enforced information boundary.
+16. Evaluate experiment.
+17. Produce Finding.
+18. Project everything into Hydra.
+19. Delete/rebuild Hydra.
+20. Verify the reconstructed graph is equivalent.
+
+This proves the architecture.
+
+---
+
+# 34. Second vertical slice
+
+After the first passes:
+
+```text
+real Etsy authentication
+real read-only shop snapshot
+SHADOW operator cycle
+```
+
+No writes.
+
+Demonstrate:
+
+```text
+real shop
+→ state
+→ problem
+→ hypothesis
+→ proposed intervention
+→ policy decision
+→ receipt
+```
+
+---
+
+# 35. Third vertical slice
+
+Perform exactly one reversible live Etsy intervention.
+
+Requirements:
+
+```text
+explicit LIVE configuration
+typed capability
+risk policy satisfied
+human approval where required
+bounded budget
+idempotency key
+pre-action snapshot
+external request receipt
+post-action readback
+post-action snapshot
+rollback plan
+```
+
+Then observe results.
+
+Do not batch-change the shop.
+
+---
+
+# 36. Dogcasso vertical slice
+
+After the company loop works, connect one Dogcasso template.
+
+Do not build ten products.
+
+Use one simple existing recipe.
+
+Required:
+
+```text
+immutable TemplateVersion
+customer fixture
+prompt compile
+render stub or real provider
+artifact capture
+QA
+receipt
+cost
+output
+template-performance observation
+```
+
+Then the same WorldExperiment machinery can evaluate:
+
+```text
+template version
+listing creative
+price
+title
+thumbnail
+```
+
+against real commercial outcomes.
+
+---
+
+# 37. Hydra graph relationships
+
+Extend the projection to support relationships conceptually including:
+
+```text
+SOURCED_FROM
+DERIVED_FROM
+HYPOTHESIZED_BY
+TESTED_IN
+EXECUTED_BY
+USED_CONTEXT
+USED_MODEL
+USED_CAPABILITY
+ACTED_ON
+PRODUCED
+OBSERVED_AS
+ATTRIBUTED_TO
+REVIEWED_BY
+SUPPORTS
+REFUTES
+PROMOTED_TO
+COMPETES_WITH
+PRICED_AT
+```
+
+Every projected relationship must be reconstructable from canonical events/artifacts.
+
+Never create a graph-only business fact.
+
+---
+
+# 38. AGENTS.md
+
+Create a concise `AGENTS.md` in StallSpy with these axioms:
+
+```text
+1. private-lab owns canonical history.
+2. StallSpy owns Etsy/Dogcasso domain semantics.
+3. Hydra and memory stores are derived.
+4. Every external side effect is typed, policy-gated and receipted.
+5. No agent receives unrestricted credentials.
+6. External research is evidence with provenance, not truth.
+7. Every meaningful decision should be attributable to exact inputs and versions.
+8. Blind review means enforced information separation.
+9. Controlled experiments are distinct from observational analytics.
+10. Product/template definitions are immutable versions; performance is separate observation data.
+11. Do not optimize metrics without defining the economic objective and guardrails.
+12. Prefer one complete measured loop over ten partially built subsystems.
+```
+
+Add:
+
+> Before introducing a new framework/database/orchestrator, prove it supplies a capability not already owned by private-lab.
+
+---
+
+# 39. Tests required before considering Phase 1 complete
+
+Implement tests for at least:
+
+```text
+ledger immutability
+
+ledger concurrent chain integrity
+
+ledger receipt import idempotency
+
+artifact content hash verification
+
+Hydra rebuild does not mutate ledger
+
+two Hydra rebuilds are equivalent
+
+all important projections derive from ledger
+
+old private-lab contracts remain loadable
+
+RunReceiptV2 round trip
+
+no credentials appear in receipt serialization
+
+WorldExperiment assignment is stable
+
+same unit + experiment always receives same arm
+
+ColdReview cannot receive excluded context
+
+SHADOW mode blocks every external write
+
+LIVE mode still requires policy
+
+R3 action cannot bypass human approval
+
+duplicate Etsy webhook is idempotent
+
+duplicate external mutation uses idempotency protection
+
+raw Etsy payload retained by artifact reference
+
+MarketSignal retains provider/provenance
+
+TemplateVersion digest changes when recipe changes
+
+performance observations do not mutate TemplateVersion
+
+render rerolls create traceable cost events
+
+CompanyDay can be replayed from ledger
+
+Hydra can be deleted and reconstructed
+
+observational attribution is labelled observational
+```
+
+---
+
+# 40. Do not build yet
+
+Explicitly defer:
+
+```text
+large frontend
+full Dogcasso.com customer CRM
+dozens of Etsy listings
+complex multi-agent organization charts
+fine-tuning
+OperatorTwin predictive model
+automatic large ad-spend policy
+Hindsight dependency
+marketing agency delegation
+multi-brand corporate UI
+full autonomous refunds/customer service
+```
+
+Capture the contracts/data necessary for these later.
+
+Do not build them before the loop works.
+
+---
+
+# 41. Deliverables from this development pass
+
+The coding pass should leave us with:
+
+### private-lab
+
+```text
+kernel correctness fixes
+universal company contracts
+RunReceiptV2
+WorldExperiment
+policy layer
+reconciliation abstraction
+attribution abstraction
+information-boundary contract
+CompanyDay primitives
+tests
+```
+
+### StallSpy
+
+```text
+installable Python package
+private-lab integration
+Etsy typed domain contracts
+Etsy fixture adapter
+Etsy gateway skeleton
+MarketSignal adapter
+state snapshot compiler
+problem/hypothesis pipeline
+CompanyDay orchestration adapter
+ColdReview adapter
+Dogcasso immutable template contract
+tests
+AGENTS.md
+ARCHITECTURE.md
+```
+
+### finalbuilds
+
+No destructive changes required.
+
+Document which concepts/code were ported and where they now live.
+
+---
+
+# 42. Definition of success
+
+Do not judge success by lines of code.
+
+The pass succeeds when this command/workflow is possible conceptually:
+
+```text
+stallspy company-day run --mode replay --fixture demo-shop
+```
+
+and it produces a verifiable chain like:
+
+```text
+CompanyDay
+→ StateSnapshot
+→ independent ActorAssessment
+→ Problem
+→ ResearchBundle
+→ Hypothesis
+→ WorldExperiment
+→ WorkOrder
+→ InterventionProposed
+→ RunReceipt
+→ OutcomeObservation
+→ ColdReview
+→ ExperimentResult
+→ Finding
+```
+
+with:
+
+```text
+all artifacts content-addressed
+all canonical facts in ledger
+all graph state rebuildable
+all agent/model/tool versions attributable
+all costs attributable
+all information boundaries recorded
+all actions policy checked
+all external effects idempotent
+```
+
+Then run:
+
+```text
+delete Hydra
+rebuild Hydra
+verify lineage
+```
+
+and obtain the same company history.
+
+That is Checkpoint 1.
+
+Checkpoint 2 is the same loop against a real Etsy shop in SHADOW mode.
+
+Checkpoint 3 is one approved, reversible LIVE intervention whose later economic outcome is attached to the exact hypothesis, experiment, worker, model, context, cost and human decisions that produced it.
+
+Do not move on to broad autonomy until Checkpoint 3 is real.
+
+---
+
+# 43. Architectural end state
+
+The intended system is:
+
+```text
+                         PRIVATE-LAB
+                    Canonical Company Kernel
+                              │
+          ┌───────────────────┼────────────────────┐
+          │                   │                    │
+        Truth              Cognition            Learning
+          │                   │                    │
+       Ledger             PydanticAI         Experiments
+       Artifacts           Workers            Attribution
+       Git                 Context            Reconciliation
+       Receipts            Capabilities       Allocation
+          │                   │                    │
+          └───────────────────┼────────────────────┘
+                              │
+                         STALLSPY WORLD
+                              │
+             ┌────────────────┼─────────────────┐
+             │                │                 │
+          Etsy API         Research          Dogcasso
+          Webhooks         EverBee           Templates
+          Orders           Signals           Renders
+          Reviews                            Fulfillment
+             │                │                 │
+             └────────────────┼─────────────────┘
+                              │
+                      ECONOMIC OUTCOMES
+                              │
+                              ▼
+                         PRIVATE-LAB
+```
+
+FinalBuilds becomes both:
+
+1. a source of machinery that is generalized into private-lab; and
+2. later, a product-building/intelligence module running on top of the same substrate.
+
+The core rule is:
+
+> StallSpy should teach private-lab how to operate a real business without turning private-lab into Etsy software.
+
+Build toward that.
