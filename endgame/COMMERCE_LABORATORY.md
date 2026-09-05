@@ -16,7 +16,7 @@ That changes the architecture.
 
 ---
 
-## 1. Commerce Equivalent of Atari Environments
+## 1. Build a commerce equivalent of Atari environments
 
 An `mwgym` marketplace world should be a timestamped snapshot:
 
