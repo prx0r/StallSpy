@@ -1,111 +1,107 @@
 {
-  "timestamp": "2026-09-05T19:44:21.339935",
+  "timestamp": "2026-09-05T19:57:16.893188",
   "summary": {
-    "total": 14,
-    "pass": 13,
-    "fail": 1,
-    "partial": 0,
-    "skip": 0,
-    "total_ms": 1729
+    "total": 16,
+    "pass": 16,
+    "fail": 0,
+    "partial": 0
   },
   "results": [
     {
-      "timestamp": "2026-09-05T19:44:19.610413",
-      "component": "imports",
-      "status": "FAIL",
-      "details": "cannot import name 'RunReceipt' from 'stallspy_system' (/root/StallSpy/tool/stallspy_system.py)",
-      "duration_ms": 0
+      "component": "core_imports",
+      "status": "PASS",
+      "details": "All core classes",
+      "ms": 1667
     },
     {
-      "timestamp": "2026-09-05T19:44:19.642460",
+      "component": "pydantic_agents",
+      "status": "PASS",
+      "details": "Agent + output_type validated",
+      "ms": 17
+    },
+    {
       "component": "event_ledger",
       "status": "PASS",
-      "details": "Created 2 events, hash chain working",
-      "duration_ms": 32
+      "details": "Append-only + hash chain",
+      "ms": 28
     },
     {
-      "timestamp": "2026-09-05T19:44:19.642713",
       "component": "subjective_state",
       "status": "PASS",
-      "details": "Model has 25 fields, serialization works",
-      "duration_ms": 0
+      "details": "25 fields, Pydantic validated",
+      "ms": 0
     },
     {
-      "timestamp": "2026-09-05T19:44:19.671339",
-      "component": "pydantic_ai_agents",
-      "status": "PASS",
-      "details": "Agent created, output type validated: SubjectiveState",
-      "duration_ms": 29
-    },
-    {
-      "timestamp": "2026-09-05T19:44:19.724813",
       "component": "full_pipeline",
       "status": "PASS",
-      "details": "Interview\u2192Predict\u2192Critic\u2192ColdReview\u2192Divergence. 23 events, 5 states",
-      "duration_ms": 53
+      "details": "44 events, 6 states, 4 memories",
+      "ms": 95
     },
     {
-      "timestamp": "2026-09-05T19:44:20.560753",
-      "component": "content_engine",
+      "component": "cold_review",
       "status": "PASS",
-      "details": "Git: 19 commits, Etsy: 3 keyword queries",
-      "duration_ms": 836
+      "details": "Protocol works, 3 interpretations hidden",
+      "ms": 20
     },
     {
-      "timestamp": "2026-09-05T19:44:20.849740",
+      "component": "memory_system",
+      "status": "PASS",
+      "details": "Store + search works, 1 results",
+      "ms": 25
+    },
+    {
       "component": "etsy_api",
       "status": "PASS",
-      "details": "API returned 137474 results, fetched 3 listings",
-      "duration_ms": 289
+      "details": "584553 results, 3 fetched",
+      "ms": 333
     },
     {
-      "timestamp": "2026-09-05T19:44:20.849850",
-      "component": "token_tracker",
+      "component": "content_engine",
       "status": "PASS",
-      "details": "Expense logging functional",
-      "duration_ms": 0
+      "details": "20 commits, 3 queries",
+      "ms": 965
     },
     {
-      "timestamp": "2026-09-05T19:44:20.850799",
       "component": "morning_record",
       "status": "PASS",
-      "details": "Record created and cleaned up",
-      "duration_ms": 1
+      "details": "Record created",
+      "ms": 1
     },
     {
-      "timestamp": "2026-09-05T19:44:21.299974",
       "component": "r2_backup",
       "status": "PASS",
-      "details": "R2 connected, 4 experiment files exist",
-      "duration_ms": 449
+      "details": "Connected, 4 files",
+      "ms": 413
     },
     {
-      "timestamp": "2026-09-05T19:44:21.305868",
       "component": "scraped_data",
       "status": "PASS",
-      "details": "2 CSV files, 204 total rows",
-      "duration_ms": 6
+      "details": "2 files, 204 rows",
+      "ms": 4
     },
     {
-      "timestamp": "2026-09-05T19:44:21.306527",
-      "component": "ledger_integrity",
-      "status": "PASS",
-      "details": "events=23, states=5, tokens=1",
-      "duration_ms": 1
-    },
-    {
-      "timestamp": "2026-09-05T19:44:21.306968",
       "component": "file_structure",
       "status": "PASS",
-      "details": "All 8 dirs and 15 key files present",
-      "duration_ms": 0
+      "details": "8 dirs, 5 key files",
+      "ms": 0
     },
     {
-      "timestamp": "2026-09-05T19:44:21.339853",
-      "component": "git_status",
+      "component": "ledger_integrity",
       "status": "PASS",
-      "details": "5 recent commits, 2 uncommitted changes",
-      "duration_ms": 33
+      "details": "events=44 states=6 memory=4 problems=17",
+      "ms": 2
+    },
+    {
+      "component": "git",
+      "status": "PASS",
+      "details": "3 recent commits",
+      "ms": 4
+    },
+    {
+      "component": "env_safety",
+      "status": "PASS",
+      "details": ".env and data/ in gitignore",
+      "ms": 0
     }
   ]
 }
