@@ -1,0 +1,73 @@
+{
+  "day_id": "day_0001",
+  "checks": [
+    {
+      "name": "CompanyDay exists",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "State snapshot exists",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Perspectives recorded",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Decisions recorded",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Problems tracked",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Economic events",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Local artifacts",
+      "passed": true,
+      "detail": "2 artifacts"
+    },
+    {
+      "name": "R2 manifests",
+      "passed": true,
+      "detail": "1 manifests"
+    },
+    {
+      "name": "Private dir exists",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "No credentials in source",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Content generated",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Video script exists",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "TL;DR exists",
+      "passed": true,
+      "detail": ""
+    }
+  ],
+  "complete": true,
+  "passed": 13,
+  "total": 13
+}
