@@ -1,0 +1,16 @@
+{
+  "schema": "memory",
+  "memory_id": "mem_616dd0ea",
+  "bank": "semantic",
+  "category": "skill",
+  "claim": " learned to generate football videos",
+  "confidence": 0.85,
+  "evidence_count": 0,
+  "evidence_refs": [],
+  "contradicts": [],
+  "source_session_id": "",
+  "scope": "gamewinner",
+  "created_at": "2026-09-05T23:21:43.949141",
+  "last_validated": "2026-09-05T23:21:43.949147",
+  "status": "candidate"
+}
