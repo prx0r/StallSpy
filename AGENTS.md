@@ -33,16 +33,24 @@ The repo contains:
 
 ### Credentials
 
-All credentials stored in `.env` (never committed). Vault server not yet running.
+**All API keys and credentials live in `.env` (never committed).**
+When agent-vault is running, prefer vault for new credentials.
+Reference this section before using any external service.
 
-| Key | Where |
-|-----|-------|
-| Etsy API | .env |
-| R2 (general) | .env |
-| R2 (stallshark) | .env |
-| HydraDB token | .env |
-| OpenCode API | .env |
-| Hydra API | Vault (oracle) |
+| Key | Where | Status |
+|-----|-------|--------|
+| Etsy API | .env | Live |
+| R2 (general) | .env | Live |
+| R2 (stallshark) | .env | Live |
+| HydraDB token | .env | Live |
+| OpenCode API | .env | Live |
+| Cloudflare API Token | .env | Live |
+| Cloudflare Account ID | .env | Live |
+| Prodigi API Key | .env | Live |
+| Inworld API Key | — | Not yet |
+| Anthropic API Key | — | Not yet |
+
+**Never hardcode API keys in source files. Always read from `.env` or vault.**
 
 ### HydraDB
 

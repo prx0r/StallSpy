@@ -1,0 +1,185 @@
+{
+  "01_body_head_thorax": {
+    "file": "assets/layers/01_body_head_thorax.webp",
+    "source_components": [
+      2
+    ],
+    "source_bbox": [
+      27,
+      20,
+      376,
+      393
+    ],
+    "width": 349,
+    "height": 373
+  },
+  "02_abdomen_tail": {
+    "file": "assets/layers/02_abdomen_tail.webp",
+    "source_components": [
+      4
+    ],
+    "source_bbox": [
+      373,
+      70,
+      681,
+      367
+    ],
+    "width": 308,
+    "height": 297
+  },
+  "03_eyes_neutral": {
+    "file": "assets/layers/03_eyes_neutral.webp",
+    "source_components": [
+      38,
+      37
+    ],
+    "source_bbox": [
+      40,
+      761,
+      287,
+      886
+    ],
+    "width": 247,
+    "height": 125
+  },
+  "04_mouth_closed": {
+    "file": "assets/layers/04_mouth_closed.webp",
+    "source_components": [
+      54
+    ],
+    "source_bbox": [
+      96,
+      977,
+      203,
+      1013
+    ],
+    "width": 107,
+    "height": 36
+  },
+  "05_wing_left_front": {
+    "file": "assets/layers/05_wing_left_front.webp",
+    "source_components": [
+      18
+    ],
+    "source_bbox": [
+      11,
+      418,
+      293,
+      687
+    ],
+    "width": 282,
+    "height": 269
+  },
+  "06_wing_left_back": {
+    "file": "assets/layers/06_wing_left_back.webp",
+    "source_components": [
+      22
+    ],
+    "source_bbox": [
+      221,
+      507,
+      428,
+      676
+    ],
+    "width": 207,
+    "height": 169
+  },
+  "07_wing_right_front": {
+    "file": "assets/layers/07_wing_right_front.webp",
+    "source_components": [
+      19
+    ],
+    "source_bbox": [
+      457,
+      424,
+      723,
+      696
+    ],
+    "width": 266,
+    "height": 272
+  },
+  "08_wing_right_back": {
+    "file": "assets/layers/08_wing_right_back.webp",
+    "source_components": [
+      21
+    ],
+    "source_bbox": [
+      684,
+      503,
+      904,
+      693
+    ],
+    "width": 220,
+    "height": 190
+  },
+  "09_antenna_left": {
+    "file": "assets/layers/09_antenna_left.webp",
+    "source_components": [
+      1
+    ],
+    "source_bbox": [
+      1114,
+      11,
+      1275,
+      320
+    ],
+    "width": 161,
+    "height": 309
+  },
+  "10_antenna_right": {
+    "file": "assets/layers/10_antenna_right.webp",
+    "source_components": [
+      3
+    ],
+    "source_bbox": [
+      1256,
+      45,
+      1424,
+      325
+    ],
+    "width": 168,
+    "height": 280
+  },
+  "11_arm_left": {
+    "file": "assets/layers/11_arm_left.webp",
+    "source_components": [
+      5
+    ],
+    "source_bbox": [
+      718,
+      106,
+      845,
+      340
+    ],
+    "width": 127,
+    "height": 234
+  },
+  "12_arm_right": {
+    "file": "assets/layers/12_arm_right.webp",
+    "source_components": [
+      6
+    ],
+    "source_bbox": [
+      879,
+      106,
+      1002,
+      340
+    ],
+    "width": 123,
+    "height": 234
+  },
+  "13_cape_trailing": {
+    "file": "assets/layers/13_cape_trailing.webp",
+    "source_components": [
+      17
+    ],
+    "source_bbox": [
+      1036,
+      394,
+      1436,
+      725
+    ],
+    "width": 400,
+    "height": 331
+  }
+}

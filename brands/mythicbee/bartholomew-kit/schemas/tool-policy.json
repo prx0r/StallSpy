@@ -1,0 +1,16 @@
+{
+  "version": "1.0",
+  "rules": {
+    "update_gift_brief": { "class": "state_write", "confirmation": "none", "server": true },
+    "get_gift_brief": { "class": "state_read", "confirmation": "none", "server": true },
+    "show_products": { "class": "client_ui", "confirmation": "none", "server": false },
+    "show_example": { "class": "client_ui", "confirmation": "none", "server": false },
+    "fly_to": { "class": "client_visual", "confirmation": "none", "server": false },
+    "point_at": { "class": "client_visual", "confirmation": "none", "server": false },
+    "set_expression": { "class": "client_visual", "confirmation": "none", "server": false },
+    "request_upload": { "class": "client_ui", "confirmation": "none", "server": false },
+    "create_concept": { "class": "compute", "confirmation": "none", "server": true },
+    "create_preview": { "class": "paid_compute", "confirmation": "required_in_ui", "server": true },
+    "add_to_cart": { "class": "commerce_prepare", "confirmation": "required_in_ui", "server": true }
+  }
+}

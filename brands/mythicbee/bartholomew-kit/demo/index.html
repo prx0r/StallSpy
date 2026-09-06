@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bartholomew Motion Demo</title>
+  <script type="module" src="/main.ts"></script>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">MYTHICBEE CHARACTER LAB</p>
+        <h1>Make an ordinary moment mythic.</h1>
+        <p class="lede">This demo wires the canonical Bartholomew artwork into Motion.js. Use the controls to simulate voice-agent states and tool calls.</p>
+        <div class="actions">
+          <button id="occasion-button">Choose an occasion</button>
+          <button id="upload-button" class="secondary">Upload photos</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="products" aria-label="Example products">
+      <article id="football-film" class="card">
+        <span>01</span><h2>Legend Film</h2><p>Turn memories and photographs into a miniature cinematic tribute.</p>
+      </article>
+      <article id="memory-book" class="card">
+        <span>02</span><h2>Mythic Keepsake</h2><p>A premium physical keepsake built from stories, photographs and details.</p>
+      </article>
+      <article id="comedy-film" class="card">
+        <span>03</span><h2>Hero Comedy</h2><p>Make the recipient the star of something deliberately overproduced.</p>
+      </article>
+    </section>
+
+    <section class="lab">
+      <div class="controls">
+        <h2>Controller</h2>
+        <div class="button-grid">
+          <button data-state="idle">Idle</button>
+          <button data-state="listening">Listen</button>
+          <button data-state="thinking">Think</button>
+          <button data-state="speaking">Speak</button>
+          <button id="fly-demo">Fly to product</button>
+          <button id="celebrate-demo">Celebrate</button>
+          <button id="home-demo">Go home</button>
+        </div>
+      </div>
+      <div class="brief-panel">
+        <h2>GiftBrief</h2>
+        <pre id="brief-json"></pre>
+      </div>
+    </section>
+  </main>
+
+  <aside id="bartholomew" class="bartholomew" aria-label="Bartholomew III, MythicBee guide">
+    <img id="bartholomew-sprite" alt="Bartholomew III, a golden bee hero with a red cape" draggable="false" />
+    <button id="bee-talk" class="speech" aria-label="Open Bartholomew conversation">Talk to me</button>
+  </aside>
+
+  <dialog id="chat-dialog">
+    <form method="dialog"><button class="close" aria-label="Close">×</button></form>
+    <p class="speaker">BARTHOLOMEW III · KEEPER OF MYTHICBEE</p>
+    <p>Greetings. I'm here to make someone in your life considerably more legendary. What's the occasion?</p>
+    <div class="mock-input"><span>🎙</span><span>Voice connection goes here</span></div>
+  </dialog>
+</body>
+</html>

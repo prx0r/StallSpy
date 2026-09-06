@@ -331,238 +331,51 @@
     </div>
   </footer>
 
-  <!-- ============================================
-       CREATION PANEL
-       ============================================ -->
-  <div class="creation-panel" role="dialog" aria-label="Create a gift">
-    <div class="creation-panel__inner">
-      <div class="creation-panel__handle" aria-hidden="true"></div>
-
-      <!-- Step 1: Recipient -->
-      <div class="creation-panel__step creation-panel__step--active" data-step="recipient">
-        <h2 class="creation-panel__title">Who is it for?</h2>
-        
-        <div class="input-group">
-          <label class="input-label" for="recipient-name">Their name</label>
-          <input type="text" id="recipient-name" class="input" placeholder="Sophie" autocomplete="off">
-        </div>
-
-        <div class="input-group" style="margin-top: var(--space-lg);">
-          <label class="input-label" for="recipient-relationship">They're my</label>
-          <select id="recipient-relationship" class="input">
-            <option value="">Choose...</option>
-            <option value="mum">Mum</option>
-            <option value="dad">Dad</option>
-            <option value="partner">Partner</option>
-            <option value="friend">Friend</option>
-            <option value="child">Child</option>
-            <option value="grandparent">Grandparent</option>
-            <option value="sibling">Sibling</option>
-            <option value="pet">Pet</option>
-            <option value="other">Someone else</option>
-          </select>
-        </div>
-
-        <button class="btn btn--primary" data-action="next" style="margin-top: var(--space-xl);">
-          Continue
-        </button>
-      </div>
-
-      <!-- Step 2: Occasion -->
-      <div class="creation-panel__step" data-step="occasion">
-        <h2 class="creation-panel__title">What's happening?</h2>
-        
-        <div class="chip-group">
-          <button class="chip" data-occasion="birthday">Birthday</button>
-          <button class="chip" data-occasion="christmas">Christmas</button>
-          <button class="chip" data-occasion="anniversary">Anniversary</button>
-          <button class="chip" data-occasion="new-home">New home</button>
-          <button class="chip" data-occasion="just-because">Just because</button>
-          <button class="chip" data-occasion="something-else">Something else</button>
-        </div>
-      </div>
-
-      <!-- Step 3: Description -->
-      <div class="creation-panel__step" data-step="description">
-        <h2 class="creation-panel__title">
-          Tell us what makes <span class="dynamic-name">them</span>, <span class="dynamic-name">them</span>.
-        </h2>
-        
-        <div class="input-group">
-          <textarea id="description" class="input" placeholder="She has a greyhound called their favourite things and has extremely dry humour..."></textarea>
-        </div>
-
-        <div class="memory-actions">
-          <button class="btn btn--ghost" data-action="add-memory">+ Add a memory</button>
-          <button class="btn btn--ghost" data-action="add-joke">+ Add an inside joke</button>
-        </div>
-
-        <button class="btn btn--primary" data-action="next" style="margin-top: var(--space-xl);">
-          Continue
-        </button>
-      </div>
-
-      <!-- Step 4: Photo -->
-      <div class="creation-panel__step" data-step="photo">
-        <h2 class="creation-panel__title">Add a photo, if you have one</h2>
-        
-        <div class="upload-area">
-          <input type="file" id="photo-upload" accept="image/*" hidden>
-          <div class="upload-area__content">
-            <span class="upload-area__icon">+</span>
-            <span class="upload-area__text">Drop one here or browse</span>
-            <span class="upload-area__hint">Optional, but lovely</span>
-          </div>
-          <div class="upload-preview"></div>
-        </div>
-
-        <div class="creation-panel__actions">
-          <button class="btn btn--ghost" data-action="prev">Back</button>
-          <button class="btn btn--primary" data-action="next">Continue</button>
-        </div>
-      </div>
-
-      <!-- Step 5: Tone -->
-      <div class="creation-panel__step" data-step="tone">
-        <h2 class="creation-panel__title">What should it feel like?</h2>
-        
-        <div class="chip-group">
-          <button class="chip" data-tone="funny">Funny</button>
-          <button class="chip" data-tone="beautiful">Beautiful</button>
-          <button class="chip" data-tone="understated">Understated</button>
-          <button class="chip" data-tone="sentimental">Sentimental</button>
-          <button class="chip" data-tone="ridiculous">A little ridiculous</button>
-          <button class="chip" data-tone="surprise">Surprise me</button>
-        </div>
-
-        <div class="creation-panel__actions">
-          <button class="btn btn--ghost" data-action="prev">Back</button>
-          <button class="btn btn--primary" data-action="submit">
-            Make something for <span class="dynamic-name">them</span> →
-          </button>
-        </div>
-      </div>
-
-      <!-- Step 6: Generating -->
-      <div class="creation-panel__step" data-step="generating">
-        <div class="loading">
-          <div class="star-container star-container--small" aria-hidden="true">
-            <img src="assets/mythicbee-logo.svg" alt="" width="48" height="48">
-          </div>
-          <p class="loading__text">Thinking about them...</p>
-        </div>
-      </div>
-
-      <!-- Step 7: Results -->
-      <div class="creation-panel__step" data-step="results">
-        <h2 class="creation-panel__title results-header">I made three things for them.</h2>
-
-        <div class="grid grid--3" style="margin-top: var(--space-xl);">
-          <article class="product-card">
-            <div class="product-card__mockup">
-              <div class="mockup-placeholder">
-                <span class="mockup-placeholder__title">The Times</span>
-              </div>
-            </div>
-            <div class="product-card__info">
-              <h3 class="product-card__title">The Times</h3>
-              <p class="product-card__subtitle">A very serious newspaper about a deeply unserious subject.</p>
-              <div class="product-card__meta">
-                <span class="product-card__price">From £24</span>
-                <span class="product-card__action">Personalise this</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="product-card">
-            <div class="product-card__mockup">
-              <div class="mockup-placeholder">
-                <span class="mockup-placeholder__title">The Biography</span>
-              </div>
-            </div>
-            <div class="product-card__info">
-              <h3 class="product-card__title">The Biography</h3>
-              <p class="product-card__subtitle">An unauthorized account of a life well-lived.</p>
-              <div class="product-card__meta">
-                <span class="product-card__price">From £29</span>
-                <span class="product-card__action">Personalise this</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="product-card">
-            <div class="product-card__mockup">
-              <div class="mockup-placeholder">
-                <span class="mockup-placeholder__title">The Story</span>
-              </div>
-            </div>
-            <div class="product-card__info">
-              <h3 class="product-card__title">The Story</h3>
-              <p class="product-card__subtitle">A picture book of memories, moments, and meaning.</p>
-              <div class="product-card__meta">
-                <span class="product-card__price">From £34</span>
-                <span class="product-card__action">Personalise this</span>
-              </div>
-            </div>
-          </article>
-        </div>
-
-        <div class="creation-panel__actions" style="margin-top: var(--space-xl);">
-          <button class="btn btn--ghost" data-action="prev">← Back to ideas</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- Toast -->
   <div class="toast" aria-live="polite"></div>
 
   <!-- Scripts -->
+  <script src="js/desksprite.js"></script>
   <script src="js/state.js"></script>
   <script src="js/starfield.js"></script>
-  <script src="js/creation-flow.js"></script>
   <script src="js/app.js"></script>
-  <!-- MythicBee Character -->
-  <div id="mythic-bee" class="bee-character" aria-label="MythicBee assistant" role="button" tabindex="0">
-    <img src="assets/bartholomew.png" alt="Bartholomew the MythicBee" width="120" height="120" style="cursor: pointer; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));">
-  </div>
 
-  <!-- Character Styles -->
-  <style>
-    .bee-character {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 1000;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
-    }
-    .bee-character:hover {
-      transform: scale(1.1);
-    }
-    .bee--idle { animation: bee-hover 2s ease-in-out infinite; }
-    .bee--flying { transition: all 0.8s ease-in-out; }
-    .bee--celebrating { animation: bee-celebrate 0.6s; }
-    @keyframes bee-hover {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-    }
-    @keyframes bee-celebrate {
-      0% { transform: scale(1); }
-      25% { transform: scale(1.3) rotate(-10deg); }
-      50% { transform: scale(0.9) rotate(10deg); }
-      75% { transform: scale(1.1) rotate(-5deg); }
-      100% { transform: scale(1) rotate(0); }
-    }
-  </style>
-
-  <!-- Character Controller -->
+  <!-- Character + Creation Flow -->
   <script type="module">
     import MythicBeeController from "./js/bee-controller.js";
+    import ChatPanel from "./js/chat-panel.js";
+    import CreationFlow from "./js/creation-flow.js";
+
     document.addEventListener("DOMContentLoaded", () => {
+      // Init Bartholomew
       window.mythicBee = new MythicBeeController();
       window.mythicBee.init();
+
+      // Init creation flow
+      window.creationFlow = new CreationFlow();
+      window.creationFlow.init();
+
+      // Wire "Make their gift" buttons to creation flow
+      document.querySelectorAll('[data-action="open-creation"]').forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          window.creationFlow.open();
+        });
+      });
+
+      // Bartholomew greets on scroll to hero
+      const hero = document.getElementById('hero');
+      if (hero) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting && window.mythicBee) {
+              window.mythicBee.setState("idle");
+              observer.disconnect();
+            }
+          });
+        }, { threshold: 0.5 });
+        observer.observe(hero);
+      }
     });
   </script>
 </body>

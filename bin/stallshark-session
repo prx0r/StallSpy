@@ -1,0 +1,142 @@
+#!/bin/bash
+# StallShark Session Capture
+# Run at start and end of each OpenCode session
+# Creates timestamped session records
+
+SESSION_DIR="/root/stallshark-sessions"
+mkdir -p "$SESSION_DIR"
+
+ACTION="${1:-start}"
+
+if [ "$ACTION" = "start" ]; then
+    SESSION_ID="session-$(date +%Y%m%d-%H%M%S)"
+    SESSION_FILE="$SESSION_DIR/$SESSION_ID.json"
+    
+    GIT_HEAD=$(cd /root/StallShark && git rev-parse HEAD 2>/dev/null || echo "none")
+    GIT_STATUS=$(cd /root/StallShark && git status --short 2>/dev/null || echo "unknown")
+    TIMESTAMP=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+    
+    cat > "$SESSION_FILE" << EOF
+{
+  "session_id": "$SESSION_ID",
+  "started_at": "$TIMESTAMP",
+  "git_head_start": "$GIT_HEAD",
+  "git_status_start": "$GIT_STATUS",
+  "prompts": [],
+  "decisions": [],
+  "lessons": [],
+  "revenue": 0,
+  "spend": 0,
+  "status": "in_progress"
+}
+EOF
+    
+    echo "Session started: $SESSION_ID"
+    echo "File: $SESSION_FILE"
+    echo "Git HEAD: $GIT_HEAD"
+    
+elif [ "$ACTION" = "end" ]; then
+    # Find the latest session file
+    LATEST=$(ls -t "$SESSION_DIR"/session-*.json 2>/dev/null | head -1)
+    
+    if [ -z "$LATEST" ]; then
+        echo "No active session found. Run: stallshark session start"
+        exit 1
+    fi
+    
+    GIT_HEAD=$(cd /root/StallShark && git rev-parse HEAD 2>/dev/null || echo "none")
+    GIT_STATUS=$(cd /root/StallShark && git status --short 2>/dev/null || echo "unknown")
+    GIT_DIFF=$(cd /root/StallShark && git diff --stat 2>/dev/null || echo "unknown")
+    TIMESTAMP=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+    
+    # Update the session file
+    python3 - << PYEOF
+import json
+from datetime import datetime
+
+with open("$LATEST", "r") as f:
+    session = json.load(f)
+
+session["ended_at"] = "$TIMESTAMP"
+session["git_head_end"] = "$GIT_HEAD"
+session["git_status_end"] = "$GIT_STATUS"
+session["git_diff"] = "$GIT_DIFF"
+session["status"] = "completed"
+
+with open("$LATEST", "w") as f:
+    json.dump(session, f, indent=2)
+
+print(f"Session ended: {session['session_id']}")
+print(f"Duration: {session['started_at']} to {session['ended_at']}")
+PYEOF
+    
+elif [ "$ACTION" = "log" ]; then
+    # Log a prompt/decision/lesson
+    FIELD="$2"
+    CONTENT="$3"
+    
+    if [ -z "$FIELD" ] || [ -z "$CONTENT" ]; then
+        echo "Usage: stallshark session log [prompt|decision|lesson] 'content'"
+        exit 1
+    fi
+    
+    LATEST=$(ls -t "$SESSION_DIR"/session-*.json 2>/dev/null | head -1)
+    
+    if [ -z "$LATEST" ]; then
+        echo "No active session found."
+        exit 1
+    fi
+    
+    python3 - << PYEOF
+import json
+
+with open("$LATEST", "r") as f:
+    session = json.load(f)
+
+if "$FIELD" == "prompt":
+    session["prompts"].append("$CONTENT")
+elif "$FIELD" == "decision":
+    session["decisions"].append("$CONTENT")
+elif "$FIELD" == "lesson":
+    session["lessons"].append("$CONTENT")
+
+with open("$LATEST", "w") as f:
+    json.dump(session, f, indent=2)
+
+print(f"Logged { '$FIELD' }: $CONTENT")
+PYEOF
+
+elif [ "$ACTION" = "status" ]; then
+    echo "=== StallShark Sessions ==="
+    echo "Session dir: $SESSION_DIR"
+    echo ""
+    
+    LATEST=$(ls -t "$SESSION_DIR"/session-*.json 2>/dev/null | head -1)
+    if [ -n "$LATEST" ]; then
+        echo "Latest session:"
+        python3 -c "import json; s=json.load(open('$LATEST')); print(f'  ID: {s[\"session_id\"]}'); print(f'  Status: {s[\"status\"]}'); print(f'  Started: {s[\"started_at\"]}')"
+    else
+        echo "No sessions found."
+    fi
+    
+    echo ""
+    echo "Total sessions: $(ls "$SESSION_DIR"/session-*.json 2>/dev/null | wc -l)"
+
+else
+    echo "StallShark Session Capture"
+    echo ""
+    echo "Usage: stallshark session [command]"
+    echo ""
+    echo "Commands:"
+    echo "  start    Start a new session"
+    echo "  end      End current session"
+    echo "  log      Log a prompt/decision/lesson"
+    echo "  status   Show session status"
+    echo ""
+    echo "Examples:"
+    echo "  stallshark session start"
+    echo "  stallshark session log prompt 'What if we tried GameWinners?'"
+    echo "  stallshark session log decision 'Launch GameWinners first'"
+    echo "  stallshark session log lesson 'Digital first, physical later'"
+    echo "  stallshark session end"
+fi
