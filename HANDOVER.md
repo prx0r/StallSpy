@@ -1,102 +1,138 @@
-# HANDOVER — 2026-09-06 (final)
-
-## What Happened This Session
-
-### Fresh-Agent Orientation Test (01:49)
-- Ran full verification of HANDOVER.md claims
-- Score: 11/19 PASS, 2 FAIL, 4 INFLATED, 2 UNVERIFIED
-- Created FRESH_AGENT_TEST.md and FRESH_AGENT_PROCESS_REVIEW.md
-
-### Bartholomew Kit Import (01:55)
-- Downloaded mythicbee-bartholomew-kit.zip from R2 bucket (11.99 MB)
-- Extracted to brands/mythicbee/bartholomew-kit/
-- Kit contains: 12 pose sprites, 2 animated fallbacks, 13 rig layers, 12 expressions, BartholomewController.ts, InworldVoiceClient.ts, inworld-proxy.ts, GiftBrief schema + tools + policy, system prompt, Vite demo
-- Rewrote bee-controller.js to use pose sprites + Motion.js
-- Deployed to Cloudflare Pages
-
-### barth.md Strategic Assessment (01:57)
-- Saved comprehensive strategic assessment from Tom
-- Key insight: "one character + one customer-memory schema + one experience manifest + six render engines + many skins"
-- Frozen architecture: Bartholomew → GiftBrief → ExperienceManifest → render engines → OrderBundle
-
-### 2D Prototype Ship (01:58)
-- Created chat-panel.js — speech bubble conversation UI
-- Added chat panel CSS to components.css
-- Wired Bartholomew controller to creation flow (CTA button opens chat, scroll triggers idle, show-results event)
-- Created ExperienceManifest schema (bridge between GiftBrief and render engines)
-- Created tool-policy.json (AUTOMATIC vs CONFIRMATION_REQUIRED)
-- Deployed to Cloudflare Pages (af867193.mythicbee.pages.dev)
-
-## What's Working (verified)
-
-| Component | Evidence |
-|-----------|----------|
-| MythicBee site | Live at mythicbee.pages.dev (HTTP 200) |
-| Bartholomew character | 12 pose sprites, Motion.js animations |
-| Chat panel | Speech bubble UI, intent detection, GiftBrief filling |
-| Creation flow | 7-step wizard, wired to Bartholomew |
-| ExperienceManifest | Schema created, bridges GiftBrief → render engines |
-| Tool policy | AUTOMATIC vs CONFIRMATION_REQUIRED defined |
-| verify.py | 13/13 checks pass |
-| .env | Exists with credentials |
-
-## What's NOT Running
-
-| Component | Reality |
-|-----------|---------|
-| HydraDB | NOT RUNNING |
-| Etsy products | ZERO LISTED |
-| LLM predictions | TEST MODEL FALLBACK |
-| Inworld voice | SCAFFOLD ONLY |
-| GameWinners pipeline | NOT BUILT |
-
-## Next Agent Priorities
-
-1. **Build GameWinners end-to-end** — conversation → GiftBrief → upload → generated card → recipient QR → reveal
-2. **Set up Inworld proxy** — voice integration for Bartholomew
-3. **Commit all changes** — dirty working tree needs clean
-4. **Create first Etsy product** — revenue = reality
-5. **Fix HydraDB** or accept it's not needed yet
-
-## Files Created This Session
-
-```
-/root/StallShark/FRESH_AGENT_TEST.md
-/root/StallShark/FRESH_AGENT_PROCESS_REVIEW.md
-/root/StallShark/barth.md
-/root/StallShark/brands/mythicbee/bartholomew-kit/          (full kit from R2)
-/root/StallShark/brands/mythicbee/site/js/chat-panel.js
-/root/StallShark/brands/mythicbee/site/js/bee-controller.js  (rewritten)
-/root/StallShark/brands/mythicbee/site/assets/poses/         (12 sprites)
-/root/StallShark/brands/mythicbee/site/assets/animations/    (2 animated)
-/root/StallShark/brands/mythicbee/site/assets/layers/        (13 rig layers)
-/root/StallShark/brands/mythicbee/site/assets/expressions/   (12 expressions)
-/root/StallShark/brands/mythicbee/site/schemas/experience-manifest.schema.json
-/root/StallShark/brands/mythicbee/site/schemas/tool-policy.json
-/root/StallShark/brands/mythicbee/site/schemas/gift-brief.schema.json
-/root/StallShark/brands/mythicbee/site/schemas/tools.inworld.json
-/root/StallShark/brands/mythicbee/site/docs/                 (system prompt, contracts)
-```
-
-## Architecture (frozen per barth.md)
-
-```
-Bartholomew → GiftBrief → ExperienceManifest → render engines → OrderBundle
-     │              │              │                    │              │
-  2D Motion      structured     SUMMON/CHAR/      image/video/    buyer checkout
-  + Inworld      memory         NEWS/DOC/         audio/3D/print  recipient QR reveal
-  + Rive later                  TRAILER/STORY
-```
-
-## Credentials
-
-All in `.env` (never committed).
-- Etsy API: working (code exists)
-- R2: working (downloaded bartholomew kit)
-- OpenCode: test model fallback
-- HydraDB: NOT RUNNING
-- Inworld: NEEDS API KEY
+# Handover — 2026-09-06
+**Duration:** Full session
+**Status:** 3D character infrastructure built, site working, token secured
 
 ---
 
-*Updated by fresh agent, 2026-09-06 01:58*
+## What Was Built Today
+
+### 3D Bartholomew
+- `bartholomew-ai.glb` — AI-generated 3D model (4.2MB) from three.ws Forge
+- `bartholomew-v2.glb` — Second generation
+- `barth-rig.json` — Part mapping manifest
+- `definitive.html` — Working Three.js runtime with animations
+- `puppet.html` — Articulated puppet with diagnostics
+- `rig-mapper.html` — Web tool to map GLB parts
+- `THE-REAL-PATH.md` — Canonical build spec (no Blender)
+- `CANONIMAL-BUILD.md` — Production brief for artist
+
+### Infrastructure
+- Worker proxy for Cloudflare AI (token server-side)
+- Hive Activity Engine (186 status entries)
+- Gift Intelligence (adaptive question bank)
+- Product Language (canonical terms)
+- Supplier docs (Prodigi, Lulu, MPC, etc.)
+- GiftGraph architecture
+- Honey currency system
+
+### Site
+- 3D bee with procedural animations
+- Conversation-first interface
+- Gift Brief extraction
+- Concept generation
+- Cloudflare LLM + Flux
+
+---
+
+## What Works
+
+| Component | Status |
+|-----------|--------|
+| 3D GLB | ✅ |
+| Three.js rendering | ✅ |
+| Procedural animations | ✅ |
+| Worker proxy (token secure) | ✅ |
+| Cloudflare LLM | ✅ |
+| Hive Activity | ✅ |
+| Gift Intelligence | ✅ |
+| Product Language | ✅ |
+| Supplier docs | ✅ |
+| GiftGraph | ✅ |
+
+---
+
+## What's Broken / Open
+
+| Issue | Status | Fix Needed |
+|-------|--------|------------|
+| Site still shows 2D poses | UNRESOLVED | Integrate 3D runtime into index.html |
+| Duplicate response bug | UNRESOLVED | Check async timing |
+| Three.js runtime not in main site | UNRESOLVED | Wire definitive.html |
+| barth-rig.json not connected | UNRESOLVED | Load in runtime |
+| Inworld voice | NOT STARTED | Get API key, wire WebRTC |
+| edge-tts browser integration | PARTIAL | Use Web Speech API fallback |
+| Token in worker only | FIXED | Token in worker, not client |
+
+---
+
+## Disk Usage
+
+| Path | Size |
+|------|------|
+| Total repo | 547M |
+| MythicBee | 138M |
+| 3D assets | 69M |
+| .git | 43M |
+
+---
+
+## Key Files
+
+### Strategy
+- `brands/mythicbee/products.md` — 20 product families
+- `brands/mythicbee/PRODUCT-LANGUAGE.md` — Canonical language
+- `brands/mythicbee/GIFT-INTELLIGENCE-ARCHITECTURE.md` — Adaptive recommender
+- `brands/mythicbee/giftgraph.md` — Data moat
+- `brands/mythicbee/GAMEWINNERZ-FULFILMENT-FULL.md` — Full fulfilment spec
+- `brands/mythicbee/honey/thesis.md` — Currency system
+- `brands/mythicbee/bee-session/thesis.md` — BeeSession system
+- `brands/mythicbee/bartholomew-3d/THE-REAL-PATH.md` — 3D build spec
+
+### 3D
+- `brands/mythicbee/bartholomew-3d/bartholomew-ai.glb` — AI model
+- `brands/mythicbee/bartholomew-3d/barth-rig.json` — Part mapping
+- `brands/mythicbee/bartholomew-3d/examples/puppet.html` — Articulated runtime
+- `brands/mythicbee/bartholomew-3d/examples/rig-mapper.html` — Web tool
+
+### Site
+- `brands/mythicbee/site/index.html` — Main site (2D, needs 3D integration)
+- `brands/mythicbee/site/js/cloudflare-ai.js` — LLM + Flux
+- `brands/mythicbee/site/js/gift-intelligence.js` — Adaptive questions
+- `brands/mythicbee/site/js/prodigi-provider.js` — Fulfilment
+- `brands/mythicbee/site/js/order-pipeline.js` — Order flow
+
+---
+
+## What's Next
+
+1. Integrate 3D runtime into main site (replace 2D poses)
+2. Fix duplicate response bug
+3. Wire barth-rig.json to runtime
+4. Test on mobile + desktop
+5. Get Inworld API key for voice
+6. Create first Etsy listing
+
+---
+
+## Credentials
+
+| Service | Location |
+|---------|----------|
+| Cloudflare token | Worker proxy (server-side) |
+| Prodigi API | .env |
+| Etsy API | .env |
+| OpenCode API | .env |
+
+**Never commit tokens to git.**
+
+---
+
+## Git History
+
+```
+8e6ad34 Fix: Use worker proxy for LLM (token not in client code)
+13f2aa8 3D Bartholomew: Rig mapper + puppet runtime + rig manifest
+9d2ae6a 3D Bartholomew: Fixed runtime + canonical path + rig mapper
+04497de 3D Bartholomew: Definitive runtime + canonical build
+3dcc5ea 3D Bartholomew: Runtime + generation script + canonical build
+```
