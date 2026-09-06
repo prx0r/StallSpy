@@ -1,0 +1,29 @@
+openapi: 3.1.0
+info:
+  title: Recipient Gift Engine
+  version: 0.1.0
+paths:
+  /api/creative-brief:
+    post:
+      summary: Generate structured gift concepts from recipient context
+      responses:
+        "200":
+          description: Creative concepts
+  /api/render-product:
+    post:
+      summary: Deterministically render an approved concept onto a print template
+      responses:
+        "200":
+          description: Print file, proof and QA report
+  /api/quote:
+    post:
+      summary: Get routed provider cost and ETA
+      responses:
+        "200":
+          description: Ranked fulfilment quotes
+  /api/order:
+    post:
+      summary: Submit an approved paid order to selected provider
+      responses:
+        "200":
+          description: Provider order ID

@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Star at Night — Make Something for Someone</title>
+  <meta name="description" content="Tell us about someone you love. We'll turn it into something worth keeping.">
+  
+  <!-- Preload fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/components.css">
+  <link rel="stylesheet" href="styles/motion.css">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
+</head>
+<body>
+  <!-- Texture overlay -->
+  <div class="texture" aria-hidden="true"></div>
+
+  <!-- Starfield background -->
+  <div class="starfield" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav class="nav" role="navigation">
+    <a href="/" class="nav__brand">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+        <path d="M12 2l2.4 7.4h7.6l-6 4.6 2.4 7.4-6.4-4.8-6.4 4.8 2.4-7.4-6-4.6h7.6z"/>
+      </svg>
+      Star at Night
+    </a>
+    <ul class="nav__links">
+      <li><a href="#how-it-works">How it works</a></li>
+      <li><a href="#gifts">Our gifts</a></li>
+      <li><a href="#bag">Bag</a></li>
+    </ul>
+  </nav>
+
+  <!-- ============================================
+       HERO — Atmospheric
+       ============================================ -->
+  <section class="hero" id="hero">
+    <div class="hero__content container container--narrow">
+      <!-- Woven Star -->
+      <div class="star-container star-container--hero" aria-hidden="true">
+        <img src="assets/woven-star.svg" alt="" width="180" height="180">
+      </div>
+
+      <!-- Headline -->
+      <h1 class="hero__title">
+        Make something<br>
+        for <em>someone.</em>
+      </h1>
+
+      <!-- Subheading -->
+      <p class="hero__subtitle">
+        Tell us a little about them.<br>
+        We'll turn it into something worth keeping.
+      </p>
+
+      <!-- CTA -->
+      <div class="hero__actions">
+        <button class="btn btn--primary" data-action="open-creation">
+          Make their gift
+        </button>
+        <a href="#examples" class="btn btn--ghost">
+          See what people have made
+        </a>
+      </div>
+
+      <!-- Trust line -->
+      <p class="hero__trust">
+        Made individually · Printed locally · Ready to give
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================
+       EXAMPLES — Made for actual people
+       ============================================ -->
+  <section class="section section--paper" id="examples">
+    <div class="container">
+      <div class="section__header">
+        <p class="section__label">Made for actual people</p>
+      </div>
+
+      <div class="grid grid--3">
+        <!-- Example 1 -->
+        <article class="product-card reveal">
+          <div class="product-card__mockup">
+            <div class="mockup-placeholder">
+              <span class="mockup-placeholder__title">The Sophie Times</span>
+              <span class="mockup-placeholder__subtitle">A newspaper about a greyhound</span>
+            </div>
+          </div>
+          <div class="product-card__info">
+            <h3 class="product-card__title">The Sophie Times</h3>
+            <p class="product-card__subtitle">For Alex, who is obsessed with greyhounds</p>
+            <div class="product-card__meta">
+              <span class="product-card__price">From £24</span>
+              <span class="product-card__made-from">Otis · Prague · medieval paintings</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Example 2 -->
+        <article class="product-card reveal stagger-1">
+          <div class="product-card__mockup">
+            <div class="mockup-placeholder">
+              <span class="mockup-placeholder__title">Dad: The Unauthorized Biography</span>
+              <span class="mockup-placeholder__subtitle">A very serious biography</span>
+            </div>
+          </div>
+          <div class="product-card__info">
+            <h3 class="product-card__title">Dad: The Unauthorized Biography</h3>
+            <p class="product-card__subtitle">For Dad, who still talks about his 1987 Volvo</p>
+            <div class="product-card__meta">
+              <span class="product-card__price">From £29</span>
+              <span class="product-card__made-from">1987 Volvo · Golf handicap · Dad jokes</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Example 3 -->
+        <article class="product-card reveal stagger-2">
+          <div class="product-card__mockup">
+            <div class="mockup-placeholder">
+              <span class="mockup-placeholder__title">Our Lisbon Story</span>
+              <span class="mockup-placeholder__subtitle">A travel memoir</span>
+            </div>
+          </div>
+          <div class="product-card__info">
+            <h3 class="product-card__title">Our Lisbon Story</h3>
+            <p class="product-card__subtitle">For Maya & Jon, who met in Lisbon</p>
+            <div class="product-card__meta">
+              <span class="product-card__price">From £34</span>
+              <span class="product-card__made-from">Lisbon · First date · That restaurant</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       HOW IT WORKS
+       ============================================ -->
+  <section class="section section--paper" id="how-it-works">
+    <div class="container container--narrow">
+      <div class="section__header">
+        <p class="section__label">How it works</p>
+      </div>
+
+      <div class="steps">
+        <div class="step reveal">
+          <span class="step__number">01</span>
+          <div class="step__content">
+            <h3 class="step__title">Tell us about them</h3>
+            <p class="step__description">Their name, what they're like, what makes them laugh.</p>
+          </div>
+        </div>
+
+        <div class="step reveal stagger-1">
+          <span class="step__number">02</span>
+          <div class="step__content">
+            <h3 class="step__title">See what we make</h3>
+            <p class="step__description">Three unique ideas, crafted from your words.</p>
+          </div>
+        </div>
+
+        <div class="step reveal stagger-2">
+          <span class="step__number">03</span>
+          <div class="step__content">
+            <h3 class="step__title">Make it yours</h3>
+            <p class="step__description">Tweak the message, add a photo, choose the feel.</p>
+          </div>
+        </div>
+
+        <div class="step reveal stagger-3">
+          <span class="step__number">04</span>
+          <div class="step__content">
+            <h3 class="step__title">We print and send it</h3>
+            <p class="step__description">Made after you order. Printed close to home. Sent to you or them.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       PRODUCTS — Things worth keeping
+       ============================================ -->
+  <section class="section section--paper" id="gifts">
+    <div class="container">
+      <div class="section__header">
+        <p class="section__label">Things worth keeping</p>
+      </div>
+
+      <div class="product-grid">
+        <div class="product-category reveal">
+          <h3 class="product-category__title">Books</h3>
+          <p class="product-category__description">Newspapers, memoirs, magazines, yearbooks</p>
+        </div>
+
+        <div class="product-category reveal stagger-1">
+          <h3 class="product-category__title">Prints</h3>
+          <p class="product-category__description">Posters, canvases, framed pieces</p>
+        </div>
+
+        <div class="product-category reveal stagger-2">
+          <h3 class="product-category__title">Cards</h3>
+          <p class="product-category__description">With a little something inside</p>
+        </div>
+
+        <div class="product-category reveal stagger-3">
+          <h3 class="product-category__title">Ornaments</h3>
+          <p class="product-category__description">Annual collections, keepsakes</p>
+        </div>
+
+        <div class="product-category reveal stagger-4">
+          <h3 class="product-category__title">Puzzles</h3>
+          <p class="product-category__description">Crosswords, trivia, memory games</p>
+        </div>
+
+        <div class="product-category reveal stagger-5">
+          <h3 class="product-category__title">Little things</h3>
+          <p class="product-category__description">Mugs, notebooks, small joys</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       CRAFTSMANSHIP
+       ============================================ -->
+  <section class="section section--night" id="craft">
+    <div class="container container--narrow">
+      <div class="section__header">
+        <p class="section__label" style="color: rgba(245,240,231,.5);">Craftsmanship</p>
+      </div>
+
+      <div class="craft-grid">
+        <div class="craft-item reveal">
+          <h3 class="craft-item__title">Paper</h3>
+          <p class="craft-item__description">FSC-certified, chosen for weight and texture</p>
+        </div>
+
+        <div class="craft-item reveal stagger-1">
+          <h3 class="craft-item__title">Printing</h3>
+          <p class="craft-item__description">High-definition, rich colour, sharp detail</p>
+        </div>
+
+        <div class="craft-item reveal stagger-2">
+          <h3 class="craft-item__title">Binding</h3>
+          <p class="craft-item__description">Hand-finished, built to last</p>
+        </div>
+
+        <div class="craft-item reveal stagger-3">
+          <h3 class="craft-item__title">Local</h3>
+          <p class="craft-item__description">Printed close to home, wherever home is</p>
+        </div>
+
+        <div class="craft-item reveal stagger-4">
+          <h3 class="craft-item__title">Packaging</h3>
+          <p class="craft-item__description">Ready to give, no wrapping needed</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       SOCIAL PROOF
+       ============================================ -->
+  <section class="section section--paper" id="proof">
+    <div class="container container--narrow">
+      <div class="quote reveal">
+        "I uploaded one picture of my dog and it made his entire Christmas collection."
+        <div class="quote__attribution">— Sarah, for her greyhound Otis</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       REMINDER
+       ============================================ -->
+  <section class="section section--paper" id="reminder">
+    <div class="container container--narrow">
+      <div class="reminder reveal">
+        <h2 class="reminder__title">Never forget their day again.</h2>
+        <p class="reminder__description">
+          Save Sophie's birthday and next year we'll<br>
+          have a few new ideas waiting.
+        </p>
+        <div class="reminder__form">
+          <div class="input-group">
+            <label class="input-label" for="reminder-name">Their name</label>
+            <input type="text" id="reminder-name" class="input" placeholder="Sophie">
+          </div>
+          <div class="input-group">
+            <label class="input-label" for="reminder-date">When's their day?</label>
+            <input type="date" id="reminder-date" class="input">
+          </div>
+          <button class="btn btn--primary">Save reminder</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       FOOTER
+       ============================================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__content">
+        <div class="footer__brand">
+          <span class="footer__logo">✦</span>
+          <span class="footer__name">Star at Night</span>
+        </div>
+        <div class="footer__links">
+          <a href="#">About</a>
+          <a href="#">Help</a>
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================
+       CREATION PANEL
+       ============================================ -->
+  <div class="creation-panel" role="dialog" aria-label="Create a gift">
+    <div class="creation-panel__inner">
+      <div class="creation-panel__handle" aria-hidden="true"></div>
+
+      <!-- Step 1: Recipient -->
+      <div class="creation-panel__step creation-panel__step--active" data-step="recipient">
+        <h2 class="creation-panel__title">Who is it for?</h2>
+        
+        <div class="input-group">
+          <label class="input-label" for="recipient-name">Their name</label>
+          <input type="text" id="recipient-name" class="input" placeholder="Sophie" autocomplete="off">
+        </div>
+
+        <div class="input-group" style="margin-top: var(--space-lg);">
+          <label class="input-label" for="recipient-relationship">They're my</label>
+          <select id="recipient-relationship" class="input">
+            <option value="">Choose...</option>
+            <option value="mum">Mum</option>
+            <option value="dad">Dad</option>
+            <option value="partner">Partner</option>
+            <option value="friend">Friend</option>
+            <option value="child">Child</option>
+            <option value="grandparent">Grandparent</option>
+            <option value="sibling">Sibling</option>
+            <option value="pet">Pet</option>
+            <option value="other">Someone else</option>
+          </select>
+        </div>
+
+        <button class="btn btn--primary" data-action="next" style="margin-top: var(--space-xl);">
+          Continue
+        </button>
+      </div>
+
+      <!-- Step 2: Occasion -->
+      <div class="creation-panel__step" data-step="occasion">
+        <h2 class="creation-panel__title">What's happening?</h2>
+        
+        <div class="chip-group">
+          <button class="chip" data-occasion="birthday">Birthday</button>
+          <button class="chip" data-occasion="christmas">Christmas</button>
+          <button class="chip" data-occasion="anniversary">Anniversary</button>
+          <button class="chip" data-occasion="new-home">New home</button>
+          <button class="chip" data-occasion="just-because">Just because</button>
+          <button class="chip" data-occasion="something-else">Something else</button>
+        </div>
+      </div>
+
+      <!-- Step 3: Description -->
+      <div class="creation-panel__step" data-step="description">
+        <h2 class="creation-panel__title">
+          Tell us what makes <span class="dynamic-name">them</span>, <span class="dynamic-name">them</span>.
+        </h2>
+        
+        <div class="input-group">
+          <textarea id="description" class="input" placeholder="She has a greyhound called Otis, loves medieval paintings and has extremely dry humour..."></textarea>
+        </div>
+
+        <div class="memory-actions">
+          <button class="btn btn--ghost" data-action="add-memory">+ Add a memory</button>
+          <button class="btn btn--ghost" data-action="add-joke">+ Add an inside joke</button>
+        </div>
+
+        <button class="btn btn--primary" data-action="next" style="margin-top: var(--space-xl);">
+          Continue
+        </button>
+      </div>
+
+      <!-- Step 4: Photo -->
+      <div class="creation-panel__step" data-step="photo">
+        <h2 class="creation-panel__title">Add a photo, if you have one</h2>
+        
+        <div class="upload-area">
+          <input type="file" id="photo-upload" accept="image/*" hidden>
+          <div class="upload-area__content">
+            <span class="upload-area__icon">+</span>
+            <span class="upload-area__text">Drop one here or browse</span>
+            <span class="upload-area__hint">Optional, but lovely</span>
+          </div>
+          <div class="upload-preview"></div>
+        </div>
+
+        <div class="creation-panel__actions">
+          <button class="btn btn--ghost" data-action="prev">Back</button>
+          <button class="btn btn--primary" data-action="next">Continue</button>
+        </div>
+      </div>
+
+      <!-- Step 5: Tone -->
+      <div class="creation-panel__step" data-step="tone">
+        <h2 class="creation-panel__title">What should it feel like?</h2>
+        
+        <div class="chip-group">
+          <button class="chip" data-tone="funny">Funny</button>
+          <button class="chip" data-tone="beautiful">Beautiful</button>
+          <button class="chip" data-tone="understated">Understated</button>
+          <button class="chip" data-tone="sentimental">Sentimental</button>
+          <button class="chip" data-tone="ridiculous">A little ridiculous</button>
+          <button class="chip" data-tone="surprise">Surprise me</button>
+        </div>
+
+        <div class="creation-panel__actions">
+          <button class="btn btn--ghost" data-action="prev">Back</button>
+          <button class="btn btn--primary" data-action="submit">
+            Make something for <span class="dynamic-name">them</span> →
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 6: Generating -->
+      <div class="creation-panel__step" data-step="generating">
+        <div class="loading">
+          <div class="star-container star-container--small" aria-hidden="true">
+            <img src="assets/woven-star.svg" alt="" width="48" height="48">
+          </div>
+          <p class="loading__text">Thinking about them...</p>
+        </div>
+      </div>
+
+      <!-- Step 7: Results -->
+      <div class="creation-panel__step" data-step="results">
+        <h2 class="creation-panel__title results-header">I made three things for them.</h2>
+
+        <div class="grid grid--3" style="margin-top: var(--space-xl);">
+          <article class="product-card">
+            <div class="product-card__mockup">
+              <div class="mockup-placeholder">
+                <span class="mockup-placeholder__title">The Times</span>
+              </div>
+            </div>
+            <div class="product-card__info">
+              <h3 class="product-card__title">The Times</h3>
+              <p class="product-card__subtitle">A very serious newspaper about a deeply unserious subject.</p>
+              <div class="product-card__meta">
+                <span class="product-card__price">From £24</span>
+                <span class="product-card__action">Personalise this</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-card__mockup">
+              <div class="mockup-placeholder">
+                <span class="mockup-placeholder__title">The Biography</span>
+              </div>
+            </div>
+            <div class="product-card__info">
+              <h3 class="product-card__title">The Biography</h3>
+              <p class="product-card__subtitle">An unauthorized account of a life well-lived.</p>
+              <div class="product-card__meta">
+                <span class="product-card__price">From £29</span>
+                <span class="product-card__action">Personalise this</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-card__mockup">
+              <div class="mockup-placeholder">
+                <span class="mockup-placeholder__title">The Story</span>
+              </div>
+            </div>
+            <div class="product-card__info">
+              <h3 class="product-card__title">The Story</h3>
+              <p class="product-card__subtitle">A picture book of memories, moments, and meaning.</p>
+              <div class="product-card__meta">
+                <span class="product-card__price">From £34</span>
+                <span class="product-card__action">Personalise this</span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="creation-panel__actions" style="margin-top: var(--space-xl);">
+          <button class="btn btn--ghost" data-action="prev">← Back to ideas</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" aria-live="polite"></div>
+
+  <!-- Scripts -->
+  <script src="js/state.js"></script>
+  <script src="js/starfield.js"></script>
+  <script src="js/creation-flow.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

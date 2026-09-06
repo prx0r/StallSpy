@@ -1,0 +1,34 @@
+{
+  "recipient": {
+    "id": "rec_demo_001",
+    "displayName": "Alex",
+    "relation": "sister",
+    "preferences": [
+      "greyhounds",
+      "medieval art",
+      "dry humour",
+      "Prague"
+    ],
+    "avoid": [
+      "overly sentimental copy"
+    ]
+  },
+  "occasion": "Christmas",
+  "country": "GB",
+  "language": "en-GB",
+  "budgetMinor": 3500,
+  "currency": "GBP",
+  "tone": [
+    "funny",
+    "premium"
+  ],
+  "memories": [
+    "Trip to Prague together"
+  ],
+  "exactText": [
+    "Merry Christmas Alex"
+  ],
+  "assetIds": [
+    "photo_001"
+  ]
+}

@@ -1,0 +1,283 @@
+{
+  "meta": {
+    "generated": "2026-09-04",
+    "source": "100+ reports from Gmail (Aug 28 - Sep 4, 2026)",
+    "reports_analyzed": 159,
+    "pain_points_extracted": 87,
+    "themes_identified": 12
+  },
+  "themes": [
+    {
+      "id": "T01",
+      "name": "Response Time / Lead Speed",
+      "frequency": 18,
+      "description": "Businesses lose money because they respond too slowly to leads, calls, and inquiries",
+      "pain_examples": [
+        "Real estate: 14-hour first response time → lost deals",
+        "SMBs: missed calls = direct lost revenue",
+        "Sales: time-to-contact is the bottleneck",
+        "Support: slow ticket response = churn"
+      ],
+      "current_solution": "Manual checking, hiring VAs, basic auto-responders",
+      "software_solution": "Speed-to-lead agent: watches inbound forms/email/leads, scores urgency, responds immediately, routes to human",
+      "mvp": "One vertical + one CRM + one lead source + deterministic scoring + LLM for drafting",
+      "monetization": "Setup fee + monthly monitoring/usage",
+      "price_range": "$500-$2000 setup + $100-$500/mo",
+      "evidence_strength": "strong",
+      "verticals": ["real-estate", "home-services", "local-business", "dental", "salons"]
+    },
+    {
+      "id": "T02",
+      "name": "Missed Calls / After-Hours Reception",
+      "frequency": 14,
+      "description": "Small businesses lose revenue from calls they miss outside business hours",
+      "pain_examples": [
+        "Dentists missing appointment bookings after 5pm",
+        "Salons missing booking requests on weekends",
+        "Trades missing emergency calls",
+        "Property managers missing tenant issues"
+      ],
+      "current_solution": "Voicemail, basic IVR, hiring receptionists",
+      "software_solution": "AI receptionist: answers calls, qualifies, books, sends structured handoff to human",
+      "mvp": "One vertical + 10-20 intents + booking integration + escalation rules",
+      "monetization": "Monthly subscription per location",
+      "price_range": "$100-$300/mo per location",
+      "evidence_strength": "strong",
+      "verticals": ["dental", "salons", "trades", "clinics", "property-management"]
+    },
+    {
+      "id": "T03",
+      "name": "Invoice / Document Processing",
+      "frequency": 16,
+      "description": "Manual processing of invoices, receipts, and documents wastes hours every week",
+      "pain_examples": [
+        "800 invoices/month manually processed",
+        "PDFs, receipts, bank exports manually copied to spreadsheets",
+        "Accountants spending hours on data entry",
+        "Bookkeepers matching deposits to invoices manually"
+      ],
+      "current_solution": "Manual entry, basic OCR, spreadsheets",
+      "software_solution": "Document normalizer: PDF/CSV/email → structured data → accounting software",
+      "mvp": "Email/folder → OCR/extraction → validation → CSV/API → human review queue",
+      "monetization": "Per-document pricing or monthly subscription",
+      "price_range": "$50-$200/mo or $0.50-$2 per document",
+      "evidence_strength": "very strong",
+      "verticals": ["accounting", "bookkeeping", "distributors", "manufacturing"]
+    },
+    {
+      "id": "T04",
+      "name": "Bookkeeping / Reconciliation",
+      "frequency": 12,
+      "description": "Matching deposits to invoices, categorizing expenses, chasing overdue payments",
+      "pain_examples": [
+        "Small business owner: payment chasing, matching deposits, receipts, categorization",
+        "QBO + Stripe still requires substantial manual entry",
+        "Month-end close is painful and repetitive"
+      ],
+      "current_solution": "QuickBooks, Xero, manual reconciliation",
+      "software_solution": "Bookkeeping exception agent: match deposits, categorize, chase payments, flag anomalies",
+      "mvp": "One accounting software + bank feed + deterministic matching + LLM for categorization",
+      "monetization": "Monthly subscription per business",
+      "price_range": "$100-$500/mo",
+      "evidence_strength": "strong",
+      "verticals": ["small-business", "bookkeeping", "accounting"]
+    },
+    {
+      "id": "T05",
+      "name": "PPC / Ad Campaign Management",
+      "frequency": 11,
+      "description": "Ad agencies spend hours on reporting, pacing, anomaly detection, and client summaries",
+      "pain_examples": [
+        "PPC practitioners: reporting, invoicing, pacing, issue-catching",
+        "Manual Google Ads optimization is tedious",
+        "Client reporting takes hours each week"
+      ],
+      "current_solution": "Manual monitoring, basic scripts, hiring media buyers",
+      "software_solution": "PPC monitoring agent: monitors spend/pacing/anomalies, creates daily digest, flags issues",
+      "mvp": "Google Ads read-only monitor + daily digest + anomaly rules + change log",
+      "monetization": "Monthly subscription per account",
+      "price_range": "$200-$1000/mo per account",
+      "evidence_strength": "strong",
+      "verticals": ["ad-agencies", "in-house-marketing", "ecommerce"]
+    },
+    {
+      "id": "T06",
+      "name": "MSP / IT Ticket Triage",
+      "frequency": 10,
+      "description": "MSPs waste time on ticket classification, context gathering, and routing",
+      "pain_examples": [
+        "30 minutes saved per complex ticket",
+        "Ticket triage is the clearest production AI use case",
+        "IT managers: repetitive tasks eat the day"
+      ],
+      "current_solution": "Manual triage, basic routing rules, hiring more staff",
+      "software_solution": "IT ticket triage agent: reads tickets, gathers context, classifies severity, proposes fixes, routes",
+      "mvp": "Read-only integrations + evidence packet + classification + routing",
+      "monetization": "Monthly per-seat or per-ticket pricing",
+      "price_range": "$50-$200/seat/mo",
+      "evidence_strength": "strong",
+      "verticals": ["msp", "it-departments", "helpdesk"]
+    },
+    {
+      "id": "T07",
+      "name": "CRM / Email Operations",
+      "frequency": 9,
+      "description": "Updating CRM from email is tedious and error-prone",
+      "pain_examples": [
+        "Email-to-CRM updating is deliberately boring automation that works",
+        "Sales teams waste hours on data entry",
+        "Agencies need to track client communications"
+      ],
+      "current_solution": "Manual entry, basic Zapier rules",
+      "software_solution": "Email-to-CRM agent: extracts entities/status/next action, updates CRM fields/tasks",
+      "mvp": "One CRM + email integration + entity extraction + field mapping",
+      "monetization": "Monthly subscription",
+      "price_range": "$50-$200/mo",
+      "evidence_strength": "moderate",
+      "verticals": ["sales", "agencies", "recruiting", "founders"]
+    },
+    {
+      "id": "T08",
+      "name": "Onboarding / Signup Recovery",
+      "frequency": 8,
+      "description": "Users abandon signups and onboarding flows, losing revenue",
+      "pain_examples": [
+        "Incomplete onboarding = lost revenue",
+        "SaaS: users sign up but never complete setup",
+        "Multi-step signup has high drop-off"
+      ],
+      "current_solution": "Basic email reminders, manual follow-up",
+      "software_solution": "Onboarding recovery agent: detects incomplete setup, contacts user, answers blockers, guides to completion",
+      "mvp": "Email/SMS detection + outreach + routing to human",
+      "monetization": "Performance-based (% of recovered signups) or monthly",
+      "price_range": "$200-$1000/mo or % of recovered revenue",
+      "evidence_strength": "moderate",
+      "verticals": ["saas", "fintech", "marketplaces"]
+    },
+    {
+      "id": "T09",
+      "name": "SEO / AI Search Visibility",
+      "frequency": 7,
+      "description": "Businesses want to rank in AI search but have no measurement tools",
+      "pain_examples": [
+        "All my boss wants is to rank in AI",
+        "No tools to measure AI search visibility",
+        "SEO practitioners can't prove AI mentions"
+      ],
+      "current_solution": "Manual checking, guesswork",
+      "software_solution": "AI search visibility agent: runs prompt sets, measures mentions/citations, tracks changes",
+      "mvp": "Controlled prompt sets + evidence screenshots + longitudinal tracking",
+      "monetization": "Monthly subscription",
+      "price_range": "$100-$500/mo",
+      "evidence_strength": "strong",
+      "verticals": ["seo-agencies", "brands", "ecommerce"]
+    },
+    {
+      "id": "T10",
+      "name": "Property Management Operations",
+      "frequency": 6,
+      "description": "Property managers buried in maintenance follow-up, vendor chasing, tenant updates",
+      "pain_examples": [
+        "Maintenance follow-up loop buries teams",
+        "Chasing vendors and updating frustrated tenants",
+        "Manual work after every meeting"
+      ],
+      "current_solution": "Spreadsheets, basic property management software",
+      "software_solution": "PM operations agent: ticket classification → vendor follow-up → tenant updates → escalation",
+      "mvp": "Webhook → classifier → checklist → timer → update generator → dashboard",
+      "monetization": "Monthly per-portfolio pricing",
+      "price_range": "$100-$500/mo per portfolio",
+      "evidence_strength": "moderate",
+      "verticals": ["property-management", "real-estate"]
+    },
+    {
+      "id": "T11",
+      "name": "Recruiting / Candidate Sourcing",
+      "frequency": 6,
+      "description": "Recruiters waste time on low-quality candidate results and ATS hygiene",
+      "pain_examples": [
+        "Sourcing tools return huge low-fit result sets",
+        "ATS hygiene/reporting expectations rising",
+        "Resume parsing failures common"
+      ],
+      "current_solution": "LinkedIn Recruiter, manual screening, basic ATS",
+      "software_solution": "Recruiter sourcing agent: role → criteria → rank candidates → update ATS → draft outreach",
+      "mvp": "One ATS + one job board + criteria extraction + ranking + outreach drafting",
+      "monetization": "Monthly per-seat",
+      "price_range": "$100-$300/seat/mo",
+      "evidence_strength": "moderate",
+      "verticals": ["recruiting", "hr", "agencies"]
+    },
+    {
+      "id": "T12",
+      "name": "SME Automation / Workflow Integration",
+      "frequency": 15,
+      "description": "Small businesses have scattered tools, brittle workflows, nobody owns the system",
+      "pain_examples": [
+        "Disconnected tools, brittle workflows, nobody owning the full system",
+        "Scattered scripts, weak documentation, no standardized automations",
+        "Spreadsheets, dashboards, PM tools = chaos",
+        "$6K offered for GoHighLevel+n8n+Make automation architecture"
+      ],
+      "current_solution": "Hiring freelancers, basic Zapier, spreadsheets",
+      "software_solution": "Automation-stack owner: connects tools, creates workflows, monitors, maintains",
+      "mvp": "One integration (e.g. Shopify+Gmail) + workflow automation + monitoring",
+      "monetization": "Setup fee + monthly retainer",
+      "price_range": "$1000-$6000 setup + $200-$1000/mo",
+      "evidence_strength": "very strong",
+      "verticals": ["all-sme", "agencies", "ecommerce"]
+    }
+  ],
+  "pattern_summary": {
+    "most_recurring_pain": "Manual data entry and document processing",
+    "highest_value_pain": "SME automation/workflow integration",
+    "fastest_to_mvp": "Invoice extraction / document normalizer",
+    "highest_margin": "PPC monitoring / ad agency tools",
+    "most_underserved": "AI search visibility measurement",
+    "best_recurring_revenue": "Missed-call AI receptionist"
+  },
+  "software_products_proposed": [
+    {
+      "name": "Lead Speed Agent",
+      "solves": "T01 + T02",
+      "target": "Real estate, local services, dental",
+      "price": "$100-$500/mo",
+      "mvp_weeks": 2
+    },
+    {
+      "name": "Document Normalizer",
+      "solves": "T03 + T04",
+      "target": "Accountants, bookkeepers, distributors",
+      "price": "$50-$200/mo",
+      "mvp_weeks": 1
+    },
+    {
+      "name": "PPC Monitor",
+      "solves": "T05",
+      "target": "Ad agencies, in-house marketing",
+      "price": "$200-$1000/mo",
+      "mvp_weeks": 2
+    },
+    {
+      "name": "IT Ticket Triage",
+      "solves": "T06",
+      "target": "MSPs, IT departments",
+      "price": "$50-$200/seat/mo",
+      "mvp_weeks": 2
+    },
+    {
+      "name": "AI Search Visibility Tracker",
+      "solves": "T09",
+      "target": "SEO agencies, brands",
+      "price": "$100-$500/mo",
+      "mvp_weeks": 1
+    },
+    {
+      "name": "SME Workflow Hub",
+      "solves": "T12",
+      "target": "All SMEs, agencies",
+      "price": "$200-$1000/mo",
+      "mvp_weeks": 3
+    }
+  ]
+}
