@@ -1,0 +1,22 @@
+{
+  "name": "bartholomew-3d",
+  "version": "1.0.0",
+  "description": "**Status:** Asset collection complete. 3D model commission pending.",
+  "main": "render-3d.js",
+  "directories": {
+    "doc": "docs",
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@gltf-transform/core": "^4.5.0",
+    "@gltf-transform/functions": "^4.5.0",
+    "three": "^0.185.1"
+  }
+}

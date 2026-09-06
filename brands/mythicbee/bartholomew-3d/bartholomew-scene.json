@@ -1,0 +1,1130 @@
+{
+  "metadata": {
+    "version": 4.7,
+    "type": "Object",
+    "generator": "Object3D.toJSON"
+  },
+  "geometries": [
+    {
+      "uuid": "e81b3579-3f1d-4b5b-a74a-ad95cd25d022",
+      "type": "CapsuleGeometry",
+      "radius": 0.3,
+      "height": 0.5,
+      "capSegments": 8,
+      "radialSegments": 16,
+      "heightSegments": 1
+    },
+    {
+      "uuid": "5fa552a0-2d93-4f31-b95d-8bf07967ab02",
+      "type": "CapsuleGeometry",
+      "radius": 0.31,
+      "height": 0.06,
+      "capSegments": 8,
+      "radialSegments": 16,
+      "heightSegments": 1
+    },
+    {
+      "uuid": "fcbf3db9-300e-4db6-8f36-8244d1d22efc",
+      "type": "CapsuleGeometry",
+      "radius": 0.31,
+      "height": 0.06,
+      "capSegments": 8,
+      "radialSegments": 16,
+      "heightSegments": 1
+    },
+    {
+      "uuid": "452720eb-2c27-4691-afbe-ad6d42d7117f",
+      "type": "CapsuleGeometry",
+      "radius": 0.31,
+      "height": 0.06,
+      "capSegments": 8,
+      "radialSegments": 16,
+      "heightSegments": 1
+    },
+    {
+      "uuid": "4436b651-46d4-4904-a7ad-67a67dcf0f59",
+      "type": "SphereGeometry",
+      "radius": 0.24,
+      "widthSegments": 16,
+      "heightSegments": 16,
+      "phiStart": 0,
+      "phiLength": 6.283185307179586,
+      "thetaStart": 0,
+      "thetaLength": 3.141592653589793
+    },
+    {
+      "uuid": "40341366-7a8e-4e6e-b861-dca68dd2c0ef",
+      "type": "SphereGeometry",
+      "radius": 0.06,
+      "widthSegments": 16,
+      "heightSegments": 16,
+      "phiStart": 0,
+      "phiLength": 6.283185307179586,
+      "thetaStart": 0,
+      "thetaLength": 3.141592653589793
+    },
+    {
+      "uuid": "b00aa59e-f43e-438f-a921-c71d2a2f073a",
+      "type": "SphereGeometry",
+      "radius": 0.022,
+      "widthSegments": 8,
+      "heightSegments": 8,
+      "phiStart": 0,
+      "phiLength": 6.283185307179586,
+      "thetaStart": 0,
+      "thetaLength": 3.141592653589793
+    },
+    {
+      "uuid": "db090245-e1b1-4d75-8814-28d5962843ac",
+      "type": "SphereGeometry",
+      "radius": 0.06,
+      "widthSegments": 16,
+      "heightSegments": 16,
+      "phiStart": 0,
+      "phiLength": 6.283185307179586,
+      "thetaStart": 0,
+      "thetaLength": 3.141592653589793
+    },
+    {
+      "uuid": "560537f8-7866-4607-a8df-ae4b36b3b09f",
+      "type": "SphereGeometry",
+      "radius": 0.022,
+      "widthSegments": 8,
+      "heightSegments": 8,
+      "phiStart": 0,
+      "phiLength": 6.283185307179586,
+      "thetaStart": 0,
+      "thetaLength": 3.141592653589793
+    },
+    {
+      "uuid": "fc347fa3-304a-491c-b255-a62092c244ba",
+      "type": "TorusGeometry",
+      "radius": 0.06,
+      "tube": 0.012,
+      "radialSegments": 8,
+      "tubularSegments": 16,
+      "arc": 3.141592653589793,
+      "thetaStart": 0,
+      "thetaLength": 6.283185307179586
+    },
+    {
+      "uuid": "551afbfe-0f99-4bec-a0d6-f79dfabb99af",
+      "type": "CylinderGeometry",
+      "radiusTop": 0.01,
+      "radiusBottom": 0.016,
+      "height": 0.3,
+      "radialSegments": 8,
+      "heightSegments": 1,
+      "openEnded": false,
+      "thetaStart": 0,
+      "thetaLength": 6.283185307179586
+    },
+    {
+      "uuid": "216286be-4d09-4f04-8e66-b00925c00f13",
+      "type": "SphereGeometry",
+      "radius": 0.03,
+      "widthSegments": 8,
+      "heightSegments": 8,
+      "phiStart": 0,
+      "phiLength": 6.283185307179586,
+      "thetaStart": 0,
+      "thetaLength": 3.141592653589793
+    },
+    {
+      "uuid": "049b2e6f-0a2e-4507-a410-b88622dd600e",
+      "type": "CylinderGeometry",
+      "radiusTop": 0.01,
+      "radiusBottom": 0.016,
+      "height": 0.3,
+      "radialSegments": 8,
+      "heightSegments": 1,
+      "openEnded": false,
+      "thetaStart": 0,
+      "thetaLength": 6.283185307179586
+    },
+    {
+      "uuid": "0a0b9add-c46d-4e75-bf22-3937a0707fd0",
+      "type": "SphereGeometry",
+      "radius": 0.03,
+      "widthSegments": 8,
+      "heightSegments": 8,
+      "phiStart": 0,
+      "phiLength": 6.283185307179586,
+      "thetaStart": 0,
+      "thetaLength": 3.141592653589793
+    },
+    {
+      "uuid": "df85f4ee-9b96-41f2-b29c-c249939ebf01",
+      "type": "ShapeGeometry",
+      "shapes": [
+        "f316a080-9cac-43ea-9178-1890ae68744e"
+      ],
+      "curveSegments": 12
+    },
+    {
+      "uuid": "e7fed180-a038-43be-9eb5-684ee6e11c74",
+      "type": "PlaneGeometry",
+      "width": 0.4,
+      "height": 0.5,
+      "widthSegments": 8,
+      "heightSegments": 8
+    }
+  ],
+  "materials": [
+    {
+      "uuid": "6e5a6a31-40b2-41d4-aab6-91e9af9cacab",
+      "type": "MeshStandardMaterial",
+      "color": 16766720,
+      "roughness": 0.4,
+      "metalness": 0.3,
+      "emissive": 0,
+      "envMapRotation": [
+        0,
+        0,
+        0,
+        "XYZ"
+      ],
+      "envMapIntensity": 1,
+      "blendColor": 0
+    },
+    {
+      "uuid": "f2bbb1af-8d61-4fbc-8f55-29f53b9f36c5",
+      "type": "MeshStandardMaterial",
+      "color": 1710638,
+      "roughness": 1,
+      "metalness": 0,
+      "emissive": 0,
+      "envMapRotation": [
+        0,
+        0,
+        0,
+        "XYZ"
+      ],
+      "envMapIntensity": 1,
+      "blendColor": 0
+    },
+    {
+      "uuid": "54458ba5-6a5b-45df-bd63-6afb72f4014d",
+      "type": "MeshStandardMaterial",
+      "color": 7028640,
+      "roughness": 1,
+      "metalness": 0,
+      "emissive": 7028640,
+      "emissiveIntensity": 0.5,
+      "envMapRotation": [
+        0,
+        0,
+        0,
+        "XYZ"
+      ],
+      "envMapIntensity": 1,
+      "blendColor": 0
+    },
+    {
+      "uuid": "7642bb68-d506-4573-bb6c-dda85037c81e",
+      "type": "MeshBasicMaterial",
+      "color": 16777215,
+      "envMapRotation": [
+        0,
+        0,
+        0,
+        "XYZ"
+      ],
+      "reflectivity": 1,
+      "refractionRatio": 0.98,
+      "blendColor": 0
+    },
+    {
+      "uuid": "6ef7351d-2d75-4826-ba96-74860d677ee6",
+      "type": "MeshBasicMaterial",
+      "color": 16777215,
+      "envMapRotation": [
+        0,
+        0,
+        0,
+        "XYZ"
+      ],
+      "reflectivity": 1,
+      "refractionRatio": 0.98,
+      "blendColor": 0
+    },
+    {
+      "uuid": "556142a9-929c-4f9a-9015-d3faaa7d7d7d",
+      "type": "MeshStandardMaterial",
+      "color": 16766720,
+      "roughness": 1,
+      "metalness": 0,
+      "emissive": 16766720,
+      "emissiveIntensity": 0.4,
+      "envMapRotation": [
+        0,
+        0,
+        0,
+        "XYZ"
+      ],
+      "envMapIntensity": 1,
+      "blendColor": 0
+    },
+    {
+      "uuid": "80ad5411-240a-4ef6-93e9-020e7cf273d4",
+      "type": "MeshStandardMaterial",
+      "color": 15266047,
+      "roughness": 1,
+      "metalness": 0,
+      "emissive": 0,
+      "envMapRotation": [
+        0,
+        0,
+        0,
+        "XYZ"
+      ],
+      "envMapIntensity": 1,
+      "side": 2,
+      "opacity": 0.5,
+      "transparent": true,
+      "blendColor": 0
+    },
+    {
+      "uuid": "96f39aea-e88b-4062-bcd8-7cf7827f0cd4",
+      "type": "MeshStandardMaterial",
+      "color": 13382451,
+      "roughness": 1,
+      "metalness": 0,
+      "emissive": 0,
+      "envMapRotation": [
+        0,
+        0,
+        0,
+        "XYZ"
+      ],
+      "envMapIntensity": 1,
+      "side": 2,
+      "blendColor": 0
+    }
+  ],
+  "shapes": [
+    {
+      "arcLengthDivisions": 200,
+      "type": "Shape",
+      "autoClose": false,
+      "curves": [
+        {
+          "metadata": {
+            "version": 4.7,
+            "type": "Curve",
+            "generator": "Curve.toJSON"
+          },
+          "arcLengthDivisions": 200,
+          "type": "CubicBezierCurve",
+          "v0": [
+            0,
+            0
+          ],
+          "v1": [
+            0.18,
+            0.14
+          ],
+          "v2": [
+            0.4,
+            0.16
+          ],
+          "v3": [
+            0.45,
+            0.04
+          ]
+        },
+        {
+          "metadata": {
+            "version": 4.7,
+            "type": "Curve",
+            "generator": "Curve.toJSON"
+          },
+          "arcLengthDivisions": 200,
+          "type": "CubicBezierCurve",
+          "v0": [
+            0.45,
+            0.04
+          ],
+          "v1": [
+            0.4,
+            -0.08
+          ],
+          "v2": [
+            0.18,
+            -0.14
+          ],
+          "v3": [
+            0,
+            0
+          ]
+        }
+      ],
+      "currentPoint": [
+        0,
+        0
+      ],
+      "uuid": "f316a080-9cac-43ea-9178-1890ae68744e",
+      "holes": []
+    }
+  ],
+  "object": {
+    "uuid": "3c201b8c-424c-45f1-810a-cf453bf923f2",
+    "type": "Scene",
+    "layers": 1,
+    "matrix": [
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "up": [
+      0,
+      1,
+      0
+    ],
+    "children": [
+      {
+        "uuid": "98d5f9ad-31c5-478c-832a-47dc42965a2f",
+        "type": "DirectionalLight",
+        "layers": 1,
+        "matrix": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          1,
+          0,
+          1
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "color": 16777215,
+        "intensity": 1,
+        "shadow": {
+          "camera": {
+            "uuid": "b96e7e62-e891-4890-9b91-3de0c922f1aa",
+            "type": "OrthographicCamera",
+            "layers": 1,
+            "up": [
+              0,
+              1,
+              0
+            ],
+            "zoom": 1,
+            "left": -5,
+            "right": 5,
+            "top": 5,
+            "bottom": -5,
+            "near": 0.5,
+            "far": 500
+          }
+        },
+        "target": "91a41cac-5f83-4e2c-8ec6-56972528ca98"
+      },
+      {
+        "uuid": "845c7808-552c-4748-9e08-e32fe084c595",
+        "type": "DirectionalLight",
+        "layers": 1,
+        "matrix": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          1,
+          0,
+          1
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "color": 16766720,
+        "intensity": 0.5,
+        "shadow": {
+          "camera": {
+            "uuid": "94687415-c32f-4e78-915b-eaa9ba922243",
+            "type": "OrthographicCamera",
+            "layers": 1,
+            "up": [
+              0,
+              1,
+              0
+            ],
+            "zoom": 1,
+            "left": -5,
+            "right": 5,
+            "top": 5,
+            "bottom": -5,
+            "near": 0.5,
+            "far": 500
+          }
+        },
+        "target": "4d5de98a-b1f1-43fd-ad56-5620c23c2980"
+      },
+      {
+        "uuid": "371f7635-c854-470f-8e42-41d4f16d5dbc",
+        "type": "Group",
+        "name": "BartholomewRoot",
+        "layers": 1,
+        "matrix": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "children": [
+          {
+            "uuid": "e9c76193-4c6e-4826-947f-3ca6ee780717",
+            "type": "Mesh",
+            "name": "Body",
+            "layers": 1,
+            "matrix": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "up": [
+              0,
+              1,
+              0
+            ],
+            "geometry": "e81b3579-3f1d-4b5b-a74a-ad95cd25d022",
+            "material": "6e5a6a31-40b2-41d4-aab6-91e9af9cacab"
+          },
+          {
+            "uuid": "6f963ada-e7f0-454b-ae09-89a4098c515c",
+            "type": "Mesh",
+            "name": "Stripe_0",
+            "layers": 1,
+            "matrix": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "up": [
+              0,
+              1,
+              0
+            ],
+            "geometry": "5fa552a0-2d93-4f31-b95d-8bf07967ab02",
+            "material": "f2bbb1af-8d61-4fbc-8f55-29f53b9f36c5"
+          },
+          {
+            "uuid": "35a59814-cf9e-4080-93d6-ce21577cd4f0",
+            "type": "Mesh",
+            "name": "Stripe_1",
+            "layers": 1,
+            "matrix": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "up": [
+              0,
+              1,
+              0
+            ],
+            "geometry": "fcbf3db9-300e-4db6-8f36-8244d1d22efc",
+            "material": "f2bbb1af-8d61-4fbc-8f55-29f53b9f36c5"
+          },
+          {
+            "uuid": "c92b642e-2dad-473c-b52a-4635dfa1b7e8",
+            "type": "Mesh",
+            "name": "Stripe_2",
+            "layers": 1,
+            "matrix": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "up": [
+              0,
+              1,
+              0
+            ],
+            "geometry": "452720eb-2c27-4691-afbe-ad6d42d7117f",
+            "material": "f2bbb1af-8d61-4fbc-8f55-29f53b9f36c5"
+          },
+          {
+            "uuid": "90bf925a-59f3-4d90-aaa4-d740d4c46f46",
+            "type": "Mesh",
+            "name": "Head",
+            "layers": 1,
+            "matrix": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "up": [
+              0,
+              1,
+              0
+            ],
+            "geometry": "4436b651-46d4-4904-a7ad-67a67dcf0f59",
+            "material": "6e5a6a31-40b2-41d4-aab6-91e9af9cacab"
+          },
+          {
+            "uuid": "9e97f399-67ca-44be-9e5d-c2d0eade2898",
+            "type": "Mesh",
+            "name": "Eye_L",
+            "layers": 1,
+            "matrix": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "up": [
+              0,
+              1,
+              0
+            ],
+            "geometry": "40341366-7a8e-4e6e-b861-dca68dd2c0ef",
+            "material": "54458ba5-6a5b-45df-bd63-6afb72f4014d"
+          },
+          {
+            "uuid": "7a223e4c-f349-485e-bc4b-6d72aa640de1",
+            "type": "Mesh",
+            "layers": 1,
+            "matrix": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "up": [
+              0,
+              1,
+              0
+            ],
+            "geometry": "b00aa59e-f43e-438f-a921-c71d2a2f073a",
+            "material": "7642bb68-d506-4573-bb6c-dda85037c81e"
+          },
+          {
+            "uuid": "75b25214-871b-422b-9f08-e9276e05c3b4",
+            "type": "Mesh",
+            "name": "Eye_R",
+            "layers": 1,
+            "matrix": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "up": [
+              0,
+              1,
+              0
+            ],
+            "geometry": "db090245-e1b1-4d75-8814-28d5962843ac",
+            "material": "54458ba5-6a5b-45df-bd63-6afb72f4014d"
+          },
+          {
+            "uuid": "ea497755-538e-42b8-b1e9-b17a31a8af9e",
+            "type": "Mesh",
+            "layers": 1,
+            "matrix": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "up": [
+              0,
+              1,
+              0
+            ],
+            "geometry": "560537f8-7866-4607-a8df-ae4b36b3b09f",
+            "material": "6ef7351d-2d75-4826-ba96-74860d677ee6"
+          },
+          {
+            "uuid": "ddb0f149-a5a8-4bc0-8957-e23be1412b8a",
+            "type": "Mesh",
+            "name": "Smile",
+            "layers": 1,
+            "matrix": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "up": [
+              0,
+              1,
+              0
+            ],
+            "geometry": "fc347fa3-304a-491c-b255-a62092c244ba",
+            "material": "f2bbb1af-8d61-4fbc-8f55-29f53b9f36c5"
+          },
+          {
+            "uuid": "334b9f93-b3cc-405d-854a-7767615dbb18",
+            "type": "Mesh",
+            "name": "Antenna_L",
+            "layers": 1,
+            "matrix": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "up": [
+              0,
+              1,
+              0
+            ],
+            "geometry": "551afbfe-0f99-4bec-a0d6-f79dfabb99af",
+            "material": "f2bbb1af-8d61-4fbc-8f55-29f53b9f36c5"
+          },
+          {
+            "uuid": "1ea9bc99-37fd-40e2-872c-a76cac942d61",
+            "type": "Mesh",
+            "name": "AntennaTip_L",
+            "layers": 1,
+            "matrix": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "up": [
+              0,
+              1,
+              0
+            ],
+            "geometry": "216286be-4d09-4f04-8e66-b00925c00f13",
+            "material": "556142a9-929c-4f9a-9015-d3faaa7d7d7d"
+          },
+          {
+            "uuid": "7e8545c5-b0ad-4c4f-a1b9-e5363c6abfc9",
+            "type": "Mesh",
+            "name": "Antenna_R",
+            "layers": 1,
+            "matrix": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "up": [
+              0,
+              1,
+              0
+            ],
+            "geometry": "049b2e6f-0a2e-4507-a410-b88622dd600e",
+            "material": "f2bbb1af-8d61-4fbc-8f55-29f53b9f36c5"
+          },
+          {
+            "uuid": "c1b6547a-a198-4758-aa66-46c82354357e",
+            "type": "Mesh",
+            "name": "AntennaTip_R",
+            "layers": 1,
+            "matrix": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "up": [
+              0,
+              1,
+              0
+            ],
+            "geometry": "0a0b9add-c46d-4e75-bf22-3937a0707fd0",
+            "material": "556142a9-929c-4f9a-9015-d3faaa7d7d7d"
+          },
+          {
+            "uuid": "46dc9b94-3647-40ee-b171-8604037b389b",
+            "type": "Mesh",
+            "name": "Wing_0",
+            "layers": 1,
+            "matrix": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "up": [
+              0,
+              1,
+              0
+            ],
+            "geometry": "df85f4ee-9b96-41f2-b29c-c249939ebf01",
+            "material": "80ad5411-240a-4ef6-93e9-020e7cf273d4"
+          },
+          {
+            "uuid": "8b37b87c-9caf-4513-b598-026488095614",
+            "type": "Mesh",
+            "name": "Wing_1",
+            "layers": 1,
+            "matrix": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "up": [
+              0,
+              1,
+              0
+            ],
+            "geometry": "df85f4ee-9b96-41f2-b29c-c249939ebf01",
+            "material": "80ad5411-240a-4ef6-93e9-020e7cf273d4"
+          },
+          {
+            "uuid": "2ea76859-1d87-4cd4-a040-b18b935a6f91",
+            "type": "Mesh",
+            "name": "Wing_2",
+            "layers": 1,
+            "matrix": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "up": [
+              0,
+              1,
+              0
+            ],
+            "geometry": "df85f4ee-9b96-41f2-b29c-c249939ebf01",
+            "material": "80ad5411-240a-4ef6-93e9-020e7cf273d4"
+          },
+          {
+            "uuid": "1fa1a795-e3ff-4de6-b9f5-6e55f7cb1173",
+            "type": "Mesh",
+            "name": "Wing_3",
+            "layers": 1,
+            "matrix": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "up": [
+              0,
+              1,
+              0
+            ],
+            "geometry": "df85f4ee-9b96-41f2-b29c-c249939ebf01",
+            "material": "80ad5411-240a-4ef6-93e9-020e7cf273d4"
+          },
+          {
+            "uuid": "cf19ab4d-41da-4ffb-af6d-15a6aa8a8b5c",
+            "type": "Mesh",
+            "name": "Cape",
+            "layers": 1,
+            "matrix": [
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "up": [
+              0,
+              1,
+              0
+            ],
+            "geometry": "e7fed180-a038-43be-9eb5-684ee6e11c74",
+            "material": "96f39aea-e88b-4062-bcd8-7cf7827f0cd4"
+          }
+        ]
+      }
+    ],
+    "backgroundRotation": [
+      0,
+      0,
+      0,
+      "XYZ"
+    ],
+    "environmentRotation": [
+      0,
+      0,
+      0,
+      "XYZ"
+    ]
+  }
+}

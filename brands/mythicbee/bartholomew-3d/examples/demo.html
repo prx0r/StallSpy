@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bartholomew 3D — Demo</title>
+  <style>
+    body { margin: 0; background: #0a0e14; overflow: hidden; }
+    canvas { display: block; width: 100vw; height: 100vh; }
+    .info { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.8); padding: 12px 24px; border-radius: 8px; color: #d4af37; font-family: monospace; font-size: 14px; z-index: 10; }
+  </style>
+</head>
+<body>
+  <div class="info">Bartholomew 3D — Drag to rotate • Scroll to zoom</div>
+  <script type="importmap">
+    { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }
+  </script>
+  <script type="module">
+    import * as THREE from 'three';
+
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x0a0e14);
+
+    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+    camera.position.set(0, 0.5, 3);
+    camera.lookAt(0, 0, 0);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+    document.body.appendChild(renderer.domElement);
+
+    // Lights
+    scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+    const dl = new THREE.DirectionalLight(0xffd700, 1); dl.position.set(2, 3, 2); scene.add(dl);
+    const rl = new THREE.DirectionalLight(0xd4af37, 0.4); rl.position.set(-2, 1, -2); scene.add(rl);
+
+    // Bartholomew
+    const bartholomew = new THREE.Group();
+    const gold = new THREE.MeshStandardMaterial({ color: 0xffd700, metalness: 0.3, roughness: 0.4 });
+    const stripe = new THREE.MeshStandardMaterial({ color: 0x1a1a2e });
+    const eye = new THREE.MeshStandardMaterial({ color: 0x6b3fa0, emissive: 0x6b3fa0, emissiveIntensity: 0.5 });
+    const wingMat = new THREE.MeshStandardMaterial({ color: 0xe8f0ff, transparent: true, opacity: 0.5, side: THREE.DoubleSide });
+    const capeMat = new THREE.MeshStandardMaterial({ color: 0xcc3333, side: THREE.DoubleSide });
+    const tipMat = new THREE.MeshStandardMaterial({ color: 0xffd700, emissive: 0xffd700, emissiveIntensity: 0.4 });
+
+    // Body
+    const body = new THREE.Mesh(new THREE.CapsuleGeometry(0.3, 0.5, 8, 16), gold);
+    body.rotation.z = Math.PI/2; bartholomew.add(body);
+
+    // Stripes
+    [-0.15, 0, 0.15].forEach(z => {
+      const s = new THREE.Mesh(new THREE.CapsuleGeometry(0.31, 0.06, 8, 16), stripe);
+      s.rotation.z = Math.PI/2; s.position.z = z; bartholomew.add(s);
+    });
+
+    // Head
+    const head = new THREE.Mesh(new THREE.SphereGeometry(0.24, 16, 16), gold);
+    head.position.set(0.42, 0.12, 0); bartholomew.add(head);
+
+    // Eyes
+    [0.09, -0.09].forEach(z => {
+      const e = new THREE.Mesh(new THREE.SphereGeometry(0.06, 16, 16), eye);
+      e.position.set(0.56, 0.18, z); bartholomew.add(e);
+      const h = new THREE.Mesh(new THREE.SphereGeometry(0.022, 8, 8), new THREE.MeshBasicMaterial({ color: 0xffffff }));
+      h.position.set(0.6, 0.21, z > 0 ? 0.11 : -0.11); bartholomew.add(h);
+    });
+
+    // Smile
+    const smile = new THREE.Mesh(new THREE.TorusGeometry(0.06, 0.012, 8, 16, Math.PI), stripe);
+    smile.position.set(0.6, 0.06, 0); smile.rotation.y = Math.PI/2; smile.rotation.z = Math.PI;
+    bartholomew.add(smile);
+
+    // Antennae
+    [0.1, -0.1].forEach(z => {
+      const a = new THREE.Mesh(new THREE.CylinderGeometry(0.01, 0.016, 0.3, 8), stripe);
+      a.position.set(0.38, 0.42, z); a.rotation.z = -0.3; a.rotation.x = z > 0 ? 0.25 : -0.25;
+      bartholomew.add(a);
+      const t = new THREE.Mesh(new THREE.SphereGeometry(0.03, 8, 8), tipMat);
+      t.position.set(0.28, 0.58, z * 1.4); bartholomew.add(t);
+    });
+
+    // Wings
+    const ws = new THREE.Shape();
+    ws.moveTo(0, 0); ws.bezierCurveTo(0.18, 0.14, 0.4, 0.16, 0.45, 0.04);
+    ws.bezierCurveTo(0.4, -0.08, 0.18, -0.14, 0, 0);
+    const wg = new THREE.ShapeGeometry(ws);
+    const wm = new THREE.MeshStandardMaterial({ color: 0xe8f0ff, transparent: true, opacity: 0.5, side: THREE.DoubleSide });
+    const wings = [];
+    [[-0.12,0.22,0.18,-0.5,1.4],[-0.18,0.2,0.22,-0.3,1],[-0.12,0.22,-0.18,0.5,1.4],[-0.18,0.2,-0.22,0.3,1]].forEach(([x,y,z,rx,s]) => {
+      const w = new THREE.Mesh(wg, wm); w.position.set(x,y,z); w.rotation.x = rx; w.scale.set(s,s,s); bartholomew.add(w); wings.push(w);
+    });
+
+    // Cape
+    const cape = new THREE.Mesh(new THREE.PlaneGeometry(0.4, 0.5, 8, 8), new THREE.MeshStandardMaterial({ color: 0xcc3333, side: THREE.DoubleSide }));
+    cape.position.set(-0.18, 0.12, 0); cape.rotation.y = Math.PI; cape.rotation.x = 0.15;
+    bartholomew.add(cape);
+
+    bartholomew.position.y = 0.1; bartholomew.rotation.y = -0.15;
+    scene.add(bartholomew);
+
+    // Mouse controls
+    let isDragging = false, prevX = 0, prevY = 0;
+    renderer.domElement.addEventListener('mousedown', e => { isDragging = true; prevX = e.clientX; prevY = e.clientY; });
+    renderer.domElement.addEventListener('mousemove', e => {
+      if (!isDragging) return;
+      bartholomew.rotation.y += (e.clientX - prevX) * 0.01;
+      bartholomew.rotation.x += (e.clientY - prevY) * 0.01;
+      prevX = e.clientX; prevY = e.clientY;
+    });
+    renderer.domElement.addEventListener('mouseup', () => isDragging = false);
+    renderer.domElement.addEventListener('mouseleave', () => isDragging = false);
+    renderer.domElement.addEventListener('wheel', e => { camera.position.z += e.deltaY * 0.01; camera.position.z = Math.max(1, Math.min(10, camera.position.z)); });
+
+    // Animation
+    let t = 0;
+    function animate() {
+      requestAnimationFrame(animate);
+      t += 0.016;
+      bartholomew.position.y = 0.1 + Math.sin(t * 1.5) * 0.08;
+      bartholomew.rotation.z = Math.sin(t * 0.8) * 0.04;
+      wings.forEach((w, i) => { w.rotation.y = Math.sin(t * (18 + i * 2)) * (0.45 + i * 0.08); });
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+  </script>
+</body>
+</html>

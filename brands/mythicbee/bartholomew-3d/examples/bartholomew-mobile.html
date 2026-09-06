@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Bartholomew 3D — Mobile Optimized</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{background:#0a0e14;overflow:hidden;font-family:system-ui;color:#f5f0e7}
+    #c{display:block;width:100vw;height:100vh}
+    .ui{position:fixed;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:4px;z-index:10;flex-wrap:wrap;justify-content:center}
+    .b{padding:6px 12px;background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.25);border-radius:6px;color:#d4af37;cursor:pointer;font-size:11px;transition:all .2s}
+    .b:hover,.b.on{background:#d4af37;color:#0a0e14}
+    .sp{position:fixed;top:12px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.85);border:1px solid rgba(201,168,76,0.3);border-radius:10px;padding:12px 20px;font-size:14px;max-width:350px;text-align:center;opacity:0;transition:opacity .3s;z-index:10;pointer-events:none}
+    .sp.v{opacity:1}
+    .ld{position:fixed;inset:0;background:#0a0e14;display:flex;align-items:center;justify-content:center;z-index:100;transition:opacity .5s}
+    .ld.h{opacity:0;pointer-events:none}
+  </style>
+</head>
+<body>
+  <div class="ld" id="ld"><span style="color:#d4af37">Loading…</span></div>
+  <canvas id="c"></canvas>
+  <div class="sp" id="sp"></div>
+  <div class="ui">
+    <button class="b on" onclick="B.go('idle',this)">Idle</button>
+    <button class="b" onclick="B.go('listen',this)">Listen</button>
+    <button class="b" onclick="B.go('think',this)">Think</button>
+    <button class="b" onclick="B.go('talk',this)">Talk</button>
+    <button class="b" onclick="B.go('fly',this)">Fly</button>
+    <button class="b" onclick="B.go('celebrate',this)">🎉</button>
+    <button class="b" onclick="B.say('I am Bartholomew!')">🔊</button>
+  </div>
+
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+  <script type="module">
+    import*as T from'three';
+    import{GLTFLoader}from'three/addons/loaders/GLTFLoader.js';
+    import{OrbitControls}from'three/addons/controls/OrbitControls.js';
+
+    const $=id=>document.getElementById(id);
+    const isMobile=()/Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    const pixelRatio=Math.min(isMobile?1.5:2,devicePixelRatio);
+
+    const sc=new T.Scene();
+    sc.background=new T.Color(0x0a0e14);
+    const cam=new T.PerspectiveCamera(40,innerWidth/innerHeight,.1,100);
+    cam.position.set(.5,.6,3.5);
+    const rn=new T.WebGLRenderer({canvas:$('c'),antialias:!isMobile,alpha:false});
+    rn.setSize(innerWidth,innerHeight);
+    rn.setPixelRatio(pixelRatio);
+    if(!isMobile){rn.toneMapping=T.ACESFilmicToneMapping;rn.toneMappingExposure=1.2;}
+    const ctl=new OrbitControls(cam,rn.domElement);ctl.enableDamping=true;ctl.target.set(0,.3,0);ctl.minDistance=1.5;ctl.maxDistance=8;
+
+    sc.add(new T.AmbientLight(0xffffff,.5));
+    const kl=new T.DirectionalLight(0xffd700,1);kl.position.set(3,4,3);sc.add(kl);
+    if(!isMobile){const fl=new T.DirectionalLight(0xd4af37,.3);fl.position.set(-2,1,-2);sc.add(fl);}
+
+    let bee=null,state='idle',t=0;
+
+    window.B={
+      go(s,el){state=s;document.querySelectorAll('.b').forEach(b=>b.classList.remove('on'));if(el)el.classList.add('on');},
+      say(text){sp.textContent=text;sp.classList.add('v');if('speechSynthesis' in window){window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.rate=.95;u.pitch=1.1;const v=window.speechSynthesis.getVoices();const en=v.find(x=>x.lang.startsWith('en')&&x.name.includes('Google'))||v.find(x=>x.lang.startsWith('en'));if(en)u.voice=en;window.speechSynthesis.speak(u);}setTimeout(()=>sp.classList.remove('v'),4000);}
+    };
+
+    new GLTFLoader().load('../bartholomew-ai.glb',g=>{
+      bee=g.scene;bee.scale.set(1.5,1.5,1.5);sc.add(bee);
+      $('ld').classList.add('h');
+      B.say("I am Bartholomew the Third!");
+    },p=>{$('ld').querySelector('span').textContent='Loading… '+Math.round(p.loaded/p.total*100)+'%';},e=>{$('ld').querySelector('span').textContent='Error';});
+
+    let t=0;
+    function anim(){requestAnimationFrame(anim);t+=.016;if(bee){switch(state){case'idle':bee.position.y=Math.sin(t*1.5)*.08;bee.rotation.z=Math.sin(t*.8)*.04;break;case'listen':bee.position.y=Math.sin(t*2)*.05;break;case'think':bee.rotation.x=.1+Math.sin(t*.6)*.05;break;case'talk':bee.position.y=Math.sin(t*2)*.04;break;case'fly':bee.position.y=.5+Math.sin(t*3)*.3;bee.rotation.z=Math.sin(t*2)*.2;break;case'celebrate':bee.position.y=Math.abs(Math.sin(t*3))*.4;bee.rotation.z=Math.sin(t*4)*.15;break;}}ctl.update();rn.render(sc,cam);}
+    anim();
+    addEventListener('resize',()=>{cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix();rn.setSize(innerWidth,innerHeight);});
+  </script>
+</body>
+</html>

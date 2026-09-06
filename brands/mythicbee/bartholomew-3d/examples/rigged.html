@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bartholomew 3D — Rigged Character</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #0a0e14; overflow: hidden; font-family: system-ui; }
+    #scene-container { width: 100vw; height: 100vh; }
+    .ui { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 10; flex-wrap: wrap; justify-content: center; }
+    .btn { padding: 8px 16px; background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.25); border-radius: 6px; color: #d4af37; cursor: pointer; font-size: 12px; transition: all 0.2s; }
+    .btn:hover { background: rgba(201,168,76,0.25); }
+    .btn.active { background: #d4af37; color: #0a0e14; }
+    .speech { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.85); border: 1px solid rgba(201,168,76,0.3); border-radius: 12px; padding: 14px 24px; color: #f5f0e7; font-size: 15px; max-width: 400px; text-align: center; opacity: 0; transition: opacity 0.3s; z-index: 10; }
+    .speech.visible { opacity: 1; }
+    .state { position: fixed; top: 20px; right: 20px; background: rgba(0,0,0,0.6); padding: 6px 10px; border-radius: 4px; color: #d4af37; font-size: 10px; font-family: monospace; z-index: 10; }
+    .loading { position: fixed; inset: 0; background: #0a0e14; display: flex; align-items: center; justify-content: center; z-index: 100; }
+    .loading.hidden { display: none; }
+    .loading span { color: #d4af37; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <div class="loading" id="loading"><span>Loading Bartholomew…</span></div>
+  <div id="scene-container"></div>
+  <div class="speech" id="speech"></div>
+  <div class="state" id="state">idle</div>
+  <div class="ui">
+    <button class="btn" onclick="barth.setState('idle')">Idle</button>
+    <button class="btn" onclick="barth.setState('listen')">Listen</button>
+    <button class="btn" onclick="barth.setState('think')">Think</button>
+    <button class="btn" onclick="barth.setState('talk')">Talk</button>
+    <button class="btn" onclick="barth.setState('fly')">Fly</button>
+    <button class="btn" onclick="barth.setState('celebrate')">Celebrate</button>
+    <button class="btn" onclick="barth.speak('I am Bartholomew the Third!')">Speak</button>
+  </div>
+
+  <script type="importmap">
+    { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js", "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/" } }
+  </script>
+  <script type="module">
+    import * as THREE from 'three';
+    import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+    // ── Setup ──────────────────────────────────────────────
+    const container = $('scene-container');
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x0a0e14);
+
+    const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 100);
+    camera.position.set(0, 0.5, 4);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.2;
+    container.appendChild(renderer.domElement);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.target.set(0, 0.3, 0);
+    controls.update();
+
+    // ── Lighting ──────────────────────────────────────────
+    scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+    const keyLight = new THREE.DirectionalLight(0xffd700, 1.2);
+    keyLight.position.set(3, 4, 3);
+    scene.add(keyLight);
+    const fillLight = new THREE.DirectionalLight(0xd4af37, 0.4);
+    fillLight.position.set(-2, 1, -2);
+    scene.add(fillLight);
+    const rimLight = new THREE.PointLight(0x6b3fa0, 0.5, 10);
+    rimLight.position.set(-1, 2, -3);
+    scene.add(rimLight);
+
+    // ── Load GLB ──────────────────────────────────────────
+    let bee = null;
+    let mixer = null;
+    let actions = {};
+    let currentState = 'idle';
+
+    const loader = new GLTFLoader();
+    loader.load(
+      '../bartholomew-ai.glb',
+      (gltf) => {
+        bee = gltf.scene;
+        bee.scale.set(1.5, 1.5, 1.5);
+        bee.position.y = 0;
+        scene.add(bee);
+
+        // Setup animations if available
+        if (gltf.animations && gltf.animations.length > 0) {
+          mixer = new THREE.AnimationMixer(bee);
+          gltf.animations.forEach(clip => {
+            actions[clip.name] = mixer.clipAction(clip);
+          });
+          console.log('Animations:', Object.keys(actions));
+        }
+
+        $('loading').classList.add('hidden');
+        console.log('Bartholomew loaded');
+        barth.speak("I am Bartholomew the Third, Keeper of MythicBee!");
+      },
+      (progress) => {
+        const pct = Math.round((progress.loaded / progress.total) * 100);
+        $('loading').querySelector('span').textContent = `Loading Bartholomew… ${pct}%`;
+      },
+      (error) => {
+        console.error('Load error:', error);
+        $('loading').querySelector('span').textContent = 'Error loading model. Using fallback…';
+        createFallbackBee();
+      }
+    );
+
+    // ── Fallback bee if GLB fails ─────────────────────────
+    function createFallbackBee() {
+      bee = new THREE.Group();
+      const gold = new THREE.MeshStandardMaterial({ color: 0xffd700, metalness: 0.4, roughness: 0.3 });
+      const stripe = new THREE.MeshStandardMaterial({ color: 0x1a1a2e });
+      const eye = new THREE.MeshStandardMaterial({ color: 0x6b3fa0, emissive: 0x6b3fa0, emissiveIntensity: 0.6 });
+      const wingMat = new THREE.MeshPhysicalMaterial({ color: 0xe8f0ff, transparent: true, opacity: 0.4, transmission: 0.6 });
+      const capeMat = new THREE.MeshStandardMaterial({ color: 0xcc3333, side: THREE.DoubleSide });
+      const tipMat = new THREE.MeshStandardMaterial({ color: 0xffd700, emissive: 0xffd700, emissiveIntensity: 0.5 });
+
+      bee.add(Object.assign(new THREE.Mesh(new THREE.CapsuleGeometry(0.3, 0.5, 8, 16), gold), { rotation: { x:0, y:0, z:Math.PI/2 } }));
+      [-0.15,0,0.15].forEach(z => { const s = new THREE.Mesh(new THREE.CapsuleGeometry(0.31,0.06,8,16), stripe); s.rotation.z = Math.PI/2; s.position.z = z; bee.add(s); });
+      const head = new THREE.Mesh(new THREE.SphereGeometry(0.24,16,16), gold); head.position.set(0.42,0.12,0); bee.add(head);
+      [0.09,-0.09].forEach(z => { const e = new THREE.Mesh(new THREE.SphereGeometry(0.06,16,16), eye); e.position.set(0.56,0.18,z); bee.add(e); const h = new THREE.Mesh(new THREE.SphereGeometry(0.022,8,8), new THREE.MeshBasicMaterial({color:0xffffff})); h.position.set(0.6,0.21,z>0?0.11:-0.11); bee.add(h); });
+      const smile = new THREE.Mesh(new THREE.TorusGeometry(0.06,0.012,8,16,Math.PI), stripe); smile.position.set(0.6,0.06,0); smile.rotation.y = Math.PI/2; smile.rotation.z = Math.PI; bee.add(smile);
+      [0.1,-0.1].forEach(z => { const a = new THREE.Mesh(new THREE.CylinderGeometry(0.01,0.016,0.3,8), stripe); a.position.set(0.38,0.42,z); a.rotation.z = -0.3; a.rotation.x = z>0?0.25:-0.25; bee.add(a); const t = new THREE.Mesh(new THREE.SphereGeometry(0.03,8,8), tipMat); t.position.set(0.28,0.58,z*1.4); bee.add(t); });
+      const ws = new THREE.Shape(); ws.moveTo(0,0); ws.bezierCurveTo(0.18,0.14,0.4,0.16,0.45,0.04); ws.bezierCurveTo(0.4,-0.08,0.18,-0.14,0,0);
+      const wm = new THREE.MeshPhysicalMaterial({ color: 0xe8f0ff, transparent: true, opacity: 0.4 });
+      const wings = [];
+      [[-0.12,0.22,0.18,-0.5,1.5],[-0.18,0.2,0.22,-0.3,1],[-0.12,0.22,-0.18,0.5,1.5],[-0.18,0.2,-0.22,0.3,1]].forEach(([x,y,z,rx,s]) => { const w = new THREE.Mesh(new THREE.ShapeGeometry(ws), wm); w.position.set(x,y,z); w.rotation.x = rx; w.scale.set(s,s,s); bee.add(w); wings.push(w); });
+      const cape = new THREE.Mesh(new THREE.PlaneGeometry(0.45,0.55,12,12), capeMat); cape.position.set(-0.2,0.12,0); cape.rotation.y = Math.PI; cape.rotation.x = 0.15; bee.add(cape);
+      bee.position.y = 0.2; bee.rotation.y = -0.2; scene.add(bee);
+      window._wings = wings; window._cape = cape;
+      $('loading').classList.add('hidden');
+    }
+
+    // ── State Machine ─────────────────────────────────────
+    let currentState = 'idle';
+    let mouseTarget = { x: 0, y: 0 };
+    let mouthOpen = 0;
+
+    window.barth = {
+      setState(state) {
+        currentState = state;
+        $('state').textContent = state;
+        // Play animation if available
+        if (mixer && actions[state]) {
+          Object.values(actions).forEach(a => a.stop());
+          actions[state].reset().play();
+        }
+      },
+      speak(text) {
+        speech.textContent = text;
+        speech.classList.add('visible');
+        if ('speechSynthesis' in window) {
+          window.speechSynthesis.cancel();
+          const u = new SpeechSynthesisUtterance(text);
+          u.rate = 0.95; u.pitch = 1.1;
+          const v = window.speechSynthesis.getVoices();
+          const en = v.find(x => x.lang.startsWith('en') && x.name.includes('Google')) || v.find(x => x.lang.startsWith('en'));
+          if (en) u.voice = en;
+          u.onstart = () => { currentState = 'talk'; $('state').textContent = 'talk'; };
+          u.onend = () => { currentState = 'idle'; $('state').textContent = 'idle'; };
+          window.speechSynthesis.speak(u);
+        }
+        speech.textContent = text;
+        speech.classList.add('visible');
+        setTimeout(() => speech.classList.remove('visible'), 5000);
+      }
+    };
+
+    // ── Mouse tracking ────────────────────────────────────
+    document.addEventListener('mousemove', e => {
+      mouseTarget.x = (e.clientX / window.innerWidth) * 2 - 1;
+      mouseTarget.y = -(e.clientY / window.innerHeight) * 2 + 1;
+    });
+
+    // ── Animation Loop ────────────────────────────────────
+    let t = 0;
+    function animate() {
+      requestAnimationFrame(animate);
+      t += 0.016;
+
+      if (mixer) mixer.update(0.016);
+
+      if (bee) {
+        // Procedural animation based on state
+        switch (currentState) {
+          case 'idle':
+            bee.position.y = Math.sin(t * 1.5) * 0.08;
+            bee.rotation.z = Math.sin(t * 0.8) * 0.04;
+            break;
+          case 'listen':
+            bee.position.y = Math.sin(t * 2) * 0.05;
+            bee.rotation.z = Math.sin(t * 1.5) * 0.03;
+            break;
+          case 'think':
+            bee.rotation.x = 0.1 + Math.sin(t * 0.6) * 0.05;
+            break;
+          case 'talk':
+            bee.position.y = Math.sin(t * 2) * 0.04;
+            mouthOpen = 0.3 + Math.sin(t * 12) * 0.3;
+            break;
+          case 'fly':
+            bee.position.y = 0.5 + Math.sin(t * 3) * 0.3;
+            bee.rotation.z = Math.sin(t * 2) * 0.2;
+            break;
+          case 'celebrate':
+            bee.position.y = Math.abs(Math.sin(t * 3)) * 0.4;
+            bee.rotation.z = Math.sin(t * 4) * 0.15;
+            break;
+        }
+
+        // Eye tracking (for fallback bee)
+        if (!mixer) {
+          const tx = mouseTarget.x * 0.03;
+          const ty = mouseTarget.y * 0.02;
+          // Move eyes slightly toward mouse
+        }
+
+        // Wing flutter (for fallback bee)
+        if (window._wings) {
+          window._wings.forEach((w, i) => {
+            w.rotation.y = Math.sin(t * (18 + i * 2)) * (0.45 + i * 0.08);
+          });
+        }
+
+        // Cape sway
+        if (window._cape) {
+          window._cape.rotation.x = 0.15 + Math.sin(t * 2.2) * 0.12;
+        }
+      }
+
+      controls.update();
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    // ── Resize ────────────────────────────────────────────
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    // ── Auto greet ────────────────────────────────────────
+    setTimeout(() => {
+      barth.speak("Greetings. I am Bartholomew the Third, Keeper of MythicBee. Who are we making mythical?");
+    }, 2000);
+
+    function $(id) { return document.getElementById(id); }
+  </script>
+</body>
+</html>

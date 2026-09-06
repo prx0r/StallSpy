@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bartholomew 3D — Ultimate Character</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{background:radial-gradient(ellipse at 50% 30%,#141c28 0%,#0a0e14 70%);overflow:hidden;font-family:system-ui;color:#f5f0e7}
+    #c{display:block;width:100vw;height:100vh}
+    .ui{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:10;flex-wrap:wrap;justify-content:center}
+    .b{padding:8px 16px;background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.25);border-radius:8px;color:#d4af37;cursor:pointer;font-size:12px;transition:all .2s}
+    .b:hover{background:rgba(201,168,76,0.25)}
+    .b.on{background:#d4af37;color:#0a0e14}
+    .sp{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.85);border:1px solid rgba(201,168,76,0.3);border-radius:12px;padding:14px 24px;font-size:15px;max-width:400px;text-align:center;opacity:0;transition:opacity .3s;z-index:10;pointer-events:none}
+    .sp.v{opacity:1}
+    .st{position:fixed;top:20px;right:20px;background:rgba(0,0,0,0.6);padding:6px 10px;border-radius:4px;color:#d4af37;font-size:10px;font-family:monospace;z-index:10}
+    .ld{position:fixed;inset:0;background:#0a0e14;display:flex;align-items:center;justify-content:center;z-index:100;transition:opacity .5s}
+    .ld.h{opacity:0;pointer-events:none}
+    .ld span{color:#d4af37;font-size:14px}
+    .info{position:fixed;bottom:60px;left:50%;transform:translateX(-50%);font-size:11px;color:#666;z-index:10}
+  </style>
+</head>
+<body>
+  <div class="ld" id="ld"><span>Loading Bartholomew…</span></div>
+  <canvas id="c"></canvas>
+  <div class="sp" id="sp"></div>
+  <div class="st" id="st">idle</div>
+  <div class="info">Drag to rotate • Scroll to zoom • Click buttons to animate</div>
+  <div class="ui">
+    <button class="b" onclick="B.go('idle')">Idle</button>
+    <button class="b" onclick="B.go('listen')">Listen</button>
+    <button class="b" onclick="B.go('think')">Think</button>
+    <button class="b" onclick="B.go('talk')">Talk</button>
+    <button class="b" onclick="B.go('fly')">Fly</button>
+    <button class="b" onclick="B.go('celebrate')">Celebrate</button>
+    <button class="b" onclick="B.say('I am Bartholomew the Third, Keeper of MythicBee!')">Speak</button>
+    <button class="b" onclick="B.say('Who are we making mythical today?')">Greet</button>
+  </div>
+
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+  <script type="module">
+    import*as T from'three';
+    import{GLTFLoader}from'three/addons/loaders/GLTFLoader.js';
+    import{OrbitControls}from'three/addons/controls/OrbitControls.js';
+
+    const $=id=>document.getElementById(id);
+
+    // ── Scene ─────────────────────────────────────────────
+    const sc=new T.Scene();
+    sc.background=new T.Color(0x0a0e14);
+    sc.fog=new T.Fog(0x0a0e14,8,20);
+
+    const cam=new T.PerspectiveCamera(40,innerWidth/innerHeight,.1,100);
+    cam.position.set(0.5,0.6,3.5);
+
+    const rn=new T.WebGLRenderer({canvas:$('c'),antialias:true});
+    rn.setSize(innerWidth,innerHeight);
+    rn.setPixelRatio(Math.min(devicePixelRatio,2));
+    rn.toneMapping=T.ACESFilmicToneMapping;
+    rn.toneMappingExposure=1.2;
+    rn.shadowMap.enabled=true;
+
+    const ctl=new OrbitControls(cam,rn.domElement);
+    ctl.enableDamping=true;
+    ctl.target.set(0,0.3,0);
+    ctl.minDistance=1.5;
+    ctl.maxDistance=8;
+
+    // ── Lighting ──────────────────────────────────────────
+    sc.add(new T.AmbientLight(0xffffff,0.5));
+    const kl=new T.DirectionalLight(0xffd700,1.2);kl.position.set(3,4,3);kl.castShadow=true;sc.add(kl);
+    const fl=new T.DirectionalLight(0xd4af37,0.4);fl.position.set(-2,1,-2);sc.add(fl);
+    const rl=new T.PointLight(0x6b3fa0,0.5,10);rl.position.set(-1,2,-3);sc.add(rl);
+    const backLight=new T.PointLight(0xffd700,0.3,8);backLight.position.set(0,1,-3);sc.add(backLight);
+
+    // ── Ground plane ─────────────────────────────────────
+    const ground=new T.Mesh(new T.PlaneGeometry(20,20),new T.MeshStandardMaterial({color:0x111111,roughness:0.9}));
+    ground.rotation.x=-Math.PI/2;ground.position.y=-0.5;ground.receiveShadow=true;sc.add(ground);
+
+    // ── Particles ─────────────────────────────────────────
+    const particles=new T.Group();
+    for(let i=0;i<50;i++){
+      const p=new T.Mesh(new T.SphereGeometry(0.01,4,4),new T.MeshBasicMaterial({color:0xd4af37,transparent:true,opacity:0.4}));
+      p.position.set((Math.random()-0.5)*8,Math.random()*4,(Math.random()-0.5)*8);
+      p.userData.speed=0.2+Math.random()*0.3;
+      p.userData.offset=Math.random()*Math.PI*2;
+      particles.add(p);
+    }
+    sc.add(particles);
+
+    // ── State ─────────────────────────────────────────────
+    let bee=null,mixer=null,actions={},state='idle',mouse={x:0,y:0},t=0;
+
+    window.B={
+      go(s){
+        state=s;$('st').textContent=s;
+        document.querySelectorAll('.b').forEach(b=>b.classList.remove('on'));
+        event.target.classList.add('on');
+        if(mixer&&actions[s]){Object.values(actions).forEach(a=>a.stop());actions[s].reset().play();}
+      },
+      say(text){
+        sp.textContent=text;sp.classList.add('v');
+        if('speechSynthesis' in window){
+          window.speechSynthesis.cancel();
+          const u=new SpeechSynthesisUtterance(text);
+          u.rate=0.95;u.pitch=1.1;
+          const v=window.speechSynthesis.getVoices();
+          const en=v.find(x=>x.lang.startsWith('en')&&x.name.includes('Google'))||v.find(x=>x.lang.startsWith('en'));
+          if(en)u.voice=en;
+          u.onend=()=>{state='idle';$('st').textContent='idle';};
+          window.speechSynthesis.speak(u);
+        }
+        setTimeout(()=>sp.classList.remove('v'),5000);
+      }
+    };
+
+    // ── Mouse ─────────────────────────────────────────────
+    document.addEventListener('mousemove',e=>{mouse.x=(e.clientX/innerWidth)*2-1;mouse.y=-(e.clientY/innerHeight)*2+1;});
+
+    // ── Load model ────────────────────────────────────────
+    new GLTFLoader().load('../bartholomew-ai.glb',
+      g=>{
+        bee=g.scene;
+        bee.scale.set(1.5,1.5,1.5);
+        bee.traverse(child=>{if(child.isMesh){child.castShadow=true;child.receiveShadow=true;}});
+        sc.add(bee);
+        if(g.animations&&g.animations.length){mixer=new T.AnimationMixer(bee);g.animations.forEach(c=>{actions[c.name]=mixer.clipAction(c);});}
+        $('ld').classList.add('h');
+        setTimeout(()=>B.say("Greetings! I am Bartholomew the Third, Keeper of MythicBee!"),1000);
+      },
+      p=>{$('ld').querySelector('span').textContent='Loading… '+Math.round(p.loaded/p.total*100)+'%';},
+      e=>{console.error(e);$('ld').querySelector('span').textContent='Error loading model';}
+    );
+
+    // ── Animation loop ────────────────────────────────────
+    function anim(){
+      requestAnimationFrame(anim);
+      t+=0.016;
+      if(mixer)mixer.update(0.016);
+      if(bee){
+        switch(state){
+          case'idle':bee.position.y=Math.sin(t*1.5)*0.08;bee.rotation.z=Math.sin(t*0.8)*0.04;bee.rotation.x=Math.sin(t*1.2)*0.025;break;
+          case'listen':bee.position.y=Math.sin(t*2)*0.05;bee.rotation.z=Math.sin(t*1.5)*0.03;break;
+          case'think':bee.rotation.x=0.1+Math.sin(t*0.6)*0.05;bee.position.y+=Math.sin(t*0.8)*0.02;break;
+          case'talk':bee.position.y=Math.sin(t*2)*0.04;bee.rotation.z=Math.sin(t*1.5)*0.02;break;
+          case'fly':bee.position.y=0.5+Math.sin(t*3)*0.3;bee.rotation.z=Math.sin(t*2)*0.2;bee.position.x=Math.sin(t*1.5)*0.3;break;
+          case'celebrate':bee.position.y=Math.abs(Math.sin(t*3))*0.4;bee.rotation.z=Math.sin(t*4)*0.15;bee.rotation.x=Math.sin(t*3)*0.1;break;
+        }
+        // Eye tracking
+        const eyeTarget=mouse.x*0.02;
+        if(bee.children)bee.children.forEach(c=>{if(c.name&&c.name.includes('Eye')){c.position.x+=eyeTarget*0.1;}});
+      }
+      // Particles
+      particles.children.forEach(p=>{p.position.y+=p.userData.speed*0.016;if(p.position.y>4)p.position.y=-0.5;p.rotation.x+=0.01;p.rotation.y+=0.02;});
+      ctl.update();rn.render(sc,cam);
+    }
+    anim();
+
+    // ── Resize ────────────────────────────────────────────
+    addEventListener('resize',()=>{cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix();rn.setSize(innerWidth,innerHeight);});
+  </script>
+</body>
+</html>

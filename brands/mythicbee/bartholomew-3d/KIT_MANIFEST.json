@@ -1,0 +1,12 @@
+{
+  "kit": "MythicBee Bartholomew III Character Kit",
+  "version": "0.1.0",
+  "coreLayerCount": 13,
+  "poseCount": 12,
+  "expressionCount": 12,
+  "canonical": "assets/canonical/bartholomew.webp",
+  "motionController": "src/BartholomewController.ts",
+  "voiceClient": "src/InworldVoiceClient.ts",
+  "giftBriefSchema": "schemas/gift-brief.schema.json",
+  "inworldTools": "schemas/tools.inworld.json"
+}

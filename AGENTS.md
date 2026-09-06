@@ -118,6 +118,56 @@ Until 20 paid Etsy orders or 30 days data:
 
 ---
 
+## CRITICAL: Testing Rules
+
+**NEVER declare something "working" until you've tested it from the actual environment it will run in.**
+
+### Mandatory testing checklist
+
+Before saying "it works":
+1. ✅ Test via MCP server (call the tools)
+2. ✅ Test via webfetch (what the user sees)
+3. ✅ Check for JS errors in the served HTML
+4. ✅ Verify CORS headers allow browser requests
+5. ✅ Verify response parsing is correct
+
+### What I CANNOT do
+
+- I cannot open a browser
+- I cannot see what the user sees
+- I cannot run JavaScript in a browser context
+
+### What I MUST do
+
+- Test via MCP (create bee, chat, verify response)
+- Test via webfetch (check the served HTML)
+- Check for syntax errors in served JavaScript
+- Verify CORS headers
+- **NEVER say "it works" without running at least one MCP tool call against the live system**
+
+### Common failure modes
+
+| Symptom | Likely cause |
+|---------|--------------|
+| Works in curl, fails in browser | CORS preflight blocked |
+| "Failed to fetch" | CORS or mixed content |
+| "Something went wrong" | Unhandled error in catch block |
+| Enter key doesn't work | Event listener not attached |
+| Response undefined | Wrong response parsing path |
+| UI doesn't update | DOM manipulation error |
+
+### If the user says it doesn't work
+
+1. Don't argue
+2. Run the MCP test suite
+3. Check webfetch output
+4. Look for actual errors
+5. Fix the issue
+
+**If you skip this, you will waste the user's time debugging phantom issues.**
+
+---
+
 ## Session Protocol
 
 Every coding session receives:

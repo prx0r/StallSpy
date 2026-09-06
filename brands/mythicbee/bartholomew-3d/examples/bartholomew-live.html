@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bartholomew 3D — Live Character</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #0a0e14; overflow: hidden; font-family: system-ui; }
+    canvas { display: block; }
+    .ui { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 12px; z-index: 10; }
+    .btn { padding: 10px 20px; background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3); border-radius: 8px; color: #d4af37; cursor: pointer; font-size: 13px; transition: all 0.2s; }
+    .btn:hover { background: rgba(201,168,76,0.25); }
+    .btn.active { background: #d4af37; color: #0a0e14; }
+    .speech { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.8); border: 1px solid rgba(201,168,76,0.3); border-radius: 12px; padding: 14px 24px; color: #f5f0e7; font-size: 15px; max-width: 400px; text-align: center; opacity: 0; transition: opacity 0.3s; z-index: 10; }
+    .speech.visible { opacity: 1; }
+    .state { position: fixed; top: 20px; right: 20px; background: rgba(0,0,0,0.6); padding: 8px 12px; border-radius: 6px; color: #d4af37; font-size: 11px; font-family: monospace; z-index: 10; }
+  </style>
+</head>
+<body>
+  <div class="speech" id="speech"></div>
+  <div class="state" id="state">State: idle</div>
+  <div class="ui">
+    <button class="btn" onclick="barth.setState('idle')">Idle</button>
+    <button class="btn" onclick="barth.setState('listening')">Listening</button>
+    <button class="btn" onclick="barth.setState('thinking')">Thinking</button>
+    <button class="btn" onclick="barth.setState('talking')">Talking</button>
+    <button class="btn" onclick="barth.setState('celebrating')">Celebrate</button>
+  </div>
+
+  <script type="importmap">
+    { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }
+  </script>
+  <script type="module">
+    import * as THREE from 'three';
+
+    // ── Scene Setup ───────────────────────────────────────
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x0a0e14);
+    
+    const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 100);
+    camera.position.set(0.5, 0.6, 3.5);
+    camera.lookAt(0, 0.2, 0);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.2;
+    document.body.appendChild(renderer.domElement);
+
+    // ── Lighting ──────────────────────────────────────────
+    scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+    
+    const keyLight = new THREE.DirectionalLight(0xffd700, 1.2);
+    keyLight.position.set(3, 4, 3);
+    keyLight.castShadow = true;
+    scene.add(keyLight);
+    
+    const fillLight = new THREE.DirectionalLight(0xd4af37, 0.4);
+    fillLight.position.set(-2, 1, -2);
+    scene.add(fillLight);
+    
+    const rimLight = new THREE.PointLight(0x6b3fa0, 0.5, 10);
+    rimLight.position.set(-1, 2, -3);
+    scene.add(rimLight);
+
+    // ── Materials ─────────────────────────────────────────
+    const goldMat = new THREE.MeshStandardMaterial({ color: 0xffd700, metalness: 0.4, roughness: 0.3 });
+    const stripeMat = new THREE.MeshStandardMaterial({ color: 0x1a1a2e, metalness: 0.1, roughness: 0.6 });
+    const eyeMat = new THREE.MeshStandardMaterial({ color: 0x6b3fa0, emissive: 0x6b3fa0, emissiveIntensity: 0.6 });
+    const wingMat = new THREE.MeshPhysicalMaterial({ color: 0xe8f0ff, transparent: true, opacity: 0.4, transmission: 0.6, roughness: 0.1 });
+    const capeMat = new THREE.MeshStandardMaterial({ color: 0xcc3333, side: THREE.DoubleSide, roughness: 0.5 });
+    const tipMat = new THREE.MeshStandardMaterial({ color: 0xffd700, emissive: 0xffd700, emissiveIntensity: 0.5 });
+
+    // ── Build Bartholomew ─────────────────────────────────
+    const bee = new THREE.Group();
+    bee.name = 'Bartholomew';
+
+    // Body
+    const body = new THREE.Mesh(new THREE.CapsuleGeometry(0.3, 0.5, 8, 16), goldMat);
+    body.rotation.z = Math.PI / 2;
+    body.castShadow = true;
+    bee.add(body);
+
+    // Stripes
+    [-0.15, 0, 0.15].forEach(z => {
+      const s = new THREE.Mesh(new THREE.CapsuleGeometry(0.31, 0.06, 8, 16), stripeMat);
+      s.rotation.z = Math.PI / 2;
+      s.position.z = z;
+      bee.add(s);
+    });
+
+    // Head
+    const head = new THREE.Mesh(new THREE.SphereGeometry(0.24, 32, 32), goldMat);
+    head.position.set(0.42, 0.12, 0);
+    head.castShadow = true;
+    bee.add(head);
+
+    // Eyes
+    const eyes = [];
+    [0.09, -0.09].forEach(z => {
+      const e = new THREE.Mesh(new THREE.SphereGeometry(0.065, 16, 16), eyeMat);
+      e.position.set(0.56, 0.18, z);
+      bee.add(e);
+      eyes.push(e);
+      
+      const h = new THREE.Mesh(new THREE.SphereGeometry(0.025, 8, 8), new THREE.MeshBasicMaterial({ color: 0xffffff }));
+      h.position.set(0.61, 0.22, z > 0 ? 0.12 : -0.12);
+      bee.add(h);
+    });
+
+    // Smile
+    const smile = new THREE.Mesh(new THREE.TorusGeometry(0.06, 0.015, 8, 16, Math.PI), stripeMat);
+    smile.position.set(0.6, 0.04, 0);
+    smile.rotation.y = Math.PI / 2;
+    smile.rotation.z = Math.PI;
+    bee.add(smile);
+
+    // Antennae
+    const antennae = [];
+    [0.1, -0.1].forEach(z => {
+      const a = new THREE.Mesh(new THREE.CylinderGeometry(0.008, 0.018, 0.35, 8), stripeMat);
+      a.position.set(0.38, 0.45, z);
+      a.rotation.z = -0.3;
+      a.rotation.x = z > 0 ? 0.25 : -0.25;
+      bee.add(a);
+      antennae.push(a);
+      
+      const t = new THREE.Mesh(new THREE.SphereGeometry(0.035, 12, 12), tipMat);
+      t.position.set(0.26, 0.62, z * 1.4);
+      bee.add(t);
+      antennae.push(t);
+    });
+
+    // Wings
+    const wingShape = new THREE.Shape();
+    wingShape.moveTo(0, 0);
+    wingShape.bezierCurveTo(0.2, 0.15, 0.45, 0.18, 0.5, 0.04);
+    wingShape.bezierCurveTo(0.45, -0.1, 0.2, -0.15, 0, 0);
+    const wingGeom = new THREE.ShapeGeometry(wingShape);
+    
+    const wings = [];
+    [
+      [-0.12, 0.24, 0.2, -0.5, 1.5],
+      [-0.18, 0.22, 0.25, -0.3, 1.1],
+      [-0.12, 0.24, -0.2, 0.5, 1.5],
+      [-0.18, 0.22, -0.25, 0.3, 1.1]
+    ].forEach(([x, y, z, rx, s]) => {
+      const w = new THREE.Mesh(wingGeom, wingMat);
+      w.position.set(x, y, z);
+      w.rotation.x = rx;
+      w.scale.set(s, s, s);
+      bee.add(w);
+      wings.push(w);
+    });
+
+    // Cape
+    const cape = new THREE.Mesh(new THREE.PlaneGeometry(0.45, 0.55, 12, 12), capeMat);
+    cape.position.set(-0.2, 0.12, 0);
+    cape.rotation.y = Math.PI;
+    cape.rotation.x = 0.15;
+    bee.add(cape);
+
+    bee.position.y = 0.2;
+    bee.rotation.y = -0.2;
+    scene.add(bee);
+
+    // ── State Machine ─────────────────────────────────────
+    let currentState = 'idle';
+    let mouseTarget = { x: 0, y: 0 };
+    let mouthOpen = 0;
+    let targetMouth = 0;
+
+    window.barth = {
+      setState(state) {
+        currentState = state;
+        document.getElementById('state').textContent = 'State: ' + state;
+        
+        if (state === 'talking') {
+          speak("I am Bartholomew the Third, Keeper of MythicBee. Who are we making mythical?");
+        }
+      },
+      say(text) {
+        speech.textContent = text;
+        speech.classList.add('visible');
+        setTimeout(() => speech.classList.remove('visible'), 4000);
+      }
+    };
+
+    // ── Speech ────────────────────────────────────────────
+    function speak(text) {
+      if (!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      u.rate = 0.95; u.pitch = 1.1;
+      const v = window.speechSynthesis.getVoices();
+      const en = v.find(x => x.lang.startsWith('en') && x.name.includes('Google')) || v.find(x => x.lang.startsWith('en'));
+      if (en) u.voice = en;
+      u.onstart = () => { currentState = 'talking'; document.getElementById('state').textContent = 'State: talking'; };
+      u.onend = () => { currentState = 'idle'; document.getElementById('state').textContent = 'State: idle'; };
+      window.speechSynthesis.speak(u);
+    }
+
+    // ── Mouse tracking ────────────────────────────────────
+    document.addEventListener('mousemove', e => {
+      mouseTarget.x = (e.clientX / window.innerWidth) * 2 - 1;
+      mouseTarget.y = -(e.clientY / window.innerHeight) * 2 + 1;
+    });
+
+    // ── Animation Loop ────────────────────────────────────
+    let t = 0;
+    function animate() {
+      requestAnimationFrame(animate);
+      t += 0.016;
+
+      // State-based animation
+      switch (currentState) {
+        case 'idle':
+          bee.position.y = 0.2 + Math.sin(t * 1.5) * 0.08;
+          bee.rotation.z = Math.sin(t * 0.8) * 0.04;
+          bee.rotation.x = Math.sin(t * 1.2) * 0.025;
+          mouthOpen += (0 - mouthOpen) * 0.1;
+          break;
+        case 'listening':
+          bee.position.y = 0.2 + Math.sin(t * 2) * 0.05;
+          bee.rotation.z = Math.sin(t * 1.5) * 0.03;
+          bee.rotation.x = Math.sin(t * 1.8) * 0.02;
+          mouthOpen += (0 - mouthOpen) * 0.1;
+          break;
+        case 'thinking':
+          bee.position.y = 0.2 + Math.sin(t * 1.2) * 0.04;
+          bee.rotation.z = Math.sin(t * 0.6) * 0.06;
+          bee.rotation.x = 0.1;
+          mouthOpen += (0 - mouthOpen) * 0.1;
+          break;
+        case 'talking':
+          bee.position.y = 0.2 + Math.sin(t * 2) * 0.04;
+          bee.rotation.z = Math.sin(t * 1) * 0.03;
+          bee.rotation.x = Math.sin(t * 1.5) * 0.02;
+          mouthOpen = 0.3 + Math.sin(t * 12) * 0.3;
+          break;
+        case 'celebrating':
+          bee.position.y = 0.2 + Math.abs(Math.sin(t * 3)) * 0.3;
+          bee.rotation.z = Math.sin(t * 4) * 0.15;
+          bee.rotation.x = Math.sin(t * 3) * 0.1;
+          mouthOpen = 0.5;
+          break;
+      }
+
+      // Eye tracking
+      eyes.forEach((e, i) => {
+        const targetX = mouseTarget.x * 0.03;
+        const targetY = mouseTarget.y * 0.02;
+        e.position.x += (0.56 + targetX - e.position.x) * 0.1;
+        e.position.y += (0.18 + targetY - e.position.y) * 0.1;
+      });
+
+      // Wing flutter
+      wings.forEach((w, i) => {
+        const speed = currentState === 'celebrating' ? 25 : currentState === 'talking' ? 20 : 18;
+        const amp = currentState === 'celebrating' ? 0.6 : 0.45;
+        w.rotation.y = Math.sin(t * (speed + i * 2)) * (amp + i * 0.08);
+      });
+
+      // Antenna spring
+      antennae.forEach((a, i) => {
+        if (i % 2 === 1) { // tips only
+          a.position.y = 0.62 + Math.sin(t * 2.5 + i) * 0.025;
+        }
+      });
+
+      // Cape physics
+      cape.rotation.x = 0.15 + Math.sin(t * 2.2) * 0.12;
+      cape.geometry.vertices?.forEach((v, i) => {
+        v.z += Math.sin(t * 3 + i * 0.5) * 0.001;
+      });
+
+      // Mouth morph
+      smile.scale.y += (1 + mouthOpen - smile.scale.y) * 0.15;
+
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    // ── Resize ────────────────────────────────────────────
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    // ── Auto-greet ────────────────────────────────────────
+    setTimeout(() => {
+      barth.setState('talking');
+      barth.say("I am Bartholomew the Third. Who are we making mythical?");
+    }, 1000);
+  </script>
+</body>
+</html>
