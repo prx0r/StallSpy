@@ -1,0 +1,12 @@
+{
+  "schema": "economic_event",
+  "event_id": "econ_c8ffcc216fe2",
+  "occurred_at": "2026-09-06T00:00:01.808299",
+  "type": "etsy_fee",
+  "brand_id": "mythicbee",
+  "cash_usd": 0.0,
+  "tokens": 0,
+  "human_minutes": 0,
+  "session_id": "",
+  "experiment_id": ""
+}

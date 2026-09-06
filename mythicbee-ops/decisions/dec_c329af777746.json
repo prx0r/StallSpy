@@ -1,0 +1,19 @@
+{
+  "schema": "decision",
+  "decision_id": "dec_c329af777746",
+  "state_id": "state_99373a1b4091",
+  "problem": "zero revenue after 5 days",
+  "options": [],
+  "human_preference": "",
+  "agent_preference": "",
+  "final_choice": "ship first listing",
+  "reason": "revenue matters more than frameworks",
+  "confidence": 0.8,
+  "budget": {
+    "cash_usd": 2.0,
+    "human_minutes": 60,
+    "agent_tokens": 200000
+  },
+  "expected_result": "",
+  "outcome_ids": []
+}

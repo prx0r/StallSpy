@@ -39,7 +39,7 @@
     {
       "name": "R2 manifests",
       "passed": true,
-      "detail": "1 manifests"
+      "detail": "2 manifests"
     },
     {
       "name": "Private dir exists",

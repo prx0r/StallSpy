@@ -1,0 +1,12 @@
+{
+  "schema": "economic_event",
+  "event_id": "econ_08b668037d41",
+  "occurred_at": "2026-09-06T00:00:01.808291",
+  "type": "model",
+  "brand_id": "mythicbee",
+  "cash_usd": -3.21,
+  "tokens": 0,
+  "human_minutes": 0,
+  "session_id": "",
+  "experiment_id": ""
+}

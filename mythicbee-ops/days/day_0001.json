@@ -1,0 +1,26 @@
+{
+  "schema": "company_day",
+  "day_id": "day_0001",
+  "date": "2026-09-06",
+  "day_number": 1,
+  "state_start_id": "state_99373a1b4091",
+  "state_end_id": "state_99373a1b4091",
+  "perspective_ids": [
+    "persp_008979c848cd",
+    "persp_e75c4dcf307a",
+    "persp_d8890f5a8534",
+    "persp_6b44dbebd7c3"
+  ],
+  "session_ids": [],
+  "decision_ids": [
+    "dec_c329af777746"
+  ],
+  "problem_ids": [],
+  "experiment_ids": [],
+  "financial_event_ids": [
+    "econ_08b668037d41",
+    "econ_c8ffcc216fe2"
+  ],
+  "public_content_ids": [],
+  "closed_at": "2026-09-06T00:00:01.808306"
+}
