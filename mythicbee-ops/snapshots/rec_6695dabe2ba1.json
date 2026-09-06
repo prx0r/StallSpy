@@ -1,0 +1,22 @@
+{
+  "schema": "MetricSnapshot",
+  "snapshot_id": "snap_b31d0c701051",
+  "observed_at": "2026-09-06T06:00:04.127756",
+  "shop": {
+    "total_listings_scanned": 0,
+    "total_favorites": 0,
+    "total_views": 0,
+    "unique_competitor_shops": 0,
+    "keywords_scanned": 0
+  },
+  "listings": [],
+  "reviews": {
+    "count": 0,
+    "average": 0
+  },
+  "operations": {
+    "open_orders": 0,
+    "failed_renders": 0,
+    "rerolls": 0
+  }
+}

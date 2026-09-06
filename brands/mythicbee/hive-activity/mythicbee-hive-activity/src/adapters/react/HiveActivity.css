@@ -1,0 +1,98 @@
+
+.hive-activity {
+  --hive-dim: rgba(68, 53, 37, .45);
+  --hive-mid: rgba(118, 86, 46, .76);
+  --hive-bright: rgba(237, 169, 62, 1);
+  --hive-glow: rgba(247, 190, 81, .16);
+  display: inline-flex;
+  align-items: center;
+  gap: .62rem;
+  max-width: min(92vw, 48rem);
+  font: 500 0.95rem/1.25 ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: .005em;
+  user-select: none;
+}
+
+.hive-glyph {
+  display: inline-grid;
+  width: 1.1em;
+  place-items: center;
+  color: var(--hive-bright);
+  filter: drop-shadow(0 0 .55rem var(--hive-glow));
+  animation: hive-glyph-breathe 1.35s ease-in-out infinite;
+  transform-origin: 50% 55%;
+}
+
+.hive-shimmer-text {
+  display: inline-block;
+  color: transparent;
+  background:
+    linear-gradient(
+      96deg,
+      var(--hive-dim) 0%,
+      var(--hive-mid) 38%,
+      var(--hive-bright) 50%,
+      var(--hive-mid) 62%,
+      var(--hive-dim) 100%
+    );
+  background-size: 260% 100%;
+  background-position: 135% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  filter: drop-shadow(0 0 .38rem var(--hive-glow));
+  animation: hive-text-glimmer 2.15s linear infinite;
+  white-space: normal;
+}
+
+@keyframes hive-text-glimmer {
+  from { background-position: 135% 0; }
+  to   { background-position: -135% 0; }
+}
+@keyframes hive-glyph-breathe {
+  0%, 100% { transform: scale(.92) rotate(-5deg); opacity: .62; }
+  50% { transform: scale(1.08) rotate(7deg); opacity: 1; }
+}
+
+/* Seasonal visual hooks. These are deliberately restrained: the app can layer
+   larger ambient scenes using the same season id without this component
+   becoming visually brittle. */
+.hive-season-christmas {
+  --hive-dim: rgba(57, 91, 68, .48);
+  --hive-mid: rgba(166, 70, 63, .76);
+  --hive-bright: rgba(244, 205, 112, 1);
+  --hive-glow: rgba(244, 205, 112, .22);
+}
+.hive-season-halloween {
+  --hive-dim: rgba(60, 39, 75, .52);
+  --hive-mid: rgba(170, 80, 42, .78);
+  --hive-bright: rgba(255, 169, 74, 1);
+  --hive-glow: rgba(255, 120, 40, .2);
+}
+.hive-season-valentines {
+  --hive-dim: rgba(95, 48, 66, .45);
+  --hive-mid: rgba(180, 88, 112, .78);
+  --hive-bright: rgba(236, 157, 166, 1);
+  --hive-glow: rgba(236, 157, 166, .2);
+}
+.hive-season-fathers-day {
+  --hive-dim: rgba(48, 66, 86, .45);
+  --hive-mid: rgba(92, 116, 137, .74);
+  --hive-bright: rgba(227, 171, 70, 1);
+}
+.hive-season-mothers-day {
+  --hive-dim: rgba(79, 63, 78, .45);
+  --hive-mid: rgba(134, 99, 120, .72);
+  --hive-bright: rgba(229, 178, 197, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hive-glyph,
+  .hive-shimmer-text {
+    animation: none !important;
+  }
+  .hive-shimmer-text {
+    color: var(--hive-mid);
+    background: none;
+    filter: none;
+  }
+}

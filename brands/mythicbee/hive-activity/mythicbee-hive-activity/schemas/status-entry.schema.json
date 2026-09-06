@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MythicBee Hive Status Entry",
+  "type": "object",
+  "required": [
+    "id",
+    "text",
+    "phases"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "text": {
+      "type": "string",
+      "minLength": 1
+    },
+    "phases": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "weight": {
+      "type": "number",
+      "minimum": 0
+    },
+    "rarity": {
+      "enum": [
+        "common",
+        "uncommon",
+        "rare"
+      ]
+    },
+    "beeArchetypes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "seasons": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "minDurationMs": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "maxDurationMs": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "cooldownMs": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "motionCue": {
+      "type": "string"
+    },
+    "contextualSlots": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "suppressIfTags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}
