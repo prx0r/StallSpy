@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bartholomew — Rig Mapper</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{background:#0a0e14;color:#f5f0e7;font-family:system-ui;min-height:100vh;padding:20px}
+    h1{font-size:24px;color:#d4af37;margin-bottom:8px}
+    .sub{color:#666;font-size:14px;margin-bottom:24px}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .panel{background:#1a1a2e;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:20px}
+    .panel h2{font-size:16px;color:#d4af37;margin-bottom:12px}
+    .canvas-wrap{width:100%;aspect-ratio:1;background:#0a0e14;border-radius:8px;overflow:hidden;cursor:crosshair}
+    #render-canvas{width:100%;height:100%}
+    .parts-list{list-style:none;max-height:400px;overflow-y:auto}
+    .parts-list li{padding:8px 12px;border-bottom:1px solid rgba(255,255,255,0.05);font-size:13px;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+    .parts-list li:hover{background:rgba(255,255,255,0.05)}
+    .parts-list li.selected{background:rgba(201,168,76,0.1);border-color:var(--gold)}
+    .parts-list li .name{color:var(--ivory)}
+    .parts-list li .assign{font-size:11px;color:#d4af37}
+    select{background:#0a0e14;border:1px solid rgba(255,255,255,0.1);border-radius:6px;padding:6px 10px;color:var(--ivory);font-size:12px}
+    button{padding:8px 16px;background:#d4af37;color:#0a0e14;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600}
+    button:hover{background:#b8941f}
+    .manifest{background:#0a0e14;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:16px;margin-top:16px;font-family:monospace;font-size:12px;color:#d4af37;white-space:pre-wrap;max-height:300px;overflow-y:auto}
+  </style>
+</head>
+<body>
+  <h1>Rig Mapper</h1>
+  <p class="sub">Click meshes in the 3D view, assign them to body parts, save the manifest.</p>
+  
+  <div class="grid">
+    <div class="panel">
+      <h2>3D View</h2>
+      <div class="canvas-wrap">
+        <canvas id="render-canvas"></canvas>
+      </div>
+      <p style="font-size:12px;color:#666;margin-top:8px">Click a mesh to select it. Then assign it below.</p>
+    </div>
+    
+    <div class="panel">
+      <h2>Parts</h2>
+      <ul class="parts-list" id="parts-list">
+        <li data-part="body"><span class="name">Body</span><span class="assign" id="assign-body">—</span></li>
+        <li data-part="head"><span class="name">Head</span><span class="assign" id="assign-head">—</span></li>
+        <li data-part="eyeLeft"><span class="name">Eye Left</span><span class="assign" id="assign-eyeLeft">—</span></li>
+        <li data-part="eyeRight"><span class="name">Eye Right</span><span class="assign" id="assign-eyeRight">—</span></li>
+        <li data-part="wingFrontLeft"><span class="name">Wing Front Left</span><span class="assign" id="assign-wingFrontLeft">—</span></li>
+        <li data-part="wingRearLeft"><span class="name">Wing Rear Left</span><span class="assign" id="assign-wingRearLeft">—</span></li>
+        <li data-part="wingFrontRight"><span class="name">Wing Front Right</span><span class="assign" id="assign-wingFrontRight">—</span></li>
+        <li data-part="wingRearRight"><span class="name">Wing Rear Right</span><span class="assign" id="assign-wingRearRight">—</span></li>
+        <li data-part="antennaLeft"><span class="name">Antenna Left</span><span class="assign" id="assign-antennaLeft">—</span></li>
+        <li data-part="antennaRight"><span class="name">Antenna Right</span><span class="assign" id="assign-antennaRight">—</span></li>
+        <li data-part="armLeft"><span class="name">Arm Left</span><span class="assign" id="assign-armLeft">—</span></li>
+        <li data-part="armRight"><span class="name">Arm Right</span><span class="assign" id="assign-armRight">—</span></li>
+        <li data-part="cape"><span class="name">Cape</span><span class="assign" id="assign-cape">—</span></li>
+      </ul>
+      
+      <div style="margin-top:16px;display:flex;gap:8px">
+        <button onclick="saveManifest()">Save Manifest</button>
+        <button onclick="loadGLB()" style="background:transparent;color:#d4af37;border:1px solid #d4af37">Load GLB</button>
+      </div>
+      
+      <div class="manifest" id="manifest" style="display:none"></div>
+    </div>
+  </div>
+
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+  <script type="module">
+    import*as T from'three';
+    import{GLTFLoader}from'three/addons/loaders/GLTFLoader.js';
+    import{OrbitControls}from'three/addons/controls/OrbitControls.js';
+
+    const $=id=>document.getElementById(id);
+    let scene=new T.Scene();
+    let camera=new T.PerspectiveCamera(40,1,.1,100);
+    camera.position.set(0,.5,3);
+    let renderer=new T.WebGLRenderer({canvas:$('render-canvas'),antialias:true,alpha:true});
+    renderer.setSize(400,400);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+    let controls=new OrbitControls(camera,renderer.domElement);
+    controls.enableDamping=true;controls.target.set(0,.3,0);
+
+    scene.add(new T.AmbientLight(0xffffff,0.6));
+    const dl=new T.DirectionalLight(0xffd700,1);dl.position.set(2,3,2);scene.add(dl);
+
+    let meshes=[];
+    let selectedMesh=null;
+    let assignments={};
+
+    function animate(){requestAnimationFrame(animate);controls.update();renderer.render(scene,camera);}
+    animate();
+
+    // Load GLB
+    window.loadGLB=function(){
+      const url=prompt('GLB URL:','../bartholomew-ai.glb');
+      if(!url)return;
+      new GLTFLoader().load(url,g=>{
+        const model=g.scene;
+        model.scale.set(1.5,1.5,1.5);
+        scene.add(model);
+        meshes=[];
+        model.traverse(c=>{
+          if(c.isMesh){
+            meshes.push({name:c.name||'unnamed_'+meshes.length,object:c,assignedTo:null});
+          }
+        });
+        updatePartsList();
+        console.log('Loaded',meshes.length,'meshes');
+      });
+    };
+
+    function updatePartsList(){
+      const list=$('parts-list');
+      list.querySelectorAll('li').forEach(li=>{
+        const part=li.dataset.part;
+        const mesh=meshes.find(m=>m.assignedTo===part);
+        const assignEl=li.querySelector('.assign');
+        if(mesh){
+          assignEl.textContent=mesh.name;
+          li.style.borderColor='#d4af37';
+        }else{
+          assignEl.textContent='—';
+          li.style.borderColor='transparent';
+        }
+      });
+    }
+
+    // Click to select mesh
+    const raycaster=new T.Raycaster();
+    const mouse=new T.Vector2();
+    $('render-canvas').addEventListener('click',e=>{
+      const rect=e.target.getBoundingClientRect();
+      mouse.x=((e.clientX-rect.left)/rect.width)*2-1;
+      mouse.y=-((e.clientY-rect.top)/rect.height)*2+1;
+      raycaster.setFromCamera(mouse,camera);
+      const intersects=raycaster.intersectObjects(scene.children,true);
+      if(intersects.length>0){
+        const obj=intersects[0].object;
+        const mesh=meshes.find(m=>m.object===obj);
+        if(mesh){
+          // Deselect previous
+          meshes.forEach(m=>{if(m.object.material)m.object.material.emissive=new T.Color(0);});
+          // Select this
+          mesh.object.material.emissive=new T.Color(0x333300);
+          selectedMesh=mesh;
+          console.log('Selected:',mesh.name);
+        }
+      }
+    });
+
+    // Assign mesh to part
+    window.assignToPart=function(part){
+      if(!selectedMesh)return;
+      // Remove from previous assignment
+      meshes.forEach(m=>{if(m.assignedTo===part)m.assignedTo=null;});
+      selectedMesh.assignedTo=part;
+      updatePartsList();
+    };
+
+    // Part click handlers
+    document.querySelectorAll('.parts-list li').forEach(li=>{
+      li.addEventListener('click',()=>assignToPart(li.dataset.part));
+    });
+
+    // Save manifest
+    window.saveManifest=function(){
+      const manifest={version:1,parts:{}};
+      meshes.forEach(m=>{
+        if(m.assignedTo)manifest.parts[m.assignedTo]=m.name;
+      });
+      const json=JSON.stringify(manifest,null,2);
+      $('manifest').textContent=json;
+      $('manifest').style.display='block';
+      // Copy to clipboard
+      navigator.clipboard.writeText(json).catch(()=>{});
+      console.log('Manifest:',json);
+    };
+
+    // Auto-load if URL param
+    const params=new URLSearchParams(location.search);
+    if(params.get('model'))loadGLB();
+  </script>
+</body>
+</html>

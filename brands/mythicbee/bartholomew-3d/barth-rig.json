@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "character": "Bartholomew III",
+  "description": "Canonical part mapping for articulated puppet runtime",
+  "root": "BartholomewRoot",
+  "parts": {
+    "body": null,
+    "head": null,
+    "eyeLeft": null,
+    "eyeRight": null,
+    "wingFrontLeft": null,
+    "wingRearLeft": null,
+    "wingFrontRight": null,
+    "wingRearRight": null,
+    "antennaLeft": null,
+    "antennaRight": null,
+    "armLeft": null,
+    "armRight": null,
+    "cape": null
+  },
+  "pivots": {
+    "wingFrontLeft": { "offset": [0, 0, 0], "axis": "z" },
+    "wingRearLeft": { "offset": [0, 0, 0], "axis": "z" },
+    "wingFrontRight": { "offset": [0, 0, 0], "axis": "z" },
+    "wingRearRight": { "offset": [0, 0, 0], "axis": "z" },
+    "antennaLeft": { "offset": [0, 0, 0], "axis": "z" },
+    "antennaRight": { "offset": [0, 0, 0], "axis": "z" },
+    "armLeft": { "offset": [0, 0, 0], "axis": "z" },
+    "armRight": { "offset": [0, 0, 0], "axis": "z" },
+    "cape": { "offset": [0, 0, 0], "axis": "x" }
+  },
+  "motion": {
+    "wing": {
+      "frequencies": {
+        "idle": 14,
+        "listen": 9,
+        "think": 7,
+        "talk": 22,
+        "fly": 24,
+        "celebrate": 28
+      },
+      "amplitude": 0.45,
+      "phaseOffset": 2
+    },
+    "antenna": {
+      "frequency": 2.5,
+      "amplitude": 0.025,
+      "spring": 0.08
+    },
+    "cape": {
+      "frequency": 2.2,
+      "amplitude": 0.12,
+      "baseAngle": 0.15
+    },
+    "body": {
+      "bobFrequency": 1.5,
+      "bobAmplitude": 0.08,
+      "tiltFrequency": 0.8,
+      "tiltAmplitude": 0.04
+    },
+    "mouth": {
+      "openSpeed": 0.15,
+      "maxOpen": 0.4
+    },
+    "eye": {
+      "trackSpeed": 0.08,
+      "trackAmplitude": 0.02
+    }
+  }
+}
