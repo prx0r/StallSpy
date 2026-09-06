@@ -52,6 +52,36 @@ Reference this section before using any external service.
 
 **Never hardcode API keys in source files. Always read from `.env` or vault.**
 
+### CRITICAL: Never Push Secrets to Git
+
+**RULE: Before ANY `git push`, run:**
+
+```bash
+git grep -rn "sk-\|cfat_\|api_key\|API_KEY\|token\|secret" . 2>/dev/null | grep -v ".git" | grep -v "node_modules" | grep -v ".env" | grep -v "YOUR_"
+```
+
+If this returns ANY results, DO NOT PUSH. Fix them first.
+
+**What happened:** A secret (`sk-A5QHR5MR...`) was in `tool/kernel.py` from a previous commit. Even after removing it from the current file, GitHub's secret scanning blocked the push because it was in git history.
+
+**The fix:** `git filter-repo --replace-text` can remove secrets from history, but it's slow and risky.
+
+**The prevention:** NEVER let a secret reach a commit. Check before every `git add`.
+
+### Secret Removal Protocol
+
+If a secret is accidentally committed:
+1. **DO NOT push**
+2. Remove from current files: `sed -i 's/SECRET/PLACEHOLDER/g' file.js`
+3. Rewrite history: `git filter-repo --replace-text <(echo "SECRET==>PLACEHOLDER") --force`
+4. Verify: `git grep -rn "SECRET" . 2>/dev/null | grep -v ".git" | grep -v ".env"`
+5. Only then: `git push origin master --force`
+
+If push still fails:
+- The secret is in OTHER commits (pre-existing)
+- Need to rewrite ALL history with filter-repo
+- Or create fresh repo without problematic history
+
 ### HydraDB
 
 R2 bucket `stallshark` is ready for HydraDB backend. Current instance uses `hydradb` bucket with R2.
