@@ -19,7 +19,7 @@ describe("mogmug funnel", () => {
   });
   it("one pipeline: ten recipes, no bespoke backends", () => {
     assert.equal(CATALOGUE.length, 10);
-    assert.equal(recipeFor("mug").physicalSku, "MUG-11OZ");
+    assert.equal(recipeFor("mug").physicalSku, "GLOBAL-MUG-W");
   });
   it("prodigi needs hosted URL + exact SKU; portals resolve, never files", () => {
     assert.throws(() => buildProdigiOrder("MUG-11OZ", "/tmp/local.png", "Mum"));
