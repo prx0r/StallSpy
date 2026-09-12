@@ -1,7 +1,7 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 import { PET_LISTING_FIELDS, selectReferences } from "../src/onboarding.ts";
-import { CATALOGUE, recipeFor } from "../src/products.ts";
+import { CATALOGUE, LAUNCH_TEN, recipeFor } from "../src/products.ts";
 import { buildProdigiOrder, resolverUrl, shareUrl, isFreeTier } from "../src/fulfillment.ts";
 
 const photo = (over = {}) => ({ petDetected: true, petCount: 1, faceVisible: true, bodyVisible: true, occlusion: false, blur: false, resolution: 1080, viewAngle: "front", ...over });
@@ -27,6 +27,11 @@ describe("mogmug funnel", () => {
     assert.equal(o.sku, "MUG-11OZ");
     assert.equal(resolverUrl("81F2"), "https://mogmug.com/x/81F2");
     assert.equal(shareUrl("abc"), "https://mogmug.com/v/abc");
+  });
+  it("the ten: 8 heroes + 2 xmas, all with real SKUs", () => {
+    assert.equal(LAUNCH_TEN.length, 10);
+    assert.ok(LAUNCH_TEN.every((p) => p.sku && p.printArea && p.ships));
+    assert.deepEqual(LAUNCH_TEN.filter((p) => p.seasonal).map((p) => p.sku), ["XMAS-PORC-BAUB", "XMAS-PLAS-BAUB"]);
   });
   it("identity free, actions paid", () => {
     assert.ok(isFreeTier("create-character"));
