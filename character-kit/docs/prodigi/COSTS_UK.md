@@ -1,47 +1,44 @@
-# UK supply + ship costs (model v1 — read the flags)
+# UK supply + ship costs (LIVE — quoted 2026-09-12, GBP, VAT incl. in totals)
 
-Wholesale = verified on prodigi.com 2026-09-12. UK shipping = NOT public; pull per-SKU live numbers
-from dashboard pricing tool or Quote endpoint before locking retail. Anything marked EST is an
-assumption to replace, not a fact. Prices exclude VAT (see Taxation FAQ before margin lock).
+Pulled from Prodigi Quote endpoint per SKU × GB. Totals include 20% VAT. Re-quote before locking retail.
 
-## Per-unit wholesale (verified)
+## Live Standard totals (default method)
 
-| Product | SKU | Wholesale |
-|---|---|---|
-| Photo mug | GLOBAL-MUG-W | from £3.64 |
-| Magic mug | H-MUG-MAGIC-B | from £9.00 |
-| Cards (either) | GLOBAL-GRE-* | from £0.75 |
-| Cushion 12" | GLOBAL-CUSH-12X12-CAN | from £9.00 |
-| Bandana M | PET-BANDANA-MED | from £6.00 |
-| Sticker M | M-STI-5_5X5_5 | from £0.80 |
-| Print 16x24 | GLOBAL-FAP-16x24 | quote (not listed) |
-| Ornament | XMAS-PORC-BAUB | from £8.00 |
-| Bauble | XMAS-PLAS-BAUB | from £5.00 |
-| Video (any) | — | ~£0.20 generation |
+| Product | SKU | Item | Ship | Total |
+|---|---|---|---|---|
+| Photo mug | GLOBAL-MUG-W | £4.25 | £5.50 | **£11.70** |
+| Magic mug | H-MUG-MAGIC-B | £9.00 | £6.45 | **£18.54** |
+| Card direct | GLOBAL-GRE-MOH-7X5-DIR | £0.90 | £1.95 | **£3.42** |
+| Card self-send | GLOBAL-GRE-MOH-7X5-BLA | £1.05 | £2.35 | **£4.08** |
+| Cushion 12" | GLOBAL-CUSH-12X12-CAN | £9.00 | £4.30 | **£15.96** |
+| Bandana M | PET-BANDANA-MED | £6.00 | £4.30 | **£12.36** |
+| Sticker M | M-STI-5_5X5_5 | £2.50 | £2.45 | **£5.94** |
+| Print 16x24 | GLOBAL-FAP-16x24 | £10.00 | £5.90 | **£19.08** |
+| Ornament | XMAS-PORC-BAUB | £8.00 | £4.30 | **£14.76** |
+| Bauble | XMAS-PLAS-BAUB | £5.00 | £6.45 | **£13.74** |
 
-## UK shipping — pull live, do not guess retail on this
+Budget is cheaper across the board (mug £9.06, cushion £14.64, cards ~£3, bauble £9.84).
+Use Budget as default; Standard only where speed sells. UK cards ship flat rate.
 
-Method: Quote endpoint per SKU × destination at order time (returns courier + cost per method:
-budget/standard/express). Known Prodigi mechanics: multi-item consolidates (+1 rates, e.g. second
-frame adds fraction); nearest-lab routing; dispatch 1–4 days usually, mugs 48–72h, cards 24–72h,
-ornaments up to 120h. 100-shop study: keep charged shipping under $6 where possible, 81% of top
-shops charge shipping, median $5.70.
+## Margin at planned retail (Standard, Etsy fees ~£0.17 + 6.5% + 3% + £0.25)
 
-## Fee stack per Etsy order (GB)
-
-£0.17 listing + 6.5% transaction + ~3% + £0.25 processing. On £12.99 ≈ £1.55. On £1.99 ≈ £0.55.
-
-## Worked examples (shipping = EST placeholders)
-
-| Bundle | Retail | Wholesale | Ship EST | Fees | Margin EST |
+| Offer | Retail | Cost | Fees | Margin | Verdict |
 |---|---|---|---|---|---|
-| £1.99 clip (digital) | £1.99 | £0.20 | £0 | £0.55 | ~£1.24 |
-| Video + direct card £12.99 | £12.99 | £0.95 | £2.00 | £1.55 | ~£8.49 |
-| Mug portal £19.99 | £19.99 | £3.64 | £3.50 | £2.22 | ~£10.63 |
-| Cushion £29.99 | £29.99 | £9.00 | £4.00 | £3.17 | ~£13.82 |
+| £1.99 clip | £1.99 | £0.20 | £0.60 | ~£1.19 (60%) | OK loss-leader |
+| Talking video £6.99 | £6.99 | £0.20 | £1.03 | ~£5.76 (82%) | hero digital |
+| Video + direct card £12.99 | £12.99 | £3.62 | £1.66 | ~£7.71 (59%) | hero bundle |
+| Mug portal £19.99 | £19.99 | £11.70 | £2.32 | ~£5.97 (30%) | OK |
+| Cushion £29.99 | £29.99 | £15.96 | £3.27 | ~£10.76 (36%) | OK |
+| Print £29.99 | £29.99 | £19.08 | £3.27 | ~£7.64 (25%) | OK |
+| Bandana £16.99 | £16.99 | £12.36 | £2.03 | ~£2.60 (15%) | THIN — test £18.99 |
+| Magic mug £24.99 | £24.99 | £18.54 | £2.79 | ~£3.66 (15%) | THIN — test £27.99 or Budget ship |
+| Ornament £19.99 | £19.99 | £14.76 | £2.32 | ~£2.91 (15%) | THIN — Xmas premium should carry £22.99 |
+| Bauble £14.99 Standard | £14.99 | £13.74 | £1.84 | **−£0.59 LOSS** | SHIP BUDGET (£9.84 → +£3.31) or £16.99 |
+| Sticker solo £4.99 | £4.99 | £5.94 | £0.89 | **−£1.84 LOSS** | BUNDLE-ONLY add-on, never solo |
 
-## To finalize (needs Prodigi login)
+## Rules from this data
 
-1. Dashboard pricing tool → UK standard/budget per each of the 10 SKUs.
-2. Confirm VAT treatment on wholesale for UK orders.
-3. Replace EST column, lock retails, then set the ~25% shop sale (100-shop tactic) against margin, not hope.
+1. Default everything to Budget shipping unless speed is the pitch.
+2. Bauble ships Budget or it loses money. Stickers never sell solo.
+3. Magic/bandana/ornament need +£2–3 vs plan or Budget method — validate at 20 orders.
+4. Multi-item orders consolidate shipping (+1 rates) — bundles are structurally more profitable.
