@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>MythicBee</title>
+  <title>MogMug — Bring your pet to life</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
   <style>
     :root{--obsidian:#0B0B0F;--gold:#C9A84C;--ivory:#F5F0E8;--charcoal:#1E1E24;--muted:#6B6B6B}
@@ -94,14 +94,14 @@
     </div>
   </div>
   <div class="overlay" id="concepts-overlay"><button class="overlay-close" id="concepts-close">×</button><div class="overlay-panel"><h2 id="concepts-title">Ideas</h2><p>Which feels right?</p><div class="concepts-grid" id="concepts-grid"></div></div></div>
-  <div class="overlay" id="products-overlay"><button class="overlay-close" id="products-close">×</button><div class="overlay-panel"><h2>How should we deliver this?</h2><p>Same concept. Different form.</p><div class="products-grid"><div class="product" data-type="digital" data-price="9"><div class="product__visual">✨</div><div class="product__body"><div class="product__name">Digital Reveal</div><div class="product__desc">Instant animated reveal</div><div class="product__price">£9</div></div></div><div class="product" data-type="card" data-price="19"><div class="product__visual">💳</div><div class="product__body"><div class="product__name">Reveal Card</div><div class="product__desc">4×6 premium collectible</div><div class="product__price">£19</div></div></div><div class="product" data-type="gift" data-price="25"><div class="product__visual">🎁</div><div class="product__body"><div class="product__name">Gift Card</div><div class="product__desc">Folded card + envelope</div><div class="product__price">£25</div></div></div><div class="product" data-type="legend" data-price="49"><div class="product__visual">🏆</div><div class="product__body"><div class="product__name">Legend Block</div><div class="product__desc">1″ acrylic trophy</div><div class="product__price">£49</div></div></div></div></div></div>
+  <div class="overlay" id="products-overlay"><button class="overlay-close" id="products-close">×</button><div class="overlay-panel"><h2>How should we deliver this?</h2><p>Same concept. Different form.</p><div class="products-grid"><div class="product" data-type="digital" data-price="6.99"><div class="product__visual">✨</div><div class="product__body"><div class="product__name">Personalised Video</div><div class="product__desc">Your pet, brought to life</div><div class="product__price">£6.99</div></div></div><div class="product" data-type="card" data-price="12.99"><div class="product__visual">💳</div><div class="product__body"><div class="product__name">Video + Portal Card</div><div class="product__desc">Scan to summon them</div><div class="product__price">£12.99</div></div></div><div class="product" data-type="gift" data-price="19.99"><div class="product__visual">☕</div><div class="product__body"><div class="product__name">Mug Portal</div><div class="product__desc">Their face on your mornings</div><div class="product__price">£19.99</div></div></div><div class="product" data-type="legend" data-price="29.99"><div class="product__visual">🛋️</div><div class="product__body"><div class="product__name">Cushion Portal</div><div class="product__desc">A throne for their face</div><div class="product__price">£29.99</div></div></div></div></div></div>
   <div class="hive-signal"><div class="hive-signal-fill" id="hive-signal"></div></div>
   <div class="honey-badge" id="honey-badge"><span>🍯</span><span id="honey-count">0</span></div>
   <div class="satchel" id="satchel"><div class="satchel__icon">👜</div><div class="satchel__count" id="satchel-count">0 items</div><div class="satchel__total" id="satchel-total">Empty</div></div>
   <div class="bee-status" id="bee-status"><span class="bee-status__name" id="bee-name">Bartholomew III</span> — <span id="bee-role">Ceremonialist</span></div>
 
   <script>
-    console.log('MythicBee loading...');
+    console.log('MogMug loading...');
     
     // ═══════════════════════════════════════════════════════════
     // CONFIG
@@ -137,15 +137,18 @@
     // ═══════════════════════════════════════════════════════════
     // BEE SESSION
     // ═══════════════════════════════════════════════════════════
+    // CAST — one host per session. Bartholomew stays as OG resident.
     var ARCHETYPES = [
+      { name: 'Buster', role: 'Dachshund Wizard', voice: 'grandiose-cheeky', traits: ['dramatic', 'cheese-motivated', 'secretly judgemental'] },
       { name: 'Bartholomew III', role: 'Ceremonialist', voice: 'grandiose', traits: ['pompous', 'dramatic', 'formal'] },
-      { name: 'Martin', role: 'Keeper of Sensible Expenditure', voice: 'dry', traits: ['practical', 'suspicious of luxury'] },
-      { name: 'Lucifer', role: 'Bad Ideas Department', voice: 'mischievous', traits: ['funny', 'strange', 'shareable'] }
+      { name: 'Kevin', role: 'Angry Pigeon', voice: 'irate', traits: ['furious', 'territorial', 'shareable'] },
+      { name: 'Pickles', role: 'Cat', voice: 'dry', traits: ['unimpressed', 'precise', 'dangerous'] },
+      { name: 'Mog', role: 'Weird Goblin', voice: 'mischievous', traits: ['funny', 'strange', 'feral'] }
     ];
 
     var session = {
       id: 'bee_' + Date.now().toString(36),
-      bee: ARCHETYPES[0],
+      bee: ARCHETYPES[Math.floor(Math.random() * ARCHETYPES.length)],
       brief: {},
       satchel: [],
       honey: 30,
@@ -302,7 +305,7 @@
       if (turnCount % 3 === 0) setTimeout(showFlash, 2500);
       try {
         var reply = await callLLM([
-          { role: 'system', content: 'You are ' + session.bee.name + ', ' + session.bee.role + ' at MythicBee. You help people create legendary personalized gifts. Your personality: ' + session.bee.traits.join(', ') + '. Be warm, ' + session.bee.voice + ', concise. Ask one good question at a time. When you have enough info, say "I think I have some ideas." GiftBrief: ' + JSON.stringify(session.brief) },
+          { role: 'system', content: 'You are ' + session.bee.name + ', ' + session.bee.role + ' at MogMug. You help people bring their pet to life as videos, portals and gifts. Your personality: ' + session.bee.traits.join(', ') + '. Be warm, ' + session.bee.voice + ', concise. Ask one good question at a time. When you have enough info, say "I think I have some ideas." GiftBrief: ' + JSON.stringify(session.brief) },
           ].concat(session.history)
         );
         session.history.push({ role: 'assistant', content: reply });

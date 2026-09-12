@@ -10,34 +10,34 @@ import CardRenderer from './card-renderer.js';
 const prodigi = new ProdigiProvider();
 const renderer = new CardRenderer();
 
-// Product catalog with Prodigi SKUs
+// Product catalog with Prodigi SKUs (canonical set: character-kit/docs/prodigi/CANONICAL_PRODUCTS.md)
 const PRODUCTS = {
   "digital": {
-    name: "Digital Reveal",
-    price: 9,
+    name: "Personalised Video",
+    price: 6.99,
     fulfilment: "digital",
-    description: "Instant digital card + cinematic reveal"
+    description: "Your pet, brought to life"
   },
   "reveal-card": {
-    name: "Reveal Card",
-    price: 19,
+    name: "Video + Portal Card",
+    price: 12.99,
     fulfilment: "prodigi",
-    sku: "GLOBAL-POSTCARD-4X6",
-    description: "4×6 premium collectible + QR reveal"
+    sku: "GLOBAL-GRE-MOH-7X5-BLA",
+    description: "7×5 portal card + video reveal"
   },
   "gift-card": {
-    name: "Gift Card",
-    price: 25,
+    name: "Mug Portal",
+    price: 19.99,
     fulfilment: "prodigi",
-    sku: "GLOBAL-FC-5X7",
-    description: "Folded card + envelope + digital reveal"
+    sku: "GLOBAL-MUG-W",
+    description: "11oz photo mug + video reveal"
   },
   "legend-block": {
-    name: "Legend Block",
-    price: 49,
+    name: "Cushion Portal",
+    price: 29.99,
     fulfilment: "prodigi",
-    sku: "GLOBAL-ACRYLIC-4X6",
-    description: "1\" acrylic trophy + digital reveal"
+    sku: "GLOBAL-CUSH-12X12-CAN",
+    description: "12in canvas cushion + video reveal"
   }
 };
 
@@ -53,8 +53,8 @@ class OrderPipeline {
     const product = PRODUCTS[productType];
     if (!product) throw new Error(`Unknown product: ${productType}`);
 
-    const orderId = `MB-${Date.now().toString(36).toUpperCase()}`;
-    const portalUrl = `https://mythicbee.com/r/${orderId}`;
+    const orderId = `MM-${Date.now().toString(36).toUpperCase()}`;
+    const portalUrl = `https://mogmug.com/x/${orderId}`;
 
     const order = {
       id: orderId,
